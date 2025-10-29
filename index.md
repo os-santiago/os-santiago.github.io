@@ -3,9 +3,7 @@ layout: page
 title: Open Source Santiago — Comunidad, Tecnología y Propósito
 ---
 
-# Open Source Santiago — Comunidad, Tecnología y Propósito
-
-**Open Source Santiago** es una comunidad iniciada por organizadores en Chile, pero pensada desde su origen como un espacio **abierto al mundo**.  
+**Open Source Santiago** es una comunidad iniciada por organizadores en Chile, pero pensada desde su origen como un espacio **abierto al mundo**.
 Nuestro propósito es construir un punto de encuentro para personas de distintas culturas, lenguajes y trayectorias que ven en el código abierto una herramienta para generar conocimiento, colaboración y transformación social.
 
 Más allá de adherir a una fundación específica, apoyamos y colaboramos con grandes iniciativas globales como **Linux Foundation**, **CNCF**, **Apache**, **Eclipse**, entre otras, junto a frameworks y herramientas independientes desarrolladas por personas apasionadas, dentro y fuera de nuestra comunidad.
