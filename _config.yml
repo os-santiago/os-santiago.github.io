@@ -14,9 +14,9 @@ timezone: America/Santiago
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Platform Engineering Santiago # the main title
+title: Open Source Santiago # the main title
 
-tagline: Comunidad abierta de Platform Engineering en Chile # it will display as the sub-title
+tagline: Comunidad abierta de Open Source en Chile y el mundo # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   Comunidad que impulsa buenas prácticas de Platform Engineering mediante encuentros, mentorías y proyectos colaborativos.
@@ -34,7 +34,7 @@ twitter:
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: Platform Engineering Santiago
+  name: Open Source Santiago
   email: contacto@platformengineering.cl # change to your email address
   links:
     # The first element serves as the copyright owner's link
@@ -77,7 +77,7 @@ theme_mode: # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: "https://media.licdn.com/dms/image/v2/D4E0BAQFCLamQvNQnRg/company-logo_200_200/company-logo_200_200/0/1731330560143?e=1763596800&v=beta&t=7e_VwGi5CXNUTKnyDfoJA9xVmSssCH1m0JQHxYyyqRo"
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
