@@ -1,0 +1,222 @@
+---
+layout: page
+title: Open Quest
+icon: fas fa-trophy
+order: 2
+---
+
+<link rel="stylesheet" href="/assets/css/style.css">
+
+<div id="open-quest">
+<main class="container">
+  <section class="card">
+    <header>
+      <div class="badge">Temporada 2025Q4</div>
+      <h2>Temporada de Lanzamiento</h2>
+      <p>Ciclo inicial para documentar perfiles de Open Quest.</p>
+    </header>
+    <div class="summary-grid">
+      <div class="summary-card">
+        <h3>Participantes</h3>
+        <p>1</p>
+      </div>
+      <div class="summary-card">
+        <h3>XP total</h3>
+        <p>640</p>
+      </div>
+      <div class="summary-card">
+        <h3>Misiones completadas</h3>
+        <p>4</p>
+      </div>
+      <div class="summary-card">
+        <h3>XP promedio</h3>
+        <p>640</p>
+      </div>
+    </div>
+
+    <div class="badge">Clases activas</div>
+    <ul class="list-inline">
+      <li>Engineer</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Indicadores avanzados</h2>
+    <div class="highlight-grid">
+      <div class="highlight-card">
+        <h3>XP promedio por jugador</h3>
+        <strong>640</strong>
+        <small>Basado en 1 participantes activos.</small>
+      </div>
+      <div class="highlight-card">
+        <h3>XP por misión</h3>
+        <strong>160</strong>
+        <small>Relación entre 4 misiones y la XP total.</small>
+      </div>
+      <div class="highlight-card">
+        <h3>Nivel promedio</h3>
+        <strong>—</strong>
+        <small>Todavía no hay niveles registrados.</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Jugadores destacados</h2>
+    <div class="grid grid-2">
+      <div>
+        <h3>Mayor XP acumulada</h3>
+        <ol class="metric-list">
+          <li class="metric-item">
+            <div class="metric-header">
+              <span class="metric-rank">#1</span>
+              <div>
+                <strong>scanalesespinoza</strong>
+                <br><small>Sergio Canales</small>
+              </div>
+              <span class="metric-value">640 XP</span>
+            </div>
+            <div class="metric-subtext">
+              <span>Engineer</span>
+              <span>4 misiones</span>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div>
+        <h3>Más misiones completadas</h3>
+        <ol class="metric-list">
+          <li class="metric-item">
+            <div class="metric-header">
+              <span class="metric-rank">#1</span>
+              <div>
+                <strong>scanalesespinoza</strong>
+                <br><small>Sergio Canales</small>
+              </div>
+              <span class="metric-value">4 misiones</span>
+            </div>
+            <div class="metric-subtext">
+              <span>Engineer</span>
+              <span>640 XP</span>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Rendimiento por clase</h2>
+    <ul class="progress-list">
+      <li>
+        <div class="progress-item-header">
+          <span><strong>Engineer</strong></span>
+          <span>640 XP</span>
+        </div>
+        <div class="progress-footer">
+          <span>1 participantes</span>
+          <span>XP promedio: 640</span>
+          <span>Misiones promedio: 4</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Distribución de rangos</h2>
+    <ul class="rank-chips">
+      <li>
+        <strong>B</strong>
+        <span>1</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Misiones más recientes</h2>
+    <ol class="timeline">
+      <li class="timeline-item">
+        <div>
+          <strong>scanalesespinoza</strong>
+          <br><small>Sergio Canales</small>
+        </div>
+        <div class="timeline-meta">
+          <span>Engineer</span>
+          <span>4 misiones</span>
+          <span>640 XP</span>
+          <time datetime="2025-10-26T13:49:19.000Z">26 de octubre de 2025, 1:49 p. m.</time>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>Actividad reciente</h2>
+    <p><strong>mission-merge</strong> generó los artefactos el <time datetime="2025-10-30T11:36:54Z">2025-10-30T11:36:54Z</time>.</p>
+
+    <dl class="activity-metrics">
+      <div>
+        <dt>Participantes procesados</dt>
+        <dd>1</dd>
+      </div>
+      <div>
+        <dt>XP total acumulada</dt>
+        <dd>640</dd>
+      </div>
+      <div>
+        <dt>Misiones registradas</dt>
+        <dd>4</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="card">
+    <h2>Leaderboard del gremio</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Pos</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Clase</th>
+            <th scope="col">Nivel</th>
+            <th scope="col">Rango</th>
+            <th scope="col">XP</th>
+            <th scope="col">Misiones</th>
+            <th scope="col">Última misión</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>
+              <strong>scanalesespinoza</strong>
+              <br><small>Sergio Canales</small>
+            </td>
+            <td>Engineer</td>
+            <td>B2</td>
+            <td>B</td>
+            <td>640</td>
+            <td>4</td>
+            <td>
+              <time datetime="2025-10-26T13:49:19Z">2025-10-26T13:49:19Z</time>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Actualizado automáticamente con los resultados de <code>mission-merge</code>.</p>
+    <small>Última generación del leaderboard: 2025-10-30T11:36:54Z</small>
+    <p>
+      <a href="https://github.com/os-santiago/open-quest">Repositorio en GitHub</a>
+      ·
+      <a href="https://www.11ty.dev/">Construido con Eleventy</a>
+    </p>
+  </div>
+</footer>
+</div>
