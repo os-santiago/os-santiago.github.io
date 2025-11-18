@@ -14,7 +14,7 @@ Más allá de adherir a una fundación específica, apoyamos a quienes desean ap
 
 ---
 
-## 🌍 Overview
+## 🌍 Visión General
 
 **Aprende Open Source desde cero, colabora en proyectos reales y únete a conversaciones globales.**
 

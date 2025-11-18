@@ -1,0 +1,90 @@
+# Archivo de localización en español para el tema Chirpy
+
+# Las traducciones de la interfaz de usuario del sitio
+# ‑ ‑ ‑ ‑ ‑ ‑ ‑ ‑ ‑ ‑ ‑ ‑ ‑ ‑ ‑ ‑ ‑ ‑ ‑ ‑
+
+# Las etiquetas de la barra lateral
+tabs:
+  # formato: <nombre_archivo_sin_extensión>: <etiqueta>
+  home: Inicio
+  categories: Categorías
+  tags: Etiquetas
+  archives: Archivos
+  about: Acerca de
+  open-quest: Open Quest
+
+# Panel lateral
+panel:
+  lastmod: Actualizaciones recientes
+  trending_tags: Etiquetas en tendencia
+  toc: Contenido
+
+# Navegación de posts
+post:
+  written_by: Por
+  posted: Publicado
+  updated: Actualizado
+  timeago:
+    day: día
+    days: días
+    hour: hora
+    hours: horas
+    minute: minuto
+    minutes: minutos
+    just_now: ahora mismo
+    ago: hace
+  relate_posts: Lecturas relacionadas
+  share: Compartir
+  button:
+    next: Siguiente
+    previous: Anterior
+    copy_code:
+      succeed: ¡Copiado!
+    share_link:
+      title: Copiar enlace
+      succeed: ¡Enlace copiado!
+
+# Búsqueda
+search:
+  hint: Buscar
+  cancel: Cancelar
+  no_results: ¡Ups! No se encontraron resultados.
+
+# Categorías
+categories:
+  category_measure: categoría
+  categories_measure: categorías
+
+# Página 404
+not_found:
+  statment: Lo sentimos, hemos extraviado esa URL o apunta a algo que no existe.
+
+# Notificaciones
+notification:
+  update_found: Hay una nueva versión de contenido disponible.
+  update: Actualizar
+
+# Pie de página
+meta: Desarrollado con <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> y tema <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a>.
+
+# Licencia (footer)
+# Nota: el texto "Algunos derechos reservados" se puede sobrescribir en _config.yml › footer.license.text
+license:
+  template: Este trabajo está licenciado bajo :LICENSE_NAME.
+  link: https://creativecommons.org/licenses/by/4.0/
+  name: CC BY 4.0
+
+# Navegación de paginación
+pagination:
+  newer: Más reciente
+  older: Más antiguo
+
+# Varias traducciones
+others:
+  and: y
+  or: o
+  pin: Fijado
+
+# Vista previa de enlace
+link_preview:
+  loading: Cargando vista previa...
