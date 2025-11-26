@@ -1,3 +1,6 @@
+---
+---
+
 /* Estilos globales - Desactivar TOC y usar todo el ancho disponible */
 
 /* Hacer que el contenido principal use el 100% del ancho en todas las páginas */
@@ -13,16 +16,52 @@
   display: none !important;
 }
 
-/* Open Quest - Estilos basados en el diseño original con tema oscuro */
+/* Open Quest - Estilos con soporte para modo claro y oscuro según tema Chirpy */
 
-#open-quest {
+/* Modo claro (por defecto y cuando data-mode="light") */
+#open-quest,
+html[data-mode="light"] #open-quest {
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-text: #333333;
+  --color-muted: #666666;
+  --color-accent: #6c5ce7;
+  --color-border: #e0e0e0;
+  --color-surface-secondary: #f5f5f5;
+  --color-surface-tertiary: #f0f0f0;
+  --color-header-gradient-start: #ffffff;
+  --color-header-gradient-end: #f8f8f8;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+/* Modo oscuro cuando data-mode="dark" */
+html[data-mode="dark"] #open-quest {
   --color-background: #1b1b1e;
   --color-surface: #242429;
   --color-text: #e8eaed;
   --color-muted: #9aa0a6;
   --color-accent: #5f6368;
   --color-border: #3c4043;
-  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --color-surface-secondary: rgba(95, 99, 104, 0.15);
+  --color-surface-tertiary: rgba(95, 99, 104, 0.2);
+  --color-header-gradient-start: #2a2a30;
+  --color-header-gradient-end: #1b1b1e;
+}
+
+/* También respeta prefers-color-scheme si no hay data-mode */
+@media (prefers-color-scheme: dark) {
+  html:not([data-mode]) #open-quest {
+    --color-background: #1b1b1e;
+    --color-surface: #242429;
+    --color-text: #e8eaed;
+    --color-muted: #9aa0a6;
+    --color-accent: #5f6368;
+    --color-border: #3c4043;
+    --color-surface-secondary: rgba(95, 99, 104, 0.15);
+    --color-surface-tertiary: rgba(95, 99, 104, 0.2);
+    --color-header-gradient-start: #2a2a30;
+    --color-header-gradient-end: #1b1b1e;
+  }
 }
 
 #open-quest .container {
@@ -32,7 +71,7 @@
 }
 
 #open-quest .site-header {
-  background: linear-gradient(135deg, #2a2a30, #1b1b1e);
+  background: linear-gradient(135deg, var(--color-header-gradient-start), var(--color-header-gradient-end));
   color: var(--color-text);
   padding: 2.5rem 0 2rem;
   text-align: center;
@@ -74,13 +113,22 @@
 }
 
 #open-quest .summary-card {
-  
   background: var(--color-surface);
   border-radius: 0.75rem;
   border: 1px solid var(--color-border);
   padding: 1.5rem;
   box-shadow: 0 12px 25px rgba(15, 23, 42, 0.08);
   text-align: center;
+}
+
+/* Forzar modo claro en summary-card */
+html[data-mode="light"] #open-quest .summary-card {
+  background: #ffffff !important;
+}
+
+/* Forzar modo oscuro en summary-card */
+html[data-mode="dark"] #open-quest .summary-card {
+  background: #242429 !important;
 }
 
 #open-quest .summary-card h3 {
@@ -90,6 +138,16 @@
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+html[data-mode="light"] #open-quest .summary-card h3,
+html[data-mode="light"] #open-quest .summary-card p {
+  color: #333333 !important;
+}
+
+html[data-mode="dark"] #open-quest .summary-card h3,
+html[data-mode="dark"] #open-quest .summary-card p {
+  color: #e8eaed !important;
 }
 
 #open-quest .summary-card p {
@@ -103,7 +161,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  background: rgba(95, 99, 104, 0.2);
+  background: var(--color-surface-tertiary);
   color: var(--color-text);
   border-radius: 999px;
   padding: 0.35rem 0.75rem;
@@ -125,19 +183,41 @@
   padding: 1.75rem;
   margin: 2rem auto 0 auto;
   box-shadow: 0 16px 35px rgba(15, 23, 42, 0.09);
+  color: var(--color-text);
+}
+
+/* Forzar modo claro en cards */
+html[data-mode="light"] #open-quest .card {
+  background: #ffffff !important;
+  color: #333333 !important;
+}
+
+/* Forzar modo oscuro en cards */
+html[data-mode="dark"] #open-quest .card {
+  background: #242429 !important;
+  color: #e8eaed !important;
 }
 
 #open-quest .card h2 {
-  color: #e8eaed;
+  color: var(--color-text);
   text-align: center;
   margin-top: 0;
   margin-bottom: 1rem;
 }
 
-#open-quest .card p {
-  color: #e8eaed;
-  text-align: center;
+html[data-mode="light"] #open-quest .card h2,
+html[data-mode="light"] #open-quest .card p {
+  color: #333333 !important;
+}
 
+html[data-mode="dark"] #open-quest .card h2,
+html[data-mode="dark"] #open-quest .card p {
+  color: #e8eaed !important;
+}
+
+#open-quest .card p {
+  color: var(--color-text);
+  text-align: center;
 }
 
 #open-quest table {
@@ -147,7 +227,7 @@
 }
 
 #open-quest thead {
-  background: rgba(95, 99, 104, 0.15);
+  background: var(--color-surface-secondary);
 }
 
 #open-quest thead th {
@@ -156,7 +236,7 @@
   font-size: 0.8rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--color-text);
 }
 
 #open-quest tbody tr {
@@ -179,26 +259,16 @@
   padding: 0.25rem 0.55rem;
   border-radius: 999px;
   border: 1px solid var(--color-border);
-  background: rgba(148, 163, 184, 0.12);
+  background: var(--color-surface-secondary);
 }
 
 #open-quest .empty-state {
   text-align: center;
   padding: 2rem 1rem;
-  color: var(--color-muted);
+  color: var(--color-text);
   border: 2px dashed var(--color-border);
   border-radius: 1rem;
-  background: rgba(148, 163, 184, 0.08);
-}
-
-#open-quest .list-inline {
-  color: var(--color-text);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 0;
-  margin: 0.75rem 0 0;
-  list-style: none;
+  background: var(--color-surface-secondary);
 }
 
 #open-quest .list-inline {
@@ -210,7 +280,6 @@
   margin: 0.75rem 0 0;
   list-style: none;
   justify-content: center;
-}
 }
 
 #open-quest .grid {
@@ -233,8 +302,8 @@
 
 #open-quest .metric-item {
   color: var(--color-text);
-  background: rgba(95, 99, 104, 0.15);
-  border: 1px solid rgba(95, 99, 104, 0.3);
+  background: var(--color-surface-secondary);
+  border: 1px solid var(--color-border);
   border-radius: 0.85rem;
   padding: 1rem 1.25rem;
   display: flex;
@@ -259,7 +328,7 @@
   flex-wrap: wrap;
   gap: 0.75rem;
   font-size: 0.85rem;
-  color: var(--color-muted);
+  color: var(--color-text);
 }
 
 #open-quest .metric-rank {
@@ -292,7 +361,7 @@
 
 #open-quest .progress-bar {
   position: relative;
-  background: rgba(148, 163, 184, 0.2);
+  background: var(--color-surface-secondary);
   border-radius: 999px;
   overflow: hidden;
   height: 0.65rem;
@@ -310,7 +379,7 @@
   flex-wrap: wrap;
   gap: 1rem;
   font-size: 0.8rem;
-  color: var(--color-muted);
+  color: var(--color-text);
   margin-top: 0.5rem;
 }
 
@@ -325,8 +394,8 @@
 }
 
 #open-quest .rank-chips li {
-  background: rgba(95, 99, 104, 0.2);
-  border: 1px solid rgba(95, 99, 104, 0.35);
+  background: var(--color-surface-tertiary);
+  border: 1px solid var(--color-border);
   border-radius: 999px;
   padding: 0.45rem 0.85rem;
   display: inline-flex;
@@ -368,7 +437,7 @@
   flex-wrap: wrap;
   gap: 0.75rem;
   font-size: 0.85rem;
-  color: var(--color-muted);
+  color: var(--color-text);
 }
 
 #open-quest .highlight-grid {
@@ -384,8 +453,8 @@
 
 #open-quest .highlight-card {
   color: var(--color-text);
-  background: rgba(95, 99, 104, 0.15);
-  border: 1px solid rgba(95, 99, 104, 0.35);
+  background: var(--color-surface-secondary);
+  border: 1px solid var(--color-border);
   border-radius: 0.85rem;
   padding: 1rem 1.25rem;
   display: flex;
@@ -398,7 +467,7 @@
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--color-muted);
+  color: var(--color-text);
 }
 
 #open-quest .highlight-card strong {
@@ -421,7 +490,6 @@
 }
 
 #open-quest .table-wrapper {
-  color: var(--color-text);
   width: 100%;
   overflow-x: auto;
 }
