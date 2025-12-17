@@ -1,6 +1,3 @@
----
----
-
 /* Estilos globales - Desactivar TOC y usar todo el ancho disponible */
 
 /* Hacer que el contenido principal use el 100% del ancho en todas las páginas */
@@ -67,7 +64,8 @@ html[data-mode="dark"] #open-quest {
 #open-quest .container {
   margin: 0 auto;
   padding: 0 1.25rem;
-  max-width: fit-content;
+  width: 100%;
+  max-width: 1200px;
 }
 
 #open-quest .site-header {
@@ -172,7 +170,7 @@ html[data-mode="dark"] #open-quest .summary-card p {
   width: auto;
 }
 
-#open-quest .card > header {
+#open-quest .card>header {
   text-align: center;
 }
 
@@ -288,7 +286,7 @@ html[data-mode="dark"] #open-quest .card p {
 }
 
 #open-quest .grid-2 {
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 #open-quest .metric-list {

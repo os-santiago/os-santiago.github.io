@@ -1,4 +1,3 @@
----
 members:
 - userId: "sergio.canales.e@gmail.com"
   displayName: "Sergio Canales"
@@ -10,7 +9,7 @@ members:
 - userId: "axel.d4mage@gmail.com"
   displayName: "Axel (D4MAG3)"
   github: "axel-damage"
-  role: "administrador"
+  role: "Administrador"
   profileUrl: "https://github.com/axel-damage"
-  avatarUrl: "https://avatars.githubusercontent.com/u/17834057?v=4"
+  avatarUrl: "https://avatars.githubusercontent.com/u/axel-damage?v=4"
   joinedAt: "2025-12-17T21:21:01.742Z"

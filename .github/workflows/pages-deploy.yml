@@ -45,6 +45,9 @@ jobs:
           ruby-version: 3.2
           bundler-cache: true
 
+      - name: Sync Members Data
+        run: cp community/members.yaml _data/members.yaml || true
+
       - name: Build site
         run: bundle exec jekyll b -d "_site${{ steps.pages.outputs.base_path }}"
         env:
