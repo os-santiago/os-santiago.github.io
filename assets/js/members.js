@@ -130,5 +130,5 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.target == modal) {
             modal.classList.remove('modal-open');
         }
-    }
+    };
 });
