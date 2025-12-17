@@ -90,14 +90,25 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        const sanitizeYamlString = (input) => {
+            return String(input)
+                .replace(/\\/g, '\\\\')
+                .replace(/"/g, '\\"')
+                .replace(/\r?\n/g, ' ')
+                .trim();
+        };
+
+        const sanitizedDisplayName = sanitizeYamlString(form.name.value);
+        const sanitizedGithub = sanitizeYamlString(form.github.value);
+        const sanitizedRole = sanitizeYamlString(form.role.value);
         const now = new Date().toISOString();
         const yaml = `
 - userId: "${email}"
-  displayName: "${form.name.value}"
-  github: "${form.github.value}"
-  role: "${form.role.value}"
-  profileUrl: "https://github.com/${form.github.value}"
-  avatarUrl: "https://avatars.githubusercontent.com/${form.github.value}"
+  displayName: "${sanitizedDisplayName}"
+  github: "${sanitizedGithub}"
+  role: "${sanitizedRole}"
+  profileUrl: "https://github.com/${sanitizedGithub}"
+  avatarUrl: "https://avatars.githubusercontent.com/${sanitizedGithub}"
   joinedAt: "${now}"`;
 
         navigator.clipboard.writeText(yaml).then(() => {
