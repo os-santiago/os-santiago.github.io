@@ -1,0 +1,211 @@
+/* Members Page Specific Styles */
+
+.members-title {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.join-section {
+    margin-top: 2rem;
+}
+
+.member-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    margin-bottom: 0.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-muted);
+}
+
+.form-input,
+.form-select {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+    color: var(--color-text);
+}
+
+.preview-title {
+    margin-top: 0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: var(--color-muted);
+}
+
+.preview-card.metric-item {
+    opacity: 0.6;
+    /* Include metric-item styles from style.css/open-quest.css dependencies if needed, 
+     but since we are using open-quest classes they should be inherited. 
+     This class is used to toggle opacity. */
+}
+
+.steps-container {
+    margin-top: 2rem;
+    background: rgba(95, 99, 104, 0.1);
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+
+.steps-title {
+    margin-top: 0;
+}
+
+.steps-list {
+    padding-left: 1.5rem;
+    color: var(--color-muted);
+}
+
+.generate-btn {
+    background: #238636;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.generate-btn:hover {
+    background: #2ea043;
+}
+
+/* Toast Notification */
+.toast-notification {
+    visibility: hidden;
+    min-width: 250px;
+    text-align: center;
+    border-radius: 4px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1001;
+    /* Higher than normal content */
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Success Modal */
+.success-modal {
+    display: none;
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: var(--color-surface);
+    margin: 15% auto;
+    padding: 2rem;
+    border: 1px solid var(--color-border);
+    width: 90%;
+    max-width: 500px;
+    border-radius: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    color: var(--color-text);
+}
+
+.modal-title {
+    margin-top: 0;
+    color: var(--color-text);
+}
+
+.modal-text {
+    color: var(--color-muted);
+    margin: 1rem 0;
+}
+
+.modal-steps-box {
+    background: rgba(95, 99, 104, 0.1);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.modal-steps-title {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+}
+
+.modal-steps-list {
+    margin: 0;
+    padding-left: 1.5rem;
+    color: var(--color-muted);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.modal-btn-cancel {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.modal-btn-cancel:hover {
+    background: rgba(95, 99, 104, 0.1);
+}
+
+.modal-btn-confirm {
+    background: #238636;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.modal-btn-confirm:hover {
+    background: #2ea043;
+}
+
+/* Member Card Items */
+.member-header-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#open-quest .member-avatar {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+}
+
+.member-github-link {
+    color: var(--color-text);
+}

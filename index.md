@@ -85,7 +85,9 @@ Promovemos la diversidad en todas sus formas y buscamos que cada nueva generaci�
 ---
 
 ¿Quieres contribuir? ¿Tienes una idea?
-Revisa nuestras [misiones](https://github.com/OSSantiago/open-quest-guild/projects), únete al gremio y empieza tu aventura.
+Puedes crear un [issue](https://github.com/os-santiago/os-santiago.github.io/issues) o directamente un Pull Request, únete al gremio y empieza tu aventura.
 Conversa con la comunidad en nuestro [servidor de Discord](https://discord.gg/3eawzc9ybc).
 
-**Bienvenid@ al viaje. Aquí, el código transforma personas.**
+**Bienvenid@ al viaje.**
+
+**Aquí, el código transforma personas.**
