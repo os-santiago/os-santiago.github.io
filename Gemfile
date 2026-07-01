@@ -2,6 +2,9 @@
 
 source "https://rubygems.org"
 
+# Ruby 3.4 dropped some stdlib gems
+gem "erb", "~> 4.0" if RUBY_VERSION.to_f >= 3.4
+
 gem "jekyll-theme-chirpy", "~> 6.5", ">= 6.5.5"
 
 group :jekyll_plugins do
