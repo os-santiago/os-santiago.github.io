@@ -5,10 +5,7 @@ icon: fas fa-users
 order: 4
 ---
 
-<link rel="stylesheet" href="/assets/css/style.css">
-<link rel="stylesheet" href="/assets/css/members.css">
-
-<div id="open-quest">
+<div class="oss-section">
 <main class="container">
   <h2 class="members-title">Conoce a las personas que hacen posible esta comunidad</h2>
 
@@ -24,7 +21,7 @@ order: 4
                 </div>
             </div>
              {% if member.github %}
-            <a href="https://github.com/{{ member.github }}" target="_blank" class="member-github-link">
+            <a href="https://github.com/{{ member.github }}" target="_blank" rel="noopener noreferrer" class="member-github-link">
                 <i class="fab fa-github fa-lg"></i>
             </a>
             {% endif %}
@@ -40,7 +37,7 @@ order: 4
     </header>
     <div class="join-content">
       <p class="join-description">Gestiona tu perfil, conecta tu GitHub y únete a proyectos desde <strong>HomeDir</strong>.</p>
-      <a href="https://homedir.opensourcesantiago.io/comunidad" class="join-btn">
+      <a href="{{ site.homedir_url }}/comunidad" class="join-btn">
         Unirse en HomeDir
       </a>
     </div>
