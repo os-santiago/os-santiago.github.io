@@ -14,25 +14,25 @@ Open Source Santiago es una comunidad iniciada por organizadores en Chile, pero 
 
 ---
 
-## 🚀 Proyecto Estrella: HomeDir
+## Proyecto Estrella: HomeDir
 
 [**HomeDir**]({{ site.homedir_url }}) es la plataforma comunitaria de DevRel, Open Source e InnerSource de Open Source Santiago. Un hub que consolida eventos, contenido curado, gamificación y colaboración en un solo lugar.
 
 <div class="feature-grid">
   <div class="feature-card">
-    <h3>📅 Eventos & CFP</h3>
+    <h3>Eventos & CFP</h3>
     <p>Gestión de conferencias, Call for Papers, voluntarios y agenda con detección de superposición</p>
   </div>
   <div class="feature-card">
-    <h3>🏆 Reputación & Gamificación</h3>
+    <h3>Reputación & Gamificación</h3>
     <p>Sistema de XP, HCoin, clases y leaderboards para reconocer contribuciones</p>
   </div>
   <div class="feature-card">
-    <h3>📰 Comunidad</h3>
+    <h3>Comunidad</h3>
     <p>Contenido curado con votación comunitaria, Lightning Threads y tablero de miembros</p>
   </div>
   <div class="feature-card">
-    <h3>🔥 GitHub Trending</h3>
+    <h3>GitHub Trending</h3>
     <p>Descubrimiento de repositorios trending con caché inteligente y actualización programada</p>
   </div>
 </div>
@@ -41,7 +41,7 @@ Open Source Santiago es una comunidad iniciada por organizadores en Chile, pero 
 
 ---
 
-## 📖 Metodología ADEV
+## Metodología ADEV
 
 [**Augmented Development (A-Dev)**]({{ site.adev_url }}) es nuestra metodología de desarrollo asistido por IA. Un framework vendor-neutral para orquestar entrega de software con disciplina, calidad y trazabilidad.
 
@@ -53,7 +53,7 @@ Open Source Santiago es una comunidad iniciada por organizadores en Chile, pero 
 
 ---
 
-## 🌟 Top Contribuidores
+## Top Contribuidores
 
 {% if site.data.contributors and site.data.contributors.contributors %}
 <ol class="leaderboard">
@@ -73,7 +73,7 @@ Open Source Santiago es una comunidad iniciada por organizadores en Chile, pero 
 
 ---
 
-## 💬 Comunidad
+## Comunidad
 
 - [Discord](https://discord.gg/3eawzc9ybc) — Conversa con la comunidad
 - [GitHub](https://github.com/os-santiago) — Repositorios y proyectos
