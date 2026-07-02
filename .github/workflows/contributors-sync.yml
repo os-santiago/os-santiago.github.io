@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: contributors-sync
+  cancel-in-progress: true
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -34,7 +38,7 @@ jobs:
           # Collect per-repo contributor data
           for repo in $REPOS; do
             echo "Fetching contributors for $repo..."
-            gh api "repos/os-santiago/${repo}/contributors?per_page=100" --jq '
+            gh api "repos/os-santiago/${repo}/contributors?per_page=100" --paginate --jq '
               .[] | "  - login: \"\(.login)\"\n    contributions: \(.contributions)\n    avatar_url: \"\(.avatar_url)\"\n    repo: \"'"${repo}"'\""
             ' >> /tmp/contributors_raw.yml
           done

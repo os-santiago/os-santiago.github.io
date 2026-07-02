@@ -27,7 +27,7 @@ La mitad del tiempo se dedica a la creación, la otra mitad a la verificación:
 
 ### 3. Digital Thread
 Toda feature se vincula a un plan, un prompt y evidencia:
-```
+```text
 Product Feature → Atomic Plan → Prompt → Commit/Test Evidence → Baseline Update
 ```
 

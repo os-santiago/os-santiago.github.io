@@ -3,7 +3,9 @@ layout: page
 title: Open Source Santiago — Comunidad, Tecnología y Propósito
 ---
 
-<section class="oss-section hero-section">
+<div class="oss-section" markdown="1">
+
+<section class="hero-section">
   <div class="container">
     <h1>Open Source Santiago</h1>
     <p class="tagline">Comunidad, Tecnología y Propósito — abiertos al mundo</p>
@@ -37,7 +39,7 @@ Open Source Santiago es una comunidad iniciada por organizadores en Chile, pero 
   </div>
 </div>
 
-<a href="{{ site.homedir_url }}" class="join-btn" style="display:inline-block;margin:1rem 0">Explorar HomeDir →</a>
+<a href="{{ site.homedir_url }}" class="join-btn">Explorar HomeDir →</a>
 
 ---
 
@@ -49,7 +51,7 @@ Open Source Santiago es una comunidad iniciada por organizadores en Chile, pero 
 - **50/50 Quality Cycle** — mitad del tiempo en creación, mitad en verificación
 - **Digital Thread** — toda feature se vincula a un plan, prompt y evidencia
 
-<a href="{{ '/adev/' | relative_url }}" class="join-btn" style="display:inline-block;margin:1rem 0;background:#238636;color:#fff;padding:0.75rem 1.5rem;border-radius:0.5rem;text-decoration:none;font-weight:600">Conocer ADEV →</a>
+<a href="{{ '/adev/' | relative_url }}" class="join-btn">Conocer ADEV →</a>
 
 ---
 
@@ -81,3 +83,5 @@ Open Source Santiago es una comunidad iniciada por organizadores en Chile, pero 
 - [Miembros]({{ '/members/' | relative_url }}) — Directorio de la comunidad
 
 **Bienvenid@ al viaje. Aquí, el código transforma personas.**
+
+</div>

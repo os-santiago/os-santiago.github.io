@@ -35,6 +35,7 @@
   --color-surface-tertiary: rgba(139, 148, 158, 0.2);
   --color-header-gradient-start: #161b22;
   --color-header-gradient-end: #0d1117;
+
   font-family: system-ui, -apple-system, sans-serif;
 }
 
@@ -194,6 +195,25 @@ html[data-mode="light"] .oss-section {
   white-space: nowrap;
 }
 
+/* ── Shared CTA button ── */
+.join-btn {
+  display: inline-block;
+  margin: 1rem 0;
+  background-color: #238636;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.join-btn:hover {
+  background-color: #2ea043;
+  color: #ffffff;
+  text-decoration: none;
+}
+
 /* ── Feature grid (Phase 2) ── */
 .feature-grid {
   display: grid;
@@ -208,16 +228,16 @@ html[data-mode="light"] .oss-section {
 }
 
 .feature-card {
-  background: var(--oss-surface, #161b22);
-  border: 1px solid var(--oss-border, #30363d);
+  background: var(--color-surface, #161b22);
+  border: 1px solid var(--color-border, #30363d);
   border-radius: 0.75rem;
   padding: 1.25rem;
-  color: var(--oss-text, #e6edf3);
+  color: var(--color-text, #e6edf3);
   transition: border-color 0.2s ease;
 }
 
 .feature-card:hover {
-  border-color: var(--oss-accent, #58a6ff);
+  border-color: var(--color-accent, #58a6ff);
 }
 
 .feature-card h3 {
@@ -228,7 +248,7 @@ html[data-mode="light"] .oss-section {
 
 .feature-card p {
   margin: 0;
-  color: var(--oss-muted, #8b949e);
+  color: var(--color-muted, #8b949e);
   font-size: 0.9rem;
 }
 

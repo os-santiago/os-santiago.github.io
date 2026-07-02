@@ -31,7 +31,6 @@
   max-width: 36ch;
 }
 
-.oss-section .member-avatar,
 .oss-section .member-avatar {
   width: 75px;
   height: 75px;
@@ -51,21 +50,4 @@
 
 .join-description {
   margin-bottom: 1.5rem;
-}
-
-.join-btn {
-  display: inline-block;
-  background-color: #238636;
-  color: #ffffff;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background-color 0.2s ease;
-}
-
-.join-btn:hover {
-  background-color: #2ea043;
-  color: #ffffff;
-  text-decoration: none;
 }
