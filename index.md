@@ -3,91 +3,85 @@ layout: page
 title: Open Source Santiago — Comunidad, Tecnología y Propósito
 ---
 
-<link rel="stylesheet" href="/assets/css/style.css">
+<div class="oss-section" markdown="1">
 
-**Open Source Santiago** es una comunidad iniciada por organizadores en Chile, pero pensada desde su origen como un espacio **abierto al mundo**.
-Nuestro propósito es construir un punto de encuentro para personas de distintas culturas, lenguajes y trayectorias que ven en el código abierto una herramienta para generar conocimiento, colaboración y transformación social.
+<section class="hero-section">
+  <div class="container">
+    <h1>Open Source Santiago</h1>
+    <p class="tagline">Comunidad, Tecnología y Propósito — abiertos al mundo</p>
+  </div>
+</section>
 
-Más allá de adherir a una fundación específica, apoyamos a quienes desean aprender de grandes iniciativas globales como **Linux Foundation**, **CNCF**, **Apache**, **Eclipse**, entre otras, así como de frameworks y herramientas independientes desarrolladas por personas apasionadas dentro y fuera de nuestra comunidad. No colaboramos directamente con estas iniciativas; orientamos nuestros esfuerzos a acompañar a las personas que quieren aprender de ellas y de sus tecnologías.
-
-> **Creemos en la tecnología como motor para el desarrollo personal, profesional y comunitario.**
-
----
-
-## 🌍 Visión General
-
-**Aprende Open Source desde cero, colabora en proyectos reales y únete a conversaciones globales.**
-
-Somos un grupo diverso de entusiastas del software libre y el conocimiento compartido.  
-Conecta con otros apasionados por el código abierto, comparte tus ideas y proyectos.  
-¡Desarrolla tus habilidades en un ambiente seguro, divertido y humano!
-
-### Desarrolla tu potencial como:
-- Developer  
-- Platform Engineer / SRE  
-- DevOps / DevSecOps  
-- AI Specialist  
-- Speaker  
-- Profesional de TI
+Open Source Santiago es una comunidad iniciada por organizadores en Chile, pero pensada desde su origen como un espacio **abierto al mundo**. Creemos en la tecnología como motor para el desarrollo personal, profesional y comunitario.
 
 ---
 
-## 👥 Líderes de Comunidad
+## Proyecto Estrella: HomeDir
 
-El equipo que impulsa la comunidad:
+[**HomeDir**]({{ site.homedir_url }}) es la plataforma comunitaria de DevRel, Open Source e InnerSource de Open Source Santiago. Un hub que consolida eventos, contenido curado, gamificación y colaboración en un solo lugar.
 
-- Javier Salvo  
-- Caio Medeiros  
-- Victor Fernandez  
-- Pablo Castelo  
-- Sergio Canales  
+<div class="feature-grid">
+  <div class="feature-card">
+    <h3>Eventos & CFP</h3>
+    <p>Gestión de conferencias, Call for Papers, voluntarios y agenda con detección de superposición</p>
+  </div>
+  <div class="feature-card">
+    <h3>Reputación & Gamificación</h3>
+    <p>Sistema de XP, HCoin, clases y leaderboards para reconocer contribuciones</p>
+  </div>
+  <div class="feature-card">
+    <h3>Comunidad</h3>
+    <p>Contenido curado con votación comunitaria, Lightning Threads y tablero de miembros</p>
+  </div>
+  <div class="feature-card">
+    <h3>GitHub Trending</h3>
+    <p>Descubrimiento de repositorios trending con caché inteligente y actualización programada</p>
+  </div>
+</div>
 
-*(Próximamente más sobre sus perfiles y formas de contacto.)*
-
----
-
-## 🧪 Proyectos Principales
-
-### 🏠 HomeDir  
-Una plataforma modular para comunidades tecnológicas, con herramientas para gestión de eventos, usuarios, contenidos y colaboración.
-
-### 🌊 Navia  
-Una capa de navegación inteligente que convierte la experiencia de usuario en sitios web en una conversación guiada por intención.
-
-### 🛡️ Open Quest Guild  
-Sistema de colaboración gamificado para aprender y contribuir mediante desafíos, clases (profesiones), rangos y misiones.
-
----
-
-## 🎤 Evento Principal
-
-### Platform Engineering Community Day — Santiago  
-Un encuentro anual sobre Ingeniería de Plataformas, desarrollado con la comunidad local y actores globales.  
-Conferencias, demos, espacios de conversación, talleres y más.
-
-> Próxima edición: 2026 🚀
+<a href="{{ site.homedir_url }}" class="join-btn">Explorar HomeDir →</a>
 
 ---
 
-## 🏛️ Somos parte de Acofitec.cl
+## Metodología ADEV
 
-Open Source Santiago forma parte de **Acofitec**, fundación chilena sin fines de lucro que impulsa la tecnología abierta, la colaboración y el desarrollo ético de herramientas digitales.
+[**Augmented Development (A-Dev)**]({{ site.adev_url }}) es nuestra metodología de desarrollo asistido por IA. Un framework vendor-neutral para orquestar entrega de software con disciplina, calidad y trazabilidad.
 
----
+- **Living Baseline** — restricciones que todo prompt debe leer, actualizadas con cada fallo
+- **50/50 Quality Cycle** — mitad del tiempo en creación, mitad en verificación
+- **Digital Thread** — toda feature se vincula a un plan, prompt y evidencia
 
-## 🌱 Compromiso con la Diversidad y la Continuidad
-
-Creemos en una comunidad que evoluciona con sus personas.  
-Promovemos la diversidad en todas sus formas y buscamos que cada nueva generación de participantes pueda aportar, crecer y tomar un rol activo en el desarrollo del proyecto.
-
-> Aquí no solo escribimos código: creamos comunidad y propósito.
+<a href="{{ '/adev/' | relative_url }}" class="join-btn">Conocer ADEV →</a>
 
 ---
 
-¿Quieres contribuir? ¿Tienes una idea?
-Puedes crear un [issue](https://github.com/os-santiago/os-santiago.github.io/issues) o directamente un Pull Request, únete al gremio y empieza tu aventura.
-Conversa con la comunidad en nuestro [servidor de Discord](https://discord.gg/3eawzc9ybc).
+## Top Contribuidores
 
-**Bienvenid@ al viaje.**
+{% if site.data.contributors and site.data.contributors.contributors %}
+<ol class="leaderboard">
+{% assign sorted = site.data.contributors.contributors | sort: "contributions" | reverse | slice: 0, 10 %}
+{% for c in sorted %}
+  <li>
+    <span class="rank">#{{ forloop.index }}</span>
+    <img class="avatar" src="{{ c.avatar_url }}" alt="{{ c.login }}" width="40" height="40" loading="lazy">
+    <span class="login">{{ c.login }}</span>
+    <span class="stat">{{ c.contributions }} commits</span>
+  </li>
+{% endfor %}
+</ol>
+{% else %}
+<p>Leaderboard de contribuidores de <a href="https://github.com/os-santiago">github.com/os-santiago</a> — se actualiza semanalmente.</p>
+{% endif %}
 
-**Aquí, el código transforma personas.**
+---
+
+## Comunidad
+
+- [Discord](https://discord.gg/3eawzc9ybc) — Conversa con la comunidad
+- [GitHub](https://github.com/os-santiago) — Repositorios y proyectos
+- [HomeDir]({{ site.homedir_url }}) — Plataforma comunitaria
+- [Miembros]({{ '/members/' | relative_url }}) — Directorio de la comunidad
+
+**Bienvenid@ al viaje. Aquí, el código transforma personas.**
+
+</div>

@@ -1,0 +1,74 @@
+name: Sync Contributors
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Every Monday at 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: contributors-sync
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch contributors data
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p _data
+
+          # Fetch all org repos (exclude forks and .github)
+          REPOS=$(gh api orgs/os-santiago/repos --jq '.[] | select(.fork == false) | select(.name != ".github") | .name' --paginate)
+
+          {
+            echo "# Contributors data - auto-generated weekly"
+            echo "# Generated: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo ""
+            echo "contributors:"
+          } > _data/contributors.yml
+
+          # Collect per-repo contributor data
+          for repo in $REPOS; do
+            echo "Fetching contributors for $repo..."
+            gh api "repos/os-santiago/${repo}/contributors?per_page=100" --paginate --jq '
+              .[] | "  - login: \"\(.login)\"\n    contributions: \(.contributions)\n    avatar_url: \"\(.avatar_url)\"\n    repo: \"'"${repo}"'\""
+            ' >> /tmp/contributors_raw.yml
+          done
+
+          # Aggregate contributions per user across repos
+          awk '
+            /^  - login:/ { login = $3; gsub(/"/, "", login) }
+            /contributions:/ { c[login] += $2 }
+            /avatar_url:/ { a[login] = $2 }
+            /repo:/ {
+              r = $2; gsub(/"/, "", r)
+              repos[login] = repos[login] ? repos[login] ", " r : r
+            }
+            END {
+              for (l in c) printf "%d|%s|%s|%s\n", c[l], l, a[l], repos[l]
+            }
+          ' /tmp/contributors_raw.yml |
+          sort -t'|' -k1 -rn |
+          while IFS='|' read -r count login avatar repo_list; do
+            printf '  - login: "%s"\n    contributions: %s\n    avatar_url: %s\n    repos: "%s"\n\n' \
+              "$login" "$count" "$avatar" "$repo_list"
+          done >> _data/contributors.yml
+
+          rm -f /tmp/contributors_raw.yml
+          echo "Contributors data written to _data/contributors.yml"
+
+      - name: Commit and push
+        run: |
+          git config user.name "os-santiago-bot"
+          git config user.email "bot@opensourcesantiago.io"
+          git add _data/contributors.yml
+          git diff --cached --quiet || git commit -m "chore: update contributors data [skip ci]"
+          git push
