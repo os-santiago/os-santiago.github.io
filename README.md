@@ -1,32 +1,85 @@
 # Open Source Santiago
 
-Sitio web de la comunidad Open Source Santiago.
+Website for the Open Source Santiago community.
 
 ## Stack
 
-- **SSG:** Jekyll 4.x
-- **Tema:** Chirpy
+- **Framework:** Next.js 16 (App Router, static export)
+- **Language:** TypeScript 5.9 (strict)
+- **Styling:** Tailwind CSS 4
+- **Package Manager:** pnpm 11
 - **Deploy:** GitHub Actions → GitHub Pages
 
-## Proyectos principales
+## Pages
 
-- [HomeDir](https://github.com/os-santiago/homedir) — Plataforma comunitaria de DevRel, Open Source e InnerSource
-- [ADEV](https://github.com/scanalesespinoza/adev) — Metodología de desarrollo asistido por IA
+| Route          | Description             |
+| -------------- | ----------------------- |
+| `/es`          | Home (Spanish, default) |
+| `/en`          | Home (English)          |
+| `/es/about`    | About the community     |
+| `/es/adev`     | ADEV methodology        |
+| `/es/projects` | Project showcase        |
+| `/es/events`   | Community events        |
+| `/es/members`  | Community members       |
 
-## Desarrollo local
+All routes have ES/EN variants.
+
+## Development
 
 ```bash
-bundle install
-bundle exec jekyll serve
+pnpm install
+pnpm dev
 ```
 
-## Contribuir
+Open `http://localhost:3000`.
 
-1. Crea un fork del repositorio
-2. Crea una branch feature (`git checkout -b feature/amazing-feature`)
-3. Commit tus cambios (`git commit -m 'feat: add amazing feature'`)
-4. Push a la branch (`git push origin feature/amazing-feature`)
-5. Abre un Pull Request
+## Scripts
+
+| Command             | Description              |
+| ------------------- | ------------------------ |
+| `pnpm dev`          | Start dev server         |
+| `pnpm build`        | Static export to `out/`  |
+| `pnpm lint`         | Run ESLint               |
+| `pnpm format`       | Format with Prettier     |
+| `pnpm format:check` | Check formatting         |
+| `pnpm typecheck`    | TypeScript type checking |
+
+## Architecture
+
+```
+app/
+  [locale]/        # ES/EN locale routing
+    about/
+    adev/
+    events/
+    members/
+    projects/
+  layout.tsx       # Root layout (metadata, icons)
+  page.tsx         # Redirect to /es
+  sitemap.ts       # Static sitemap
+  robots.ts        # Static robots.txt
+components/
+  ui/              # Data-Noir Glitch design system
+  layout/          # Navbar, Footer
+  i18n/            # Language switcher
+  events/          # Countdown timer
+data/              # Static content (projects, members, events)
+i18n/              # Locale config and message bundles
+lib/               # Utilities
+public/            # Static assets (logo)
+```
+
+## Visual Identity
+
+The site uses the **Data-Noir Glitch** design system: a dark, cyberpunk-inspired aesthetic with cyan and magenta as the primary palette, CRT scanlines, data rain, and glitch effects. Dark mode only. All animations respect `prefers-reduced-motion`.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feat/amazing-feature`)
+3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
+4. Push to the branch (`git push origin feat/amazing-feature`)
+5. Open a Pull Request
 
 ---
 

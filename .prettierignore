@@ -1,0 +1,11 @@
+# Build artifacts
+.next/
+out/
+node_modules/
+pnpm-lock.yaml
+
+# GitHub templates
+.github/
+
+# Generated
+next-env.d.ts

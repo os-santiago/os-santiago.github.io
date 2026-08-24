@@ -1,0 +1,81 @@
+name: Next.js CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "app/**"
+      - "components/**"
+      - "data/**"
+      - "i18n/**"
+      - "lib/**"
+      - "public/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "tsconfig.json"
+      - "next.config.ts"
+      - "postcss.config.mjs"
+      - "eslint.config.mjs"
+      - ".prettierrc"
+      - ".nvmrc"
+  push:
+    branches: [main]
+    paths:
+      - "app/**"
+      - "components/**"
+      - "data/**"
+      - "i18n/**"
+      - "lib/**"
+      - "public/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "tsconfig.json"
+      - "next.config.ts"
+      - "postcss.config.mjs"
+      - "eslint.config.mjs"
+      - ".prettierrc"
+      - ".nvmrc"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Lint, Typecheck, Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Format check
+        run: pnpm format:check
+
+      - name: Build
+        run: pnpm build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nextjs-out
+          path: out/
+          retention-days: 7

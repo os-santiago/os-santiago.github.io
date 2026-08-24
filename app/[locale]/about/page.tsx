@@ -1,0 +1,91 @@
+import { getMessages } from "@/i18n";
+import { type Locale } from "@/i18n/config";
+import { GlitchText } from "@/components/ui/glitch-text";
+import { DataPanel } from "@/components/ui/data-panel";
+import { NeonButton } from "@/components/ui/neon-button";
+
+export default async function AboutPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const msgs = getMessages(locale as Locale);
+
+  const facts = [
+    { label: msgs["about.founded"], value: "2024" },
+    {
+      label: msgs["about.mainProject"],
+      value: "HomeDir",
+      href: "https://homedir.opensourcesantiago.io",
+    },
+    {
+      label: msgs["about.methodology"],
+      value: "ADEV",
+      href: "https://github.com/scanalesespinoza/adev",
+    },
+    {
+      label: msgs["about.discord"],
+      value: msgs["about.join"],
+      href: "https://discord.gg/3eawzc9ybc",
+    },
+  ];
+
+  return (
+    <main className="mx-auto max-w-4xl px-6 py-16">
+      <GlitchText
+        as="h1"
+        intensity="normal"
+        className="text-cyan font-display text-4xl font-bold"
+      >
+        {msgs["about.title"]}
+      </GlitchText>
+
+      <div className="mt-8">
+        <DataPanel title="MISSION" glow="cyan">
+          <p className="text-cyan-dim leading-relaxed">
+            {msgs["about.mission"]}
+          </p>
+        </DataPanel>
+      </div>
+
+      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {facts.map((fact) => (
+          <DataPanel key={fact.label} glow="cyan">
+            <div className="text-magenta-dim font-mono text-xs tracking-widest uppercase">
+              {fact.label}
+            </div>
+            {fact.href ? (
+              <a
+                href={fact.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cyan font-display hover:text-magenta mt-1 block text-lg font-bold transition-colors"
+              >
+                {fact.value} →
+              </a>
+            ) : (
+              <div className="text-cyan font-display mt-1 text-lg font-bold">
+                {fact.value}
+              </div>
+            )}
+          </DataPanel>
+        ))}
+      </div>
+
+      <div className="mt-12 flex flex-wrap gap-4">
+        <NeonButton
+          href="https://discord.gg/3eawzc9ybc"
+          external
+          variant="cyan"
+          size="md"
+        >
+          {msgs["about.join"]} →
+        </NeonButton>
+        <NeonButton href={`/${locale}/adev`} variant="magenta" size="md">
+          {msgs["home.cta.adev"]} →
+        </NeonButton>
+      </div>
+    </main>
+  );
+}
