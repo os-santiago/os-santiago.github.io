@@ -1,24 +1,36 @@
-# Bundler cache
-.bundle
-vendor
-Gemfile.lock
-
-# Jekyll cache
-.jekyll-cache
-_site
-
-
-# RubyGems
-*.gem
-
-# NPM dependencies
+# dependencies
 node_modules
-package-lock.json
+.pnp
+.pnp.js
+
+# next.js
+.next/
+out/
+next-env.d.ts
+
+# production
+build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files
+.env
+.env*.local
+
+# typescript
+*.tsbuildinfo
+
+# vercel
+.vercel
 
 # IDE configurations
 .idea
 .vscode
-
-# Misc
-assets/js/dist
-.slim
