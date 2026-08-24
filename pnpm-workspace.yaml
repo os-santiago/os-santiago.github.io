@@ -1,2 +1,5 @@
 onlyBuiltDependencies:
   - unrs-resolver
+
+# Allow build scripts for approved dependencies without interactive prompt
+# Required for CI with --frozen-lockfile
