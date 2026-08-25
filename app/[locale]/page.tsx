@@ -1,3 +1,13 @@
+import {
+  IconBrandDiscord,
+  IconBrandGithub,
+  IconHome,
+  IconUsers,
+  IconArrowRight,
+  IconCalendarEvent,
+  IconRocket,
+  IconCode,
+} from "@tabler/icons-react";
 import { getMessages } from "@/i18n";
 import { type Locale } from "@/i18n/config";
 import { GlitchText } from "@/components/ui/glitch-text";
@@ -20,13 +30,12 @@ export default async function HomePage({
   return (
     <>
       {/* Hero */}
-      <ReflectiveSurface className="relative min-h-[calc(100vh-3.5rem)]">
-        <DataRain className="opacity-30" density={0.3} />
+      <ReflectiveSurface className="depth-squares relative min-h-[calc(100vh-3.5rem)]">
+        <DataRain className="opacity-10" density={0.12} />
 
         <main className="relative z-10 flex min-h-[calc(100vh-3.5rem)] flex-col items-center justify-center px-6">
           <GlitchText
             as="h1"
-            intensity="normal"
             className="text-cyan font-display text-center text-5xl font-bold sm:text-7xl"
           >
             {msgs["home.title"]}
@@ -36,7 +45,7 @@ export default async function HomePage({
             {msgs["home.tagline"]}
           </p>
 
-          <p className="text-magenta-dim mt-3 max-w-xl text-center text-sm">
+          <p className="text-cyan-deep mt-3 max-w-xl text-center text-sm">
             {msgs["home.mission"]}
           </p>
 
@@ -44,24 +53,24 @@ export default async function HomePage({
             <NeonButton
               href="https://discord.gg/3eawzc9ybc"
               external
-              variant="cyan"
               size="md"
+              icon={<IconBrandDiscord size={18} className="text-cyan" />}
             >
               {msgs["home.cta.discord"]}
             </NeonButton>
             <NeonButton
               href="https://github.com/os-santiago"
               external
-              variant="magenta"
               size="md"
+              icon={<IconBrandGithub size={18} className="text-cyan" />}
             >
               {msgs["home.cta.github"]}
             </NeonButton>
             <NeonButton
               href="https://homedir.opensourcesantiago.io"
               external
-              variant="cyan"
               size="md"
+              icon={<IconHome size={18} className="text-cyan" />}
             >
               {msgs["home.cta.homedir"]}
             </NeonButton>
@@ -75,10 +84,11 @@ export default async function HomePage({
 
       {/* Event Highlight */}
       <section className="mx-auto max-w-7xl px-6 py-16">
-        <GlitchCard glow="magenta" className="p-8">
+        <GlitchCard className="p-8">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div>
-              <div className="text-magenta font-mono text-xs tracking-widest uppercase">
+              <div className="text-cyan flex items-center gap-2 font-mono text-xs tracking-widest uppercase">
+                <IconCalendarEvent size={14} className="text-cyan" />
                 {msgs["events.upcoming"]}
               </div>
               <h2 className="text-cyan font-display mt-2 text-3xl font-bold">
@@ -87,7 +97,7 @@ export default async function HomePage({
               <p className="text-cyan-dim mt-2 text-sm">
                 {msgs["home.event.description"]}
               </p>
-              <div className="text-magenta-dim mt-4 font-mono text-sm">
+              <div className="text-cyan-deep mt-4 font-mono text-sm">
                 <div>{msgs["home.event.date"]}</div>
                 <div>{msgs["home.event.venue"]}</div>
               </div>
@@ -95,12 +105,19 @@ export default async function HomePage({
             <div className="flex flex-col gap-3">
               <NeonButton
                 href={`/${locale}/events`}
-                variant="magenta"
                 size="md"
+                icon={<IconArrowRight size={18} className="text-cyan" />}
               >
                 {msgs["home.event.cta"]}
               </NeonButton>
-              {events_website_btn(msgs)}
+              <NeonButton
+                href="https://devopsdayschile.cl"
+                external
+                size="sm"
+                icon={<IconArrowRight size={16} className="text-cyan" />}
+              >
+                {msgs["events.cta.website"]}
+              </NeonButton>
             </div>
           </div>
         </GlitchCard>
@@ -116,22 +133,22 @@ export default async function HomePage({
         </p>
 
         <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <DataPanel title={msgs["home.homedir.f1.title"]} glow="cyan">
+          <DataPanel title={msgs["home.homedir.f1.title"]}>
             <p className="text-cyan-dim text-sm">
               {msgs["home.homedir.f1.desc"]}
             </p>
           </DataPanel>
-          <DataPanel title={msgs["home.homedir.f2.title"]} glow="magenta">
+          <DataPanel title={msgs["home.homedir.f2.title"]}>
             <p className="text-cyan-dim text-sm">
               {msgs["home.homedir.f2.desc"]}
             </p>
           </DataPanel>
-          <DataPanel title={msgs["home.homedir.f3.title"]} glow="cyan">
+          <DataPanel title={msgs["home.homedir.f3.title"]}>
             <p className="text-cyan-dim text-sm">
               {msgs["home.homedir.f3.desc"]}
             </p>
           </DataPanel>
-          <DataPanel title={msgs["home.homedir.f4.title"]} glow="cyan">
+          <DataPanel title={msgs["home.homedir.f4.title"]}>
             <p className="text-cyan-dim text-sm">
               {msgs["home.homedir.f4.desc"]}
             </p>
@@ -142,10 +159,10 @@ export default async function HomePage({
           <NeonButton
             href="https://homedir.opensourcesantiago.io"
             external
-            variant="cyan"
             size="md"
+            icon={<IconArrowRight size={18} className="text-cyan" />}
           >
-            {msgs["home.cta.explore"]} →
+            {msgs["home.cta.explore"]}
           </NeonButton>
         </div>
       </section>
@@ -160,17 +177,17 @@ export default async function HomePage({
         </p>
 
         <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
-          <DataPanel title={msgs["home.adev.pillar1"]} glow="cyan">
+          <DataPanel title={msgs["home.adev.pillar1"]}>
             <p className="text-cyan-dim text-sm">
               {msgs["home.adev.pillar1.desc"]}
             </p>
           </DataPanel>
-          <DataPanel title={msgs["home.adev.pillar2"]} glow="magenta">
+          <DataPanel title={msgs["home.adev.pillar2"]}>
             <p className="text-cyan-dim text-sm">
               {msgs["home.adev.pillar2.desc"]}
             </p>
           </DataPanel>
-          <DataPanel title={msgs["home.adev.pillar3"]} glow="cyan">
+          <DataPanel title={msgs["home.adev.pillar3"]}>
             <p className="text-cyan-dim text-sm">
               {msgs["home.adev.pillar3.desc"]}
             </p>
@@ -178,8 +195,12 @@ export default async function HomePage({
         </div>
 
         <div className="mt-8">
-          <NeonButton href={`/${locale}/adev`} variant="cyan" size="md">
-            {msgs["home.cta.adev"]} →
+          <NeonButton
+            href={`/${locale}/adev`}
+            size="md"
+            icon={<IconArrowRight size={18} className="text-cyan" />}
+          >
+            {msgs["home.cta.adev"]}
           </NeonButton>
         </div>
       </section>
@@ -195,8 +216,12 @@ export default async function HomePage({
               {msgs["home.projects.subtitle"]}
             </p>
           </div>
-          <NeonButton href={`/${locale}/projects`} variant="cyan" size="sm">
-            {msgs["home.projects.cta"]} →
+          <NeonButton
+            href={`/${locale}/projects`}
+            size="sm"
+            icon={<IconArrowRight size={16} className="text-cyan" />}
+          >
+            {msgs["home.projects.cta"]}
           </NeonButton>
         </div>
 
@@ -205,7 +230,6 @@ export default async function HomePage({
             <GlitchCard
               key={project.name}
               href={project.repoUrl}
-              glow="cyan"
               className="p-5"
             >
               <h3 className="text-cyan font-display text-lg font-bold">
@@ -214,7 +238,8 @@ export default async function HomePage({
               <p className="text-cyan-dim mt-2 text-xs">
                 {locale === "es" ? project.description : project.descriptionEn}
               </p>
-              <div className="text-magenta-dim mt-3 font-mono text-[10px] tracking-widest uppercase">
+              <div className="text-cyan-deep mt-3 flex items-center gap-1 font-mono text-[10px] tracking-widest uppercase">
+                <IconCode size={12} className="text-cyan-deep" />
                 {project.language}
               </div>
             </GlitchCard>
@@ -228,46 +253,49 @@ export default async function HomePage({
           {msgs["home.community.title"]}
         </h2>
         <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <GlitchCard
-            href="https://discord.gg/3eawzc9ybc"
-            glow="cyan"
-            className="p-5"
-          >
-            <h3 className="text-cyan font-mono text-sm tracking-widest uppercase">
-              {msgs["home.cta.discord"]}
-            </h3>
+          <GlitchCard href="https://discord.gg/3eawzc9ybc" className="p-5">
+            <div className="flex items-center gap-2">
+              <IconBrandDiscord size={18} className="text-cyan" />
+              <h3 className="text-cyan font-mono text-sm tracking-widest uppercase">
+                {msgs["home.cta.discord"]}
+              </h3>
+            </div>
             <p className="text-cyan-dim mt-2 text-xs">
               {msgs["home.community.discord"]}
             </p>
           </GlitchCard>
-          <GlitchCard
-            href="https://github.com/os-santiago"
-            glow="magenta"
-            className="p-5"
-          >
-            <h3 className="text-cyan font-mono text-sm tracking-widest uppercase">
-              {msgs["home.cta.github"]}
-            </h3>
+          <GlitchCard href="https://github.com/os-santiago" className="p-5">
+            <div className="flex items-center gap-2">
+              <IconBrandGithub size={18} className="text-cyan" />
+              <h3 className="text-cyan font-mono text-sm tracking-widest uppercase">
+                {msgs["home.cta.github"]}
+              </h3>
+            </div>
             <p className="text-cyan-dim mt-2 text-xs">
               {msgs["home.community.github"]}
             </p>
           </GlitchCard>
           <GlitchCard
             href="https://homedir.opensourcesantiago.io"
-            glow="cyan"
             className="p-5"
           >
-            <h3 className="text-cyan font-mono text-sm tracking-widest uppercase">
-              {msgs["home.cta.homedir"]}
-            </h3>
+            <div className="flex items-center gap-2">
+              <IconRocket size={18} className="text-cyan" />
+              <h3 className="text-cyan font-mono text-sm tracking-widest uppercase">
+                {msgs["home.cta.homedir"]}
+              </h3>
+            </div>
             <p className="text-cyan-dim mt-2 text-xs">
               {msgs["home.community.homedir"]}
             </p>
           </GlitchCard>
-          <GlitchCard href={`/${locale}/members`} glow="cyan" className="p-5">
-            <h3 className="text-cyan font-mono text-sm tracking-widest uppercase">
-              {msgs["nav.members"]}
-            </h3>
+          <GlitchCard href={`/${locale}/members`} className="p-5">
+            <div className="flex items-center gap-2">
+              <IconUsers size={18} className="text-cyan" />
+              <h3 className="text-cyan font-mono text-sm tracking-widest uppercase">
+                {msgs["nav.members"]}
+              </h3>
+            </div>
             <p className="text-cyan-dim mt-2 text-xs">
               {msgs["home.community.members"]}
             </p>
@@ -275,18 +303,5 @@ export default async function HomePage({
         </div>
       </section>
     </>
-  );
-}
-
-function events_website_btn(msgs: Record<string, string>) {
-  return (
-    <NeonButton
-      href="https://devopsdayschile.cl"
-      external
-      variant="cyan"
-      size="sm"
-    >
-      {msgs["events.cta.website"]} →
-    </NeonButton>
   );
 }

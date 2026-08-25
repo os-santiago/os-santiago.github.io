@@ -7,7 +7,6 @@ type DataRainProps = {
   className?: string;
   density?: number;
   speed?: number;
-  color?: "cyan" | "magenta" | "mixed";
 };
 
 type Drop = {
@@ -16,7 +15,6 @@ type Drop = {
   speed: number;
   chars: string[];
   length: number;
-  color: "cyan" | "magenta";
 };
 
 const CHARSET = "01<>/[]{}=+-*$#@!?abcdef0123456789";
@@ -29,7 +27,6 @@ export function DataRain({
   className,
   density = 0.5,
   speed = 1,
-  color = "mixed",
 }: DataRainProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>(0);
@@ -65,12 +62,6 @@ export function DataRain({
       drops = [];
       for (let i = 0; i < count; i++) {
         const col = Math.floor(Math.random() * cols);
-        const dropColor: "cyan" | "magenta" =
-          color === "mixed"
-            ? Math.random() > 0.7
-              ? "magenta"
-              : "cyan"
-            : color;
         const len = Math.floor(Math.random() * 15) + 5;
         drops.push({
           x: col * colWidth,
@@ -78,7 +69,6 @@ export function DataRain({
           speed: (Math.random() * 0.5 + 0.5) * speed,
           chars: Array.from({ length: len }, randomChar),
           length: len,
-          color: dropColor,
         });
       }
     }
@@ -101,15 +91,11 @@ export function DataRain({
           if (y < 0 || y > canvas.height) continue;
 
           const alpha = 1 - i / drop.length;
-          const hex =
-            drop.color === "cyan"
-              ? `rgba(0, 240, 255, ${alpha})`
-              : `rgba(255, 0, 170, ${alpha})`;
 
           if (i === 0) {
-            ctx.fillStyle = drop.color === "cyan" ? "#ffffff" : "#ffaadd";
+            ctx.fillStyle = "#ffffff";
           } else {
-            ctx.fillStyle = hex;
+            ctx.fillStyle = `rgba(0, 240, 255, ${alpha})`;
           }
 
           if (Math.random() > 0.97) {
@@ -144,7 +130,7 @@ export function DataRain({
       window.removeEventListener("resize", resize);
       cancelAnimationFrame(animationRef.current);
     };
-  }, [density, speed, color]);
+  }, [density, speed]);
 
   return (
     <canvas

@@ -1,3 +1,4 @@
+import { IconArrowRight, IconBook } from "@tabler/icons-react";
 import { getMessages } from "@/i18n";
 import { type Locale } from "@/i18n/config";
 import { GlitchText } from "@/components/ui/glitch-text";
@@ -16,17 +17,14 @@ export default async function AdevPage({
     {
       title: msgs["adev.pillar1.title"],
       desc: msgs["adev.pillar1.desc"],
-      glow: "cyan" as const,
     },
     {
       title: msgs["adev.pillar2.title"],
       desc: msgs["adev.pillar2.desc"],
-      glow: "magenta" as const,
     },
     {
       title: msgs["adev.pillar3.title"],
       desc: msgs["adev.pillar3.desc"],
-      glow: "cyan" as const,
     },
   ];
 
@@ -65,17 +63,13 @@ export default async function AdevPage({
 
   return (
     <main className="mx-auto max-w-4xl px-6 py-16">
-      <GlitchText
-        as="h1"
-        intensity="normal"
-        className="text-cyan font-display text-4xl font-bold"
-      >
+      <GlitchText as="h1" className="text-cyan font-display text-4xl font-bold">
         {msgs["adev.title"]}
       </GlitchText>
 
       <p className="text-cyan-dim mt-4 text-lg">{msgs["adev.definition"]}</p>
 
-      <blockquote className="text-magenta border-magenta/50 mt-6 border-l-2 pl-4 font-mono text-sm italic">
+      <blockquote className="text-cyan-bright border-cyan/50 mt-6 border-l-2 pl-4 font-mono text-sm italic">
         {msgs["adev.quote"]}
       </blockquote>
 
@@ -85,7 +79,7 @@ export default async function AdevPage({
       </h2>
       <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
         {pillars.map((pillar) => (
-          <DataPanel key={pillar.title} title={pillar.title} glow={pillar.glow}>
+          <DataPanel key={pillar.title} title={pillar.title}>
             <p className="text-cyan-dim text-sm">{pillar.desc}</p>
           </DataPanel>
         ))}
@@ -96,14 +90,14 @@ export default async function AdevPage({
         {msgs["adev.rules"]}
       </h2>
       <div className="mt-6">
-        <DataPanel title="RULES" glow="cyan">
+        <DataPanel title="RULES">
           <ul className="space-y-3">
             {rules.map((rule, i) => (
               <li
                 key={i}
                 className="text-cyan-dim flex items-start gap-3 text-sm"
               >
-                <span className="text-magenta font-mono text-xs">
+                <span className="text-cyan font-mono text-xs">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span>{rule}</span>
@@ -118,7 +112,7 @@ export default async function AdevPage({
         {msgs["adev.cycle"]}
       </h2>
       <div className="mt-6">
-        <DataPanel title="CYCLE" glow="magenta">
+        <DataPanel title="CYCLE">
           <ol className="space-y-2">
             {cycle.map((step, i) => (
               <li
@@ -141,8 +135,9 @@ export default async function AdevPage({
       </h2>
       <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
         {starter.map((item) => (
-          <DataPanel key={item.name} glow="cyan">
-            <div className="text-cyan font-mono text-sm font-bold">
+          <DataPanel key={item.name}>
+            <div className="text-cyan flex items-center gap-2 font-mono text-sm font-bold">
+              <IconBook size={14} className="text-cyan" />
               {item.name}
             </div>
             <p className="text-cyan-dim mt-1 text-xs">{item.desc}</p>
@@ -154,10 +149,10 @@ export default async function AdevPage({
         <NeonButton
           href="https://github.com/scanalesespinoza/adev"
           external
-          variant="cyan"
           size="lg"
+          icon={<IconArrowRight size={20} className="text-cyan" />}
         >
-          {msgs["adev.cta"]} →
+          {msgs["adev.cta"]}
         </NeonButton>
       </div>
     </main>

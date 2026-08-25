@@ -4,16 +4,10 @@ import { cn } from "@/lib/utils";
 type NeonButtonProps = {
   children: React.ReactNode;
   href: string;
-  variant?: "cyan" | "magenta";
   size?: "sm" | "md" | "lg";
   external?: boolean;
   className?: string;
-};
-
-const variantClasses = {
-  cyan: "border-cyan/50 text-cyan hover:bg-cyan/10 hover:border-cyan hover:shadow-[0_0_20px_var(--color-cyan-glow)]",
-  magenta:
-    "border-magenta/50 text-magenta hover:bg-magenta/10 hover:border-magenta hover:shadow-[0_0_20px_var(--color-magenta-glow)]",
+  icon?: React.ReactNode;
 };
 
 const sizeClasses = {
@@ -25,16 +19,22 @@ const sizeClasses = {
 export function NeonButton({
   children,
   href,
-  variant = "cyan",
   size = "md",
   external = false,
   className,
+  icon,
 }: NeonButtonProps) {
   const baseClass = cn(
-    "inline-flex items-center justify-center rounded-sm border font-mono uppercase tracking-widest transition-all duration-300",
-    variantClasses[variant],
+    "neon-btn-3d inline-flex items-center justify-center gap-2 rounded-sm border border-cyan/50 font-mono uppercase tracking-widest text-cyan transition-all duration-300 hover:border-cyan",
     sizeClasses[size],
     className,
+  );
+
+  const content = (
+    <>
+      {icon && <span className="flex-shrink-0">{icon}</span>}
+      {children}
+    </>
   );
 
   if (external) {
@@ -45,14 +45,14 @@ export function NeonButton({
         rel="noopener noreferrer"
         className={baseClass}
       >
-        {children}
+        {content}
       </a>
     );
   }
 
   return (
     <Link href={href as never} className={baseClass}>
-      {children}
+      {content}
     </Link>
   );
 }

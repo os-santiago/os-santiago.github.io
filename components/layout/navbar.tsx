@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { IconTerminal2 } from "@tabler/icons-react";
 import { type Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n";
 import { LanguageSwitcher } from "@/components/i18n/language-switcher";
@@ -38,8 +39,9 @@ export function Navbar({ locale }: NavbarProps) {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
         <Link
           href={`/${locale}` as never}
-          className="font-display text-cyan text-sm font-bold tracking-widest uppercase"
+          className="font-display text-cyan flex items-center gap-2 text-sm font-bold tracking-widest uppercase"
         >
+          <IconTerminal2 size={18} className="text-cyan" />
           OS Santiago
         </Link>
 

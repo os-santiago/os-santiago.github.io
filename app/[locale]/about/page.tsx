@@ -1,3 +1,10 @@
+import {
+  IconBrandDiscord,
+  IconArrowRight,
+  IconCalendar,
+  IconRocket,
+  IconCode,
+} from "@tabler/icons-react";
 import { getMessages } from "@/i18n";
 import { type Locale } from "@/i18n/config";
 import { GlitchText } from "@/components/ui/glitch-text";
@@ -13,36 +20,39 @@ export default async function AboutPage({
   const msgs = getMessages(locale as Locale);
 
   const facts = [
-    { label: msgs["about.founded"], value: "2024" },
+    {
+      label: msgs["about.founded"],
+      value: "2024",
+      icon: <IconCalendar size={16} className="text-cyan" />,
+    },
     {
       label: msgs["about.mainProject"],
       value: "HomeDir",
       href: "https://homedir.opensourcesantiago.io",
+      icon: <IconRocket size={16} className="text-cyan" />,
     },
     {
       label: msgs["about.methodology"],
       value: "ADEV",
       href: "https://github.com/scanalesespinoza/adev",
+      icon: <IconCode size={16} className="text-cyan" />,
     },
     {
       label: msgs["about.discord"],
       value: msgs["about.join"],
       href: "https://discord.gg/3eawzc9ybc",
+      icon: <IconBrandDiscord size={16} className="text-cyan" />,
     },
   ];
 
   return (
     <main className="mx-auto max-w-4xl px-6 py-16">
-      <GlitchText
-        as="h1"
-        intensity="normal"
-        className="text-cyan font-display text-4xl font-bold"
-      >
+      <GlitchText as="h1" className="text-cyan font-display text-4xl font-bold">
         {msgs["about.title"]}
       </GlitchText>
 
       <div className="mt-8">
-        <DataPanel title="MISSION" glow="cyan">
+        <DataPanel title="MISSION">
           <p className="text-cyan-dim leading-relaxed">
             {msgs["about.mission"]}
           </p>
@@ -51,8 +61,9 @@ export default async function AboutPage({
 
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
         {facts.map((fact) => (
-          <DataPanel key={fact.label} glow="cyan">
-            <div className="text-magenta-dim font-mono text-xs tracking-widest uppercase">
+          <DataPanel key={fact.label}>
+            <div className="text-cyan-deep flex items-center gap-2 font-mono text-xs tracking-widest uppercase">
+              {fact.icon}
               {fact.label}
             </div>
             {fact.href ? (
@@ -60,7 +71,7 @@ export default async function AboutPage({
                 href={fact.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-cyan font-display hover:text-magenta mt-1 block text-lg font-bold transition-colors"
+                className="text-cyan font-display hover:text-cyan-bright mt-1 block text-lg font-bold transition-colors"
               >
                 {fact.value} →
               </a>
@@ -77,13 +88,17 @@ export default async function AboutPage({
         <NeonButton
           href="https://discord.gg/3eawzc9ybc"
           external
-          variant="cyan"
           size="md"
+          icon={<IconBrandDiscord size={18} className="text-cyan" />}
         >
-          {msgs["about.join"]} →
+          {msgs["about.join"]}
         </NeonButton>
-        <NeonButton href={`/${locale}/adev`} variant="magenta" size="md">
-          {msgs["home.cta.adev"]} →
+        <NeonButton
+          href={`/${locale}/adev`}
+          size="md"
+          icon={<IconArrowRight size={18} className="text-cyan" />}
+        >
+          {msgs["home.cta.adev"]}
         </NeonButton>
       </div>
     </main>

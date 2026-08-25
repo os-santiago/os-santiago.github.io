@@ -1,3 +1,4 @@
+import { IconCode, IconWorld } from "@tabler/icons-react";
 import { getMessages } from "@/i18n";
 import { type Locale } from "@/i18n/config";
 import { GlitchText } from "@/components/ui/glitch-text";
@@ -14,11 +15,7 @@ export default async function ProjectsPage({
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-16">
-      <GlitchText
-        as="h1"
-        intensity="normal"
-        className="text-cyan font-display text-4xl font-bold"
-      >
+      <GlitchText as="h1" className="text-cyan font-display text-4xl font-bold">
         {msgs["projects.title"]}
       </GlitchText>
       <p className="text-cyan-dim mt-3 text-sm">{msgs["projects.subtitle"]}</p>
@@ -28,7 +25,6 @@ export default async function ProjectsPage({
           <GlitchCard
             key={project.name}
             href={project.repoUrl}
-            glow={project.name === "Homedir" ? "magenta" : "cyan"}
             className="flex flex-col p-6"
           >
             <div className="flex items-start justify-between">
@@ -37,7 +33,7 @@ export default async function ProjectsPage({
               </h3>
               <span
                 className={`font-mono text-[10px] tracking-widest uppercase ${
-                  project.status === "active" ? "text-cyan" : "text-magenta-dim"
+                  project.status === "active" ? "text-cyan" : "text-cyan-deep"
                 }`}
               >
                 {msgs[`projects.status.${project.status}`]}
@@ -49,7 +45,8 @@ export default async function ProjectsPage({
             </p>
 
             <div className="border-cyan/10 mt-4 flex items-center justify-between border-t pt-3">
-              <span className="text-magenta-dim font-mono text-[10px] tracking-widest uppercase">
+              <span className="text-cyan-deep flex items-center gap-1 font-mono text-[10px] tracking-widest uppercase">
+                <IconCode size={12} className="text-cyan-deep" />
                 {project.language}
               </span>
               {project.homepageUrl && (
@@ -57,9 +54,10 @@ export default async function ProjectsPage({
                   href={project.homepageUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-cyan-dim hover:text-cyan font-mono text-[10px] tracking-widest uppercase transition-colors"
+                  className="text-cyan-dim hover:text-cyan flex items-center gap-1 font-mono text-[10px] tracking-widest uppercase transition-colors"
                 >
-                  www →
+                  <IconWorld size={12} className="text-cyan-dim" />
+                  www
                 </a>
               )}
             </div>

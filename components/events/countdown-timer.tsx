@@ -60,7 +60,7 @@ export function CountdownTimer({ targetDate, labels }: CountdownProps) {
           <div className="text-cyan font-mono text-3xl font-bold tabular-nums sm:text-4xl">
             {String(unit.value).padStart(2, "0")}
           </div>
-          <div className="text-magenta-dim font-mono text-[10px] tracking-widest uppercase">
+          <div className="text-cyan-deep font-mono text-[10px] tracking-widest uppercase">
             {unit.label}
           </div>
         </div>

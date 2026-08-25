@@ -1,3 +1,8 @@
+import {
+  IconBrandDiscord,
+  IconBrandGithub,
+  IconHome,
+} from "@tabler/icons-react";
 import { type Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n";
 
@@ -9,16 +14,23 @@ export function Footer({ locale }: FooterProps) {
   const msgs = getMessages(locale);
 
   const links = [
-    { label: "Discord", href: "https://discord.gg/3eawzc9ybc", external: true },
+    {
+      label: "Discord",
+      href: "https://discord.gg/3eawzc9ybc",
+      external: true,
+      icon: <IconBrandDiscord size={16} className="text-cyan" />,
+    },
     {
       label: "GitHub",
       href: "https://github.com/os-santiago",
       external: true,
+      icon: <IconBrandGithub size={16} className="text-cyan" />,
     },
     {
       label: "HomeDir",
       href: "https://homedir.opensourcesantiago.io",
       external: true,
+      icon: <IconHome size={16} className="text-cyan" />,
     },
   ];
 
@@ -36,8 +48,9 @@ export function Footer({ locale }: FooterProps) {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-cyan-dim hover:text-cyan font-mono text-xs tracking-widest uppercase transition-colors"
+                className="text-cyan-dim hover:text-cyan flex items-center gap-2 font-mono text-xs tracking-widest uppercase transition-colors"
               >
+                {link.icon}
                 {link.label}
               </a>
             ))}
