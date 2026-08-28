@@ -152,7 +152,9 @@ const es: Messages = {
   "members.join.desc":
     "Gestiona tu perfil, conecta tu GitHub y únete a proyectos desde HomeDir.",
   "members.join.cta": "Unirse en HomeDir",
-  "members.role.admin": "administrador",
+  "members.role.admin": "Administrador",
+  "members.role.moderator": "Moderador",
+  "members.role.member": "Miembro",
 
   "common.langSwitch": "Idioma",
 };
@@ -303,7 +305,9 @@ const en: Messages = {
   "members.join.desc":
     "Manage your profile, connect your GitHub and join projects from HomeDir.",
   "members.join.cta": "Join at HomeDir",
-  "members.role.admin": "administrator",
+  "members.role.admin": "Admin",
+  "members.role.moderator": "Moderator",
+  "members.role.member": "Member",
 
   "common.langSwitch": "Language",
 };
