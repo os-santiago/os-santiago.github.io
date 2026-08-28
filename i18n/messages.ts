@@ -20,6 +20,7 @@ const es: Messages = {
   "home.cta.explore": "Explorar HomeDir",
   "home.cta.adev": "Conocer ADEV",
   "home.closing": "Bienvenid@ al viaje. Aquí, el código transforma personas.",
+  "home.copyright": "© {year} Open Source Santiago. Todos los derechos reservados.",
 
   "home.event.title": "DevOpsDays Santiago 2026",
   "home.event.date": "8-9 Septiembre 2026",
@@ -174,6 +175,7 @@ const en: Messages = {
   "home.cta.explore": "Explore HomeDir",
   "home.cta.adev": "Learn ADEV",
   "home.closing": "Welcome to the journey. Here, code transforms people.",
+  "home.copyright": "© {year} Open Source Santiago. All rights reserved.",
 
   "home.event.title": "DevOpsDays Santiago 2026",
   "home.event.date": "September 8-9, 2026",
