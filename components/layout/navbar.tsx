@@ -51,7 +51,7 @@ export function Navbar({ locale }: NavbarProps) {
         <GlitchBreak className="opacity-0 group-hover/nav:opacity-35 transition-opacity duration-700 pointer-events-none rounded-full" />
 
         {/* Left Side Links */}
-        <div className="relative z-10 flex items-center opacity-0 -translate-x-4 max-w-0 overflow-hidden transition-all duration-500 ease-out pointer-events-none group-hover/nav:opacity-100 group-hover/nav:translate-x-0 group-hover/nav:max-w-md group-hover/nav:gap-4 sm:group-hover/nav:gap-6 group-hover/nav:pointer-events-auto">
+        <div className="relative z-10 flex items-center h-full opacity-0 -translate-x-4 max-w-0 overflow-hidden transition-all duration-500 ease-out pointer-events-none group-hover/nav:opacity-100 group-hover/nav:translate-x-0 group-hover/nav:max-w-md group-hover/nav:gap-4 sm:group-hover/nav:gap-6 group-hover/nav:pointer-events-auto">
           {leftLinks.map((link) => {
             const active = isActive(link.href);
             return (
@@ -59,20 +59,20 @@ export function Navbar({ locale }: NavbarProps) {
                 key={link.key}
                 href={link.href as never}
                 className={cn(
-                  "relative group/link font-mono text-[11px] sm:text-xs tracking-widest uppercase transition-all duration-300 whitespace-nowrap py-1",
+                  "relative group/link font-mono text-[11px] sm:text-xs tracking-widest uppercase transition-all duration-300 whitespace-nowrap flex items-center leading-none py-1",
                   active
                     ? "text-cyan font-bold"
                     : "text-cyan-dim hover:text-cyan-bright"
                 )}
               >
-                <span className="opacity-0 group-hover/link:opacity-100 text-cyan transition-opacity -ml-1.5 mr-0.5 font-mono">
+                <span className="opacity-0 group-hover/link:opacity-100 text-cyan transition-opacity -ml-1.5 mr-0.5 font-mono select-none">
                   [
                 </span>
                 {active && (
-                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyan mr-1.5 animate-pulse shadow-[0_0_6px_var(--color-cyan)]" />
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyan mr-1.5 animate-pulse shadow-[0_0_6px_var(--color-cyan)] flex-shrink-0" />
                 )}
-                {msgs[link.key]}
-                <span className="opacity-0 group-hover/link:opacity-100 text-cyan transition-opacity ml-0.5 -mr-1.5 font-mono">
+                <span className="inline-block leading-tight">{msgs[link.key]}</span>
+                <span className="opacity-0 group-hover/link:opacity-100 text-cyan transition-opacity ml-0.5 -mr-1.5 font-mono select-none">
                   ]
                 </span>
               </Link>
@@ -81,7 +81,7 @@ export function Navbar({ locale }: NavbarProps) {
         </div>
 
         {/* Center: Clean Static Logo (No scale changes, pure crop) */}
-        <div className="relative z-10 flex justify-center items-center flex-shrink-0 mx-auto">
+        <div className="relative z-10 flex justify-center items-center h-full flex-shrink-0 mx-auto">
           <Link
             href={`/${locale}` as never}
             className="flex items-center justify-center p-1 rounded-full relative"
@@ -99,7 +99,7 @@ export function Navbar({ locale }: NavbarProps) {
         </div>
 
         {/* Right Side Links & Language Switcher */}
-        <div className="relative z-10 flex items-center opacity-0 translate-x-4 max-w-0 overflow-hidden transition-all duration-500 ease-out pointer-events-none group-hover/nav:opacity-100 group-hover/nav:translate-x-0 group-hover/nav:max-w-md group-hover/nav:gap-4 sm:group-hover/nav:gap-6 group-hover/nav:pointer-events-auto">
+        <div className="relative z-10 flex items-center h-full opacity-0 translate-x-4 max-w-0 overflow-hidden transition-all duration-500 ease-out pointer-events-none group-hover/nav:opacity-100 group-hover/nav:translate-x-0 group-hover/nav:max-w-md group-hover/nav:gap-4 sm:group-hover/nav:gap-6 group-hover/nav:pointer-events-auto">
           {rightLinks.map((link) => {
             const active = isActive(link.href);
             return (
@@ -107,26 +107,26 @@ export function Navbar({ locale }: NavbarProps) {
                 key={link.key}
                 href={link.href as never}
                 className={cn(
-                  "relative group/link font-mono text-[11px] sm:text-xs tracking-widest uppercase transition-all duration-300 whitespace-nowrap py-1",
+                  "relative group/link font-mono text-[11px] sm:text-xs tracking-widest uppercase transition-all duration-300 whitespace-nowrap flex items-center leading-none py-1",
                   active
                     ? "text-cyan font-bold"
                     : "text-cyan-dim hover:text-cyan-bright"
                 )}
               >
-                <span className="opacity-0 group-hover/link:opacity-100 text-cyan transition-opacity -ml-1.5 mr-0.5 font-mono">
+                <span className="opacity-0 group-hover/link:opacity-100 text-cyan transition-opacity -ml-1.5 mr-0.5 font-mono select-none">
                   [
                 </span>
                 {active && (
-                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyan mr-1.5 animate-pulse shadow-[0_0_6px_var(--color-cyan)]" />
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyan mr-1.5 animate-pulse shadow-[0_0_6px_var(--color-cyan)] flex-shrink-0" />
                 )}
-                {msgs[link.key]}
-                <span className="opacity-0 group-hover/link:opacity-100 text-cyan transition-opacity ml-0.5 -mr-1.5 font-mono">
+                <span className="inline-block leading-tight">{msgs[link.key]}</span>
+                <span className="opacity-0 group-hover/link:opacity-100 text-cyan transition-opacity ml-0.5 -mr-1.5 font-mono select-none">
                   ]
                 </span>
               </Link>
             );
           })}
-          <div className="flex-shrink-0 pl-1 border-l border-cyan/20">
+          <div className="flex-shrink-0 pl-1 border-l border-cyan/20 flex items-center">
             <LanguageSwitcher current={locale} />
           </div>
         </div>
