@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 
 type CountdownProps = {
+  /** The target ISO date string to count down to */
   targetDate: string;
+  /** Translated labels for the timer units */
   labels: {
     days: string;
     hours: string;
@@ -19,6 +21,10 @@ type TimeLeft = {
   seconds: number;
 };
 
+/**
+ * Calculates the remaining days, hours, minutes, and seconds until the target timestamp.
+ * Returns zeros if the target has already passed.
+ */
 function calculateTimeLeft(target: number): TimeLeft {
   const diff = target - Date.now();
   if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
@@ -30,6 +36,10 @@ function calculateTimeLeft(target: number): TimeLeft {
   };
 }
 
+/**
+ * A countdown timer component that displays the time remaining until a target date.
+ * If the target date has passed, it shows a pulsing "LIVE" indicator badge.
+ */
 export function CountdownTimer({ targetDate, labels }: CountdownProps) {
   const target = new Date(targetDate).getTime();
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(() =>
