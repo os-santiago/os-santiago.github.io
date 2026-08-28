@@ -41,6 +41,8 @@ export function GlitchBreak({ className }: GlitchBreakProps) {
       canvas.height = height;
     }
 
+    const activeArtifacts: { text: string; x: number; y: number; alpha: number; maxLife: number; life: number }[] = [];
+
     function draw() {
       if (!canvas || !ctx) return;
       if (width === 0 || height === 0) {
@@ -50,27 +52,25 @@ export function GlitchBreak({ className }: GlitchBreakProps) {
       }
       frame++;
 
-      // Very subtle fade trail
-      ctx.fillStyle = "rgba(4, 6, 10, 0.08)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // Clear the canvas completely so background transparency is strictly preserved
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Corrupted grid lines across full card
-      if (frame % 7 === 0) {
-        ctx.strokeStyle = "rgba(0, 240, 255, 0.04)";
+      // Corrupted scan/grid lines
+      if (frame % 8 === 0) {
+        ctx.strokeStyle = "rgba(0, 240, 255, 0.05)";
         ctx.lineWidth = 1;
         const gridOffset = rand(-4, 4);
-        for (let y = 0; y < height; y += 14) {
+        for (let y = 0; y < height; y += 16) {
           const xEnd = rand(0, canvas.width);
           ctx.beginPath();
           ctx.moveTo(gridOffset, y);
-          ctx.lineTo(xEnd, y + rand(-3, 3));
+          ctx.lineTo(xEnd, y + rand(-2, 2));
           ctx.stroke();
         }
       }
 
-      // Artifact symbols — main visual
-      if (frame % 5 === 0) {
-        ctx.font = "9px monospace";
+      // Spawn artifact symbols periodically
+      if (frame % 6 === 0 && activeArtifacts.length < 10) {
         const symbols = [
           "01",
           "##",
@@ -85,23 +85,40 @@ export function GlitchBreak({ className }: GlitchBreakProps) {
           "null",
           "err",
           "sync",
-          "##",
           "0x1A",
           "SIG",
           "ACK",
           "EOF",
         ];
-        for (let i = 0; i < 4; i++) {
-          const sym = symbols[Math.floor(Math.random() * symbols.length)];
-          ctx.fillStyle = `rgba(0, 240, 255, ${rand(0.08, 0.22)})`;
-          ctx.fillText(sym, rand(0, canvas.width), rand(0, height));
-        }
+        const life = Math.floor(rand(12, 35));
+        activeArtifacts.push({
+          text: symbols[Math.floor(Math.random() * symbols.length)],
+          x: rand(10, Math.max(10, canvas.width - 30)),
+          y: rand(15, Math.max(15, height - 10)),
+          alpha: rand(0.15, 0.4),
+          maxLife: life,
+          life,
+        });
       }
 
-      // Dithering dots — very subtle
-      ctx.fillStyle = "rgba(0, 240, 255, 0.03)";
-      for (let i = 0; i < 6; i++) {
-        ctx.fillRect(rand(0, canvas.width), rand(0, height), 2, 2);
+      // Render and age active symbols
+      ctx.font = "9px monospace";
+      for (let i = activeArtifacts.length - 1; i >= 0; i--) {
+        const art = activeArtifacts[i];
+        art.life--;
+        if (art.life <= 0) {
+          activeArtifacts.splice(i, 1);
+          continue;
+        }
+        const currentAlpha = art.alpha * (art.life / art.maxLife);
+        ctx.fillStyle = `rgba(0, 240, 255, ${currentAlpha})`;
+        ctx.fillText(art.text, art.x, art.y);
+      }
+
+      // Faint dithering dots
+      ctx.fillStyle = "rgba(0, 240, 255, 0.04)";
+      for (let i = 0; i < 3; i++) {
+        ctx.fillRect(rand(0, canvas.width), rand(0, height), 1.5, 1.5);
       }
 
       if (!prefersReduced) {

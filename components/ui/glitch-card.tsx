@@ -32,7 +32,7 @@ export function GlitchCard({ children, className, href }: GlitchCardProps) {
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
       >
-        <GlitchBreak className="z-0 opacity-50 transition-opacity duration-500 group-hover:opacity-80" />
+        <GlitchBreak className="z-0 opacity-40 transition-opacity duration-300 group-hover:opacity-60" />
         {isGlitching && (
           <div className="glitch-slice pointer-events-none absolute inset-0 z-20" />
         )}
@@ -47,7 +47,7 @@ export function GlitchCard({ children, className, href }: GlitchCardProps) {
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
     >
-      <GlitchBreak className="z-0 opacity-50 transition-opacity duration-500 group-hover:opacity-80" />
+      <GlitchBreak className="z-0 opacity-40 transition-opacity duration-300 group-hover:opacity-60" />
       {isGlitching && (
         <div className="glitch-slice pointer-events-none absolute inset-0 z-20" />
       )}
