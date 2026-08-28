@@ -116,8 +116,13 @@ export function DataRain({
       }
     }
 
+    const resizeObserver = new ResizeObserver(() => resize());
+    if (canvas.parentElement) {
+      resizeObserver.observe(canvas.parentElement);
+    }
+
+    setTimeout(resize, 50);
     resize();
-    window.addEventListener("resize", resize);
 
     if (prefersReduced) {
       ctx.fillStyle = "rgba(4, 6, 10, 1)";
@@ -127,7 +132,7 @@ export function DataRain({
     }
 
     return () => {
-      window.removeEventListener("resize", resize);
+      resizeObserver.disconnect();
       cancelAnimationFrame(animationRef.current);
     };
   }, [density, speed]);
