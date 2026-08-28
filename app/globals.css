@@ -228,3 +228,128 @@
     animation: none;
   }
 }
+
+/* === Data-Noir Hologram & Cyberpunk Keyframes === */
+@keyframes hologram-flicker {
+  0%, 100% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 6px rgba(0, 240, 255, 0.5));
+    transform: translateY(0);
+  }
+  4% {
+    opacity: 0.70;
+    transform: translateY(-1px);
+  }
+  8% {
+    opacity: 0.95;
+    transform: translateY(0);
+  }
+  16% {
+    opacity: 0.85;
+    filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.7));
+  }
+  24% {
+    opacity: 0.95;
+  }
+  32% {
+    opacity: 0.65;
+    filter: drop-shadow(0 0 3px rgba(0, 240, 255, 0.3));
+  }
+  36% {
+    opacity: 0.95;
+  }
+  48% {
+    opacity: 0.90;
+    filter: drop-shadow(-2px 0 0 rgba(255, 0, 85, 0.6)) drop-shadow(2px 0 0 rgba(0, 240, 255, 0.6));
+    transform: translateX(1px);
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(2px 0 0 rgba(255, 0, 85, 0.8)) drop-shadow(-2px 0 0 rgba(0, 240, 255, 0.8));
+    transform: translateX(-1px);
+  }
+  52% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 6px rgba(0, 240, 255, 0.5));
+    transform: translateX(0);
+  }
+  70% {
+    opacity: 0.80;
+  }
+  72% {
+    opacity: 0.95;
+  }
+  88% {
+    opacity: 0.40;
+    filter: drop-shadow(0 0 2px rgba(0, 240, 255, 0.2));
+  }
+  90% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 6px rgba(0, 240, 255, 0.5));
+  }
+}
+
+@keyframes holo-beam-pulse {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scaleY(0.9);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scaleY(1.1);
+  }
+}
+
+@keyframes beacon-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7);
+  }
+  70% {
+    opacity: 0.6;
+    transform: scale(1.1);
+    box-shadow: 0 0 8px 3px rgba(0, 240, 255, 0);
+  }
+}
+
+.animate-hologram {
+  animation: hologram-flicker 4s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+.animate-holo-beam {
+  animation: holo-beam-pulse 3s ease-in-out infinite;
+}
+
+.animate-beacon {
+  animation: beacon-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* === Cyberpunk HUD Corner Brackets === */
+.cyber-hud-box {
+  position: relative;
+}
+
+.cyber-hud-box::before,
+.cyber-hud-box::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.cyber-hud-box::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid var(--color-cyan);
+  border-left: 1px solid var(--color-cyan);
+}
+
+.cyber-hud-box::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid var(--color-cyan);
+  border-right: 1px solid var(--color-cyan);
+}
