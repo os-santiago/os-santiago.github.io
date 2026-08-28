@@ -39,9 +39,16 @@ export function Navbar({ locale }: NavbarProps) {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
         <Link
           href={`/${locale}` as never}
-          className="font-display text-cyan flex items-center gap-2 text-sm font-bold tracking-widest uppercase"
+          className="font-display text-cyan flex items-center gap-2.5 text-sm font-bold tracking-widest uppercase"
         >
-          <IconTerminal2 size={18} className="text-cyan" />
+          <div className="relative w-5 h-5 overflow-hidden rounded-full flex items-center justify-center border border-cyan/30">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo.png"
+              alt="Logo"
+              className="w-full h-full object-cover scale-[1.38]"
+            />
+          </div>
           OS Santiago
         </Link>
 
