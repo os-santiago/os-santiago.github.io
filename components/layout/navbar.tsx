@@ -16,15 +16,6 @@ export function Navbar({ locale }: NavbarProps) {
   const msgs = getMessages(locale);
   const pathname = usePathname();
 
-  const links: { key: string; href: string }[] = [
-    { key: "nav.home", href: `/${locale}` },
-    { key: "nav.about", href: `/${locale}/about` },
-    { key: "nav.adev", href: `/${locale}/adev` },
-    { key: "nav.projects", href: `/${locale}/projects` },
-    { key: "nav.events", href: `/${locale}/events` },
-    { key: "nav.members", href: `/${locale}/members` },
-  ];
-
   function isActive(href: string): boolean {
     const normalized = pathname.replace(/\/$/, "");
     const target = href.replace(/\/$/, "");
@@ -34,31 +25,36 @@ export function Navbar({ locale }: NavbarProps) {
     return normalized.startsWith(target);
   }
 
-  return (
-    <header className="border-cyan/10 bg-void/90 fixed top-0 right-0 left-0 z-40 border-b backdrop-blur-md">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
-        <Link
-          href={`/${locale}` as never}
-          className="font-display text-cyan flex items-center gap-2.5 text-sm font-bold tracking-widest uppercase"
-        >
-          <div className="relative w-5 h-5 overflow-hidden rounded-full flex items-center justify-center border border-cyan/30">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/logo.png"
-              alt="Logo"
-              className="w-full h-full object-cover scale-[1.38]"
-            />
-          </div>
-          OS Santiago
-        </Link>
+  const leftLinks: { key: string; href: string }[] = [
+    { key: "nav.projects", href: `/${locale}/projects` },
+    { key: "nav.adev", href: `/${locale}/adev` },
+    { key: "nav.members", href: `/${locale}/members` },
+  ];
 
-        <div className="hidden items-center gap-6 md:flex">
-          {links.map((link) => (
+  const rightLinks: { key: string; href: string }[] = [
+    { key: "nav.about", href: `/${locale}/about` },
+    { key: "nav.events", href: `/${locale}/events` },
+  ];
+
+  return (
+    <header className="fixed top-0 right-0 left-0 z-40 flex justify-center py-4">
+      <nav
+        className={cn(
+          "group/nav flex items-center justify-between px-6 py-2 rounded-full border border-cyan/15 bg-void/90 backdrop-blur-md transition-all duration-500 ease-in-out",
+          // Static minimal state
+          "w-24 h-12 overflow-hidden",
+          // Hover expanded state
+          "hover:w-full hover:max-w-4xl hover:h-16 hover:px-8 hover:border-cyan/30"
+        )}
+      >
+        {/* Left Side Links */}
+        <div className="flex items-center gap-6 opacity-0 -translate-x-5 transition-all duration-500 ease-in-out pointer-events-none group-hover/nav:opacity-100 group-hover/nav:translate-x-0 group-hover/nav:pointer-events-auto">
+          {leftLinks.map((link) => (
             <Link
               key={link.key}
               href={link.href as never}
               className={cn(
-                "font-mono text-xs tracking-widest uppercase transition-colors",
+                "font-mono text-xs tracking-widest uppercase transition-colors whitespace-nowrap",
                 isActive(link.href)
                   ? "text-cyan"
                   : "text-cyan-dim hover:text-cyan",
@@ -69,7 +65,41 @@ export function Navbar({ locale }: NavbarProps) {
           ))}
         </div>
 
-        <LanguageSwitcher current={locale} />
+        {/* Center: Large Logo */}
+        <div className="flex justify-center items-center flex-shrink-0 transition-transform duration-500 ease-in-out group-hover/nav:scale-125">
+          <Link
+            href={`/${locale}` as never}
+            className="flex items-center justify-center"
+          >
+            <div className="relative w-8 h-8 overflow-hidden rounded-full flex items-center justify-center transition-shadow duration-500 group-hover/nav:shadow-[0_0_15px_rgba(0,240,255,0.4)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/logo.png"
+                alt="Logo"
+                className="w-full h-full object-cover scale-[1.05]"
+              />
+            </div>
+          </Link>
+        </div>
+
+        {/* Right Side Links & Language Switcher */}
+        <div className="flex items-center gap-6 opacity-0 translate-x-5 transition-all duration-500 ease-in-out pointer-events-none group-hover/nav:opacity-100 group-hover/nav:translate-x-0 group-hover/nav:pointer-events-auto">
+          {rightLinks.map((link) => (
+            <Link
+              key={link.key}
+              href={link.href as never}
+              className={cn(
+                "font-mono text-xs tracking-widest uppercase transition-colors whitespace-nowrap",
+                isActive(link.href)
+                  ? "text-cyan"
+                  : "text-cyan-dim hover:text-cyan",
+              )}
+            >
+              {msgs[link.key]}
+            </Link>
+          ))}
+          <LanguageSwitcher current={locale} />
+        </div>
       </nav>
     </header>
   );
