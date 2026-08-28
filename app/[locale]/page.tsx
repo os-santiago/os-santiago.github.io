@@ -17,6 +17,8 @@ import { GlitchCard } from "@/components/ui/glitch-card";
 import { NeonButton } from "@/components/ui/neon-button";
 import { ReflectiveSurface } from "@/components/ui/reflective-surface";
 import { projects } from "@/data/projects";
+import { cn } from "@/lib/utils";
+import { getLanguageStyle } from "@/lib/project-utils";
 
 export default async function HomePage({
   params,
@@ -230,17 +232,28 @@ export default async function HomePage({
             <GlitchCard
               key={project.name}
               href={project.repoUrl}
-              className="p-5"
+              className="p-5 text-center flex flex-col items-center h-full border-cyan/15 hover:border-cyan/40"
             >
-              <h3 className="text-cyan font-display text-lg font-bold text-center">
-                {project.name}
-              </h3>
-              <p className="text-cyan-dim mt-2 text-xs text-center">
-                {locale === "es" ? project.description : project.descriptionEn}
-              </p>
-              <div className="text-cyan-deep mt-3 flex items-center justify-center gap-1 font-mono text-[10px] tracking-widest uppercase">
-                <IconCode size={12} className="text-cyan-deep" />
-                {project.language}
+              <div className="w-full mb-1">
+                <h3 className="font-display text-lg font-bold text-cyan text-center min-h-[2.75rem] flex items-center justify-center">
+                  {project.name}
+                </h3>
+              </div>
+              <div className="flex-1 w-full flex items-center justify-center mb-3 min-h-[3.75rem]">
+                <p className="text-cyan-dim text-xs text-center leading-relaxed">
+                  {locale === "es" ? project.description : project.descriptionEn}
+                </p>
+              </div>
+              <div className="border-cyan/10 mt-auto flex items-center justify-center w-full border-t pt-3 h-10">
+                <span
+                  className={cn(
+                    "flex items-center gap-1 font-mono text-[9px] tracking-widest uppercase px-2.5 py-0.5 rounded-xs border",
+                    getLanguageStyle(project.language)
+                  )}
+                >
+                  <IconCode size={11} />
+                  {project.language}
+                </span>
               </div>
             </GlitchCard>
           ))}
