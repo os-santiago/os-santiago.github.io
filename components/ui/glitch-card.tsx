@@ -36,7 +36,7 @@ export function GlitchCard({ children, className, href }: GlitchCardProps) {
         {isGlitching && (
           <div className="glitch-slice pointer-events-none absolute inset-0 z-20" />
         )}
-        <div className="relative z-10">{children}</div>
+        <div className="relative z-10 flex flex-col flex-1 h-full w-full">{children}</div>
       </a>
     );
   }
@@ -51,7 +51,7 @@ export function GlitchCard({ children, className, href }: GlitchCardProps) {
       {isGlitching && (
         <div className="glitch-slice pointer-events-none absolute inset-0 z-20" />
       )}
-      <div className="relative z-10">{children}</div>
+      <div className="relative z-10 flex flex-col flex-1 h-full w-full">{children}</div>
     </div>
   );
 }
