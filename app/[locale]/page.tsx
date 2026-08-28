@@ -76,7 +76,7 @@ export default async function HomePage({
             </NeonButton>
           </div>
 
-          <p className="text-cyan-dim/60 mt-16 font-mono text-xs tracking-widest uppercase">
+          <p className="text-cyan-dim/60 mt-16 font-mono text-xs tracking-widest uppercase text-center">
             {msgs["home.closing"]}
           </p>
         </main>
@@ -85,24 +85,24 @@ export default async function HomePage({
       {/* Event Highlight */}
       <section className="mx-auto max-w-7xl px-6 py-16">
         <GlitchCard className="p-8">
-          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-6 items-center justify-center text-center">
             <div>
-              <div className="text-cyan flex items-center gap-2 font-mono text-xs tracking-widest uppercase">
+              <div className="text-cyan flex items-center justify-center gap-2 font-mono text-xs tracking-widest uppercase">
                 <IconCalendarEvent size={14} className="text-cyan" />
                 {msgs["events.upcoming"]}
               </div>
-              <h2 className="text-cyan font-display mt-2 text-3xl font-bold">
+              <h2 className="text-cyan font-display mt-2 text-3xl font-bold text-center">
                 {msgs["home.event.title"]}
               </h2>
-              <p className="text-cyan-dim mt-2 text-sm">
+              <p className="text-cyan-dim mt-2 text-sm text-center">
                 {msgs["home.event.description"]}
               </p>
-              <div className="text-cyan-deep mt-4 font-mono text-sm">
+              <div className="text-cyan-deep mt-4 font-mono text-sm text-center">
                 <div>{msgs["home.event.date"]}</div>
                 <div>{msgs["home.event.venue"]}</div>
               </div>
             </div>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
               <NeonButton
                 href={`/${locale}/events`}
                 size="md"
@@ -124,11 +124,11 @@ export default async function HomePage({
       </section>
 
       {/* Homedir Features */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
-        <h2 className="text-cyan font-display text-3xl font-bold">
+      <section className="mx-auto max-w-7xl px-6 py-16 text-center">
+        <h2 className="text-cyan font-display text-3xl font-bold text-center">
           {msgs["home.homedir.title"]}
         </h2>
-        <p className="text-cyan-dim mt-3 max-w-3xl">
+        <p className="text-cyan-dim mt-3 max-w-3xl mx-auto text-center">
           {msgs["home.homedir.description"]}
         </p>
 
@@ -155,7 +155,7 @@ export default async function HomePage({
           </DataPanel>
         </div>
 
-        <div className="mt-8">
+        <div className="mt-8 flex justify-center">
           <NeonButton
             href="https://homedir.opensourcesantiago.io"
             external
@@ -168,11 +168,11 @@ export default async function HomePage({
       </section>
 
       {/* ADEV Preview */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
-        <h2 className="text-cyan font-display text-3xl font-bold">
+      <section className="mx-auto max-w-7xl px-6 py-16 text-center">
+        <h2 className="text-cyan font-display text-3xl font-bold text-center">
           {msgs["home.adev.title"]}
         </h2>
-        <p className="text-cyan-dim mt-3 max-w-3xl">
+        <p className="text-cyan-dim mt-3 max-w-3xl mx-auto text-center">
           {msgs["home.adev.description"]}
         </p>
 
@@ -194,7 +194,7 @@ export default async function HomePage({
           </DataPanel>
         </div>
 
-        <div className="mt-8">
+        <div className="mt-8 flex justify-center">
           <NeonButton
             href={`/${locale}/adev`}
             size="md"
@@ -206,13 +206,13 @@ export default async function HomePage({
       </section>
 
       {/* Projects Preview */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
-        <div className="flex items-end justify-between">
+      <section className="mx-auto max-w-7xl px-6 py-16 text-center">
+        <div className="flex flex-col items-center justify-center gap-4 mb-8">
           <div>
-            <h2 className="text-cyan font-display text-3xl font-bold">
+            <h2 className="text-cyan font-display text-3xl font-bold text-center">
               {msgs["home.projects.title"]}
             </h2>
-            <p className="text-cyan-dim mt-2 text-sm">
+            <p className="text-cyan-dim mt-2 text-sm text-center">
               {msgs["home.projects.subtitle"]}
             </p>
           </div>
@@ -225,20 +225,20 @@ export default async function HomePage({
           </NeonButton>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
           {featuredProjects.map((project) => (
             <GlitchCard
               key={project.name}
               href={project.repoUrl}
               className="p-5"
             >
-              <h3 className="text-cyan font-display text-lg font-bold">
+              <h3 className="text-cyan font-display text-lg font-bold text-center">
                 {project.name}
               </h3>
-              <p className="text-cyan-dim mt-2 text-xs">
+              <p className="text-cyan-dim mt-2 text-xs text-center">
                 {locale === "es" ? project.description : project.descriptionEn}
               </p>
-              <div className="text-cyan-deep mt-3 flex items-center gap-1 font-mono text-[10px] tracking-widest uppercase">
+              <div className="text-cyan-deep mt-3 flex items-center justify-center gap-1 font-mono text-[10px] tracking-widest uppercase">
                 <IconCode size={12} className="text-cyan-deep" />
                 {project.language}
               </div>
@@ -248,30 +248,30 @@ export default async function HomePage({
       </section>
 
       {/* Community */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
-        <h2 className="text-cyan font-display text-3xl font-bold">
+      <section className="mx-auto max-w-7xl px-6 py-16 text-center">
+        <h2 className="text-cyan font-display text-3xl font-bold text-center">
           {msgs["home.community.title"]}
         </h2>
         <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
           <GlitchCard href="https://discord.gg/3eawzc9ybc" className="p-5">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center gap-2">
               <IconBrandDiscord size={18} className="text-cyan" />
               <h3 className="text-cyan font-mono text-sm tracking-widest uppercase">
                 {msgs["home.cta.discord"]}
               </h3>
             </div>
-            <p className="text-cyan-dim mt-2 text-xs">
+            <p className="text-cyan-dim mt-2 text-xs text-center">
               {msgs["home.community.discord"]}
             </p>
           </GlitchCard>
           <GlitchCard href="https://github.com/os-santiago" className="p-5">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center gap-2">
               <IconBrandGithub size={18} className="text-cyan" />
               <h3 className="text-cyan font-mono text-sm tracking-widest uppercase">
                 {msgs["home.cta.github"]}
               </h3>
             </div>
-            <p className="text-cyan-dim mt-2 text-xs">
+            <p className="text-cyan-dim mt-2 text-xs text-center">
               {msgs["home.community.github"]}
             </p>
           </GlitchCard>
@@ -279,24 +279,24 @@ export default async function HomePage({
             href="https://homedir.opensourcesantiago.io"
             className="p-5"
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center gap-2">
               <IconRocket size={18} className="text-cyan" />
               <h3 className="text-cyan font-mono text-sm tracking-widest uppercase">
                 {msgs["home.cta.homedir"]}
               </h3>
             </div>
-            <p className="text-cyan-dim mt-2 text-xs">
+            <p className="text-cyan-dim mt-2 text-xs text-center">
               {msgs["home.community.homedir"]}
             </p>
           </GlitchCard>
           <GlitchCard href={`/${locale}/members`} className="p-5">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center gap-2">
               <IconUsers size={18} className="text-cyan" />
               <h3 className="text-cyan font-mono text-sm tracking-widest uppercase">
                 {msgs["nav.members"]}
               </h3>
             </div>
-            <p className="text-cyan-dim mt-2 text-xs">
+            <p className="text-cyan-dim mt-2 text-xs text-center">
               {msgs["home.community.members"]}
             </p>
           </GlitchCard>

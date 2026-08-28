@@ -17,7 +17,7 @@ export function GlitchCard({ children, className, href }: GlitchCardProps) {
   const handleLeave = () => setIsGlitching(false);
 
   const baseClass = cn(
-    "depth-card group relative border border-cyan/15 transition-all duration-300 hover:border-cyan/40 hover:shadow-[0_0_30px_-5px_var(--color-cyan-glow)]",
+    "depth-card group relative border border-cyan/15 transition-all duration-300 hover:border-cyan/40 hover:shadow-[0_0_30px_-5px_var(--color-cyan-glow)] text-center",
     isGlitching && "glitch-active",
     className,
   );

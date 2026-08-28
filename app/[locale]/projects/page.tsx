@@ -1,4 +1,4 @@
-import { IconCode, IconWorld } from "@tabler/icons-react";
+import { IconCode, IconWorld, IconBrandGithub } from "@tabler/icons-react";
 import { getMessages } from "@/i18n";
 import { type Locale } from "@/i18n/config";
 import { GlitchText } from "@/components/ui/glitch-text";
@@ -14,25 +14,24 @@ export default async function ProjectsPage({
   const msgs = getMessages(locale as Locale);
 
   return (
-    <main className="mx-auto max-w-7xl px-6 py-16">
-      <GlitchText as="h1" className="text-cyan font-display text-4xl font-bold">
+    <main className="mx-auto max-w-7xl px-6 py-16 text-center">
+      <GlitchText as="h1" className="text-cyan font-display text-4xl font-bold text-center block mx-auto">
         {msgs["projects.title"]}
       </GlitchText>
-      <p className="text-cyan-dim mt-3 text-sm">{msgs["projects.subtitle"]}</p>
+      <p className="text-cyan-dim mt-3 text-sm text-center">{msgs["projects.subtitle"]}</p>
 
       <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
           <GlitchCard
             key={project.name}
-            href={project.repoUrl}
-            className="flex flex-col p-6"
+            className="flex flex-col p-6 text-center"
           >
-            <div className="flex items-start justify-between">
-              <h3 className="text-cyan font-display text-xl font-bold">
+            <div className="flex flex-col items-center justify-center gap-2 mb-3">
+              <h3 className="text-cyan font-display text-xl font-bold text-center">
                 {project.name}
               </h3>
               <span
-                className={`font-mono text-[10px] tracking-widest uppercase ${
+                className={`font-mono text-[10px] tracking-widest uppercase text-center ${
                   project.status === "active" ? "text-cyan" : "text-cyan-deep"
                 }`}
               >
@@ -40,7 +39,7 @@ export default async function ProjectsPage({
               </span>
             </div>
 
-            <p className="text-cyan-dim mt-3 flex-1 text-sm">
+            <p className="text-cyan-dim mt-3 flex-1 text-sm text-center">
               {locale === "es" ? project.description : project.descriptionEn}
             </p>
 
@@ -49,17 +48,28 @@ export default async function ProjectsPage({
                 <IconCode size={12} className="text-cyan-deep" />
                 {project.language}
               </span>
-              {project.homepageUrl && (
+              <div className="flex gap-3">
                 <a
-                  href={project.homepageUrl}
+                  href={project.repoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-cyan-dim hover:text-cyan flex items-center gap-1 font-mono text-[10px] tracking-widest uppercase transition-colors"
                 >
-                  <IconWorld size={12} className="text-cyan-dim" />
-                  www
+                  <IconBrandGithub size={12} className="text-cyan-dim" />
+                  repo
                 </a>
-              )}
+                {project.homepageUrl && (
+                  <a
+                    href={project.homepageUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-cyan-dim hover:text-cyan flex items-center gap-1 font-mono text-[10px] tracking-widest uppercase transition-colors"
+                  >
+                    <IconWorld size={12} className="text-cyan-dim" />
+                    www
+                  </a>
+                )}
+              </div>
             </div>
           </GlitchCard>
         ))}

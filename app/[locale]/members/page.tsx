@@ -19,16 +19,16 @@ export default async function MembersPage({
   const msgs = getMessages(locale as Locale);
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-16">
-      <GlitchText as="h1" className="text-cyan font-display text-4xl font-bold">
+    <main className="mx-auto max-w-5xl px-6 py-16 text-center">
+      <GlitchText as="h1" className="text-cyan font-display text-4xl font-bold text-center block mx-auto">
         {msgs["members.title"]}
       </GlitchText>
-      <p className="text-cyan-dim mt-3 text-sm">{msgs["members.subtitle"]}</p>
+      <p className="text-cyan-dim mt-3 text-sm text-center">{msgs["members.subtitle"]}</p>
 
       <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
         {members.map((member) => (
           <DataPanel key={member.userId}>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
               {/* eslint-disable-next-line @next/next/no-img-element -- external GitHub avatar CDN */}
               <img
                 src={member.avatarUrl}
@@ -38,11 +38,11 @@ export default async function MembersPage({
                 loading="lazy"
                 className="border-cyan/30 rounded-sm border"
               />
-              <div className="flex-1">
-                <div className="text-cyan font-display text-lg font-bold">
+              <div className="flex-1 text-center sm:text-left">
+                <div className="text-cyan font-display text-lg font-bold text-center sm:text-left">
                   {member.displayName}
                 </div>
-                <div className="text-cyan-deep font-mono text-xs tracking-widest uppercase">
+                <div className="text-cyan-deep font-mono text-xs tracking-widest uppercase text-center sm:text-left">
                   {msgs[`members.role.${member.role}`] ?? member.role}
                 </div>
               </div>
@@ -63,13 +63,13 @@ export default async function MembersPage({
       {/* Join CTA */}
       <section className="mt-12">
         <DataPanel title="JOIN">
-          <h2 className="text-cyan font-display text-2xl font-bold">
+          <h2 className="text-cyan font-display text-2xl font-bold text-center">
             {msgs["members.join.title"]}
           </h2>
-          <p className="text-cyan-dim mt-3 text-sm">
+          <p className="text-cyan-dim mt-3 text-sm text-center">
             {msgs["members.join.desc"]}
           </p>
-          <div className="mt-6">
+          <div className="mt-6 flex justify-center">
             <NeonButton
               href="https://homedir.opensourcesantiago.io/comunidad"
               external

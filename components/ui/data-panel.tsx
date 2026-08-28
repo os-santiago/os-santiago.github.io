@@ -10,12 +10,12 @@ export function DataPanel({ children, className, title }: DataPanelProps) {
   return (
     <div
       className={cn(
-        "depth-panel border-cyan/20 relative rounded-sm border backdrop-blur-sm",
+        "depth-panel border-cyan/20 relative rounded-sm border backdrop-blur-sm text-center",
         className,
       )}
     >
       {title && (
-        <div className="border-cyan/20 text-cyan-dim relative z-10 border-b px-4 py-2 font-mono text-xs tracking-widest uppercase">
+        <div className="border-cyan/20 text-cyan-dim relative z-10 border-b px-4 py-2 font-mono text-xs tracking-widest uppercase text-center">
           {title}
         </div>
       )}

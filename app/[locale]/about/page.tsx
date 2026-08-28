@@ -46,14 +46,14 @@ export default async function AboutPage({
   ];
 
   return (
-    <main className="mx-auto max-w-4xl px-6 py-16">
-      <GlitchText as="h1" className="text-cyan font-display text-4xl font-bold">
+    <main className="mx-auto max-w-4xl px-6 py-16 text-center">
+      <GlitchText as="h1" className="text-cyan font-display text-4xl font-bold text-center block mx-auto">
         {msgs["about.title"]}
       </GlitchText>
 
       <div className="mt-8">
         <DataPanel title="MISSION">
-          <p className="text-cyan-dim leading-relaxed">
+          <p className="text-cyan-dim leading-relaxed text-center">
             {msgs["about.mission"]}
           </p>
         </DataPanel>
@@ -62,7 +62,7 @@ export default async function AboutPage({
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
         {facts.map((fact) => (
           <DataPanel key={fact.label}>
-            <div className="text-cyan-deep flex items-center gap-2 font-mono text-xs tracking-widest uppercase">
+            <div className="text-cyan-deep flex items-center justify-center gap-2 font-mono text-xs tracking-widest uppercase">
               {fact.icon}
               {fact.label}
             </div>
@@ -71,12 +71,12 @@ export default async function AboutPage({
                 href={fact.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-cyan font-display hover:text-cyan-bright mt-1 block text-lg font-bold transition-colors"
+                className="text-cyan font-display hover:text-cyan-bright mt-1 block text-lg font-bold transition-colors text-center"
               >
                 {fact.value} →
               </a>
             ) : (
-              <div className="text-cyan font-display mt-1 text-lg font-bold">
+              <div className="text-cyan font-display mt-1 text-lg font-bold text-center">
                 {fact.value}
               </div>
             )}
@@ -84,7 +84,7 @@ export default async function AboutPage({
         ))}
       </div>
 
-      <div className="mt-12 flex flex-wrap gap-4">
+      <div className="mt-12 flex flex-wrap gap-4 justify-center items-center">
         <NeonButton
           href="https://discord.gg/3eawzc9ybc"
           external

@@ -62,40 +62,40 @@ export default async function AdevPage({
   ];
 
   return (
-    <main className="mx-auto max-w-4xl px-6 py-16">
-      <GlitchText as="h1" className="text-cyan font-display text-4xl font-bold">
+    <main className="mx-auto max-w-4xl px-6 py-16 text-center">
+      <GlitchText as="h1" className="text-cyan font-display text-4xl font-bold text-center block mx-auto">
         {msgs["adev.title"]}
       </GlitchText>
 
-      <p className="text-cyan-dim mt-4 text-lg">{msgs["adev.definition"]}</p>
+      <p className="text-cyan-dim mt-4 text-lg text-center mx-auto max-w-2xl">{msgs["adev.definition"]}</p>
 
-      <blockquote className="text-cyan-bright border-cyan/50 mt-6 border-l-2 pl-4 font-mono text-sm italic">
+      <blockquote className="text-cyan-bright border-cyan/30 mt-6 border-y py-3 font-mono text-sm italic text-center mx-auto max-w-2xl">
         {msgs["adev.quote"]}
       </blockquote>
 
       {/* Pillars */}
-      <h2 className="text-cyan font-display mt-12 text-2xl font-bold">
+      <h2 className="text-cyan font-display mt-12 text-2xl font-bold text-center">
         {msgs["adev.pillars"]}
       </h2>
       <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
         {pillars.map((pillar) => (
           <DataPanel key={pillar.title} title={pillar.title}>
-            <p className="text-cyan-dim text-sm">{pillar.desc}</p>
+            <p className="text-cyan-dim text-sm text-center">{pillar.desc}</p>
           </DataPanel>
         ))}
       </div>
 
       {/* Key Rules */}
-      <h2 className="text-cyan font-display mt-12 text-2xl font-bold">
+      <h2 className="text-cyan font-display mt-12 text-2xl font-bold text-center">
         {msgs["adev.rules"]}
       </h2>
       <div className="mt-6">
         <DataPanel title="RULES">
-          <ul className="space-y-3">
+          <ul className="space-y-3 flex flex-col items-center">
             {rules.map((rule, i) => (
               <li
                 key={i}
-                className="text-cyan-dim flex items-start gap-3 text-sm"
+                className="text-cyan-dim flex items-start justify-center gap-3 text-sm text-center max-w-xl"
               >
                 <span className="text-cyan font-mono text-xs">
                   {String(i + 1).padStart(2, "0")}
@@ -108,16 +108,16 @@ export default async function AdevPage({
       </div>
 
       {/* Operative Cycle */}
-      <h2 className="text-cyan font-display mt-12 text-2xl font-bold">
+      <h2 className="text-cyan font-display mt-12 text-2xl font-bold text-center">
         {msgs["adev.cycle"]}
       </h2>
       <div className="mt-6">
         <DataPanel title="CYCLE">
-          <ol className="space-y-2">
+          <ol className="space-y-2 flex flex-col items-center">
             {cycle.map((step, i) => (
               <li
                 key={i}
-                className="text-cyan-dim flex items-start gap-3 font-mono text-sm"
+                className="text-cyan-dim flex items-start justify-center gap-3 font-mono text-sm text-center max-w-xl"
               >
                 <span className="text-cyan">
                   {String(i + 1).padStart(2, "0")}.
@@ -130,22 +130,22 @@ export default async function AdevPage({
       </div>
 
       {/* Starter Kit */}
-      <h2 className="text-cyan font-display mt-12 text-2xl font-bold">
+      <h2 className="text-cyan font-display mt-12 text-2xl font-bold text-center">
         {msgs["adev.starter"]}
       </h2>
       <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
         {starter.map((item) => (
           <DataPanel key={item.name}>
-            <div className="text-cyan flex items-center gap-2 font-mono text-sm font-bold">
+            <div className="text-cyan flex items-center justify-center gap-2 font-mono text-sm font-bold">
               <IconBook size={14} className="text-cyan" />
               {item.name}
             </div>
-            <p className="text-cyan-dim mt-1 text-xs">{item.desc}</p>
+            <p className="text-cyan-dim mt-1 text-xs text-center">{item.desc}</p>
           </DataPanel>
         ))}
       </div>
 
-      <div className="mt-12">
+      <div className="mt-12 flex justify-center">
         <NeonButton
           href="https://github.com/scanalesespinoza/adev"
           external

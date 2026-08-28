@@ -24,53 +24,55 @@ export default async function EventsPage({
   const featured = events.find((e) => e.featured);
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-16">
-      <GlitchText as="h1" className="text-cyan font-display text-4xl font-bold">
+    <main className="mx-auto max-w-5xl px-6 py-16 text-center">
+      <GlitchText as="h1" className="text-cyan font-display text-4xl font-bold text-center block mx-auto">
         {msgs["events.title"]}
       </GlitchText>
-      <p className="text-cyan-dim mt-3 text-sm">{msgs["events.subtitle"]}</p>
+      <p className="text-cyan-dim mt-3 text-sm text-center">{msgs["events.subtitle"]}</p>
 
       {/* Featured Event */}
       {featured && (
         <section className="mt-10">
           <GlitchCard className="p-8">
-            <div className="text-cyan flex items-center gap-2 font-mono text-xs tracking-widest uppercase">
+            <div className="text-cyan flex items-center justify-center gap-2 font-mono text-xs tracking-widest uppercase text-center">
               <IconCalendarEvent size={14} className="text-cyan" />
               {msgs["events.upcoming"]}
             </div>
-            <h2 className="text-cyan font-display mt-2 text-3xl font-bold">
+            <h2 className="text-cyan font-display mt-2 text-3xl font-bold text-center">
               {locale === "es" ? featured.name : featured.nameEn}
             </h2>
 
-            <div className="text-cyan-deep mt-4 font-mono text-sm">
+            <div className="text-cyan-deep mt-4 font-mono text-sm text-center">
               <div>{new Date(featured.date).toLocaleDateString(locale)}</div>
               <div>
                 {featured.venue}, {featured.city}, {featured.country}
               </div>
             </div>
 
-            <p className="text-cyan-dim mt-4 max-w-2xl text-sm">
+            <p className="text-cyan-dim mt-4 max-w-2xl mx-auto text-sm text-center">
               {locale === "es" ? featured.description : featured.descriptionEn}
             </p>
 
             {/* Countdown */}
-            <div className="mt-8">
-              <div className="text-cyan-deep mb-3 font-mono text-xs tracking-widest uppercase">
+            <div className="mt-8 flex flex-col items-center justify-center">
+              <div className="text-cyan-deep mb-3 font-mono text-xs tracking-widest uppercase text-center">
                 {msgs["events.countdown"]}
               </div>
-              <CountdownTimer
-                targetDate={featured.date}
-                labels={{
-                  days: msgs["events.days"],
-                  hours: msgs["events.hours"],
-                  minutes: msgs["events.minutes"],
-                  seconds: msgs["events.seconds"],
-                }}
-              />
+              <div className="flex justify-center">
+                <CountdownTimer
+                  targetDate={featured.date}
+                  labels={{
+                    days: msgs["events.days"],
+                    hours: msgs["events.hours"],
+                    minutes: msgs["events.minutes"],
+                    seconds: msgs["events.seconds"],
+                  }}
+                />
+              </div>
             </div>
 
             {/* CTAs */}
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3 justify-center items-center">
               {featured.websiteUrl && (
                 <NeonButton
                   href={featured.websiteUrl}
@@ -96,33 +98,6 @@ export default async function EventsPage({
         </section>
       )}
 
-      {/* Upcoming Events List */}
-      {upcoming.length > 1 && (
-        <section className="mt-10">
-          <h2 className="text-cyan font-display text-2xl font-bold">
-            {msgs["events.upcoming"]}
-          </h2>
-          <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
-            {upcoming
-              .filter((e) => !e.featured)
-              .map((event) => (
-                <GlitchCard key={event.id} className="p-6">
-                  <h3 className="text-cyan font-display text-lg font-bold">
-                    {locale === "es" ? event.name : event.nameEn}
-                  </h3>
-                  <p className="text-cyan-dim mt-2 text-sm">
-                    {locale === "es" ? event.description : event.descriptionEn}
-                  </p>
-                  <div className="text-cyan-deep mt-3 flex items-center gap-1 font-mono text-xs">
-                    <IconCalendarEvent size={12} className="text-cyan-deep" />
-                    {new Date(event.date).toLocaleDateString(locale)} —{" "}
-                    {event.venue}, {event.city}
-                  </div>
-                </GlitchCard>
-              ))}
-          </div>
-        </section>
-      )}
     </main>
   );
 }
