@@ -56,7 +56,7 @@ export function Footer({ locale }: FooterProps) {
                 {msgs["home.title"]}
               </span>
               <span className="font-mono text-[10px] text-cyan-deep tracking-wider hidden sm:inline">
-                // SCL-CL [-33.4489, -70.6693]
+                {"// SCL-CL [-33.4489, -70.6693]"}
               </span>
             </div>
             <p className="text-cyan-dim/70 font-mono text-xs tracking-wider text-center md:text-left">
