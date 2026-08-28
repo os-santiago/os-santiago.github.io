@@ -56,8 +56,11 @@ export function Footer({ locale }: FooterProps) {
             ))}
           </div>
         </div>
-        <p className="text-cyan-dim/50 mt-4 text-center font-mono text-[10px]">
+        <p className="text-cyan-dim/50 mt-6 text-center font-mono text-[10px] tracking-wider">
           {msgs["home.tagline"]}
+        </p>
+        <p className="text-cyan-dim/30 mt-2 text-center font-mono text-[10px] uppercase tracking-widest">
+          {msgs["home.copyright"] ? msgs["home.copyright"].replace("{year}", String(new Date().getFullYear())) : `© ${new Date().getFullYear()} Open Source Santiago`}
         </p>
       </div>
     </footer>
