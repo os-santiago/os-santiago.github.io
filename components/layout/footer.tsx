@@ -5,6 +5,7 @@ import {
 } from "@tabler/icons-react";
 import { type Locale } from "@/i18n/config";
 import { getMessages } from "@/i18n";
+import { GlitchBreak } from "@/components/ui/glitch-break";
 
 type FooterProps = {
   locale: Locale;
@@ -41,7 +42,9 @@ export function Footer({ locale }: FooterProps) {
 
       <div className="mx-auto max-w-7xl px-6 py-10">
         {/* Main Footer Row */}
-        <div className="cyber-hud-box flex flex-col items-center justify-between gap-6 p-6 rounded-sm border border-cyan/10 bg-void-surface/50 backdrop-blur-sm md:flex-row shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+        <div className="cyber-hud-box relative overflow-hidden flex flex-col items-center justify-between gap-6 p-6 rounded-sm border border-cyan/10 bg-void-surface/50 backdrop-blur-sm md:flex-row shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+          {/* Subtle matrix glitch background */}
+          <GlitchBreak className="opacity-20 pointer-events-none" />
           {/* Brand & Telemetry Status */}
           <div className="flex flex-col items-center md:items-start gap-1.5">
             <div className="flex items-center gap-2.5">
