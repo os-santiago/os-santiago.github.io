@@ -40,7 +40,7 @@ export function Navbar({ locale }: NavbarProps) {
     <header className="fixed top-0 right-0 left-0 z-40 flex justify-center py-4">
       <nav
         className={cn(
-          "group/nav flex items-center justify-between px-6 py-2 rounded-full border border-cyan/15 bg-void/90 backdrop-blur-md transition-all duration-500 ease-in-out",
+          "group/nav flex items-center justify-between px-4 py-2 rounded-full border border-cyan/15 bg-void/90 backdrop-blur-md transition-all duration-500 ease-in-out",
           // Static minimal state
           "w-24 h-12 overflow-hidden",
           // Hover expanded state
@@ -48,7 +48,7 @@ export function Navbar({ locale }: NavbarProps) {
         )}
       >
         {/* Left Side Links */}
-        <div className="flex items-center gap-6 opacity-0 -translate-x-5 transition-all duration-500 ease-in-out pointer-events-none group-hover/nav:opacity-100 group-hover/nav:translate-x-0 group-hover/nav:pointer-events-auto">
+        <div className="flex items-center opacity-0 -translate-x-5 max-w-0 overflow-hidden transition-all duration-500 ease-in-out pointer-events-none group-hover/nav:opacity-100 group-hover/nav:translate-x-0 group-hover/nav:max-w-lg group-hover/nav:gap-6 group-hover/nav:pointer-events-auto">
           {leftLinks.map((link) => (
             <Link
               key={link.key}
@@ -65,13 +65,13 @@ export function Navbar({ locale }: NavbarProps) {
           ))}
         </div>
 
-        {/* Center: Large Logo */}
-        <div className="flex justify-center items-center flex-shrink-0 transition-transform duration-500 ease-in-out group-hover/nav:scale-125">
+        {/* Center: Large Logo with Hologram Flicker */}
+        <div className="flex justify-center items-center flex-shrink-0 transition-transform duration-500 ease-in-out group-hover/nav:scale-150 animate-hologram mx-auto">
           <Link
             href={`/${locale}` as never}
             className="flex items-center justify-center"
           >
-            <div className="relative w-8 h-8 overflow-hidden rounded-full flex items-center justify-center transition-shadow duration-500 group-hover/nav:shadow-[0_0_15px_rgba(0,240,255,0.4)]">
+            <div className="relative w-8 h-8 overflow-hidden rounded-full flex items-center justify-center transition-shadow duration-500 group-hover/nav:shadow-[0_0_20px_rgba(0,240,255,0.6)]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/logo.png"
@@ -83,7 +83,7 @@ export function Navbar({ locale }: NavbarProps) {
         </div>
 
         {/* Right Side Links & Language Switcher */}
-        <div className="flex items-center gap-6 opacity-0 translate-x-5 transition-all duration-500 ease-in-out pointer-events-none group-hover/nav:opacity-100 group-hover/nav:translate-x-0 group-hover/nav:pointer-events-auto">
+        <div className="flex items-center opacity-0 translate-x-5 max-w-0 overflow-hidden transition-all duration-500 ease-in-out pointer-events-none group-hover/nav:opacity-100 group-hover/nav:translate-x-0 group-hover/nav:max-w-lg group-hover/nav:gap-6 group-hover/nav:pointer-events-auto">
           {rightLinks.map((link) => (
             <Link
               key={link.key}

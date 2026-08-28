@@ -228,3 +228,62 @@
     animation: none;
   }
 }
+
+/* === Hologram Flicker Keyframes === */
+@keyframes hologram-flicker {
+  0%, 100% {
+    opacity: 0.95;
+    filter: hue-rotate(0deg) saturate(1.2) drop-shadow(0 0 4px rgba(0, 240, 255, 0.4));
+  }
+  5% {
+    opacity: 0.75;
+  }
+  10% {
+    opacity: 0.95;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  20% {
+    opacity: 0.95;
+    filter: hue-rotate(-5deg) saturate(1.4) drop-shadow(0 0 8px rgba(0, 240, 255, 0.6));
+  }
+  25% {
+    opacity: 0.95;
+  }
+  30% {
+    opacity: 0.60;
+  }
+  35% {
+    opacity: 0.95;
+  }
+  40% {
+    opacity: 0.85;
+  }
+  45% {
+    opacity: 0.95;
+  }
+  50% {
+    opacity: 0.95;
+    filter: hue-rotate(60deg) saturate(1.5) drop-shadow(0 0 6px rgba(255, 0, 128, 0.5)); /* Glitch shift to magenta */
+  }
+  55% {
+    opacity: 0.70;
+  }
+  60% {
+    opacity: 0.95;
+  }
+  75% {
+    opacity: 0.80;
+  }
+  90% {
+    opacity: 0.45;
+  }
+  95% {
+    opacity: 0.95;
+  }
+}
+
+.animate-hologram {
+  animation: hologram-flicker 5s linear infinite;
+}
