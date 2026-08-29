@@ -11,6 +11,7 @@ import { type Project } from "@/data/projects";
 import { type Locale } from "@/i18n/config";
 import { type Messages } from "@/i18n/messages";
 import { GlitchCard } from "@/components/ui/glitch-card";
+import { NeonButton } from "@/components/ui/neon-button";
 import { cn } from "@/lib/utils";
 import { getLanguageStyle } from "@/lib/project-utils";
 
@@ -36,15 +37,15 @@ export function ProjectList({ projects, locale, messages: msgs }: ProjectListPro
 
   return (
     <div className="mt-8">
-      {/* Cyberpunk Filter Segment Controls with Category-Specific Glows */}
-      <div className="flex items-center justify-center gap-2 sm:gap-4 flex-wrap mb-10">
+      {/* Cyberpunk Filter Controls */}
+      <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap mb-10">
         <button
           onClick={() => setFilter("all")}
           className={cn(
-            "font-mono text-xs tracking-widest uppercase px-4 py-2 rounded-full border transition-all duration-300 select-none",
+            "neon-btn-3d inline-flex items-center justify-center gap-2 rounded-sm border font-mono uppercase tracking-widest text-cyan transition-all duration-300 px-3 py-1.5 text-xs select-none",
             filter === "all"
-              ? "bg-cyan/20 border-cyan text-cyan-bright shadow-[0_0_15px_rgba(0,240,255,0.35)] font-bold"
-              : "border-cyan/20 text-cyan-dim/70 hover:text-cyan hover:border-cyan/40 bg-void-surface/60"
+              ? "border-cyan bg-cyan/20 text-cyan-bright shadow-[0_0_15px_rgba(0,240,255,0.35)] font-bold"
+              : "border-cyan/30 text-cyan-dim hover:border-cyan hover:text-cyan"
           )}
         >
           {msgs["projects.category.all"]} ({countAll})
@@ -52,10 +53,10 @@ export function ProjectList({ projects, locale, messages: msgs }: ProjectListPro
         <button
           onClick={() => setFilter("community")}
           className={cn(
-            "font-mono text-xs tracking-widest uppercase px-4 py-2 rounded-full border transition-all duration-300 select-none",
+            "neon-btn-3d inline-flex items-center justify-center gap-2 rounded-sm border font-mono uppercase tracking-widest text-cyan transition-all duration-300 px-3 py-1.5 text-xs select-none",
             filter === "community"
-              ? "bg-cyan/20 border-cyan text-cyan-bright shadow-[0_0_18px_rgba(0,240,255,0.4)] font-bold"
-              : "border-cyan/20 text-cyan-dim/70 hover:text-cyan hover:border-cyan/40 bg-void-surface/60"
+              ? "border-cyan bg-cyan/20 text-cyan-bright shadow-[0_0_18px_rgba(0,240,255,0.4)] font-bold"
+              : "border-cyan/30 text-cyan-dim hover:border-cyan hover:text-cyan"
           )}
         >
           {msgs["projects.category.community"]} ({countCommunity})
@@ -63,10 +64,10 @@ export function ProjectList({ projects, locale, messages: msgs }: ProjectListPro
         <button
           onClick={() => setFilter("org")}
           className={cn(
-            "font-mono text-xs tracking-widest uppercase px-4 py-2 rounded-full border transition-all duration-300 select-none",
+            "neon-btn-3d inline-flex items-center justify-center gap-2 rounded-sm border font-mono uppercase tracking-widest text-cyan transition-all duration-300 px-3 py-1.5 text-xs select-none",
             filter === "org"
-              ? "bg-purple-500/20 border-purple-400 text-purple-300 shadow-[0_0_18px_rgba(168,85,247,0.4)] font-bold"
-              : "border-purple-400/20 text-purple-300/70 hover:text-purple-300 hover:border-purple-400/40 bg-void-surface/60"
+              ? "border-cyan bg-cyan/20 text-cyan-bright shadow-[0_0_18px_rgba(0,240,255,0.4)] font-bold"
+              : "border-cyan/30 text-cyan-dim hover:border-cyan hover:text-cyan"
           )}
         >
           {msgs["projects.category.org"]} ({countOrg})
@@ -129,27 +130,25 @@ export function ProjectList({ projects, locale, messages: msgs }: ProjectListPro
                 {project.language}
               </span>
 
-              {/* Actions: Code + Demo */}
+              {/* Actions: Code + Demo Standardized Buttons */}
               <div className="flex items-center gap-2">
-                <a
+                <NeonButton
                   href={project.repoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-mono text-[10px] tracking-widest uppercase text-cyan-dim hover:text-cyan border border-cyan/20 hover:border-cyan/50 px-2.5 py-1 rounded-xs transition-all duration-200 bg-void/50 hover:bg-cyan/10"
+                  external
+                  size="sm"
+                  icon={<IconBrandGithub size={13} className="text-cyan" />}
                 >
-                  <IconBrandGithub size={12} />
                   {msgs["projects.repo"]}
-                </a>
+                </NeonButton>
                 {project.homepageUrl && (
-                  <a
+                  <NeonButton
                     href={project.homepageUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 font-mono text-[10px] tracking-widest uppercase text-cyan-bright hover:text-cyan border border-cyan/40 hover:border-cyan px-2.5 py-1 rounded-xs transition-all duration-200 bg-cyan/10 hover:bg-cyan/20 shadow-[0_0_8px_rgba(0,240,255,0.15)]"
+                    external
+                    size="sm"
+                    icon={<IconWorld size={13} className="text-cyan" />}
                   >
-                    <IconWorld size={12} />
                     {msgs["projects.demo"]}
-                  </a>
+                  </NeonButton>
                 )}
               </div>
             </div>

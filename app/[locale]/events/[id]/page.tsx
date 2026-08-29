@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import {
   IconCalendar,
   IconMapPin,
@@ -10,6 +9,7 @@ import { getMessages } from "@/i18n";
 import { locales, type Locale } from "@/i18n/config";
 import { GlitchText } from "@/components/ui/glitch-text";
 import { GlitchCard } from "@/components/ui/glitch-card";
+import { NeonButton } from "@/components/ui/neon-button";
 import { EventDetailGallery } from "@/components/events/event-detail-gallery";
 import { events } from "@/data/events";
 
@@ -54,13 +54,13 @@ export default async function EventDetailPage({
     <main className="mx-auto max-w-5xl px-6 py-12 sm:py-16 text-center">
       {/* Back to Events Navigation */}
       <div className="flex justify-start mb-8">
-        <Link
-          href={`/${locale}/events` as any}
-          className="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-cyan-dim hover:text-cyan border border-cyan/20 hover:border-cyan/50 px-3.5 py-1.5 rounded-xs transition-all duration-200 bg-void-surface/60 hover:bg-cyan/10"
+        <NeonButton
+          href={`/${locale}/events`}
+          size="sm"
+          icon={<IconArrowLeft size={16} className="text-cyan" />}
         >
-          <IconArrowLeft size={16} />
           {msgs["events.backToEvents"]}
-        </Link>
+        </NeonButton>
       </div>
 
       {/* Main Event Info Panel */}
