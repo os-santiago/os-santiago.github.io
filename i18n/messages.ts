@@ -78,52 +78,34 @@ const es: Messages = {
   "about.join": "Únete ahora",
 
   "adev.title": "Augmented Development (A-Dev)",
+  "adev.tagline": "Marco operativo abierto para el desarrollo de software asistido por IA",
   "adev.definition":
-    "A-Dev es un marco de trabajo neutral para orquestar la entrega de software asistida por IA con disciplina de ingeniería, trazabilidad y control de calidad.",
+    "A-Dev es un marco de trabajo neutral para orquestar la entrega de software asistida por IA y agentes. Transforma expectativas humanas en restricciones explícitas, capacidades acotadas, acciones auditables y aprendizaje respaldado por evidencia.",
   "adev.quote":
     "La IA entrega velocidad y capacidad de generación; el profesional humano aporta criterio, intención, estándares y gobierno.",
+  "adev.products.title": "Dos Componentes Esenciales",
+  "adev.products.practice.title": "La Práctica A-Dev",
+  "adev.products.practice.desc":
+    "Doctrina operativa, Living Baseline, ciclo 50/50, Hilo Digital y modelo Hardness para gobernar el desarrollo con agentes.",
+  "adev.products.book.title": "El Libro A-Dev",
+  "adev.products.book.desc":
+    "Texto canónico y editorial con capítulos narrativos, fundamentos teóricos, ejemplos de adopción y casos de estudio reales.",
   "adev.pillars": "Pilares Fundamentales",
   "adev.pillar1.title": "Living Baseline",
   "adev.pillar1.desc":
-    "Repositorio de restricciones y aprendizajes que todo prompt debe consultar. Cada fallo se documenta y se convierte en guardrail, checklist o regla permanente para evitar regresiones.",
+    "Repositorio vivo de restricciones y lecciones aprendidas que todo prompt debe consultar. Cada error se documenta y se convierte en regla permanente para evitar regresiones.",
   "adev.pillar2.title": "Ciclo de Calidad 50/50",
   "adev.pillar2.desc":
-    "Equilibrio estricto: el 50% del tiempo se dedica a implementar y el 50% restante a verificar: Build, Ejecución, Walkthrough y Evidencia comprovable.",
+    "Equilibrio estricto: 50% del tiempo en construcción y 50% en verificación comprobable (Build, Ejecución, Walkthrough y Evidencia).",
   "adev.pillar3.title": "Digital Thread (Hilo Digital)",
   "adev.pillar3.desc":
-    "Trazabilidad completa de extremo a extremo: Requerimiento → Plan Atómico → Prompt de Contexto → Commit & Test de Validación → Actualización de Baseline.",
-  "adev.rules": "Principios Operativos",
-  "adev.rules.pr":
-    "PR Único — Cada iteración o mejora se entrega desde una rama dedicada con un Pull Request atómico.",
-  "adev.rules.commits":
-    "Commits Atómicos — Mensajes bajo Conventional Commits, con un único cambio lógico por commit.",
-  "adev.rules.scope":
-    "Alcance Aislado — Prohibido mezclar refactorización, funcionalidades nuevas, estilos e infraestructura en el mismo PR.",
-  "adev.rules.validation":
-    "Validación Focalizada — Ejecución de la prueba o build más específico que verifique el cambio introducido.",
-  "adev.rules.ci": "CI en Verde — Ningún cambio se integra si la integración continua presenta advertencias o fallos.",
-  "adev.rules.secrets":
-    "Cero Secretos — Nunca commitear credenciales, API keys ni variables sensibles en el repositorio.",
-  "adev.rules.kiss":
-    "Simplicidad (KISS) — Limpieza inmediata de ramas temporales, archivos basura y código en desuso.",
-  "adev.rules.delivery": "Modo Entrega Continua — Una tarea definida se traduce en un Pull Request concreto y testeado.",
-  "adev.cycle": "Ciclo de Trabajo Paso a Paso",
-  "adev.cycle.1": "1. Inspeccionar — Revisar rama actual, remotes, working tree y cambios en upstream.",
-  "adev.cycle.2": "2. Sincronizar — Traer y rebasar sobre origin/main limpio.",
-  "adev.cycle.3": "3. Definir Alcance — Acotar con exactitud el objetivo de la iteración.",
-  "adev.cycle.4": "4. Implementar — Desarrollar únicamente lo acordado para la tarea.",
-  "adev.cycle.5": "5. Rollout Gradual — Introducir cambio → Integrar funcionalmente → Limpiar código legado.",
-  "adev.cycle.6": "6. Validar — Ejecutar linting, chequeo de tipos y build de producción local.",
-  "adev.cycle.7": "7. Integrar — Commit semántico, push y creación de Pull Request con descripción clara.",
-  "adev.cycle.8": "8. Verificación — Comprobar funcionamiento post-merge en el entorno productivo.",
-  "adev.cycle.9": "9. Limpieza — Eliminar ramas locales y temporales ya mergeadas.",
-  "adev.starter": "Plantillas y Guías de Inicio",
-  "adev.starter.day0":
-    "Estructura inicial del proyecto: baseline, roadmap técnico y registro de decisiones.",
-  "adev.starter.firstweek": "Guía práctica para completar el primer ciclo de desarrollo con evidencia.",
-  "adev.starter.decisions": "Plantilla estandarizada para el registro de decisiones de arquitectura (ADR).",
-  "adev.starter.checklist": "Lista de chequeo para validación del ciclo de calidad 50/50.",
-  "adev.cta": "Explorar el repositorio oficial de ADEV",
+    "Trazabilidad ininterrumpida de extremo a extremo: Requerimiento → Plan Atómico → Prompt → Commit/Test de Validación → Actualización de Baseline.",
+  "adev.book.card.title": "Lee el Libro Completo",
+  "adev.book.card.desc":
+    "Descarga y lee la edición consolidada del libro ADEV en formato PDF o EPUB, disponible en español e inglés.",
+  "adev.book.card.formats": "Formatos disponibles: PDF & EPUB (ES / EN) • Open Source (CC BY-SA 4.0)",
+  "adev.cta.book": "Descargar / Leer Última Versión (Latest Release)",
+  "adev.cta.repo": "Ver Repositorio en GitHub",
 
   "projects.title": "Proyectos de la Comunidad",
   "projects.subtitle":
@@ -246,52 +228,34 @@ const en: Messages = {
   "about.join": "Join us now",
 
   "adev.title": "Augmented Development (A-Dev)",
+  "adev.tagline": "Open operating framework for model- and agent-assisted software delivery",
   "adev.definition":
-    "A-Dev is a vendor-neutral framework for orchestrating AI-assisted software delivery with engineering discipline, full traceability, and quality control.",
+    "A-Dev is a vendor-neutral operating framework for model- and agent-assisted software delivery. It turns human expectations into explicit constraints, bounded capabilities, reviewable actions, and evidence-backed learning.",
   "adev.quote":
-    "AI provides speed and generation capacity; the human engineer provides judgment, intent, standards, and governance.",
+    "AI provides speed and brute force; the human engineer provides standards, intent and governance.",
+  "adev.products.title": "Two Essential Products",
+  "adev.products.practice.title": "The A-Dev Practice",
+  "adev.products.practice.desc":
+    "Operating doctrine, Living Baseline, 50/50 quality cycle, Digital Thread, and the Hardness model to govern agent-assisted work.",
+  "adev.products.book.title": "The A-Dev Book",
+  "adev.products.book.desc":
+    "Canonical explanatory book with narrative chapters, foundational theory, practical adoption examples, and real case studies.",
   "adev.pillars": "Core Pillars",
   "adev.pillar1.title": "Living Baseline",
   "adev.pillar1.desc":
-    "A constraints and lessons repository that every prompt must reference. Every failure is documented and transformed into a guardrail, checklist item, or durable rule to prevent regressions.",
+    "A living repository of constraints and lessons learned that every prompt must reference. Every failure becomes a guardrail or durable rule to prevent regressions.",
   "adev.pillar2.title": "50/50 Quality Cycle",
   "adev.pillar2.desc":
-    "Strict balance: 50% of time spent on creating, 50% on verifying: Build, Execution, Walkthrough, and provable Evidence.",
+    "Strict balance: 50% of time spent on creating, 50% on verifiable proof (Build, Execution, Walkthrough, and Evidence).",
   "adev.pillar3.title": "Digital Thread",
   "adev.pillar3.desc":
-    "End-to-end traceability: Requirement → Atomic Plan → Context Prompt → Validation Commit & Tests → Baseline Update.",
-  "adev.rules": "Operating Principles",
-  "adev.rules.pr":
-    "Single PR — Each iteration or improvement ships from a dedicated branch with an atomic Pull Request.",
-  "adev.rules.commits":
-    "Atomic Commits — Semantic Conventional Commits, with a single logical change per commit.",
-  "adev.rules.scope":
-    "Isolated Scope — Never mix refactoring, new features, styling, and infrastructure in the same PR.",
-  "adev.rules.validation":
-    "Narrow Validation — Run the most targeted test or build that verifies the change introduced.",
-  "adev.rules.ci": "Green CI — No changes are merged if continuous integration reports warnings or failures.",
-  "adev.rules.secrets":
-    "Zero Secrets — Never commit credentials, API keys, or sensitive variables into the codebase.",
-  "adev.rules.kiss":
-    "Simplicity (KISS) — Immediate cleanup of temporary branches, scratch files, and deprecated code.",
-  "adev.rules.delivery": "Continuous Delivery Mode — A defined task translates into a concrete, tested Pull Request.",
-  "adev.cycle": "Step-by-Step Workflow",
-  "adev.cycle.1": "1. Inspect — Review current branch, remotes, working tree, and upstream changes.",
-  "adev.cycle.2": "2. Sync — Fetch and rebase on clean origin/main.",
-  "adev.cycle.3": "3. Scope Definition — Narrow down the exact iteration goal.",
-  "adev.cycle.4": "4. Implement — Develop only what was scoped for the task.",
-  "adev.cycle.5": "5. Incremental Rollout — Introduce change → Integrate functionally → Remove legacy code.",
-  "adev.cycle.6": "6. Validate — Run local linting, type checking, and production build.",
-  "adev.cycle.7": "7. Integrate — Semantic commit, push, and open Pull Request with clear description.",
-  "adev.cycle.8": "8. Verification — Validate production behavior post-merge.",
-  "adev.cycle.9": "9. Cleanup — Delete merged local and remote branches.",
-  "adev.starter": "Templates and Starter Guides",
-  "adev.starter.day0":
-    "Initial project skeleton: baseline, technical roadmap, and architectural decision log.",
-  "adev.starter.firstweek": "Hands-on guide to complete the first verified development cycle with evidence.",
-  "adev.starter.decisions": "Standardized template for Architectural Decision Records (ADR).",
-  "adev.starter.checklist": "50/50 quality cycle verification checklist.",
-  "adev.cta": "Explore the official ADEV repository",
+    "End-to-end unbroken traceability: Requirement → Atomic Plan → Context Prompt → Validation Commit & Tests → Baseline Update.",
+  "adev.book.card.title": "Read the Full Book",
+  "adev.book.card.desc":
+    "Download and read the consolidated edition of the ADEV book in PDF or EPUB format, available in both Spanish and English.",
+  "adev.book.card.formats": "Available formats: PDF & EPUB (ES / EN) • Open Source (CC BY-SA 4.0)",
+  "adev.cta.book": "Download / Read Latest Release",
+  "adev.cta.repo": "View Repository on GitHub",
 
   "projects.title": "Community Projects",
   "projects.subtitle":

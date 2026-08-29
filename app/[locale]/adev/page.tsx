@@ -1,8 +1,14 @@
-import { IconArrowRight, IconBook } from "@tabler/icons-react";
+import {
+  IconBook,
+  IconBrandGithub,
+  IconSparkles,
+  IconShieldCheck,
+  IconFileText,
+} from "@tabler/icons-react";
 import { getMessages } from "@/i18n";
 import { type Locale } from "@/i18n/config";
 import { GlitchText } from "@/components/ui/glitch-text";
-import { DataPanel } from "@/components/ui/data-panel";
+import { GlitchCard } from "@/components/ui/glitch-card";
 import { NeonButton } from "@/components/ui/neon-button";
 
 export default async function AdevPage({
@@ -15,146 +21,138 @@ export default async function AdevPage({
 
   const pillars = [
     {
+      id: "01",
       title: msgs["adev.pillar1.title"],
       desc: msgs["adev.pillar1.desc"],
+      icon: <IconShieldCheck size={20} className="text-cyan" />,
     },
     {
+      id: "02",
       title: msgs["adev.pillar2.title"],
       desc: msgs["adev.pillar2.desc"],
+      icon: <IconSparkles size={20} className="text-cyan" />,
     },
     {
+      id: "03",
       title: msgs["adev.pillar3.title"],
       desc: msgs["adev.pillar3.desc"],
-    },
-  ];
-
-  const rules = [
-    msgs["adev.rules.pr"],
-    msgs["adev.rules.commits"],
-    msgs["adev.rules.scope"],
-    msgs["adev.rules.validation"],
-    msgs["adev.rules.ci"],
-    msgs["adev.rules.secrets"],
-    msgs["adev.rules.kiss"],
-    msgs["adev.rules.delivery"],
-  ];
-
-  const cycle = [
-    msgs["adev.cycle.1"],
-    msgs["adev.cycle.2"],
-    msgs["adev.cycle.3"],
-    msgs["adev.cycle.4"],
-    msgs["adev.cycle.5"],
-    msgs["adev.cycle.6"],
-    msgs["adev.cycle.7"],
-    msgs["adev.cycle.8"],
-    msgs["adev.cycle.9"],
-  ];
-
-  const starter = [
-    { name: "DAY_0.md", desc: msgs["adev.starter.day0"] },
-    { name: "FIRST_WEEK.md", desc: msgs["adev.starter.firstweek"] },
-    { name: "DECISION_LOG.md", desc: msgs["adev.starter.decisions"] },
-    {
-      name: "QUALITY_CYCLE_checklist.md",
-      desc: msgs["adev.starter.checklist"],
+      icon: <IconFileText size={20} className="text-cyan" />,
     },
   ];
 
   return (
     <main className="mx-auto max-w-4xl px-6 py-16 text-center">
-      <GlitchText as="h1" className="text-cyan font-display text-4xl font-bold text-center block mx-auto">
+      {/* Title & Tagline */}
+      <GlitchText as="h1" className="text-cyan font-display text-4xl sm:text-5xl font-bold text-center block mx-auto">
         {msgs["adev.title"]}
       </GlitchText>
+      <p className="text-cyan-bright font-mono text-sm tracking-wide mt-3 text-center mx-auto max-w-2xl">
+        {msgs["adev.tagline"]}
+      </p>
 
-      <p className="text-cyan-dim mt-4 text-lg text-center mx-auto max-w-2xl">{msgs["adev.definition"]}</p>
+      {/* Main Direct Definition */}
+      <p className="text-cyan-dim mt-6 text-base sm:text-lg leading-relaxed text-center mx-auto max-w-2xl">
+        {msgs["adev.definition"]}
+      </p>
 
-      <blockquote className="text-cyan-bright border-cyan/30 mt-6 border-y py-3 font-mono text-sm italic text-center mx-auto max-w-2xl">
-        {msgs["adev.quote"]}
+      {/* Quote Banner */}
+      <blockquote className="text-cyan-bright border-cyan/30 my-8 border-y py-4 font-mono text-xs sm:text-sm italic text-center mx-auto max-w-2xl bg-void-surface/40 px-4">
+        &ldquo;{msgs["adev.quote"]}&rdquo;
       </blockquote>
 
-      {/* Pillars */}
-      <h2 className="text-cyan font-display mt-12 text-2xl font-bold text-center">
-        {msgs["adev.pillars"]}
-      </h2>
-      <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-        {pillars.map((pillar) => (
-          <DataPanel key={pillar.title} title={pillar.title}>
-            <p className="text-cyan-dim text-sm text-center">{pillar.desc}</p>
-          </DataPanel>
-        ))}
+      {/* The 2 Products: Practice vs Book */}
+      <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5 text-left">
+        <GlitchCard className="cyber-hud-box p-6 rounded-sm bg-void-surface/70 backdrop-blur-sm border border-cyan/15 hover:border-cyan/40 hover:shadow-[0_0_30px_rgba(0,240,255,0.2)] transition-all duration-300">
+          <div className="flex items-center gap-2 font-mono text-xs text-cyan tracking-widest uppercase mb-2">
+            <IconShieldCheck size={16} />
+            {msgs["adev.products.practice.title"]}
+          </div>
+          <p className="text-cyan-dim text-xs sm:text-sm leading-relaxed">
+            {msgs["adev.products.practice.desc"]}
+          </p>
+        </GlitchCard>
+
+        <GlitchCard className="cyber-hud-box p-6 rounded-sm bg-void-surface/70 backdrop-blur-sm border border-cyan/15 hover:border-cyan/40 hover:shadow-[0_0_30px_rgba(0,240,255,0.2)] transition-all duration-300">
+          <div className="flex items-center gap-2 font-mono text-xs text-cyan tracking-widest uppercase mb-2">
+            <IconBook size={16} />
+            {msgs["adev.products.book.title"]}
+          </div>
+          <p className="text-cyan-dim text-xs sm:text-sm leading-relaxed">
+            {msgs["adev.products.book.desc"]}
+          </p>
+        </GlitchCard>
       </div>
 
-      {/* Key Rules */}
-      <h2 className="text-cyan font-display mt-12 text-2xl font-bold text-center">
-        {msgs["adev.rules"]}
-      </h2>
-      <div className="mt-6">
-        <DataPanel title="RULES">
-          <ul className="space-y-3 flex flex-col items-center">
-            {rules.map((rule, i) => (
-              <li
-                key={i}
-                className="text-cyan-dim flex items-start justify-center gap-3 text-sm text-center max-w-xl"
-              >
-                <span className="text-cyan font-mono text-xs">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span>{rule}</span>
-              </li>
-            ))}
-          </ul>
-        </DataPanel>
+      {/* 3 Core Pillars */}
+      <div className="mt-14">
+        <h2 className="text-cyan font-display text-2xl font-bold text-center mb-6">
+          {msgs["adev.pillars"]}
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-left">
+          {pillars.map((pillar) => (
+            <GlitchCard
+              key={pillar.id}
+              className="cyber-hud-box p-5 rounded-sm bg-void-surface/70 backdrop-blur-sm border border-cyan/15 hover:border-cyan/40 hover:shadow-[0_0_25px_rgba(0,240,255,0.2)] transition-all duration-300 flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="font-mono text-xs text-cyan-deep uppercase tracking-widest">
+                    #{pillar.id}
+                  </span>
+                  {pillar.icon}
+                </div>
+                <h3 className="text-cyan font-display text-base font-bold mb-2">
+                  {pillar.title}
+                </h3>
+                <p className="text-cyan-dim/90 text-xs leading-relaxed">
+                  {pillar.desc}
+                </p>
+              </div>
+            </GlitchCard>
+          ))}
+        </div>
       </div>
 
-      {/* Operative Cycle */}
-      <h2 className="text-cyan font-display mt-12 text-2xl font-bold text-center">
-        {msgs["adev.cycle"]}
-      </h2>
-      <div className="mt-6">
-        <DataPanel title="CYCLE">
-          <ol className="space-y-2 flex flex-col items-center">
-            {cycle.map((step, i) => (
-              <li
-                key={i}
-                className="text-cyan-dim flex items-start justify-center gap-3 font-mono text-sm text-center max-w-xl"
-              >
-                <span className="text-cyan">
-                  {String(i + 1).padStart(2, "0")}.
-                </span>
-                <span>{step}</span>
-              </li>
-            ))}
-          </ol>
-        </DataPanel>
-      </div>
+      {/* Book & Latest Release Download Card */}
+      <section className="mt-14">
+        <GlitchCard className="cyber-hud-box p-8 sm:p-10 rounded-sm bg-void-surface/80 backdrop-blur-sm border border-cyan/30 text-center flex flex-col items-center shadow-[0_0_35px_rgba(0,240,255,0.15)]">
+          <div className="p-3 rounded-full bg-cyan/10 border border-cyan/30 text-cyan mb-4 flex items-center justify-center">
+            <IconBook size={28} />
+          </div>
 
-      {/* Starter Kit */}
-      <h2 className="text-cyan font-display mt-12 text-2xl font-bold text-center">
-        {msgs["adev.starter"]}
-      </h2>
-      <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
-        {starter.map((item) => (
-          <DataPanel key={item.name}>
-            <div className="text-cyan flex items-center justify-center gap-2 font-mono text-sm font-bold">
-              <IconBook size={14} className="text-cyan" />
-              {item.name}
-            </div>
-            <p className="text-cyan-dim mt-1 text-xs text-center">{item.desc}</p>
-          </DataPanel>
-        ))}
-      </div>
+          <h2 className="text-cyan font-display text-2xl sm:text-3xl font-bold text-center">
+            {msgs["adev.book.card.title"]}
+          </h2>
 
-      <div className="mt-12 flex justify-center">
-        <NeonButton
-          href="https://github.com/scanalesespinoza/adev"
-          external
-          size="lg"
-          icon={<IconArrowRight size={20} className="text-cyan" />}
-        >
-          {msgs["adev.cta"]}
-        </NeonButton>
-      </div>
+          <p className="text-cyan-dim mt-3 text-sm max-w-xl mx-auto text-center leading-relaxed">
+            {msgs["adev.book.card.desc"]}
+          </p>
+
+          <p className="text-cyan-deep font-mono text-xs mt-2 tracking-wide">
+            {msgs["adev.book.card.formats"]}
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-4 justify-center items-center">
+            <NeonButton
+              href="https://github.com/scanalesespinoza/adev/releases/latest"
+              external
+              size="lg"
+              icon={<IconBook size={20} className="text-cyan" />}
+            >
+              {msgs["adev.cta.book"]}
+            </NeonButton>
+
+            <NeonButton
+              href="https://github.com/scanalesespinoza/adev"
+              external
+              size="md"
+              icon={<IconBrandGithub size={18} className="text-cyan" />}
+            >
+              {msgs["adev.cta.repo"]}
+            </NeonButton>
+          </div>
+        </GlitchCard>
+      </section>
     </main>
   );
 }
