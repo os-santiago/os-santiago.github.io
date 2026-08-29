@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020813" />
+      <stop offset="50%" stop-color="#0a192f" />
+      <stop offset="100%" stop-color="#020813" />
+    </linearGradient>
+    <pattern id="cyberGrid3" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(0, 240, 255, 0.08)" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg3)" />
+  <rect width="100%" height="100%" fill="url(#cyberGrid3)" />
+
+  <rect x="60" y="60" width="1080" height="555" fill="none" stroke="rgba(0, 240, 255, 0.2)" stroke-width="1" stroke-dasharray="10 15" />
+  
+  <path d="M 50 80 L 50 50 L 80 50" fill="none" stroke="#00f0ff" stroke-width="3" />
+  <path d="M 1150 80 L 1150 50 L 1120 50" fill="none" stroke="#00f0ff" stroke-width="3" />
+  <path d="M 50 595 L 50 625 L 80 625" fill="none" stroke="#00f0ff" stroke-width="3" />
+  <path d="M 1150 595 L 1150 625 L 1120 625" fill="none" stroke="#00f0ff" stroke-width="3" />
+
+  <g transform="translate(600, 310)" text-anchor="middle">
+    <circle cx="0" cy="-40" r="45" fill="#0a192f" stroke="#00f0ff" stroke-width="2" />
+    <path d="M -15 -32 L -5 -48 L 5 -36 L 15 -48" fill="none" stroke="#00f0ff" stroke-width="2.5" stroke-linecap="round" />
+
+    <text y="40" font-family="monospace" font-size="22" font-weight="bold" fill="#00f0ff" letter-spacing="4">
+      [ PHOTO ARCHIVE // 03 ]
+    </text>
+    <text y="75" font-family="sans-serif" font-size="15" fill="#8892b0" letter-spacing="2">
+      PROYECTOS &amp; CODIGO EN VIVO
+    </text>
+    <text y="105" font-family="monospace" font-size="12" fill="rgba(0, 240, 255, 0.6)" letter-spacing="1">
+      OPEN SOURCE SANTIAGO // MEETUP MEMORIES
+    </text>
+  </g>
+</svg>

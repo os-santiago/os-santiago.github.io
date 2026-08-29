@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { GlitchBreak } from "./glitch-break";
 
@@ -8,9 +9,10 @@ type GlitchCardProps = {
   children: React.ReactNode;
   className?: string;
   href?: string;
+  external?: boolean;
 };
 
-export function GlitchCard({ children, className, href }: GlitchCardProps) {
+export function GlitchCard({ children, className, href, external }: GlitchCardProps) {
   const [isGlitching, setIsGlitching] = useState(false);
 
   const handleEnter = () => setIsGlitching(true);
@@ -23,11 +25,30 @@ export function GlitchCard({ children, className, href }: GlitchCardProps) {
   );
 
   if (href) {
+    const isExternal = external ?? href.startsWith("http");
+
+    if (isExternal) {
+      return (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={baseClass}
+          onMouseEnter={handleEnter}
+          onMouseLeave={handleLeave}
+        >
+          <GlitchBreak className="z-0 opacity-40 transition-opacity duration-300 group-hover:opacity-60" />
+          {isGlitching && (
+            <div className="glitch-slice pointer-events-none absolute inset-0 z-20" />
+          )}
+          <div className="relative z-10 flex flex-col flex-1 h-full w-full">{children}</div>
+        </a>
+      );
+    }
+
     return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
+      <Link
+        href={href as any}
         className={baseClass}
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
@@ -37,7 +58,7 @@ export function GlitchCard({ children, className, href }: GlitchCardProps) {
           <div className="glitch-slice pointer-events-none absolute inset-0 z-20" />
         )}
         <div className="relative z-10 flex flex-col flex-1 h-full w-full">{children}</div>
-      </a>
+      </Link>
     );
   }
 
