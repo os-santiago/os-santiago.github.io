@@ -54,7 +54,7 @@ export function Navbar({ locale }: NavbarProps) {
         {/* Subtle Matrix / Glitch character background */}
         <GlitchBreak className="opacity-0 group-hover/nav:opacity-35 transition-opacity duration-700 pointer-events-none rounded-full" />
 
-        {/* Left Side Links — Anchored rigidly to center logo, zero horizontal translation */}
+        {/* Left Side Links: Anchored rigidly to center logo, zero horizontal translation */}
         <div className="absolute right-[calc(50%+22px)] sm:right-[calc(50%+26px)] top-1/2 -translate-y-1/2 z-10 flex items-center justify-end gap-2.5 sm:gap-5 opacity-0 blur-[2px] pointer-events-none transition-[opacity,filter] duration-150 ease-out group-hover/nav:opacity-100 group-hover/nav:blur-none group-hover/nav:pointer-events-auto group-hover/nav:duration-400 group-hover/nav:delay-150">
           {leftLinks.map((link) => {
             const active = isActive(link.href);
@@ -84,7 +84,7 @@ export function Navbar({ locale }: NavbarProps) {
           })}
         </div>
 
-        {/* Center: Absolute Fixed Logo — Always locked to the exact 50% vertical center axis */}
+        {/* Center: Absolute Fixed Logo: Always locked to the exact 50% vertical center axis */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center pointer-events-auto">
           <Link
             href={`/${locale}` as never}
@@ -102,7 +102,7 @@ export function Navbar({ locale }: NavbarProps) {
           </Link>
         </div>
 
-        {/* Right Side Links & Language Switcher — Anchored rigidly to center logo, zero horizontal translation */}
+        {/* Right Side Links & Language Switcher: Anchored rigidly to center logo, zero horizontal translation */}
         <div className="absolute left-[calc(50%+22px)] sm:left-[calc(50%+26px)] top-1/2 -translate-y-1/2 z-10 flex items-center justify-start gap-2.5 sm:gap-5 opacity-0 blur-[2px] pointer-events-none transition-[opacity,filter] duration-150 ease-out group-hover/nav:opacity-100 group-hover/nav:blur-none group-hover/nav:pointer-events-auto group-hover/nav:duration-400 group-hover/nav:delay-150">
           {rightLinks.map((link) => {
             const active = isActive(link.href);

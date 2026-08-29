@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Data-Noir Glitch — Cyan Monochromy */
+  /* Data-Noir Glitch: Cyan Monochromy */
   --color-void: #04060a;
   --color-void-deep: #020305;
   --color-void-surface: #0a0e14;
@@ -59,7 +59,7 @@
   }
 }
 
-/* === Glitch Text — Static, no CRT animation === */
+/* === Glitch Text: Static, no CRT animation === */
 .glitch-text {
   text-shadow:
     0 0 10px var(--color-cyan-glow),
@@ -90,7 +90,7 @@
   transform: translate(0, 0);
 }
 
-/* === 3D Vanishing Point — Subtle Animated Depth === */
+/* === 3D Vanishing Point: Subtle Animated Depth === */
 @keyframes vp-travel {
   0% {
     background-position: center 0%;
@@ -100,7 +100,7 @@
   }
 }
 
-/* Hero — concentric vanishing point, very subtle */
+/* Hero: concentric vanishing point, very subtle */
 .depth-squares {
   position: relative;
   overflow: hidden;
@@ -135,7 +135,7 @@
   pointer-events: none;
 }
 
-/* Neon Button — subtle depth with travel animation */
+/* Neon Button: subtle depth with travel animation */
 .neon-btn-3d {
   position: relative;
   overflow: hidden;
@@ -173,7 +173,7 @@
     0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
-/* Data Panel — very subtle depth */
+/* Data Panel: very subtle depth */
 .depth-panel {
   position: relative;
   overflow: hidden;
@@ -199,7 +199,7 @@
   pointer-events: none;
 }
 
-/* Glitch Card — base for glitch break effect, no overflow clipping */
+/* Glitch Card: base for glitch break effect, no overflow clipping */
 .depth-card {
   position: relative;
   background: var(--color-void-surface);

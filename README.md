@@ -83,4 +83,4 @@ The site uses the **Data-Noir Glitch** design system: a dark, cyberpunk-inspired
 
 ---
 
-Open Source Santiago — Comunidad, Tecnología y Propósito
+Open Source Santiago | Comunidad, Tecnología y Propósito
