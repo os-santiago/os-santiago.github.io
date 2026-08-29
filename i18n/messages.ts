@@ -11,7 +11,7 @@ const es: Messages = {
   "nav.members": "Miembros",
 
   "home.title": "Open Source Santiago",
-  "home.tagline": "Comunidad, Código Abierto y Colaboración Real — Abiertos al Mundo",
+  "home.tagline": "Comunidad, Código Abierto y Colaboración Real: Abiertos al Mundo",
   "home.mission":
     "Espacio comunitario de desarrolladores, ingenieros y creadores. Impulsamos proyectos reales de código abierto, compartimos conocimiento práctico y fomentamos la cultura DevOps y el desarrollo aumentado con rigor e inclusión.",
   "home.cta.discord": "Discord",
@@ -24,7 +24,7 @@ const es: Messages = {
 
   "home.event.title": "DevOpsDays Santiago 2026",
   "home.event.date": "8 y 9 de Septiembre, 2026",
-  "home.event.venue": "Centro de Extensión UC — Santiago, Chile",
+  "home.event.venue": "Centro de Extensión UC, Santiago, Chile",
   "home.event.cta": "Ver detalles y agenda",
   "home.event.description":
     "El principal encuentro sobre DevOps, Platform Engineering, Cloud Native e Inteligencia Artificial en Chile. Charlas técnicas, talleres prácticos y networking con la comunidad.",
@@ -38,9 +38,9 @@ const es: Messages = {
   "home.homedir.f2.title": "Reputación & Aporte",
   "home.homedir.f2.desc":
     "Reconocimiento de contribuciones mediante sistema de XP, misiones comunitarias y tableros colaborativos.",
-  "home.homedir.f3.title": "Comunidad Abierta",
+  "home.homedir.f3.title": "Gobernanza ADEV",
   "home.homedir.f3.desc":
-    "Espacio de debate, recursos técnicos votados por la comunidad y directorio activo de miembros.",
+    "Políticas claras, Living Baseline y estándares de calidad para proyectos impulsados por la comunidad.",
   "home.homedir.f4.title": "Radar Open Source",
   "home.homedir.f4.desc":
     "Monitoreo y descubrimiento de repositorios y tendencias de la comunidad de desarrollo.",
@@ -68,13 +68,13 @@ const es: Messages = {
   "home.community.homedir": "Plataforma comunitaria HomeDir",
   "home.community.members": "Directorio de colaboradores y miembros",
 
-  "about.title": "Acerca de Open Source Santiago",
+  "about.title": "Sobre Open Source Santiago",
   "about.mission":
-    "Open Source Santiago es una comunidad técnica sin fines de lucro nacida en Chile con vocación global. Nuestro propósito es construir un punto de encuentro para desarrolladores, estudiantes y profesionales que ven en el software libre una herramienta fundamental para compartir conocimiento, elevar el nivel técnico de la región y generar impacto social a través del código.",
-  "about.founded": "Año de Fundación",
-  "about.mainProject": "Plataforma Principal",
-  "about.methodology": "Marco Metodológico",
-  "about.discord": "Comunidad Discord",
+    "Open Source Santiago es una comunidad técnica sin fines de lucro fundada en Chile y con alcance global. Nuestro propósito es construir un espacio abierto y colaborativo para desarrolladores, estudiantes y profesionales que ven en el código abierto una herramienta vital para compartir conocimiento, elevar la calidad del software en la región y generar impacto social.",
+  "about.founded": "Fundación",
+  "about.mainProject": "Proyecto Principal",
+  "about.methodology": "Metodología",
+  "about.discord": "Comunidad en Discord",
   "about.join": "Únete ahora",
 
   "adev.title": "Augmented Development (A-Dev)",
@@ -100,7 +100,7 @@ const es: Messages = {
   "adev.pillar3.title": "Digital Thread (Hilo Digital)",
   "adev.pillar3.desc":
     "Trazabilidad ininterrumpida de extremo a extremo: Requerimiento → Plan Atómico → Prompt → Commit/Test de Validación → Actualización de Baseline.",
-  "adev.book.card.title": "GRATIS — Lee el Libro Completo",
+  "adev.book.card.title": "GRATIS: Lee el Libro Completo",
   "adev.book.card.desc":
     "Descarga y lee la edición consolidada del libro ADEV en formato PDF o EPUB, disponible en español e inglés.",
   "adev.book.card.formats": "Formatos disponibles: PDF & EPUB (ES / EN) • Open Source (CC BY-SA 4.0)",
@@ -161,7 +161,7 @@ const en: Messages = {
   "nav.members": "Members",
 
   "home.title": "Open Source Santiago",
-  "home.tagline": "Community, Open Source & Real Collaboration — Open to the World",
+  "home.tagline": "Community, Open Source & Real Collaboration: Open to the World",
   "home.mission":
     "An open community of developers, engineers, and creators. We build functional open-source software, share practical knowledge, and advance DevOps culture and augmented engineering with rigor and inclusivity.",
   "home.cta.discord": "Discord",
@@ -174,7 +174,7 @@ const en: Messages = {
 
   "home.event.title": "DevOpsDays Santiago 2026",
   "home.event.date": "September 8-9, 2026",
-  "home.event.venue": "Centro de Extensión UC — Santiago, Chile",
+  "home.event.venue": "Centro de Extensión UC, Santiago, Chile",
   "home.event.cta": "View event & agenda",
   "home.event.description":
     "The leading conference on DevOps, Platform Engineering, Cloud Native and AI in Chile. Keynotes, hands-on workshops, and community networking across LATAM.",
@@ -250,7 +250,7 @@ const en: Messages = {
   "adev.pillar3.title": "Digital Thread",
   "adev.pillar3.desc":
     "End-to-end unbroken traceability: Requirement → Atomic Plan → Context Prompt → Validation Commit & Tests → Baseline Update.",
-  "adev.book.card.title": "FREE — Read the Full Book",
+  "adev.book.card.title": "FREE: Read the Full Book",
   "adev.book.card.desc":
     "Download and read the consolidated edition of the ADEV book in PDF or EPUB format, available in both Spanish and English.",
   "adev.book.card.formats": "Available formats: PDF & EPUB (ES / EN) • Open Source (CC BY-SA 4.0)",

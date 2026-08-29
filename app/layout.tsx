@@ -3,8 +3,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Open Source Santiago — Comunidad, Tecnología y Propósito",
-    template: "%s — Open Source Santiago",
+    default: "Open Source Santiago | Comunidad, Tecnología y Propósito",
+    template: "%s | Open Source Santiago",
   },
   description:
     "Comunidad de código abierto iniciada en Chile, abierta al mundo. Tecnología como motor para el desarrollo personal, profesional y comunitario.",
