@@ -2,7 +2,6 @@ import {
   IconCalendarEvent,
   IconWorld,
   IconUsers,
-  IconArrowRight,
 } from "@tabler/icons-react";
 import { getMessages } from "@/i18n";
 import { type Locale } from "@/i18n/config";
@@ -10,6 +9,7 @@ import { GlitchText } from "@/components/ui/glitch-text";
 import { GlitchCard } from "@/components/ui/glitch-card";
 import { NeonButton } from "@/components/ui/neon-button";
 import { CountdownTimer } from "@/components/events/countdown-timer";
+import { EventGallery } from "@/components/events/event-gallery";
 import { events } from "@/data/events";
 
 export default async function EventsPage({
@@ -20,7 +20,6 @@ export default async function EventsPage({
   const { locale } = await params;
   const msgs = getMessages(locale as Locale);
 
-  const upcoming = events.filter((e) => e.status === "upcoming");
   const featured = events.find((e) => e.featured);
 
   return (
@@ -98,6 +97,8 @@ export default async function EventsPage({
         </section>
       )}
 
+      {/* Past Events & Photo Collage Section */}
+      <EventGallery events={events} locale={locale as Locale} messages={msgs} />
     </main>
   );
 }
