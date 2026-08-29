@@ -100,7 +100,7 @@ const es: Messages = {
   "adev.pillar3.title": "Digital Thread (Hilo Digital)",
   "adev.pillar3.desc":
     "Trazabilidad ininterrumpida de extremo a extremo: Requerimiento → Plan Atómico → Prompt → Commit/Test de Validación → Actualización de Baseline.",
-  "adev.book.card.title": "Lee el Libro Completo",
+  "adev.book.card.title": "GRATIS — Lee el Libro Completo",
   "adev.book.card.desc":
     "Descarga y lee la edición consolidada del libro ADEV en formato PDF o EPUB, disponible en español e inglés.",
   "adev.book.card.formats": "Formatos disponibles: PDF & EPUB (ES / EN) • Open Source (CC BY-SA 4.0)",
@@ -250,7 +250,7 @@ const en: Messages = {
   "adev.pillar3.title": "Digital Thread",
   "adev.pillar3.desc":
     "End-to-end unbroken traceability: Requirement → Atomic Plan → Context Prompt → Validation Commit & Tests → Baseline Update.",
-  "adev.book.card.title": "Read the Full Book",
+  "adev.book.card.title": "FREE — Read the Full Book",
   "adev.book.card.desc":
     "Download and read the consolidated edition of the ADEV book in PDF or EPUB format, available in both Spanish and English.",
   "adev.book.card.formats": "Available formats: PDF & EPUB (ES / EN) • Open Source (CC BY-SA 4.0)",
