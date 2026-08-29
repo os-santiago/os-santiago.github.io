@@ -10,6 +10,7 @@ export type Member = {
 };
 
 export const members: Member[] = [
+  // --- Organizers (Admins) ---
   {
     "userId": "axel-damage",
     "displayName": "NULL",
@@ -31,25 +32,6 @@ export const members: Member[] = [
     "joinedAt": "2015-03-18T23:27:08Z"
   },
   {
-    "userId": "noxtope-git",
-    "displayName": "oscar",
-    "github": "noxtope-git",
-    "role": "moderator",
-    "profileUrl": "https://github.com/noxtope-git",
-    "avatarUrl": "https://avatars.githubusercontent.com/u/173063293?v=4",
-    "bio": "busco pega/ \r\ninformatica / \r\n୭ ˚.🌐◞🐠𓈒",
-    "joinedAt": "2024-06-17T12:37:30Z"
-  },
-  {
-    "userId": "benjvvg",
-    "displayName": "Benjamin Gonzalez",
-    "github": "benjvvg",
-    "role": "member",
-    "profileUrl": "https://github.com/benjvvg",
-    "avatarUrl": "https://avatars.githubusercontent.com/u/251915819?v=4",
-    "joinedAt": "2025-12-28T21:31:24Z"
-  },
-  {
     "userId": "caiodonascimento",
     "displayName": "Caio Medeiros Pinto D.",
     "github": "caiodonascimento",
@@ -60,13 +42,13 @@ export const members: Member[] = [
     "joinedAt": "2016-01-28T14:41:59Z"
   },
   {
-    "userId": "despinos",
-    "displayName": "Despinos",
-    "github": "Despinos",
-    "role": "member",
-    "profileUrl": "https://github.com/Despinos",
-    "avatarUrl": "https://avatars.githubusercontent.com/u/19415999?v=4",
-    "joinedAt": "2016-05-17T19:38:03Z"
+    "userId": "pcastelo",
+    "displayName": "Pablo Castelo",
+    "github": "pcastelo",
+    "role": "admin",
+    "profileUrl": "https://github.com/pcastelo",
+    "avatarUrl": "https://avatars.githubusercontent.com/u/10425803?v=4",
+    "joinedAt": "2015-01-06T20:37:06Z"
   },
   {
     "userId": "vectorg99",
@@ -77,6 +59,38 @@ export const members: Member[] = [
     "avatarUrl": "https://avatars.githubusercontent.com/u/205457455?v=4",
     "bio": "Fullstack Developer y\r\nestudiante de Ingeniería Informática con mención en inteligencia artificial.",
     "joinedAt": "2025-03-29T19:10:30Z"
+  },
+
+  // --- Moderators ---
+  {
+    "userId": "noxtope-git",
+    "displayName": "oscar",
+    "github": "noxtope-git",
+    "role": "moderator",
+    "profileUrl": "https://github.com/noxtope-git",
+    "avatarUrl": "https://avatars.githubusercontent.com/u/173063293?v=4",
+    "bio": "busco pega/ \r\ninformatica / \r\n୭ ˚.🌐◞🐠𓈒",
+    "joinedAt": "2024-06-17T12:37:30Z"
+  },
+
+  // --- Members ---
+  {
+    "userId": "benjvvg",
+    "displayName": "Benjamin Gonzalez",
+    "github": "benjvvg",
+    "role": "member",
+    "profileUrl": "https://github.com/benjvvg",
+    "avatarUrl": "https://avatars.githubusercontent.com/u/251915819?v=4",
+    "joinedAt": "2025-12-28T21:31:24Z"
+  },
+  {
+    "userId": "despinos",
+    "displayName": "Despinos",
+    "github": "Despinos",
+    "role": "member",
+    "profileUrl": "https://github.com/Despinos",
+    "avatarUrl": "https://avatars.githubusercontent.com/u/19415999?v=4",
+    "joinedAt": "2016-05-17T19:38:03Z"
   },
   {
     "userId": "geraldsp",
@@ -95,15 +109,6 @@ export const members: Member[] = [
     "profileUrl": "https://github.com/dogameplays",
     "avatarUrl": "https://avatars.githubusercontent.com/u/173209331?v=4",
     "joinedAt": "2024-06-18T22:16:02Z"
-  },
-  {
-    "userId": "pcastelo",
-    "displayName": "Pablo Castelo",
-    "github": "pcastelo",
-    "role": "admin",
-    "profileUrl": "https://github.com/pcastelo",
-    "avatarUrl": "https://avatars.githubusercontent.com/u/10425803?v=4",
-    "joinedAt": "2015-01-06T20:37:06Z"
   },
   {
     "userId": "ranto-dev05",
