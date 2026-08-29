@@ -61,19 +61,17 @@ export const members: Member[] = [
     "joinedAt": "2025-03-29T19:10:30Z"
   },
 
-  // --- Moderators ---
+  // --- Members ---
   {
     "userId": "noxtope-git",
     "displayName": "oscar",
     "github": "noxtope-git",
-    "role": "moderator",
+    "role": "member",
     "profileUrl": "https://github.com/noxtope-git",
     "avatarUrl": "https://avatars.githubusercontent.com/u/173063293?v=4",
     "bio": "busco pega/ \r\ninformatica / \r\n୭ ˚.🌐◞🐠𓈒",
     "joinedAt": "2024-06-17T12:37:30Z"
   },
-
-  // --- Members ---
   {
     "userId": "benjvvg",
     "displayName": "Benjamin Gonzalez",
