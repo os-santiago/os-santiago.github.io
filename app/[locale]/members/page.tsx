@@ -87,7 +87,7 @@ export default async function MembersPage({
                 href={`https://github.com/${member.github}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-xs border border-cyan/20 bg-void/60 hover:bg-cyan/15 hover:border-cyan text-cyan-dim hover:text-cyan-bright transition-all flex items-center justify-center shadow-[0_0_10px_rgba(0,240,255,0.1)]"
+                className="neon-btn-3d inline-flex items-center justify-center p-2 rounded-sm border border-cyan/50 font-mono text-cyan transition-all duration-300 hover:border-cyan"
                 aria-label={`${member.displayName} GitHub`}
                 title={`GitHub @${member.github}`}
               >

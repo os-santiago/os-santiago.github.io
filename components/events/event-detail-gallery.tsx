@@ -92,7 +92,7 @@ export function EventDetailGallery({ photos, locale }: EventDetailGalleryProps) 
             <button
               onClick={() => setSelectedPhoto(null)}
               aria-label="Close photo preview"
-              className="absolute top-3 right-3 z-20 p-2 rounded-xs bg-void/80 border border-cyan/30 text-cyan hover:border-cyan hover:bg-cyan/10 transition-colors"
+              className="neon-btn-3d absolute top-3 right-3 z-20 p-2 rounded-sm border border-cyan/50 text-cyan hover:border-cyan transition-all duration-300 flex items-center justify-center cursor-pointer"
             >
               <IconX size={20} />
             </button>
