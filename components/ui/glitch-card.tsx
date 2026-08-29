@@ -8,21 +8,24 @@ import { GlitchBreak } from "./glitch-break";
 type GlitchCardProps = {
   children: React.ReactNode;
   className?: string;
+  innerClassName?: string;
   href?: string;
   external?: boolean;
 };
 
-export function GlitchCard({ children, className, href, external }: GlitchCardProps) {
+export function GlitchCard({ children, className, innerClassName, href, external }: GlitchCardProps) {
   const [isGlitching, setIsGlitching] = useState(false);
 
   const handleEnter = () => setIsGlitching(true);
   const handleLeave = () => setIsGlitching(false);
 
   const baseClass = cn(
-    "depth-card group relative border border-cyan/15 transition-all duration-300 hover:border-cyan/40 hover:shadow-[0_0_30px_-5px_var(--color-cyan-glow)] text-center",
+    "depth-card group relative border border-cyan/15 transition-all duration-300 hover:border-cyan/40 hover:shadow-[0_0_30px_-5px_var(--color-cyan-glow)]",
     isGlitching && "glitch-active",
     className,
   );
+
+  const innerClass = cn("relative z-10 flex flex-1 h-full w-full", innerClassName ?? "flex-col");
 
   if (href) {
     const isExternal = external ?? href.startsWith("http");
@@ -41,7 +44,7 @@ export function GlitchCard({ children, className, href, external }: GlitchCardPr
           {isGlitching && (
             <div className="glitch-slice pointer-events-none absolute inset-0 z-20" />
           )}
-          <div className="relative z-10 flex flex-col flex-1 h-full w-full">{children}</div>
+          <div className={innerClass}>{children}</div>
         </a>
       );
     }
@@ -57,7 +60,7 @@ export function GlitchCard({ children, className, href, external }: GlitchCardPr
         {isGlitching && (
           <div className="glitch-slice pointer-events-none absolute inset-0 z-20" />
         )}
-        <div className="relative z-10 flex flex-col flex-1 h-full w-full">{children}</div>
+        <div className={innerClass}>{children}</div>
       </Link>
     );
   }
@@ -72,7 +75,7 @@ export function GlitchCard({ children, className, href, external }: GlitchCardPr
       {isGlitching && (
         <div className="glitch-slice pointer-events-none absolute inset-0 z-20" />
       )}
-      <div className="relative z-10 flex flex-col flex-1 h-full w-full">{children}</div>
+      <div className={innerClass}>{children}</div>
     </div>
   );
 }
