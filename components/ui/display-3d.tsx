@@ -28,6 +28,8 @@ export function Display3D({ locale }: Display3DProps) {
   const [isAutoPlay, setIsAutoPlay] = useState<boolean>(true);
   const [progress, setProgress] = useState<number>(0);
   const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [isPreloaded, setIsPreloaded] = useState<boolean>(false);
+  const [preloadCount, setPreloadCount] = useState<number>(0);
 
   // 3D rotation states
   const [manualRotX, setManualRotX] = useState<number>(-4);
@@ -64,9 +66,51 @@ export function Display3D({ locale }: Display3DProps) {
     setProgress(0);
   }, []);
 
+  // Preload and cache all assets (photos, logos, avatar images, and QRs) upfront
+  useEffect(() => {
+    const urlsToPreload = [
+      "/logo.png",
+      "/events/happy-hour-november-2024/photo-06.webp",
+      ...organizerMembers.map((m) => m.avatarUrl),
+      // All QR codes used in the kiosk
+      "https://quickchart.io/qr?text=" + encodeURIComponent("https://discord.gg/3eawzc9ybc") + "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg",
+      "https://quickchart.io/qr?text=" + encodeURIComponent("https://github.com/os-santiago") + "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg",
+      "https://quickchart.io/qr?text=" + encodeURIComponent("https://homedir.opensourcesantiago.io") + "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg",
+      ...spotlightProjects.map(
+        (p) =>
+          "https://quickchart.io/qr?text=" +
+          encodeURIComponent(p.homepageUrl || p.repoUrl) +
+          "&size=480&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg"
+      ),
+    ];
+
+    let loaded = 0;
+    const total = urlsToPreload.length;
+
+    const timer = setTimeout(() => {
+      // Fallback safe timeout to ensure kiosk displays even on slow network
+      setIsPreloaded(true);
+    }, 3500);
+
+    urlsToPreload.forEach((url) => {
+      const img = new Image();
+      img.onload = img.onerror = () => {
+        loaded++;
+        setPreloadCount(Math.round((loaded / total) * 100));
+        if (loaded >= total) {
+          clearTimeout(timer);
+          setIsPreloaded(true);
+        }
+      };
+      img.src = url;
+    });
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // 60FPS fluid progress timer using requestAnimationFrame
   useEffect(() => {
-    if (!isAutoPlay || isDragging) return;
+    if (!isAutoPlay || isDragging || !isPreloaded) return;
 
     let animId: number;
     let lastTime = performance.now();
@@ -161,6 +205,39 @@ export function Display3D({ locale }: Display3DProps) {
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerUp}
     >
+      {/* Kiosk High-Performance Preloader Screen */}
+      {!isPreloaded && (
+        <div className="fixed inset-0 z-50 bg-[#020509] flex flex-col items-center justify-center p-6 text-center select-none">
+          <div className="relative w-20 h-20 mb-6">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo.png"
+              alt="OS Santiago Logo"
+              className="w-full h-full object-cover rounded-full border-2 border-cyan/40 animate-pulse"
+            />
+          </div>
+
+          <div className="font-mono text-xs text-cyan font-bold tracking-widest uppercase mb-2">
+            OPEN SOURCE SANTIAGO // MODO DISPLAY
+          </div>
+
+          <div className="text-slate-300 text-xs font-mono mb-4">
+            Caché y precarga de componentes y QRs... {preloadCount}%
+          </div>
+
+          <div className="w-64 h-1.5 rounded-full bg-cyan/15 overflow-hidden border border-cyan/30">
+            <div
+              className="h-full bg-cyan transition-all duration-150 ease-out"
+              style={{ width: `${preloadCount}%` }}
+            />
+          </div>
+
+          <div className="mt-4 font-mono text-[10px] text-cyan-dim tracking-widest uppercase">
+            OPTIMIZADO PARA PANTALLAS Y STANDS
+          </div>
+        </div>
+      )}
+
       {/* Subtle Matrix / Data Rain */}
       <DataRain className="opacity-10 pointer-events-none" density={0.12} />
 
