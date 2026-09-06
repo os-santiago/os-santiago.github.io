@@ -563,7 +563,7 @@ export function Display3D({ locale }: Display3DProps) {
 
             {/* Equitable 3x3 grid filling space, identical for all staff members, click to view QR */}
             <div className="my-auto flex flex-1 flex-col justify-center py-2">
-              <div className="mx-auto grid w-full max-w-2xl grid-cols-2 gap-2.5 sm:grid-cols-3">
+              <div className="grid w-full grid-cols-2 gap-3.5 sm:grid-cols-3">
                 {staffMembers.map((member) => (
                   <div
                     key={member.userId}
@@ -575,33 +575,33 @@ export function Display3D({ locale }: Display3DProps) {
                           : member,
                       );
                     }}
-                    className="interactive-card group border-cyan/20 hover:border-cyan flex cursor-pointer items-center gap-2.5 rounded-xl border bg-[#081524] p-2.5 shadow-sm transition-all hover:bg-[#0c1e34]"
+                    className="interactive-card group border-cyan/20 hover:border-cyan flex cursor-pointer items-center gap-3 rounded-xl border bg-[#081524] p-3 shadow-sm transition-all hover:bg-[#0c1e34]"
                   >
                     <div className="relative flex-shrink-0">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={member.avatarUrl}
                         alt={member.displayName}
-                        className="border-cyan/40 h-10 w-10 rounded-full border object-cover sm:h-11 sm:w-11"
+                        className="border-cyan/40 h-11 w-11 rounded-full border object-cover sm:h-12 sm:w-12"
                       />
-                      <span className="border-cyan absolute -right-0.5 -bottom-0.5 flex h-3 w-3 items-center justify-center rounded-full border bg-[#020509]">
-                        <span className="bg-cyan h-1 w-1 animate-pulse rounded-full" />
+                      <span className="border-cyan absolute -right-0.5 -bottom-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full border bg-[#020509]">
+                        <span className="bg-cyan h-1.5 w-1.5 animate-pulse rounded-full" />
                       </span>
                     </div>
 
                     <div className="min-w-0 flex-1 overflow-hidden text-left">
-                      <div className="mb-0.5 flex items-center justify-between gap-1">
+                      <div className="mb-0.5 flex items-center justify-between gap-1.5">
                         <span className="group-hover:text-cyan-bright truncate font-sans text-xs font-bold text-slate-100 transition-colors sm:text-sm">
                           {member.displayName}
                         </span>
-                        <span className="text-cyan-dim border-cyan/20 flex-shrink-0 rounded border px-1 py-0.5 font-mono text-[8px] font-bold tracking-wider uppercase">
+                        <span className="text-cyan-dim border-cyan/20 flex-shrink-0 rounded border px-1.5 py-0.5 font-mono text-[9px] font-bold tracking-wider uppercase">
                           STAFF
                         </span>
                       </div>
-                      <div className="text-cyan truncate font-mono text-[11px] font-semibold">
+                      <div className="text-cyan truncate font-mono text-xs font-semibold">
                         @{member.github}
                       </div>
-                      <div className="text-cyan-dim mt-0.5 flex items-center justify-end font-mono text-[9px]">
+                      <div className="text-cyan-dim mt-1 flex items-center justify-end font-mono text-[9px] sm:text-[10px]">
                         <span className="text-cyan group-hover:text-cyan-bright flex-shrink-0 font-bold">
                           QR LINKEDIN →
                         </span>
