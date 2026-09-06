@@ -352,12 +352,12 @@ export function Display3D({ locale }: Display3DProps) {
         >
           {/* ================= FACE 0: INTRODUCCION & COMUNIDAD ================= */}
           <div
-            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl"
+            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl overflow-hidden relative"
             style={{
               transform: `rotateY(0deg) translateZ(${radius}px)`,
             }}
           >
-            <div className="flex items-center justify-between border-b border-cyan/20 pb-3">
+            <div className="flex items-center justify-between border-b border-cyan/20 pb-3 flex-shrink-0">
               <div className="flex items-center gap-3">
                 <span className="font-mono text-cyan text-xs font-bold px-2.5 py-1 border border-cyan/30 rounded bg-cyan/10 tracking-wider">
                   SYS_INFO: 01
@@ -372,8 +372,8 @@ export function Display3D({ locale }: Display3DProps) {
               </div>
             </div>
 
-            <div className="my-auto text-center space-y-5">
-              <div className="inline-flex p-1.5 rounded-full border-2 border-cyan/40 bg-void-deep shadow-md">
+            <div className="my-auto flex-1 flex flex-col justify-center py-2 text-center space-y-5">
+              <div className="inline-flex p-1.5 rounded-full border-2 border-cyan/40 bg-void-deep shadow-md mx-auto">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/logo.png"
@@ -396,7 +396,7 @@ export function Display3D({ locale }: Display3DProps) {
               </p>
             </div>
 
-            <div className="border-t border-cyan/20 pt-3 flex items-center justify-between font-mono text-xs text-cyan-dim font-medium">
+            <div className="border-t border-cyan/20 pt-3 flex items-center justify-between font-mono text-xs text-cyan-dim font-medium flex-shrink-0">
               <span>EST. 2024 / SANTIAGO, CHILE</span>
               <span className="text-cyan font-bold tracking-wider">ROTACIÓN AUTOMÁTICA O ARRASTRA →</span>
             </div>
@@ -404,12 +404,12 @@ export function Display3D({ locale }: Display3DProps) {
 
           {/* ================= FACE 1: QRS DE UNION Y REDES ================= */}
           <div
-            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl"
+            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl overflow-hidden relative"
             style={{
               transform: `rotateY(${angleStep * 1}deg) translateZ(${radius}px)`,
             }}
           >
-            <div className="flex items-center justify-between border-b border-cyan/20 pb-3">
+            <div className="flex items-center justify-between border-b border-cyan/20 pb-3 flex-shrink-0">
               <div className="flex items-center gap-3">
                 <span className="font-mono text-cyan text-xs font-bold px-2.5 py-1 border border-cyan/30 rounded bg-cyan/10 tracking-wider">
                   SYS_GATEWAY: 02
@@ -421,12 +421,12 @@ export function Display3D({ locale }: Display3DProps) {
               <span className="font-mono text-xs text-cyan font-bold tracking-widest">ACCESO DIRECTO</span>
             </div>
 
-            <div className="my-auto">
+            <div className="my-auto flex-1 flex flex-col justify-center py-2">
               <h3 className="text-center text-cyan font-display text-xl sm:text-2xl font-extrabold mb-6 tracking-tight">
                 Escanea y Únete a Nuestros Canales Oficiales
               </h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-2xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-2xl mx-auto w-full">
                 {/* QR Discord */}
                 <div className="flex flex-col items-center p-4 rounded-2xl border border-cyan/25 bg-[#081524] hover:border-cyan/50 transition-colors group">
                   <div className="flex items-center gap-2 text-cyan font-mono text-xs font-bold mb-3 tracking-wider">
@@ -465,7 +465,7 @@ export function Display3D({ locale }: Display3DProps) {
               </div>
             </div>
 
-            <div className="border-t border-cyan/20 pt-3 flex items-center justify-between font-mono text-xs text-cyan-dim font-medium">
+            <div className="border-t border-cyan/20 pt-3 flex items-center justify-between font-mono text-xs text-cyan-dim font-medium flex-shrink-0">
               <span>ESCANEA CUALQUIER QR CON LA CÁMARA DE TU TELÉFONO</span>
               <span className="text-cyan font-bold">ACCESO 100% LIBRE</span>
             </div>
@@ -604,7 +604,7 @@ export function Display3D({ locale }: Display3DProps) {
 
           {/* ================= FACE 3: PROYECTOS DESTACADOS ================= */}
           <div
-            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl overflow-hidden"
+            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl overflow-hidden relative"
             style={{
               transform: `rotateY(${angleStep * 3}deg) translateZ(${radius}px)`,
             }}
@@ -721,12 +721,12 @@ export function Display3D({ locale }: Display3DProps) {
 
           {/* ================= FACE 4: HAPPY HOUR EVENT ================= */}
           <div
-            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl"
+            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl overflow-hidden relative"
             style={{
               transform: `rotateY(${angleStep * 4}deg) translateZ(${radius}px)`,
             }}
           >
-            <div className="flex items-center justify-between border-b border-cyan/20 pb-3">
+            <div className="flex items-center justify-between border-b border-cyan/20 pb-3 flex-shrink-0">
               <div className="flex items-center gap-3">
                 <span className="font-mono text-cyan text-xs font-bold px-2.5 py-1 border border-cyan/30 rounded bg-cyan/10 tracking-wider">
                   SYS_EVENT: 05
@@ -738,44 +738,46 @@ export function Display3D({ locale }: Display3DProps) {
               <span className="font-mono text-xs text-cyan font-bold tracking-widest">RESUMEN DEL ENCUENTRO</span>
             </div>
 
-            <div className="my-auto max-w-2xl mx-auto flex flex-col md:flex-row items-center gap-6">
-              <div className="relative w-full md:w-1/2 aspect-[4/3] rounded-xl overflow-hidden border border-cyan/40 group">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/events/happy-hour-november-2024/photo-06.webp"
-                  alt="Happy Hour November 2024 - Foto Oficial"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-70" />
-                <span className="absolute bottom-2.5 left-2.5 text-xs font-mono font-bold text-cyan bg-black/80 px-2 py-0.5 rounded border border-cyan/30">
-                  Foto Oficial Comunidad
-                </span>
-              </div>
-
-              <div className="w-full md:w-1/2 text-left space-y-3">
-                <div className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-cyan px-2.5 py-1 rounded-lg bg-cyan/15 border border-cyan/30">
-                  <IconCalendarEvent size={15} />
-                  <span>21 de Noviembre, 2024</span>
+            <div className="my-auto flex-1 flex flex-col justify-center py-2">
+              <div className="max-w-2xl mx-auto flex flex-col md:flex-row items-center gap-6 w-full">
+                <div className="relative w-full md:w-1/2 aspect-[4/3] rounded-xl overflow-hidden border border-cyan/40 group">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/events/happy-hour-november-2024/photo-06.webp"
+                    alt="Happy Hour November 2024 - Foto Oficial"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-70" />
+                  <span className="absolute bottom-2.5 left-2.5 text-xs font-mono font-bold text-cyan bg-black/80 px-2 py-0.5 rounded border border-cyan/30">
+                    Foto Oficial Comunidad
+                  </span>
                 </div>
 
-                <h3 className="font-display text-xl sm:text-2xl font-extrabold text-cyan tracking-tight">
-                  {happyHourEvent?.name || "Happy Hour November 2024"}
-                </h3>
+                <div className="w-full md:w-1/2 text-left space-y-3">
+                  <div className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-cyan px-2.5 py-1 rounded-lg bg-cyan/15 border border-cyan/30">
+                    <IconCalendarEvent size={15} />
+                    <span>21 de Noviembre, 2024</span>
+                  </div>
 
-                <p className="text-slate-200 text-xs sm:text-sm leading-relaxed font-normal">
-                  {happyHourEvent?.description ||
-                    "Encuentro presencial de la comunidad Open Source Santiago: networking, debate técnico sobre desarrollo open source, cultura DevOps y colaboración libre."}
-                </p>
+                  <h3 className="font-display text-xl sm:text-2xl font-extrabold text-cyan tracking-tight">
+                    {happyHourEvent?.name || "Happy Hour November 2024"}
+                  </h3>
 
-                <div className="space-y-1 text-xs font-mono text-cyan-bright font-medium">
-                  <div>📍 Lugar: Santiago Centro, Chile</div>
-                  <div>👥 Asistentes: Desarrolladores, SysAdmins, DevOps, DevSecOps</div>
-                  <div>🍻 Formato: Mesa redonda abierta y networking</div>
+                  <p className="text-slate-200 text-xs sm:text-sm leading-relaxed font-normal">
+                    {happyHourEvent?.description ||
+                      "Encuentro presencial de la comunidad Open Source Santiago: networking, debate técnico sobre desarrollo open source, cultura DevOps y colaboración libre."}
+                  </p>
+
+                  <div className="space-y-1 text-xs font-mono text-cyan-bright font-medium">
+                    <div>📍 Lugar: Santiago Centro, Chile</div>
+                    <div>👥 Asistentes: Desarrolladores, SysAdmins, DevOps, DevSecOps</div>
+                    <div>🍻 Formato: Mesa redonda abierta y networking</div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="border-t border-cyan/20 pt-3 flex items-center justify-between font-mono text-xs text-cyan-dim font-medium">
+            <div className="border-t border-cyan/20 pt-3 flex items-center justify-between font-mono text-xs text-cyan-dim font-medium flex-shrink-0">
               <span>SANTIAGO CENTRO - CHILE</span>
               <span className="text-cyan font-bold">NOS VEMOS EN EL PRÓXIMO ENCUENTRO</span>
             </div>
