@@ -473,12 +473,12 @@ export function Display3D({ locale }: Display3DProps) {
 
           {/* ================= FACE 2: ORGANIZADORES ================= */}
           <div
-            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl overflow-hidden relative"
+            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl overflow-hidden"
             style={{
               transform: `rotateY(${angleStep * 2}deg) translateZ(${radius}px)`,
             }}
           >
-            <div className="flex items-center justify-between border-b border-cyan/20 pb-3 flex-shrink-0">
+            <div className="flex items-center justify-between border-b border-cyan/20 pb-3">
               <div className="flex items-center gap-3">
                 <span className="font-mono text-cyan text-xs font-bold px-2.5 py-1 border border-cyan/30 rounded bg-cyan/10 tracking-wider">
                   SYS_STAFF: 03
@@ -490,9 +490,9 @@ export function Display3D({ locale }: Display3DProps) {
               <span className="font-mono text-xs text-cyan font-bold tracking-widest">TOCA PARA LINKEDIN</span>
             </div>
 
-            {/* Equitable 3x2 grid filling 100% of space, identical for all 6 members, click to view QR */}
-            <div className="my-auto flex-1 flex flex-col justify-center py-2">
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5 w-full">
+            {/* Equitable 3x2 grid filling space, identical for all 6 members, click to view QR */}
+            <div className="my-auto">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5 max-w-2xl mx-auto">
                 {staffMembers.map((member) => (
                   <div
                     key={member.userId}
@@ -537,7 +537,7 @@ export function Display3D({ locale }: Display3DProps) {
               </div>
             </div>
 
-            <div className="border-t border-cyan/20 pt-3 flex items-center justify-between font-mono text-xs text-cyan-dim font-medium flex-shrink-0">
+            <div className="border-t border-cyan/20 pt-3 flex items-center justify-between font-mono text-xs text-cyan-dim font-medium">
               <span>EQUIPO HORIZONTAL // STAFF OPEN SOURCE SANTIAGO</span>
               <span className="text-cyan font-bold">TOCA CUALQUIER MIEMBRO PARA QR LINKEDIN</span>
             </div>
