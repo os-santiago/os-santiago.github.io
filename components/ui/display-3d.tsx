@@ -56,7 +56,7 @@ export function Display3D({ locale }: Display3DProps) {
   const staffMembers = [
     {
       userId: "axel-damage",
-      displayName: "NULL",
+      displayName: "Axel Moraga",
       github: "Axel-DaMage",
       avatarUrl: "https://avatars.githubusercontent.com/u/178504369?v=4",
       linkedin: "https://www.linkedin.com/in/axel-moraga/",
@@ -96,7 +96,7 @@ export function Display3D({ locale }: Display3DProps) {
     },
     {
       userId: "sebithaz-dev",
-      displayName: "Seb",
+      displayName: "Sebastian Escobar",
       github: "Sebithaz-dev",
       avatarUrl: "https://avatars.githubusercontent.com/u/172279538?v=4",
       linkedin: "https://www.linkedin.com/in/sebastian-escobar-37b7a8287/",
@@ -104,13 +104,14 @@ export function Display3D({ locale }: Display3DProps) {
     },
   ];
 
-  // Specific requested projects: Homedir, Artemisa, ADEV, Joidy, devopsdays
+  // Specific requested projects: Homedir, Artemisa, ADEV, Joidy, devopsdays, DataGestor (6 projects for balanced 3x2 grid)
   const requestedProjectKeys = [
     "homedir",
     "artemisa",
     "adev",
     "joidy",
     "devopsdays",
+    "datagestor",
   ];
   const spotlightProjects = projects.filter((p) =>
     requestedProjectKeys.some((k) => p.name.toLowerCase().includes(k)),
@@ -151,6 +152,9 @@ export function Display3D({ locale }: Display3DProps) {
         "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg",
       "https://quickchart.io/qr?text=" +
         encodeURIComponent("https://homedir.opensourcesantiago.io") +
+        "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg",
+      "https://quickchart.io/qr?text=" +
+        encodeURIComponent("https://opensourcesantiago.io") +
         "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg",
       ...spotlightProjects.map(
         (p) =>
@@ -238,8 +242,8 @@ export function Display3D({ locale }: Display3DProps) {
 
     const nextY = dragStartRef.current.rotY + deltaX * 0.42;
     const nextX = Math.max(
-      -60,
-      Math.min(60, dragStartRef.current.rotX - deltaY * 0.35),
+      -75,
+      Math.min(75, dragStartRef.current.rotX - deltaY * 0.38),
     );
 
     setManualRotY(nextY);
@@ -542,8 +546,8 @@ export function Display3D({ locale }: Display3DProps) {
             </div>
 
             {/* Equitable 3x2 grid filling space, identical for all 6 members, click to view QR */}
-            <div className="my-auto">
-              <div className="mx-auto grid max-w-2xl grid-cols-2 gap-3.5 sm:grid-cols-3">
+            <div className="my-auto flex flex-1 flex-col justify-center py-3">
+              <div className="mx-auto grid w-full max-w-2xl grid-cols-2 gap-3.5 sm:grid-cols-3">
                 {staffMembers.map((member) => (
                   <div
                     key={member.userId}
@@ -555,14 +559,14 @@ export function Display3D({ locale }: Display3DProps) {
                           : member,
                       );
                     }}
-                    className="interactive-card group border-cyan/20 hover:border-cyan flex cursor-pointer items-center gap-3.5 rounded-xl border bg-[#081524] p-3.5 shadow-sm transition-all hover:bg-[#0c1e34]"
+                    className="interactive-card group border-cyan/20 hover:border-cyan flex cursor-pointer items-center gap-3.5 rounded-xl border bg-[#081524] p-4 shadow-sm transition-all hover:bg-[#0c1e34]"
                   >
                     <div className="relative flex-shrink-0">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={member.avatarUrl}
                         alt={member.displayName}
-                        className="border-cyan/40 h-12 w-12 rounded-full border object-cover"
+                        className="border-cyan/40 h-13 w-13 rounded-full border object-cover"
                       />
                       <span className="border-cyan absolute -right-0.5 -bottom-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full border bg-[#020509]">
                         <span className="bg-cyan h-1.5 w-1.5 animate-pulse rounded-full" />
@@ -581,7 +585,7 @@ export function Display3D({ locale }: Display3DProps) {
                       <div className="text-cyan truncate font-mono text-xs font-semibold">
                         @{member.github}
                       </div>
-                      <div className="text-cyan-dim mt-1 flex items-center justify-end font-mono text-[10px]">
+                      <div className="text-cyan-dim mt-1.5 flex items-center justify-end font-mono text-[10px]">
                         <span className="text-cyan group-hover:text-cyan-bright flex-shrink-0 font-bold">
                           QR LINKEDIN →
                         </span>
@@ -680,11 +684,10 @@ export function Display3D({ locale }: Display3DProps) {
               </span>
             </div>
 
-            {/* Content area: 100% space filled with the 5 clean cards without mini QRs */}
+            {/* Content area: 100% space filled with 6 equitable cards without mini QRs */}
             <div className="my-auto flex flex-1 flex-col justify-center py-2">
-              <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {spotlightProjects.slice(0, 5).map((p, idx) => {
-                  const isLargeCard = idx === 0; // HomeDir occupies 2 columns for a balanced 5-card grid
+              <div className="grid w-full grid-cols-2 gap-3.5 sm:grid-cols-3">
+                {spotlightProjects.slice(0, 6).map((p) => {
                   return (
                     <div
                       key={p.name}
@@ -694,9 +697,7 @@ export function Display3D({ locale }: Display3DProps) {
                           selectedProject?.name === p.name ? null : p,
                         );
                       }}
-                      className={`interactive-card group border-cyan/20 hover:border-cyan flex cursor-pointer flex-col justify-between rounded-xl border bg-[#081524] p-3.5 shadow-md transition-all hover:bg-[#0c1e34] ${
-                        isLargeCard ? "sm:col-span-2 lg:col-span-2" : ""
-                      }`}
+                      className="interactive-card group border-cyan/20 hover:border-cyan flex cursor-pointer flex-col justify-between rounded-xl border bg-[#081524] p-3.5 shadow-md transition-all hover:bg-[#0c1e34]"
                     >
                       <div>
                         <div className="mb-1.5 flex items-center justify-between gap-2">
@@ -727,7 +728,9 @@ export function Display3D({ locale }: Display3DProps) {
             </div>
 
             <div className="border-cyan/20 text-cyan-dim flex flex-shrink-0 items-center justify-between border-t pt-3 font-mono text-xs font-medium">
-              <span>HOMEDIR // ARTEMISA // ADEV // JOIDY // DEVOPSDAYS</span>
+              <span>
+                HOMEDIR // ARTEMISA // ADEV // JOIDY // DEVOPSDAYS // DATAGESTOR
+              </span>
               <span className="text-cyan font-bold">
                 TOCA CUALQUIER PROYECTO PARA QR GRANDE
               </span>
@@ -850,6 +853,56 @@ export function Display3D({ locale }: Display3DProps) {
               <span className="text-cyan font-bold">
                 NOS VEMOS EN EL PRÓXIMO ENCUENTRO
               </span>
+            </div>
+          </div>
+
+          {/* ================= FLOOR BASE (TOP-FACING): QR WEB OFICIAL (PRODUCCIÓN) ================= */}
+          <div
+            className="border-cyan/50 pointer-events-auto absolute flex flex-col items-center justify-center rounded-3xl border-2 bg-[#020710]/95 p-8 text-center shadow-[0_0_120px_rgba(0,240,255,0.35)]"
+            style={{
+              width: "600px",
+              height: "600px",
+              left: "50%",
+              top: "50%",
+              marginLeft: "-300px",
+              marginTop: "-300px",
+              transform: `rotateX(90deg) translateZ(-280px)`,
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden",
+            }}
+          >
+            <div className="border-cyan/40 bg-cyan/15 text-cyan mb-6 flex items-center gap-2.5 rounded-full border px-5 py-1.5 font-mono text-xs font-bold tracking-widest uppercase shadow-md">
+              <span className="bg-cyan h-2.5 w-2.5 animate-pulse rounded-full" />
+              <span>OPEN SOURCE SANTIAGO // WEB OFICIAL</span>
+            </div>
+
+            <div className="border-cyan/60 relative rounded-3xl border-2 bg-[#020509] p-5 shadow-[0_0_50px_rgba(0,240,255,0.2)]">
+              <QRCodeSVG value="https://opensourcesantiago.io" size={380} />
+            </div>
+          </div>
+
+          {/* ================= FLOOR BASE (BOTTOM-FACING): QR WEB OFICIAL (ESPEJO / LEGIBLE DESDE ABAJO) ================= */}
+          <div
+            className="border-cyan/50 pointer-events-auto absolute flex flex-col items-center justify-center rounded-3xl border-2 bg-[#020710]/95 p-8 text-center shadow-[0_0_120px_rgba(0,240,255,0.35)]"
+            style={{
+              width: "600px",
+              height: "600px",
+              left: "50%",
+              top: "50%",
+              marginLeft: "-300px",
+              marginTop: "-300px",
+              transform: `rotateX(-90deg) translateZ(280px) rotateZ(180deg)`,
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden",
+            }}
+          >
+            <div className="border-cyan/40 bg-cyan/15 text-cyan mb-6 flex items-center gap-2.5 rounded-full border px-5 py-1.5 font-mono text-xs font-bold tracking-widest uppercase shadow-md">
+              <span className="bg-cyan h-2.5 w-2.5 animate-pulse rounded-full" />
+              <span>OPEN SOURCE SANTIAGO // WEB OFICIAL</span>
+            </div>
+
+            <div className="border-cyan/60 relative rounded-3xl border-2 bg-[#020509] p-5 shadow-[0_0_50px_rgba(0,240,255,0.2)]">
+              <QRCodeSVG value="https://opensourcesantiago.io" size={380} />
             </div>
           </div>
         </div>
