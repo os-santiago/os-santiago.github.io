@@ -289,7 +289,7 @@ export function Display3D({ locale }: Display3DProps) {
                   Escanear para Unirse
                 </span>
               </div>
-              <span className="font-mono text-xs text-cyan font-bold tracking-widest">INSTANT ACCESS</span>
+              <span className="font-mono text-xs text-cyan font-bold tracking-widest">ACCESO DIRECTO</span>
             </div>
 
             <div className="my-auto">
@@ -337,8 +337,8 @@ export function Display3D({ locale }: Display3DProps) {
             </div>
 
             <div className="border-t border-cyan/20 pt-3 flex items-center justify-between font-mono text-xs text-cyan-dim font-medium">
-              <span>SCAN ANY QR CODE WITH YOUR PHONE CAMERA</span>
-              <span className="text-cyan font-bold">TOTAL OPEN ACCESS</span>
+              <span>ESCANEA CUALQUIER QR CON LA CÁMARA DE TU TELÉFONO</span>
+              <span className="text-cyan font-bold">ACCESO 100% LIBRE</span>
             </div>
           </div>
 
@@ -358,7 +358,7 @@ export function Display3D({ locale }: Display3DProps) {
                   Miembros Organizadores
                 </span>
               </div>
-              <span className="font-mono text-xs text-cyan font-bold tracking-widest">CORE TEAM</span>
+              <span className="font-mono text-xs text-cyan font-bold tracking-widest">EQUIPO PRINCIPAL</span>
             </div>
 
             <div className="my-auto">
@@ -417,7 +417,7 @@ export function Display3D({ locale }: Display3DProps) {
                   Proyectos Estrella
                 </span>
               </div>
-              <span className="font-mono text-xs text-cyan font-bold tracking-widest">CORE ECOSYSTEM</span>
+              <span className="font-mono text-xs text-cyan font-bold tracking-widest">ECOSISTEMA PRINCIPAL</span>
             </div>
 
             {/* Content area: 100% space filled with the 5 projects */}
@@ -537,7 +537,7 @@ export function Display3D({ locale }: Display3DProps) {
                   Evento Destacado
                 </span>
               </div>
-              <span className="font-mono text-xs text-cyan font-bold tracking-widest">MEETUP RECAP</span>
+              <span className="font-mono text-xs text-cyan font-bold tracking-widest">RESUMEN DEL ENCUENTRO</span>
             </div>
 
             <div className="my-auto max-w-2xl mx-auto flex flex-col md:flex-row items-center gap-6">
