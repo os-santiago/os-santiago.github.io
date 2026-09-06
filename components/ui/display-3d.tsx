@@ -421,57 +421,72 @@ export function Display3D({ locale }: Display3DProps) {
 
           {/* ================= FACE 2: ORGANIZADORES ================= */}
           <div
-            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl"
+            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl overflow-hidden"
             style={{
               transform: `rotateY(${angleStep * 2}deg) translateZ(${radius}px)`,
             }}
           >
-            <div className="flex items-center justify-between border-b border-cyan/20 pb-3">
+            <div className="flex items-center justify-between border-b border-cyan/20 pb-3 flex-shrink-0">
               <div className="flex items-center gap-3">
                 <span className="font-mono text-cyan text-xs font-bold px-2.5 py-1 border border-cyan/30 rounded bg-cyan/10 tracking-wider">
                   SYS_STAFF: 03
                 </span>
                 <span className="font-mono text-xs text-cyan-bright font-bold uppercase tracking-widest">
-                  Miembros Organizadores
+                  Equipo de Organización
                 </span>
               </div>
-              <span className="font-mono text-xs text-cyan font-bold tracking-widest">EQUIPO PRINCIPAL</span>
+              <span className="font-mono text-xs text-cyan font-bold tracking-widest">STAFF & COMUNIDAD</span>
             </div>
 
-            <div className="my-auto">
-              <h3 className="text-center text-cyan font-display text-xl sm:text-2xl font-extrabold mb-5 tracking-tight">
-                Equipo de Organización & Staff
-              </h3>
+            {/* Full-space responsive grid filling 100% of the slide */}
+            <div className="my-auto flex-1 flex flex-col justify-center py-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 w-full">
+                {organizerMembers.map((member, idx) => {
+                  const isHeroMember = idx === 0; // NULL / Axel takes 2 cols on tablet/desktop for balance
+                  return (
+                    <div
+                      key={member.userId}
+                      className={`p-3.5 rounded-xl border border-cyan/25 bg-[#081524] hover:border-cyan hover:bg-[#0c1e34] transition-all flex items-center gap-3.5 shadow-md ${
+                        isHeroMember ? "sm:col-span-2 lg:col-span-2" : ""
+                      }`}
+                    >
+                      <div className="relative flex-shrink-0">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={member.avatarUrl}
+                          alt={member.displayName}
+                          className="w-13 h-13 sm:w-14 sm:h-14 rounded-full border-2 border-cyan/40 object-cover"
+                        />
+                        <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-[#020509] border border-cyan flex items-center justify-center">
+                          <span className="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse" />
+                        </div>
+                      </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 max-w-2xl mx-auto">
-                {organizerMembers.map((member) => (
-                  <div
-                    key={member.userId}
-                    className="flex items-center gap-3 p-3 rounded-xl border border-cyan/20 bg-[#081524] hover:border-cyan/40 transition-colors"
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={member.avatarUrl}
-                      alt={member.displayName}
-                      className="w-11 h-11 rounded-full border border-cyan/40 object-cover flex-shrink-0"
-                    />
-                    <div className="min-w-0 flex-1 text-left">
-                      <div className="font-sans text-xs sm:text-sm font-bold text-slate-100 truncate">
-                        {member.displayName}
-                      </div>
-                      <div className="font-mono text-[11px] text-cyan truncate font-semibold">
-                        @{member.github}
-                      </div>
-                      <div className="font-mono text-[9px] text-cyan-bright uppercase tracking-wider font-bold mt-0.5">
-                        ORGANIZADOR
+                      <div className="min-w-0 flex-1 text-left">
+                        <div className="flex items-center justify-between gap-2 mb-0.5">
+                          <span className="font-sans text-sm sm:text-base font-bold text-slate-100 truncate">
+                            {member.displayName}
+                          </span>
+                          <span className="font-mono text-[9px] text-cyan-dim uppercase tracking-wider font-bold px-1.5 py-0.2 rounded border border-cyan/20 flex-shrink-0">
+                            STAFF
+                          </span>
+                        </div>
+                        <div className="font-mono text-xs text-cyan font-semibold truncate">
+                          @{member.github}
+                        </div>
+                        {member.bio && (
+                          <p className="text-slate-300 text-xs line-clamp-1 mt-1 font-normal">
+                            {member.bio}
+                          </p>
+                        )}
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 
-            <div className="border-t border-cyan/20 pt-3 flex items-center justify-between font-mono text-xs text-cyan-dim font-medium">
+            <div className="border-t border-cyan/20 pt-3 flex items-center justify-between font-mono text-xs text-cyan-dim font-medium flex-shrink-0">
               <span>IMPULSADO POR VOLUNTARIOS Y LA COMUNIDAD</span>
               <span className="text-cyan font-bold">@OS-SANTIAGO</span>
             </div>
