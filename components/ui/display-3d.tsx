@@ -96,7 +96,7 @@ export function Display3D({ locale }: Display3DProps) {
     },
     {
       userId: "sebithaz-dev",
-      displayName: "Seb",
+      displayName: "Sebastian Escobar",
       github: "Sebithaz-dev",
       avatarUrl: "https://avatars.githubusercontent.com/u/172279538?v=4",
       linkedin: "https://www.linkedin.com/in/sebastian-escobar-37b7a8287/",
