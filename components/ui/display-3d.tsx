@@ -28,6 +28,7 @@ export function Display3D({ locale }: Display3DProps) {
   const [isAutoPlay, setIsAutoPlay] = useState<boolean>(true);
   const [progress, setProgress] = useState<number>(0);
   const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedMember, setSelectedMember] = useState<any>(null);
   const [isPreloaded, setIsPreloaded] = useState<boolean>(false);
   const [preloadCount, setPreloadCount] = useState<number>(0);
 
@@ -472,7 +473,7 @@ export function Display3D({ locale }: Display3DProps) {
 
           {/* ================= FACE 2: ORGANIZADORES ================= */}
           <div
-            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl overflow-hidden"
+            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl overflow-hidden relative"
             style={{
               transform: `rotateY(${angleStep * 2}deg) translateZ(${radius}px)`,
             }}
@@ -486,50 +487,51 @@ export function Display3D({ locale }: Display3DProps) {
                   Equipo de Organización
                 </span>
               </div>
-              <span className="font-mono text-xs text-cyan font-bold tracking-widest">6 MIEMBROS STAFF</span>
+              <span className="font-mono text-xs text-cyan font-bold tracking-widest">TOCA PARA LINKEDIN</span>
             </div>
 
-            {/* Equitable 3x2 grid filling 100% of space, identical for all 6 members */}
+            {/* Equitable 3x2 grid filling 100% of space, identical for all 6 members, click to view QR */}
             <div className="my-auto flex-1 flex flex-col justify-center py-2">
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5 w-full">
                 {staffMembers.map((member) => (
                   <div
                     key={member.userId}
-                    className="p-3 rounded-xl border border-cyan/20 bg-[#081524] hover:border-cyan/50 hover:bg-[#0c1e34] transition-all flex items-center justify-between gap-2.5 shadow-sm"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedMember(selectedMember?.userId === member.userId ? null : member);
+                    }}
+                    className="interactive-card cursor-pointer group p-3.5 rounded-xl border border-cyan/20 bg-[#081524] hover:border-cyan hover:bg-[#0c1e34] transition-all flex items-center gap-3.5 shadow-sm"
                   >
-                    {/* Left info: Avatar & Data */}
-                    <div className="flex items-center gap-2.5 min-w-0 flex-1 text-left">
-                      <div className="relative flex-shrink-0">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={member.avatarUrl}
-                          alt={member.displayName}
-                          className="w-11 h-11 rounded-full border border-cyan/40 object-cover"
-                        />
-                        <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-[#020509] border border-cyan flex items-center justify-center">
-                          <span className="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse" />
-                        </span>
-                      </div>
-
-                      <div className="min-w-0 flex-1 overflow-hidden">
-                        <div className="font-sans text-xs sm:text-sm font-bold text-slate-100 truncate">
-                          {member.displayName}
-                        </div>
-                        <div className="font-mono text-[11px] text-cyan truncate font-semibold">
-                          @{member.github}
-                        </div>
-                        <div className="font-mono text-[9px] text-cyan-dim uppercase tracking-wider font-bold mt-0.5">
-                          {member.role}
-                        </div>
-                      </div>
+                    <div className="relative flex-shrink-0">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={member.avatarUrl}
+                        alt={member.displayName}
+                        className="w-12 h-12 rounded-full border border-cyan/40 object-cover"
+                      />
+                      <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-[#020509] border border-cyan flex items-center justify-center">
+                        <span className="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse" />
+                      </span>
                     </div>
 
-                    {/* Right info: LinkedIn QR */}
-                    <div className="flex-shrink-0 flex flex-col items-center justify-center p-1 rounded-lg border border-cyan/25 bg-[#020509]">
-                      <QRCodeSVG value={member.linkedin} size={42} />
-                      <span className="text-[8px] font-mono text-cyan-bright font-bold mt-0.5 tracking-tighter uppercase">
-                        IN
-                      </span>
+                    <div className="min-w-0 flex-1 text-left overflow-hidden">
+                      <div className="flex items-center justify-between gap-1.5 mb-0.5">
+                        <span className="font-sans text-sm font-bold text-slate-100 group-hover:text-cyan-bright transition-colors truncate">
+                          {member.displayName}
+                        </span>
+                        <span className="font-mono text-[9px] text-cyan-dim uppercase tracking-wider font-bold px-1.5 py-0.2 rounded border border-cyan/20 flex-shrink-0">
+                          STAFF
+                        </span>
+                      </div>
+                      <div className="font-mono text-xs text-cyan truncate font-semibold">
+                        @{member.github}
+                      </div>
+                      <div className="mt-1 flex items-center justify-between text-[10px] font-mono text-cyan-dim">
+                        <span className="truncate">{member.role}</span>
+                        <span className="text-cyan font-bold ml-1 group-hover:text-cyan-bright flex-shrink-0">
+                          QR →
+                        </span>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -538,8 +540,66 @@ export function Display3D({ locale }: Display3DProps) {
 
             <div className="border-t border-cyan/20 pt-3 flex items-center justify-between font-mono text-xs text-cyan-dim font-medium flex-shrink-0">
               <span>EQUIPO HORIZONTAL // STAFF OPEN SOURCE SANTIAGO</span>
-              <span className="text-cyan font-bold">ESCANEA CADA LINKEDIN</span>
+              <span className="text-cyan font-bold">TOCA CUALQUIER MIEMBRO PARA QR LINKEDIN</span>
             </div>
+
+            {/* EXPANDED MODAL OVERLAY FOR MEMBER LINKEDIN QR */}
+            {selectedMember && (
+              <div
+                className="absolute inset-0 z-50 rounded-2xl bg-[#030812]/98 p-6 flex flex-col items-center justify-center text-center animate-in fade-in duration-150"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedMember(null);
+                }}
+              >
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedMember(null);
+                  }}
+                  className="absolute top-4 right-4 p-2 rounded-full border border-cyan/40 bg-void text-cyan hover:bg-cyan/20 transition-all cursor-pointer"
+                  title="Cerrar QR"
+                >
+                  <IconX size={18} />
+                </button>
+
+                <div className="relative w-16 h-16 mb-2">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={selectedMember.avatarUrl}
+                    alt={selectedMember.displayName}
+                    className="w-full h-full rounded-full border-2 border-cyan/50 object-cover"
+                  />
+                  <span className="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-[#020509] border border-cyan flex items-center justify-center">
+                    <span className="w-2 h-2 rounded-full bg-cyan animate-pulse" />
+                  </span>
+                </div>
+
+                <div className="font-mono text-xs text-cyan font-bold px-3 py-1 rounded border border-cyan/40 bg-cyan/10 mb-1 uppercase tracking-widest">
+                  {selectedMember.role}
+                </div>
+
+                <h4 className="font-display text-2xl font-black text-cyan mb-0.5">
+                  {selectedMember.displayName}
+                </h4>
+
+                <div className="font-mono text-xs text-cyan-bright mb-3 font-semibold">
+                  @{selectedMember.github}
+                </div>
+
+                <div className="p-3 rounded-2xl border-2 border-cyan/50 bg-[#020509] shadow-2xl my-1">
+                  <QRCodeSVG value={selectedMember.linkedin} size={150} />
+                </div>
+
+                <p className="font-mono text-xs text-cyan-bright mt-4 font-bold tracking-wider">
+                  ESCANEA PARA CONECTAR EN LINKEDIN
+                </p>
+
+                <div className="mt-1 font-mono text-[11px] text-cyan-dim truncate max-w-sm">
+                  {selectedMember.linkedin}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* ================= FACE 3: PROYECTOS DESTACADOS ================= */}
