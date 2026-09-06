@@ -50,12 +50,12 @@ export function Display3D({ locale }: Display3DProps) {
   // Staff list with exact linkedins & Sebithaz added
   const staffMembers = [
     {
-      userId: 'axel-damage',
+      userId: 'null',
       displayName: 'NULL',
       github: 'Axel-DaMage',
       avatarUrl: 'https://avatars.githubusercontent.com/u/178504369?v=4',
       linkedin: 'https://www.linkedin.com/in/axel-moraga/',
-      role: 'Staff & Lead',
+      role: 'STAFF',
     },
     {
       userId: 'scanalesespinoza',
@@ -63,7 +63,7 @@ export function Display3D({ locale }: Display3DProps) {
       github: 'scanalesespinoza',
       avatarUrl: 'https://avatars.githubusercontent.com/u/11546953?v=4',
       linkedin: 'https://www.linkedin.com/in/sergio-canales-espinoza/',
-      role: 'Staff & Mentor',
+      role: 'STAFF',
     },
     {
       userId: 'caiodonascimento',
@@ -71,7 +71,7 @@ export function Display3D({ locale }: Display3DProps) {
       github: 'caiodonascimento',
       avatarUrl: 'https://avatars.githubusercontent.com/u/16939674?v=4',
       linkedin: 'https://www.linkedin.com/in/caiodona/',
-      role: 'Staff & DevOps',
+      role: 'STAFF',
     },
     {
       userId: 'pcastelo',
@@ -79,7 +79,7 @@ export function Display3D({ locale }: Display3DProps) {
       github: 'pcastelo',
       avatarUrl: 'https://avatars.githubusercontent.com/u/10425803?v=4',
       linkedin: 'https://www.linkedin.com/in/pablocastelo/',
-      role: 'Staff & Cloud',
+      role: 'STAFF',
     },
     {
       userId: 'vectorg99',
@@ -87,7 +87,7 @@ export function Display3D({ locale }: Display3DProps) {
       github: 'VECTORG99',
       avatarUrl: 'https://avatars.githubusercontent.com/u/205457455?v=4',
       linkedin: 'https://www.linkedin.com/in/vectorg99/',
-      role: 'Staff & Dev',
+      role: 'STAFF',
     },
     {
       userId: 'sebithaz-dev',
@@ -95,7 +95,7 @@ export function Display3D({ locale }: Display3DProps) {
       github: 'Sebithaz-dev',
       avatarUrl: 'https://avatars.githubusercontent.com/u/172279538?v=4',
       linkedin: 'https://www.linkedin.com/in/sebastian-escobar-37b7a8287/',
-      role: 'Staff & Security',
+      role: 'STAFF',
     },
   ];
   
@@ -515,7 +515,7 @@ export function Display3D({ locale }: Display3DProps) {
                     </div>
 
                     <div className="min-w-0 flex-1 text-left overflow-hidden">
-                      <div className="flex items-center justify-between gap-1.5 mb-0.5">
+                      <div className="flex items-center justify-between gap-1.5 mb-1">
                         <span className="font-sans text-sm font-bold text-slate-100 group-hover:text-cyan-bright transition-colors truncate">
                           {member.displayName}
                         </span>
@@ -526,10 +526,9 @@ export function Display3D({ locale }: Display3DProps) {
                       <div className="font-mono text-xs text-cyan truncate font-semibold">
                         @{member.github}
                       </div>
-                      <div className="mt-1 flex items-center justify-between text-[10px] font-mono text-cyan-dim">
-                        <span className="truncate">{member.role}</span>
-                        <span className="text-cyan font-bold ml-1 group-hover:text-cyan-bright flex-shrink-0">
-                          QR →
+                      <div className="mt-1.5 flex items-center justify-between text-[10px] font-mono text-cyan-dim">
+                        <span className="text-cyan font-bold group-hover:text-cyan-bright">
+                          VER QR LINKEDIN →
                         </span>
                       </div>
                     </div>
