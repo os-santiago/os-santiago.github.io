@@ -78,7 +78,7 @@ export default async function HomePage({
             </NeonButton>
           </div>
 
-          <p className="text-cyan-dim/60 mt-16 font-mono text-xs tracking-widest uppercase text-center">
+          <p className="text-cyan-dim/60 mt-16 text-center font-mono text-xs tracking-widest uppercase">
             {msgs["home.closing"]}
           </p>
         </main>
@@ -87,24 +87,24 @@ export default async function HomePage({
       {/* Event Highlight */}
       <section className="mx-auto max-w-7xl px-6 py-16">
         <GlitchCard className="p-8">
-          <div className="flex flex-col gap-6 items-center justify-center text-center">
+          <div className="flex flex-col items-center justify-center gap-6 text-center">
             <div>
               <div className="text-cyan flex items-center justify-center gap-2 font-mono text-xs tracking-widest uppercase">
                 <IconCalendarEvent size={14} className="text-cyan" />
                 {msgs["events.upcoming"]}
               </div>
-              <h2 className="text-cyan font-display mt-2 text-3xl font-bold text-center">
+              <h2 className="text-cyan font-display mt-2 text-center text-3xl font-bold">
                 {msgs["home.event.title"]}
               </h2>
-              <p className="text-cyan-dim mt-2 text-sm text-center">
+              <p className="text-cyan-dim mt-2 text-center text-sm">
                 {msgs["home.event.description"]}
               </p>
-              <div className="text-cyan-deep mt-4 font-mono text-sm text-center">
+              <div className="text-cyan-deep mt-4 text-center font-mono text-sm">
                 <div>{msgs["home.event.date"]}</div>
                 <div>{msgs["home.event.venue"]}</div>
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
               <NeonButton
                 href={`/${locale}/events`}
                 size="md"
@@ -127,10 +127,10 @@ export default async function HomePage({
 
       {/* Homedir Features */}
       <section className="mx-auto max-w-7xl px-6 py-16 text-center">
-        <h2 className="text-cyan font-display text-3xl font-bold text-center">
+        <h2 className="text-cyan font-display text-center text-3xl font-bold">
           {msgs["home.homedir.title"]}
         </h2>
-        <p className="text-cyan-dim mt-3 max-w-3xl mx-auto text-center">
+        <p className="text-cyan-dim mx-auto mt-3 max-w-3xl text-center">
           {msgs["home.homedir.description"]}
         </p>
 
@@ -171,10 +171,10 @@ export default async function HomePage({
 
       {/* ADEV Preview */}
       <section className="mx-auto max-w-7xl px-6 py-16 text-center">
-        <h2 className="text-cyan font-display text-3xl font-bold text-center">
+        <h2 className="text-cyan font-display text-center text-3xl font-bold">
           {msgs["home.adev.title"]}
         </h2>
-        <p className="text-cyan-dim mt-3 max-w-3xl mx-auto text-center">
+        <p className="text-cyan-dim mx-auto mt-3 max-w-3xl text-center">
           {msgs["home.adev.description"]}
         </p>
 
@@ -209,12 +209,12 @@ export default async function HomePage({
 
       {/* Projects Preview */}
       <section className="mx-auto max-w-7xl px-6 py-16 text-center">
-        <div className="flex flex-col items-center justify-center gap-4 mb-8">
+        <div className="mb-8 flex flex-col items-center justify-center gap-4">
           <div>
-            <h2 className="text-cyan font-display text-3xl font-bold text-center">
+            <h2 className="text-cyan font-display text-center text-3xl font-bold">
               {msgs["home.projects.title"]}
             </h2>
-            <p className="text-cyan-dim mt-2 text-sm text-center">
+            <p className="text-cyan-dim mt-2 text-center text-sm">
               {msgs["home.projects.subtitle"]}
             </p>
           </div>
@@ -232,23 +232,25 @@ export default async function HomePage({
             <GlitchCard
               key={project.name}
               href={project.repoUrl}
-              className="p-5 text-center flex flex-col items-center h-full border-cyan/15 hover:border-cyan/40"
+              className="border-cyan/15 hover:border-cyan/40 flex h-full flex-col items-center p-5 text-center"
             >
-              <div className="w-full mb-1">
-                <h3 className="font-display text-lg font-bold text-cyan text-center min-h-[2.75rem] flex items-center justify-center">
+              <div className="mb-1 w-full">
+                <h3 className="font-display text-cyan flex min-h-[2.75rem] items-center justify-center text-center text-lg font-bold">
                   {project.name}
                 </h3>
               </div>
-              <div className="flex-1 w-full flex items-center justify-center mb-3 min-h-[3.75rem]">
-                <p className="text-cyan-dim text-xs text-center leading-relaxed">
-                  {locale === "es" ? project.description : project.descriptionEn}
+              <div className="mb-3 flex min-h-[3.75rem] w-full flex-1 items-center justify-center">
+                <p className="text-cyan-dim text-center text-xs leading-relaxed">
+                  {locale === "es"
+                    ? project.description
+                    : project.descriptionEn}
                 </p>
               </div>
-              <div className="border-cyan/10 mt-auto flex items-center justify-center w-full border-t pt-3 h-10">
+              <div className="border-cyan/10 mt-auto flex h-10 w-full items-center justify-center border-t pt-3">
                 <span
                   className={cn(
-                    "flex items-center gap-1 font-mono text-[9px] tracking-widest uppercase px-2.5 py-0.5 rounded-xs border",
-                    getLanguageStyle(project.language)
+                    "flex items-center gap-1 rounded-xs border px-2.5 py-0.5 font-mono text-[9px] tracking-widest uppercase",
+                    getLanguageStyle(project.language),
                   )}
                 >
                   <IconCode size={11} />
@@ -262,7 +264,7 @@ export default async function HomePage({
 
       {/* Community */}
       <section className="mx-auto max-w-7xl px-6 py-16 text-center">
-        <h2 className="text-cyan font-display text-3xl font-bold text-center">
+        <h2 className="text-cyan font-display text-center text-3xl font-bold">
           {msgs["home.community.title"]}
         </h2>
         <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -273,7 +275,7 @@ export default async function HomePage({
                 {msgs["home.cta.discord"]}
               </h3>
             </div>
-            <p className="text-cyan-dim mt-2 text-xs text-center">
+            <p className="text-cyan-dim mt-2 text-center text-xs">
               {msgs["home.community.discord"]}
             </p>
           </GlitchCard>
@@ -284,7 +286,7 @@ export default async function HomePage({
                 {msgs["home.cta.github"]}
               </h3>
             </div>
-            <p className="text-cyan-dim mt-2 text-xs text-center">
+            <p className="text-cyan-dim mt-2 text-center text-xs">
               {msgs["home.community.github"]}
             </p>
           </GlitchCard>
@@ -298,7 +300,7 @@ export default async function HomePage({
                 {msgs["home.cta.homedir"]}
               </h3>
             </div>
-            <p className="text-cyan-dim mt-2 text-xs text-center">
+            <p className="text-cyan-dim mt-2 text-center text-xs">
               {msgs["home.community.homedir"]}
             </p>
           </GlitchCard>
@@ -309,7 +311,7 @@ export default async function HomePage({
                 {msgs["nav.members"]}
               </h3>
             </div>
-            <p className="text-cyan-dim mt-2 text-xs text-center">
+            <p className="text-cyan-dim mt-2 text-center text-xs">
               {msgs["home.community.members"]}
             </p>
           </GlitchCard>

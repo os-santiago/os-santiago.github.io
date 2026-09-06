@@ -1,8 +1,4 @@
-import {
-  IconCalendarEvent,
-  IconWorld,
-  IconUsers,
-} from "@tabler/icons-react";
+import { IconCalendarEvent, IconWorld, IconUsers } from "@tabler/icons-react";
 import { getMessages } from "@/i18n";
 import { type Locale } from "@/i18n/config";
 import { GlitchText } from "@/components/ui/glitch-text";
@@ -24,37 +20,42 @@ export default async function EventsPage({
 
   return (
     <main className="mx-auto max-w-5xl px-6 py-16 text-center">
-      <GlitchText as="h1" className="text-cyan font-display text-4xl font-bold text-center block mx-auto">
+      <GlitchText
+        as="h1"
+        className="text-cyan font-display mx-auto block text-center text-4xl font-bold"
+      >
         {msgs["events.title"]}
       </GlitchText>
-      <p className="text-cyan-dim mt-3 text-sm text-center">{msgs["events.subtitle"]}</p>
+      <p className="text-cyan-dim mt-3 text-center text-sm">
+        {msgs["events.subtitle"]}
+      </p>
 
       {/* Featured Event */}
       {featured && (
         <section className="mt-10">
           <GlitchCard className="p-8">
-            <div className="text-cyan flex items-center justify-center gap-2 font-mono text-xs tracking-widest uppercase text-center">
+            <div className="text-cyan flex items-center justify-center gap-2 text-center font-mono text-xs tracking-widest uppercase">
               <IconCalendarEvent size={14} className="text-cyan" />
               {msgs["events.upcoming"]}
             </div>
-            <h2 className="text-cyan font-display mt-2 text-3xl font-bold text-center">
+            <h2 className="text-cyan font-display mt-2 text-center text-3xl font-bold">
               {locale === "es" ? featured.name : featured.nameEn}
             </h2>
 
-            <div className="text-cyan-deep mt-4 font-mono text-sm text-center">
+            <div className="text-cyan-deep mt-4 text-center font-mono text-sm">
               <div>{new Date(featured.date).toLocaleDateString(locale)}</div>
               <div>
                 {featured.venue}, {featured.city}, {featured.country}
               </div>
             </div>
 
-            <p className="text-cyan-dim mt-4 max-w-2xl mx-auto text-sm text-center">
+            <p className="text-cyan-dim mx-auto mt-4 max-w-2xl text-center text-sm">
               {locale === "es" ? featured.description : featured.descriptionEn}
             </p>
 
             {/* Countdown */}
             <div className="mt-8 flex flex-col items-center justify-center">
-              <div className="text-cyan-deep mb-3 font-mono text-xs tracking-widest uppercase text-center">
+              <div className="text-cyan-deep mb-3 text-center font-mono text-xs tracking-widest uppercase">
                 {msgs["events.countdown"]}
               </div>
               <div className="flex justify-center">
@@ -71,7 +72,7 @@ export default async function EventsPage({
             </div>
 
             {/* CTAs */}
-            <div className="mt-8 flex flex-wrap gap-3 justify-center items-center">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               {featured.websiteUrl && (
                 <NeonButton
                   href={featured.websiteUrl}

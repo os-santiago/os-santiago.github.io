@@ -37,7 +37,10 @@ const KNOWN_ROLES = {
 
 async function fetchOrgMembers() {
   console.log(`Fetching members for org: ${ORG}...`);
-  const res = await fetch(`https://api.github.com/orgs/${ORG}/members?per_page=100`, { headers });
+  const res = await fetch(
+    `https://api.github.com/orgs/${ORG}/members?per_page=100`,
+    { headers },
+  );
   if (!res.ok) {
     throw new Error(`Failed to fetch members: ${res.status} ${res.statusText}`);
   }
@@ -49,7 +52,9 @@ async function fetchOrgMembers() {
   for (const m of membersList) {
     try {
       console.log(`Fetching profile for ${m.login}...`);
-      const userRes = await fetch(`https://api.github.com/users/${m.login}`, { headers });
+      const userRes = await fetch(`https://api.github.com/users/${m.login}`, {
+        headers,
+      });
       if (userRes.ok) {
         const u = await userRes.json();
         detailedMembers.push({
@@ -111,7 +116,9 @@ export const members: Member[] = ${JSON.stringify(detailedMembers, null, 2)};
 
   const outputPath = path.join(ROOT_DIR, "data", "members.ts");
   fs.writeFileSync(outputPath, fileContent, "utf-8");
-  console.log(`Successfully wrote ${detailedMembers.length} members to ${outputPath}`);
+  console.log(
+    `Successfully wrote ${detailedMembers.length} members to ${outputPath}`,
+  );
 }
 
 fetchOrgMembers().catch((err) => {

@@ -36,7 +36,12 @@ export function Display3D({ locale }: Display3DProps) {
   const [manualRotX, setManualRotX] = useState<number>(-4);
   const [manualRotY, setManualRotY] = useState<number>(0);
   const [isDragging, setIsDragging] = useState<boolean>(false);
-  const dragStartRef = useRef<{ x: number; y: number; rotX: number; rotY: number }>({
+  const dragStartRef = useRef<{
+    x: number;
+    y: number;
+    rotX: number;
+    rotY: number;
+  }>({
     x: 0,
     y: 0,
     rotX: -4,
@@ -50,62 +55,70 @@ export function Display3D({ locale }: Display3DProps) {
   // Staff list with exact linkedins & Sebithaz added
   const staffMembers = [
     {
-      userId: 'axel-damage',
-      displayName: 'NULL',
-      github: 'Axel-DaMage',
-      avatarUrl: 'https://avatars.githubusercontent.com/u/178504369?v=4',
-      linkedin: 'https://www.linkedin.com/in/axel-moraga/',
-      role: 'STAFF',
+      userId: "axel-damage",
+      displayName: "NULL",
+      github: "Axel-DaMage",
+      avatarUrl: "https://avatars.githubusercontent.com/u/178504369?v=4",
+      linkedin: "https://www.linkedin.com/in/axel-moraga/",
+      role: "STAFF",
     },
     {
-      userId: 'scanalesespinoza',
-      displayName: 'Sergio Canales',
-      github: 'scanalesespinoza',
-      avatarUrl: 'https://avatars.githubusercontent.com/u/11546953?v=4',
-      linkedin: 'https://www.linkedin.com/in/sergio-canales-espinoza/',
-      role: 'STAFF',
+      userId: "scanalesespinoza",
+      displayName: "Sergio Canales",
+      github: "scanalesespinoza",
+      avatarUrl: "https://avatars.githubusercontent.com/u/11546953?v=4",
+      linkedin: "https://www.linkedin.com/in/sergio-canales-espinoza/",
+      role: "STAFF",
     },
     {
-      userId: 'caiodonascimento',
-      displayName: 'Caio Medeiros',
-      github: 'caiodonascimento',
-      avatarUrl: 'https://avatars.githubusercontent.com/u/16939674?v=4',
-      linkedin: 'https://www.linkedin.com/in/caiodona/',
-      role: 'STAFF',
+      userId: "caiodonascimento",
+      displayName: "Caio Medeiros",
+      github: "caiodonascimento",
+      avatarUrl: "https://avatars.githubusercontent.com/u/16939674?v=4",
+      linkedin: "https://www.linkedin.com/in/caiodona/",
+      role: "STAFF",
     },
     {
-      userId: 'pcastelo',
-      displayName: 'Pablo Castelo',
-      github: 'pcastelo',
-      avatarUrl: 'https://avatars.githubusercontent.com/u/10425803?v=4',
-      linkedin: 'https://www.linkedin.com/in/pablocastelo/',
-      role: 'STAFF',
+      userId: "pcastelo",
+      displayName: "Pablo Castelo",
+      github: "pcastelo",
+      avatarUrl: "https://avatars.githubusercontent.com/u/10425803?v=4",
+      linkedin: "https://www.linkedin.com/in/pablocastelo/",
+      role: "STAFF",
     },
     {
-      userId: 'vectorg99',
-      displayName: 'Diego Hernandez',
-      github: 'VECTORG99',
-      avatarUrl: 'https://avatars.githubusercontent.com/u/205457455?v=4',
-      linkedin: 'https://www.linkedin.com/in/vectorg99/',
-      role: 'STAFF',
+      userId: "vectorg99",
+      displayName: "Diego Hernandez",
+      github: "VECTORG99",
+      avatarUrl: "https://avatars.githubusercontent.com/u/205457455?v=4",
+      linkedin: "https://www.linkedin.com/in/vectorg99/",
+      role: "STAFF",
     },
     {
-      userId: 'sebithaz-dev',
-      displayName: 'Seb',
-      github: 'Sebithaz-dev',
-      avatarUrl: 'https://avatars.githubusercontent.com/u/172279538?v=4',
-      linkedin: 'https://www.linkedin.com/in/sebastian-escobar-37b7a8287/',
-      role: 'STAFF',
+      userId: "sebithaz-dev",
+      displayName: "Seb",
+      github: "Sebithaz-dev",
+      avatarUrl: "https://avatars.githubusercontent.com/u/172279538?v=4",
+      linkedin: "https://www.linkedin.com/in/sebastian-escobar-37b7a8287/",
+      role: "STAFF",
     },
   ];
-  
+
   // Specific requested projects: Homedir, Artemisa, ADEV, Joidy, devopsdays
-  const requestedProjectKeys = ["homedir", "artemisa", "adev", "joidy", "devopsdays"];
+  const requestedProjectKeys = [
+    "homedir",
+    "artemisa",
+    "adev",
+    "joidy",
+    "devopsdays",
+  ];
   const spotlightProjects = projects.filter((p) =>
-    requestedProjectKeys.some((k) => p.name.toLowerCase().includes(k))
+    requestedProjectKeys.some((k) => p.name.toLowerCase().includes(k)),
   );
 
-  const happyHourEvent = events.find((e) => e.id === "happy-hour-november-2024");
+  const happyHourEvent = events.find(
+    (e) => e.id === "happy-hour-november-2024",
+  );
 
   const nextFace = useCallback(() => {
     setCurrentFace((prev) => prev + 1);
@@ -123,16 +136,27 @@ export function Display3D({ locale }: Display3DProps) {
       "/logo.png",
       "/events/happy-hour-november-2024/photo-06.webp",
       ...staffMembers.map((m) => m.avatarUrl),
-      ...staffMembers.map((m) => "https://quickchart.io/qr?text=" + encodeURIComponent(m.linkedin) + "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg"),
+      ...staffMembers.map(
+        (m) =>
+          "https://quickchart.io/qr?text=" +
+          encodeURIComponent(m.linkedin) +
+          "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg",
+      ),
       // All QR codes used in the kiosk
-      "https://quickchart.io/qr?text=" + encodeURIComponent("https://discord.gg/3eawzc9ybc") + "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg",
-      "https://quickchart.io/qr?text=" + encodeURIComponent("https://github.com/os-santiago") + "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg",
-      "https://quickchart.io/qr?text=" + encodeURIComponent("https://homedir.opensourcesantiago.io") + "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg",
+      "https://quickchart.io/qr?text=" +
+        encodeURIComponent("https://discord.gg/3eawzc9ybc") +
+        "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg",
+      "https://quickchart.io/qr?text=" +
+        encodeURIComponent("https://github.com/os-santiago") +
+        "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg",
+      "https://quickchart.io/qr?text=" +
+        encodeURIComponent("https://homedir.opensourcesantiago.io") +
+        "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg",
       ...spotlightProjects.map(
         (p) =>
           "https://quickchart.io/qr?text=" +
           encodeURIComponent(p.homepageUrl || p.repoUrl) +
-          "&size=480&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg"
+          "&size=480&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg",
       ),
     ];
 
@@ -189,7 +213,12 @@ export function Display3D({ locale }: Display3DProps) {
 
   const handlePointerDown = (e: React.PointerEvent) => {
     const target = e.target as HTMLElement;
-    if (target.closest("button") || target.closest("a") || target.closest(".interactive-card")) return;
+    if (
+      target.closest("button") ||
+      target.closest("a") ||
+      target.closest(".interactive-card")
+    )
+      return;
 
     // Prevent browser native drag-select and callouts
     e.preventDefault();
@@ -208,7 +237,10 @@ export function Display3D({ locale }: Display3DProps) {
     const deltaY = e.clientY - dragStartRef.current.y;
 
     const nextY = dragStartRef.current.rotY + deltaX * 0.42;
-    const nextX = Math.max(-60, Math.min(60, dragStartRef.current.rotX - deltaY * 0.35));
+    const nextX = Math.max(
+      -60,
+      Math.min(60, dragStartRef.current.rotX - deltaY * 0.35),
+    );
 
     setManualRotY(nextY);
     setManualRotX(nextX);
@@ -251,7 +283,7 @@ export function Display3D({ locale }: Display3DProps) {
 
   return (
     <div
-      className="relative w-screen h-screen overflow-hidden bg-[#020509] select-none touch-none flex flex-col justify-center items-center font-sans antialiased select-none [*]:select-none"
+      className="relative flex h-screen w-screen touch-none flex-col items-center justify-center overflow-hidden bg-[#020509] font-sans antialiased select-none [*]:select-none"
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
@@ -259,44 +291,44 @@ export function Display3D({ locale }: Display3DProps) {
     >
       {/* Kiosk High-Performance Preloader Screen */}
       {!isPreloaded && (
-        <div className="fixed inset-0 z-50 bg-[#020509] flex flex-col items-center justify-center p-6 text-center select-none">
-          <div className="relative w-20 h-20 mb-6">
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#020509] p-6 text-center select-none">
+          <div className="relative mb-6 h-20 w-20">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/logo.png"
               alt="OS Santiago Logo"
-              className="w-full h-full object-cover rounded-full border-2 border-cyan/40 animate-pulse"
+              className="border-cyan/40 h-full w-full animate-pulse rounded-full border-2 object-cover"
             />
           </div>
 
-          <div className="font-mono text-xs text-cyan font-bold tracking-widest uppercase mb-2">
+          <div className="text-cyan mb-2 font-mono text-xs font-bold tracking-widest uppercase">
             OPEN SOURCE SANTIAGO // MODO DISPLAY
           </div>
 
-          <div className="text-slate-300 text-xs font-mono mb-4">
+          <div className="mb-4 font-mono text-xs text-slate-300">
             Caché y precarga de componentes y QRs... {preloadCount}%
           </div>
 
-          <div className="w-64 h-1.5 rounded-full bg-cyan/15 overflow-hidden border border-cyan/30">
+          <div className="bg-cyan/15 border-cyan/30 h-1.5 w-64 overflow-hidden rounded-full border">
             <div
-              className="h-full bg-cyan transition-all duration-150 ease-out"
+              className="bg-cyan h-full transition-all duration-150 ease-out"
               style={{ width: `${preloadCount}%` }}
             />
           </div>
 
-          <div className="mt-4 font-mono text-[10px] text-cyan-dim tracking-widest uppercase">
+          <div className="text-cyan-dim mt-4 font-mono text-[10px] tracking-widest uppercase">
             OPTIMIZADO PARA PANTALLAS Y STANDS
           </div>
         </div>
       )}
 
       {/* Subtle Matrix / Data Rain */}
-      <DataRain className="opacity-10 pointer-events-none" density={0.12} />
+      <DataRain className="pointer-events-none opacity-10" density={0.12} />
 
       {/* Perspective Floor */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_80%_at_50%_50%,rgba(0,240,255,0.03)_0%,rgba(2,5,9,0.98)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_50%,rgba(0,240,255,0.03)_0%,rgba(2,5,9,0.98)_100%)]" />
       <div
-        className="absolute inset-0 pointer-events-none opacity-15"
+        className="pointer-events-none absolute inset-0 opacity-15"
         style={{
           backgroundImage:
             "linear-gradient(rgba(0, 240, 255, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.12) 1px, transparent 1px)",
@@ -307,10 +339,13 @@ export function Display3D({ locale }: Display3DProps) {
       />
 
       {/* Top 10-Second Countdown line */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-cyan/10 z-40">
+      <div className="bg-cyan/10 absolute top-0 right-0 left-0 z-40 h-1">
         <div
-          className={`h-full bg-cyan ${isAutoPlay ? "opacity-100" : "opacity-30"}`}
-          style={{ width: `${progress}%`, transition: isAutoPlay ? 'none' : 'opacity 0.3s' }}
+          className={`bg-cyan h-full ${isAutoPlay ? "opacity-100" : "opacity-30"}`}
+          style={{
+            width: `${progress}%`,
+            transition: isAutoPlay ? "none" : "opacity 0.3s",
+          }}
         />
       </div>
 
@@ -318,10 +353,10 @@ export function Display3D({ locale }: Display3DProps) {
       <div className="absolute top-6 right-8 z-40">
         <button
           onClick={() => setIsAutoPlay((prev) => !prev)}
-          className={`flex items-center gap-2.5 px-4 py-2 rounded-full font-mono text-xs tracking-wider border transition-colors duration-200 cursor-pointer shadow-lg ${
+          className={`flex cursor-pointer items-center gap-2.5 rounded-full border px-4 py-2 font-mono text-xs tracking-wider shadow-lg transition-colors duration-200 ${
             isAutoPlay
-              ? "border-cyan/50 bg-[#06111e] text-cyan hover:border-cyan"
-              : "border-cyan/25 bg-[#020509] text-cyan-dim hover:text-cyan hover:border-cyan/50"
+              ? "border-cyan/50 text-cyan hover:border-cyan bg-[#06111e]"
+              : "border-cyan/25 text-cyan-dim hover:text-cyan hover:border-cyan/50 bg-[#020509]"
           }`}
           title="Pausar / Reanudar rotación 10s (Tecla P)"
         >
@@ -340,9 +375,9 @@ export function Display3D({ locale }: Display3DProps) {
       </div>
 
       {/* 3D SCENE STAGE */}
-      <div className="display-3d-stage relative w-full h-full flex items-center justify-center overflow-hidden pointer-events-auto">
+      <div className="display-3d-stage pointer-events-auto relative flex h-full w-full items-center justify-center overflow-hidden">
         <div
-          className="display-3d-prism relative w-[340px] sm:w-[580px] md:w-[720px] h-[480px] sm:h-[530px] md:h-[560px]"
+          className="display-3d-prism relative h-[480px] w-[340px] sm:h-[530px] sm:w-[580px] md:h-[560px] md:w-[720px]"
           style={{
             transform: `rotateX(${manualRotX}deg) rotateY(${totalRotY}deg)`,
             transition: isDragging
@@ -352,120 +387,134 @@ export function Display3D({ locale }: Display3DProps) {
         >
           {/* ================= FACE 0: INTRODUCCION & COMUNIDAD ================= */}
           <div
-            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl"
+            className="display-3d-face border-cyan/40 absolute inset-0 flex flex-col justify-between rounded-2xl border bg-[#060e18] p-7 shadow-2xl sm:p-9"
             style={{
               transform: `rotateY(0deg) translateZ(${radius}px)`,
             }}
           >
-            <div className="flex items-center justify-between border-b border-cyan/20 pb-3">
+            <div className="border-cyan/20 flex items-center justify-between border-b pb-3">
               <div className="flex items-center gap-3">
-                <span className="font-mono text-cyan text-xs font-bold px-2.5 py-1 border border-cyan/30 rounded bg-cyan/10 tracking-wider">
+                <span className="text-cyan border-cyan/30 bg-cyan/10 rounded border px-2.5 py-1 font-mono text-xs font-bold tracking-wider">
                   SYS_INFO: 01
                 </span>
-                <span className="font-mono text-xs text-cyan-bright font-bold uppercase tracking-widest">
+                <span className="text-cyan-bright font-mono text-xs font-bold tracking-widest uppercase">
                   Comunidad Abierta
                 </span>
               </div>
-              <div className="flex items-center gap-2 font-mono text-xs text-cyan-dim">
-                <span className="w-2 h-2 rounded-full bg-cyan" />
+              <div className="text-cyan-dim flex items-center gap-2 font-mono text-xs">
+                <span className="bg-cyan h-2 w-2 rounded-full" />
                 <span className="tracking-widest">SANTIAGO / LATAM</span>
               </div>
             </div>
 
-            <div className="my-auto text-center space-y-5">
-              <div className="inline-flex p-1.5 rounded-full border-2 border-cyan/40 bg-void-deep shadow-md">
+            <div className="my-auto space-y-5 text-center">
+              <div className="border-cyan/40 bg-void-deep inline-flex rounded-full border-2 p-1.5 shadow-md">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/logo.png"
                   alt="OS Santiago Logo"
-                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover"
+                  className="h-20 w-20 rounded-full object-cover sm:h-24 sm:w-24"
                 />
               </div>
 
               <div>
-                <h2 className="text-cyan font-display text-3xl sm:text-4xl md:text-5xl font-black tracking-tight">
+                <h2 className="text-cyan font-display text-3xl font-black tracking-tight sm:text-4xl md:text-5xl">
                   Open Source Santiago
                 </h2>
-                <p className="text-cyan-bright font-mono text-xs sm:text-sm font-semibold tracking-widest uppercase mt-2">
+                <p className="text-cyan-bright mt-2 font-mono text-xs font-semibold tracking-widest uppercase sm:text-sm">
                   Comunidad, Código Abierto y Colaboración Real
                 </p>
               </div>
 
-              <p className="text-slate-200 text-xs sm:text-sm md:text-base max-w-xl mx-auto leading-relaxed font-sans font-normal">
-                Somos un espacio comunitario de desarrolladores, ingenieros de software, arquitectos y creadores en Chile y Latinoamérica. Impulsamos proyectos reales, cultura DevOps, InnerSource y desarrollo aumentado asistido por IA (ADEV) con rigor técnico, mentoría e inclusión activa.
+              <p className="mx-auto max-w-xl font-sans text-xs leading-relaxed font-normal text-slate-200 sm:text-sm md:text-base">
+                Somos un espacio comunitario de desarrolladores, ingenieros de
+                software, arquitectos y creadores en Chile y Latinoamérica.
+                Impulsamos proyectos reales, cultura DevOps, InnerSource y
+                desarrollo aumentado asistido por IA (ADEV) con rigor técnico,
+                mentoría e inclusión activa.
               </p>
             </div>
 
-            <div className="border-t border-cyan/20 pt-3 flex items-center justify-between font-mono text-xs text-cyan-dim font-medium">
+            <div className="border-cyan/20 text-cyan-dim flex items-center justify-between border-t pt-3 font-mono text-xs font-medium">
               <span>EST. 2024 / SANTIAGO, CHILE</span>
-              <span className="text-cyan font-bold tracking-wider">ROTACIÓN AUTOMÁTICA O ARRASTRA →</span>
+              <span className="text-cyan font-bold tracking-wider">
+                ROTACIÓN AUTOMÁTICA O ARRASTRA →
+              </span>
             </div>
           </div>
 
           {/* ================= FACE 1: QRS DE UNION Y REDES ================= */}
           <div
-            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl"
+            className="display-3d-face border-cyan/40 absolute inset-0 flex flex-col justify-between rounded-2xl border bg-[#060e18] p-7 shadow-2xl sm:p-9"
             style={{
               transform: `rotateY(${angleStep * 1}deg) translateZ(${radius}px)`,
             }}
           >
-            <div className="flex items-center justify-between border-b border-cyan/20 pb-3">
+            <div className="border-cyan/20 flex items-center justify-between border-b pb-3">
               <div className="flex items-center gap-3">
-                <span className="font-mono text-cyan text-xs font-bold px-2.5 py-1 border border-cyan/30 rounded bg-cyan/10 tracking-wider">
+                <span className="text-cyan border-cyan/30 bg-cyan/10 rounded border px-2.5 py-1 font-mono text-xs font-bold tracking-wider">
                   SYS_GATEWAY: 02
                 </span>
-                <span className="font-mono text-xs text-cyan-bright font-bold uppercase tracking-widest">
+                <span className="text-cyan-bright font-mono text-xs font-bold tracking-widest uppercase">
                   Escanear para Unirse
                 </span>
               </div>
-              <span className="font-mono text-xs text-cyan font-bold tracking-widest">ACCESO DIRECTO</span>
+              <span className="text-cyan font-mono text-xs font-bold tracking-widest">
+                ACCESO DIRECTO
+              </span>
             </div>
 
             <div className="my-auto">
-              <h3 className="text-center text-cyan font-display text-xl sm:text-2xl font-extrabold mb-6 tracking-tight">
+              <h3 className="text-cyan font-display mb-6 text-center text-xl font-extrabold tracking-tight sm:text-2xl">
                 Escanea y Únete a Nuestros Canales Oficiales
               </h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-2xl mx-auto">
+              <div className="mx-auto grid max-w-2xl grid-cols-1 gap-5 sm:grid-cols-3">
                 {/* QR Discord */}
-                <div className="flex flex-col items-center p-4 rounded-2xl border border-cyan/25 bg-[#081524] hover:border-cyan/50 transition-colors group">
-                  <div className="flex items-center gap-2 text-cyan font-mono text-xs font-bold mb-3 tracking-wider">
+                <div className="border-cyan/25 hover:border-cyan/50 group flex flex-col items-center rounded-2xl border bg-[#081524] p-4 transition-colors">
+                  <div className="text-cyan mb-3 flex items-center gap-2 font-mono text-xs font-bold tracking-wider">
                     <IconBrandDiscord size={18} className="text-cyan" />
                     <span>DISCORD</span>
                   </div>
                   <QRCodeSVG value="https://discord.gg/3eawzc9ybc" size={135} />
-                  <span className="mt-3 text-xs text-slate-200 font-mono text-center font-medium">
+                  <span className="mt-3 text-center font-mono text-xs font-medium text-slate-200">
                     Chat, debates & comunidad
                   </span>
                 </div>
 
                 {/* QR GitHub */}
-                <div className="flex flex-col items-center p-4 rounded-2xl border border-cyan/25 bg-[#081524] hover:border-cyan/50 transition-colors group">
-                  <div className="flex items-center gap-2 text-cyan font-mono text-xs font-bold mb-3 tracking-wider">
+                <div className="border-cyan/25 hover:border-cyan/50 group flex flex-col items-center rounded-2xl border bg-[#081524] p-4 transition-colors">
+                  <div className="text-cyan mb-3 flex items-center gap-2 font-mono text-xs font-bold tracking-wider">
                     <IconBrandGithub size={18} className="text-cyan" />
                     <span>GITHUB</span>
                   </div>
-                  <QRCodeSVG value="https://github.com/os-santiago" size={135} />
-                  <span className="mt-3 text-xs text-slate-200 font-mono text-center font-medium">
+                  <QRCodeSVG
+                    value="https://github.com/os-santiago"
+                    size={135}
+                  />
+                  <span className="mt-3 text-center font-mono text-xs font-medium text-slate-200">
                     Repositorios & código libre
                   </span>
                 </div>
 
                 {/* QR HomeDir */}
-                <div className="flex flex-col items-center p-4 rounded-2xl border border-cyan/25 bg-[#081524] hover:border-cyan/50 transition-colors group">
-                  <div className="flex items-center gap-2 text-cyan font-mono text-xs font-bold mb-3 tracking-wider">
+                <div className="border-cyan/25 hover:border-cyan/50 group flex flex-col items-center rounded-2xl border bg-[#081524] p-4 transition-colors">
+                  <div className="text-cyan mb-3 flex items-center gap-2 font-mono text-xs font-bold tracking-wider">
                     <IconHome size={18} className="text-cyan" />
                     <span>HOMEDIR</span>
                   </div>
-                  <QRCodeSVG value="https://homedir.opensourcesantiago.io" size={135} />
-                  <span className="mt-3 text-xs text-slate-200 font-mono text-center font-medium">
+                  <QRCodeSVG
+                    value="https://homedir.opensourcesantiago.io"
+                    size={135}
+                  />
+                  <span className="mt-3 text-center font-mono text-xs font-medium text-slate-200">
                     Eventos, CFP & misiones
                   </span>
                 </div>
               </div>
             </div>
 
-            <div className="border-t border-cyan/20 pt-3 flex items-center justify-between font-mono text-xs text-cyan-dim font-medium">
+            <div className="border-cyan/20 text-cyan-dim flex items-center justify-between border-t pt-3 font-mono text-xs font-medium">
               <span>ESCANEA CUALQUIER QR CON LA CÁMARA DE TU TELÉFONO</span>
               <span className="text-cyan font-bold">ACCESO 100% LIBRE</span>
             </div>
@@ -473,61 +522,67 @@ export function Display3D({ locale }: Display3DProps) {
 
           {/* ================= FACE 2: ORGANIZADORES ================= */}
           <div
-            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl overflow-hidden"
+            className="display-3d-face border-cyan/40 absolute inset-0 flex flex-col justify-between overflow-hidden rounded-2xl border bg-[#060e18] p-7 shadow-2xl sm:p-9"
             style={{
               transform: `rotateY(${angleStep * 2}deg) translateZ(${radius}px)`,
             }}
           >
-            <div className="flex items-center justify-between border-b border-cyan/20 pb-3">
+            <div className="border-cyan/20 flex items-center justify-between border-b pb-3">
               <div className="flex items-center gap-3">
-                <span className="font-mono text-cyan text-xs font-bold px-2.5 py-1 border border-cyan/30 rounded bg-cyan/10 tracking-wider">
+                <span className="text-cyan border-cyan/30 bg-cyan/10 rounded border px-2.5 py-1 font-mono text-xs font-bold tracking-wider">
                   SYS_STAFF: 03
                 </span>
-                <span className="font-mono text-xs text-cyan-bright font-bold uppercase tracking-widest">
+                <span className="text-cyan-bright font-mono text-xs font-bold tracking-widest uppercase">
                   Equipo de Organización
                 </span>
               </div>
-              <span className="font-mono text-xs text-cyan font-bold tracking-widest">TOCA PARA LINKEDIN</span>
+              <span className="text-cyan font-mono text-xs font-bold tracking-widest">
+                TOCA PARA LINKEDIN
+              </span>
             </div>
 
             {/* Equitable 3x2 grid filling space, identical for all 6 members, click to view QR */}
             <div className="my-auto">
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5 max-w-2xl mx-auto">
+              <div className="mx-auto grid max-w-2xl grid-cols-2 gap-3.5 sm:grid-cols-3">
                 {staffMembers.map((member) => (
                   <div
                     key={member.userId}
                     onClick={(e) => {
                       e.stopPropagation();
-                      setSelectedMember(selectedMember?.userId === member.userId ? null : member);
+                      setSelectedMember(
+                        selectedMember?.userId === member.userId
+                          ? null
+                          : member,
+                      );
                     }}
-                    className="interactive-card cursor-pointer group p-3.5 rounded-xl border border-cyan/20 bg-[#081524] hover:border-cyan hover:bg-[#0c1e34] transition-all flex items-center gap-3.5 shadow-sm"
+                    className="interactive-card group border-cyan/20 hover:border-cyan flex cursor-pointer items-center gap-3.5 rounded-xl border bg-[#081524] p-3.5 shadow-sm transition-all hover:bg-[#0c1e34]"
                   >
                     <div className="relative flex-shrink-0">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={member.avatarUrl}
                         alt={member.displayName}
-                        className="w-12 h-12 rounded-full border border-cyan/40 object-cover"
+                        className="border-cyan/40 h-12 w-12 rounded-full border object-cover"
                       />
-                      <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-[#020509] border border-cyan flex items-center justify-center">
-                        <span className="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse" />
+                      <span className="border-cyan absolute -right-0.5 -bottom-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full border bg-[#020509]">
+                        <span className="bg-cyan h-1.5 w-1.5 animate-pulse rounded-full" />
                       </span>
                     </div>
 
-                    <div className="min-w-0 flex-1 text-left overflow-hidden">
-                      <div className="flex items-center justify-between gap-1.5 mb-1">
-                        <span className="font-sans text-sm font-bold text-slate-100 group-hover:text-cyan-bright transition-colors truncate">
+                    <div className="min-w-0 flex-1 overflow-hidden text-left">
+                      <div className="mb-1 flex items-center justify-between gap-1.5">
+                        <span className="group-hover:text-cyan-bright truncate font-sans text-sm font-bold text-slate-100 transition-colors">
                           {member.displayName}
                         </span>
-                        <span className="font-mono text-[9px] text-cyan-dim uppercase tracking-wider font-bold px-1.5 py-0.2 rounded border border-cyan/20 flex-shrink-0">
+                        <span className="text-cyan-dim py-0.2 border-cyan/20 flex-shrink-0 rounded border px-1.5 font-mono text-[9px] font-bold tracking-wider uppercase">
                           STAFF
                         </span>
                       </div>
-                      <div className="font-mono text-xs text-cyan truncate font-semibold">
+                      <div className="text-cyan truncate font-mono text-xs font-semibold">
                         @{member.github}
                       </div>
-                      <div className="mt-1 flex items-center justify-end text-[10px] font-mono text-cyan-dim">
-                        <span className="text-cyan font-bold group-hover:text-cyan-bright flex-shrink-0">
+                      <div className="text-cyan-dim mt-1 flex items-center justify-end font-mono text-[10px]">
+                        <span className="text-cyan group-hover:text-cyan-bright flex-shrink-0 font-bold">
                           QR LINKEDIN →
                         </span>
                       </div>
@@ -537,15 +592,17 @@ export function Display3D({ locale }: Display3DProps) {
               </div>
             </div>
 
-            <div className="border-t border-cyan/20 pt-3 flex items-center justify-between font-mono text-xs text-cyan-dim font-medium">
+            <div className="border-cyan/20 text-cyan-dim flex items-center justify-between border-t pt-3 font-mono text-xs font-medium">
               <span>EQUIPO HORIZONTAL // STAFF OPEN SOURCE SANTIAGO</span>
-              <span className="text-cyan font-bold">TOCA CUALQUIER MIEMBRO PARA QR LINKEDIN</span>
+              <span className="text-cyan font-bold">
+                TOCA CUALQUIER MIEMBRO PARA QR LINKEDIN
+              </span>
             </div>
 
             {/* EXPANDED MODAL OVERLAY FOR MEMBER LINKEDIN QR */}
             {selectedMember && (
               <div
-                className="absolute inset-0 z-50 rounded-2xl bg-[#030812]/98 p-6 flex flex-col items-center justify-center text-center animate-in fade-in duration-150"
+                className="animate-in fade-in absolute inset-0 z-50 flex flex-col items-center justify-center rounded-2xl bg-[#030812]/98 p-6 text-center duration-150"
                 onClick={(e) => {
                   e.stopPropagation();
                   setSelectedMember(null);
@@ -556,45 +613,45 @@ export function Display3D({ locale }: Display3DProps) {
                     e.stopPropagation();
                     setSelectedMember(null);
                   }}
-                  className="absolute top-4 right-4 p-2 rounded-full border border-cyan/40 bg-void text-cyan hover:bg-cyan/20 transition-all cursor-pointer"
+                  className="border-cyan/40 bg-void text-cyan hover:bg-cyan/20 absolute top-4 right-4 cursor-pointer rounded-full border p-2 transition-all"
                   title="Cerrar QR"
                 >
                   <IconX size={18} />
                 </button>
 
-                <div className="relative w-16 h-16 mb-2">
+                <div className="relative mb-2 h-16 w-16">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={selectedMember.avatarUrl}
                     alt={selectedMember.displayName}
-                    className="w-full h-full rounded-full border-2 border-cyan/50 object-cover"
+                    className="border-cyan/50 h-full w-full rounded-full border-2 object-cover"
                   />
-                  <span className="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-[#020509] border border-cyan flex items-center justify-center">
-                    <span className="w-2 h-2 rounded-full bg-cyan animate-pulse" />
+                  <span className="border-cyan absolute right-0 bottom-0 flex h-4 w-4 items-center justify-center rounded-full border bg-[#020509]">
+                    <span className="bg-cyan h-2 w-2 animate-pulse rounded-full" />
                   </span>
                 </div>
 
-                <div className="font-mono text-xs text-cyan font-bold px-3 py-1 rounded border border-cyan/40 bg-cyan/10 mb-1 uppercase tracking-widest">
+                <div className="text-cyan border-cyan/40 bg-cyan/10 mb-1 rounded border px-3 py-1 font-mono text-xs font-bold tracking-widest uppercase">
                   {selectedMember.role}
                 </div>
 
-                <h4 className="font-display text-2xl font-black text-cyan mb-0.5">
+                <h4 className="font-display text-cyan mb-0.5 text-2xl font-black">
                   {selectedMember.displayName}
                 </h4>
 
-                <div className="font-mono text-xs text-cyan-bright mb-3 font-semibold">
+                <div className="text-cyan-bright mb-3 font-mono text-xs font-semibold">
                   @{selectedMember.github}
                 </div>
 
-                <div className="p-3 rounded-2xl border-2 border-cyan/50 bg-[#020509] shadow-2xl my-1">
+                <div className="border-cyan/50 my-1 rounded-2xl border-2 bg-[#020509] p-3 shadow-2xl">
                   <QRCodeSVG value={selectedMember.linkedin} size={150} />
                 </div>
 
-                <p className="font-mono text-xs text-cyan-bright mt-4 font-bold tracking-wider">
+                <p className="text-cyan-bright mt-4 font-mono text-xs font-bold tracking-wider">
                   ESCANEA PARA CONECTAR EN LINKEDIN
                 </p>
 
-                <div className="mt-1 font-mono text-[11px] text-cyan-dim truncate max-w-sm">
+                <div className="text-cyan-dim mt-1 max-w-sm truncate font-mono text-[11px]">
                   {selectedMember.linkedin}
                 </div>
               </div>
@@ -603,27 +660,29 @@ export function Display3D({ locale }: Display3DProps) {
 
           {/* ================= FACE 3: PROYECTOS DESTACADOS ================= */}
           <div
-            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl overflow-hidden"
+            className="display-3d-face border-cyan/40 absolute inset-0 flex flex-col justify-between overflow-hidden rounded-2xl border bg-[#060e18] p-7 shadow-2xl sm:p-9"
             style={{
               transform: `rotateY(${angleStep * 3}deg) translateZ(${radius}px)`,
             }}
           >
             {/* Header: Exact slide title and number requested */}
-            <div className="flex items-center justify-between border-b border-cyan/20 pb-3 flex-shrink-0">
+            <div className="border-cyan/20 flex flex-shrink-0 items-center justify-between border-b pb-3">
               <div className="flex items-center gap-3">
-                <span className="font-mono text-cyan text-xs font-bold px-2.5 py-1 border border-cyan/30 rounded bg-cyan/10 tracking-wider">
+                <span className="text-cyan border-cyan/30 bg-cyan/10 rounded border px-2.5 py-1 font-mono text-xs font-bold tracking-wider">
                   SYS_PROJECTS: 04
                 </span>
-                <span className="font-mono text-xs text-cyan-bright font-bold uppercase tracking-widest">
+                <span className="text-cyan-bright font-mono text-xs font-bold tracking-widest uppercase">
                   Proyectos Estrella
                 </span>
               </div>
-              <span className="font-mono text-xs text-cyan font-bold tracking-widest">ECOSISTEMA PRINCIPAL</span>
+              <span className="text-cyan font-mono text-xs font-bold tracking-widest">
+                ECOSISTEMA PRINCIPAL
+              </span>
             </div>
 
             {/* Content area: 100% space filled with the 5 clean cards without mini QRs */}
-            <div className="my-auto flex-1 flex flex-col justify-center py-2">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 w-full">
+            <div className="my-auto flex flex-1 flex-col justify-center py-2">
+              <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {spotlightProjects.slice(0, 5).map((p, idx) => {
                   const isLargeCard = idx === 0; // HomeDir occupies 2 columns for a balanced 5-card grid
                   return (
@@ -631,29 +690,33 @@ export function Display3D({ locale }: Display3DProps) {
                       key={p.name}
                       onClick={(e) => {
                         e.stopPropagation();
-                        setSelectedProject(selectedProject?.name === p.name ? null : p);
+                        setSelectedProject(
+                          selectedProject?.name === p.name ? null : p,
+                        );
                       }}
-                      className={`interactive-card cursor-pointer group p-3.5 rounded-xl border border-cyan/20 bg-[#081524] hover:border-cyan hover:bg-[#0c1e34] transition-all flex flex-col justify-between shadow-md ${
+                      className={`interactive-card group border-cyan/20 hover:border-cyan flex cursor-pointer flex-col justify-between rounded-xl border bg-[#081524] p-3.5 shadow-md transition-all hover:bg-[#0c1e34] ${
                         isLargeCard ? "sm:col-span-2 lg:col-span-2" : ""
                       }`}
                     >
                       <div>
-                        <div className="flex items-center justify-between gap-2 mb-1.5">
-                          <span className="font-display font-black text-cyan text-sm sm:text-base group-hover:text-cyan-bright transition-colors truncate">
+                        <div className="mb-1.5 flex items-center justify-between gap-2">
+                          <span className="font-display text-cyan group-hover:text-cyan-bright truncate text-sm font-black transition-colors sm:text-base">
                             {p.name}
                           </span>
-                          <span className="font-mono text-[9px] px-1.5 py-0.5 rounded border border-cyan/30 text-cyan-dim uppercase font-bold flex-shrink-0">
+                          <span className="border-cyan/30 text-cyan-dim flex-shrink-0 rounded border px-1.5 py-0.5 font-mono text-[9px] font-bold uppercase">
                             {p.language}
                           </span>
                         </div>
-                        <p className="text-slate-300 text-xs leading-relaxed line-clamp-2 font-normal">
+                        <p className="line-clamp-2 text-xs leading-relaxed font-normal text-slate-300">
                           {p.description}
                         </p>
                       </div>
 
-                      <div className="mt-2 pt-1.5 border-t border-cyan/15 flex items-center justify-between text-[10px] font-mono text-cyan-dim">
-                        <span className="truncate">{p.authors?.[0]?.name || "OS Santiago"}</span>
-                        <span className="text-cyan font-bold group-hover:text-cyan-bright flex-shrink-0">
+                      <div className="border-cyan/15 text-cyan-dim mt-2 flex items-center justify-between border-t pt-1.5 font-mono text-[10px]">
+                        <span className="truncate">
+                          {p.authors?.[0]?.name || "OS Santiago"}
+                        </span>
+                        <span className="text-cyan group-hover:text-cyan-bright flex-shrink-0 font-bold">
                           VER QR →
                         </span>
                       </div>
@@ -663,15 +726,17 @@ export function Display3D({ locale }: Display3DProps) {
               </div>
             </div>
 
-            <div className="border-t border-cyan/20 pt-3 flex items-center justify-between font-mono text-xs text-cyan-dim font-medium flex-shrink-0">
+            <div className="border-cyan/20 text-cyan-dim flex flex-shrink-0 items-center justify-between border-t pt-3 font-mono text-xs font-medium">
               <span>HOMEDIR // ARTEMISA // ADEV // JOIDY // DEVOPSDAYS</span>
-              <span className="text-cyan font-bold">TOCA CUALQUIER PROYECTO PARA QR GRANDE</span>
+              <span className="text-cyan font-bold">
+                TOCA CUALQUIER PROYECTO PARA QR GRANDE
+              </span>
             </div>
 
             {/* EXPANDED MODAL OVERLAY */}
             {selectedProject && (
               <div
-                className="absolute inset-0 z-50 rounded-2xl bg-[#030812]/98 p-6 flex flex-col items-center justify-center text-center animate-in fade-in duration-150"
+                className="animate-in fade-in absolute inset-0 z-50 flex flex-col items-center justify-center rounded-2xl bg-[#030812]/98 p-6 text-center duration-150"
                 onClick={(e) => {
                   e.stopPropagation();
                   setSelectedProject(null);
@@ -682,36 +747,38 @@ export function Display3D({ locale }: Display3DProps) {
                     e.stopPropagation();
                     setSelectedProject(null);
                   }}
-                  className="absolute top-4 right-4 p-2 rounded-full border border-cyan/40 bg-void text-cyan hover:bg-cyan/20 transition-all cursor-pointer"
+                  className="border-cyan/40 bg-void text-cyan hover:bg-cyan/20 absolute top-4 right-4 cursor-pointer rounded-full border p-2 transition-all"
                   title="Cerrar QR"
                 >
                   <IconX size={18} />
                 </button>
 
-                <div className="font-mono text-xs text-cyan font-bold px-3 py-1 rounded border border-cyan/40 bg-cyan/10 mb-2 uppercase tracking-widest">
+                <div className="text-cyan border-cyan/40 bg-cyan/10 mb-2 rounded border px-3 py-1 font-mono text-xs font-bold tracking-widest uppercase">
                   {selectedProject.language}
                 </div>
 
-                <h4 className="font-display text-2xl font-black text-cyan mb-2">
+                <h4 className="font-display text-cyan mb-2 text-2xl font-black">
                   {selectedProject.name}
                 </h4>
 
-                <p className="text-slate-200 text-xs sm:text-sm max-w-md mb-4 leading-relaxed font-sans">
+                <p className="mb-4 max-w-md font-sans text-xs leading-relaxed text-slate-200 sm:text-sm">
                   {selectedProject.description}
                 </p>
 
-                <div className="p-3 rounded-2xl border-2 border-cyan/50 bg-[#020509] shadow-2xl my-1">
+                <div className="border-cyan/50 my-1 rounded-2xl border-2 bg-[#020509] p-3 shadow-2xl">
                   <QRCodeSVG
-                    value={selectedProject.homepageUrl || selectedProject.repoUrl}
+                    value={
+                      selectedProject.homepageUrl || selectedProject.repoUrl
+                    }
                     size={160}
                   />
                 </div>
 
-                <p className="font-mono text-xs text-cyan-bright mt-4 font-bold tracking-wider">
+                <p className="text-cyan-bright mt-4 font-mono text-xs font-bold tracking-wider">
                   ESCANEA PARA ABRIR REPOSITORIO
                 </p>
 
-                <div className="mt-1 font-mono text-[11px] text-cyan-dim">
+                <div className="text-cyan-dim mt-1 font-mono text-[11px]">
                   {selectedProject.homepageUrl || selectedProject.repoUrl}
                 </div>
               </div>
@@ -720,63 +787,69 @@ export function Display3D({ locale }: Display3DProps) {
 
           {/* ================= FACE 4: HAPPY HOUR EVENT ================= */}
           <div
-            className="display-3d-face absolute inset-0 rounded-2xl border border-cyan/40 bg-[#060e18] p-7 sm:p-9 flex flex-col justify-between shadow-2xl"
+            className="display-3d-face border-cyan/40 absolute inset-0 flex flex-col justify-between rounded-2xl border bg-[#060e18] p-7 shadow-2xl sm:p-9"
             style={{
               transform: `rotateY(${angleStep * 4}deg) translateZ(${radius}px)`,
             }}
           >
-            <div className="flex items-center justify-between border-b border-cyan/20 pb-3">
+            <div className="border-cyan/20 flex items-center justify-between border-b pb-3">
               <div className="flex items-center gap-3">
-                <span className="font-mono text-cyan text-xs font-bold px-2.5 py-1 border border-cyan/30 rounded bg-cyan/10 tracking-wider">
+                <span className="text-cyan border-cyan/30 bg-cyan/10 rounded border px-2.5 py-1 font-mono text-xs font-bold tracking-wider">
                   SYS_EVENT: 05
                 </span>
-                <span className="font-mono text-xs text-cyan-bright font-bold uppercase tracking-widest">
+                <span className="text-cyan-bright font-mono text-xs font-bold tracking-widest uppercase">
                   Evento Destacado
                 </span>
               </div>
-              <span className="font-mono text-xs text-cyan font-bold tracking-widest">RESUMEN DEL ENCUENTRO</span>
+              <span className="text-cyan font-mono text-xs font-bold tracking-widest">
+                RESUMEN DEL ENCUENTRO
+              </span>
             </div>
 
-            <div className="my-auto max-w-2xl mx-auto flex flex-col md:flex-row items-center gap-6">
-              <div className="relative w-full md:w-1/2 aspect-[4/3] rounded-xl overflow-hidden border border-cyan/40 group">
+            <div className="mx-auto my-auto flex max-w-2xl flex-col items-center gap-6 md:flex-row">
+              <div className="border-cyan/40 group relative aspect-[4/3] w-full overflow-hidden rounded-xl border md:w-1/2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/events/happy-hour-november-2024/photo-06.webp"
                   alt="Happy Hour November 2024 - Foto Oficial"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-70" />
-                <span className="absolute bottom-2.5 left-2.5 text-xs font-mono font-bold text-cyan bg-black/80 px-2 py-0.5 rounded border border-cyan/30">
+                <span className="text-cyan border-cyan/30 absolute bottom-2.5 left-2.5 rounded border bg-black/80 px-2 py-0.5 font-mono text-xs font-bold">
                   Foto Oficial Comunidad
                 </span>
               </div>
 
-              <div className="w-full md:w-1/2 text-left space-y-3">
-                <div className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-cyan px-2.5 py-1 rounded-lg bg-cyan/15 border border-cyan/30">
+              <div className="w-full space-y-3 text-left md:w-1/2">
+                <div className="text-cyan bg-cyan/15 border-cyan/30 inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1 font-mono text-xs font-bold">
                   <IconCalendarEvent size={15} />
                   <span>21 de Noviembre, 2024</span>
                 </div>
 
-                <h3 className="font-display text-xl sm:text-2xl font-extrabold text-cyan tracking-tight">
+                <h3 className="font-display text-cyan text-xl font-extrabold tracking-tight sm:text-2xl">
                   {happyHourEvent?.name || "Happy Hour November 2024"}
                 </h3>
 
-                <p className="text-slate-200 text-xs sm:text-sm leading-relaxed font-normal">
+                <p className="text-xs leading-relaxed font-normal text-slate-200 sm:text-sm">
                   {happyHourEvent?.description ||
                     "Encuentro presencial de la comunidad Open Source Santiago: networking, debate técnico sobre desarrollo open source, cultura DevOps y colaboración libre."}
                 </p>
 
-                <div className="space-y-1 text-xs font-mono text-cyan-bright font-medium">
+                <div className="text-cyan-bright space-y-1 font-mono text-xs font-medium">
                   <div>📍 Lugar: Santiago Centro, Chile</div>
-                  <div>👥 Asistentes: Desarrolladores, SysAdmins, DevOps, DevSecOps</div>
+                  <div>
+                    👥 Asistentes: Desarrolladores, SysAdmins, DevOps, DevSecOps
+                  </div>
                   <div>🍻 Formato: Mesa redonda abierta y networking</div>
                 </div>
               </div>
             </div>
 
-            <div className="border-t border-cyan/20 pt-3 flex items-center justify-between font-mono text-xs text-cyan-dim font-medium">
+            <div className="border-cyan/20 text-cyan-dim flex items-center justify-between border-t pt-3 font-mono text-xs font-medium">
               <span>SANTIAGO CENTRO - CHILE</span>
-              <span className="text-cyan font-bold">NOS VEMOS EN EL PRÓXIMO ENCUENTRO</span>
+              <span className="text-cyan font-bold">
+                NOS VEMOS EN EL PRÓXIMO ENCUENTRO
+              </span>
             </div>
           </div>
         </div>

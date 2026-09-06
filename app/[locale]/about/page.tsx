@@ -47,13 +47,16 @@ export default async function AboutPage({
 
   return (
     <main className="mx-auto max-w-4xl px-6 py-16 text-center">
-      <GlitchText as="h1" className="text-cyan font-display text-4xl font-bold text-center block mx-auto">
+      <GlitchText
+        as="h1"
+        className="text-cyan font-display mx-auto block text-center text-4xl font-bold"
+      >
         {msgs["about.title"]}
       </GlitchText>
 
       <div className="mt-8">
         <DataPanel title="MISSION">
-          <p className="text-cyan-dim leading-relaxed text-center">
+          <p className="text-cyan-dim text-center leading-relaxed">
             {msgs["about.mission"]}
           </p>
         </DataPanel>
@@ -71,12 +74,12 @@ export default async function AboutPage({
                 href={fact.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-cyan font-display hover:text-cyan-bright mt-1 block text-lg font-bold transition-colors text-center"
+                className="text-cyan font-display hover:text-cyan-bright mt-1 block text-center text-lg font-bold transition-colors"
               >
                 {fact.value} →
               </a>
             ) : (
-              <div className="text-cyan font-display mt-1 text-lg font-bold text-center">
+              <div className="text-cyan font-display mt-1 text-center text-lg font-bold">
                 {fact.value}
               </div>
             )}
@@ -84,7 +87,7 @@ export default async function AboutPage({
         ))}
       </div>
 
-      <div className="mt-12 flex flex-wrap gap-4 justify-center items-center">
+      <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
         <NeonButton
           href="https://discord.gg/3eawzc9ybc"
           external

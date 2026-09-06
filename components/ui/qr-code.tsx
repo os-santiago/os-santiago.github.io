@@ -25,13 +25,13 @@ export function QRCodeSVG({
 
   return (
     <div
-      className={`relative inline-flex items-center justify-center p-2 rounded-xl border border-cyan/40 bg-void-deep/95 shadow-[0_0_20px_rgba(0,240,255,0.25)] ${className}`}
+      className={`border-cyan/40 bg-void-deep/95 relative inline-flex items-center justify-center rounded-xl border p-2 shadow-[0_0_20px_rgba(0,240,255,0.25)] ${className}`}
       style={{ width: size + 20, height: size + 20 }}
     >
-      <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-cyan pointer-events-none" />
-      <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-cyan pointer-events-none" />
-      <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-cyan pointer-events-none" />
-      <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-cyan pointer-events-none" />
+      <div className="border-cyan pointer-events-none absolute -top-1 -left-1 h-3 w-3 border-t-2 border-l-2" />
+      <div className="border-cyan pointer-events-none absolute -top-1 -right-1 h-3 w-3 border-t-2 border-r-2" />
+      <div className="border-cyan pointer-events-none absolute -bottom-1 -left-1 h-3 w-3 border-b-2 border-l-2" />
+      <div className="border-cyan pointer-events-none absolute -right-1 -bottom-1 h-3 w-3 border-r-2 border-b-2" />
 
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -39,7 +39,7 @@ export function QRCodeSVG({
         alt={`QR: ${value}`}
         width={size}
         height={size}
-        className="w-full h-full object-contain [image-rendering:crisp-edges]"
+        className="h-full w-full object-contain [image-rendering:crisp-edges]"
         loading="eager"
       />
     </div>

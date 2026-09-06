@@ -14,29 +14,33 @@ type EventGalleryProps = {
   messages: Messages;
 };
 
-export function EventGallery({ events, locale, messages: msgs }: EventGalleryProps) {
+export function EventGallery({
+  events,
+  locale,
+  messages: msgs,
+}: EventGalleryProps) {
   const pastEvents = events.filter((e) => e.status === "past");
 
   if (pastEvents.length === 0) return null;
 
   return (
     <section className="mt-16 w-full text-center">
-      <div className="flex flex-col items-center justify-center mb-8">
-        <div className="text-cyan flex items-center justify-center gap-2 font-mono text-xs tracking-widest uppercase mb-1">
+      <div className="mb-8 flex flex-col items-center justify-center">
+        <div className="text-cyan mb-1 flex items-center justify-center gap-2 font-mono text-xs tracking-widest uppercase">
           <IconSparkles size={14} className="text-cyan" />
           {msgs["events.gallery"]}
         </div>
-        <h2 className="text-cyan font-display text-2xl sm:text-3xl font-bold tracking-wide">
+        <h2 className="text-cyan font-display text-2xl font-bold tracking-wide sm:text-3xl">
           {msgs["events.pastEvents"]}
         </h2>
       </div>
 
       <div
         className={cn(
-          "grid gap-6 sm:gap-8 w-full",
+          "grid w-full gap-6 sm:gap-8",
           pastEvents.length === 1
-            ? "grid-cols-1 max-w-3xl mx-auto"
-            : "grid-cols-1 md:grid-cols-2"
+            ? "mx-auto max-w-3xl grid-cols-1"
+            : "grid-cols-1 md:grid-cols-2",
         )}
       >
         {pastEvents.map((event) => {
@@ -45,18 +49,19 @@ export function EventGallery({ events, locale, messages: msgs }: EventGalleryPro
             <GlitchCard
               key={event.id}
               href={detailUrl}
-              className="cyber-hud-box flex flex-col p-6 sm:p-7 rounded-sm bg-void-surface/70 backdrop-blur-sm border border-cyan/15 hover:border-cyan/40 hover:shadow-[0_0_30px_rgba(0,240,255,0.2)] transition-all duration-300 text-center items-center cursor-pointer group h-full"
+              className="cyber-hud-box bg-void-surface/70 border-cyan/15 hover:border-cyan/40 group flex h-full cursor-pointer flex-col items-center rounded-sm border p-6 text-center backdrop-blur-sm transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,240,255,0.2)] sm:p-7"
             >
               {/* Event Header: Title with uniform min-height for clean alignment */}
-              <div className="flex items-center justify-center w-full mb-3 min-h-[3.25rem]">
-                <h3 className="text-cyan group-hover:text-cyan-bright font-display text-xl sm:text-2xl font-bold tracking-wide text-center transition-colors">
+              <div className="mb-3 flex min-h-[3.25rem] w-full items-center justify-center">
+                <h3 className="text-cyan group-hover:text-cyan-bright font-display text-center text-xl font-bold tracking-wide transition-colors sm:text-2xl">
                   {locale === "es" ? event.name : event.nameEn}
                 </h3>
               </div>
 
               {/* Flyer Cover Banner */}
-              {(event.coverImage || (event.photos && event.photos.length > 0)) && (
-                <div className="w-full my-auto mx-auto relative aspect-[16/9] sm:aspect-[21/9] overflow-hidden rounded-sm border border-cyan/30 bg-void shadow-[0_0_20px_rgba(0,240,255,0.15)] group-hover:border-cyan/60 group-hover:shadow-[0_0_30px_rgba(0,240,255,0.3)] transition-all duration-300">
+              {(event.coverImage ||
+                (event.photos && event.photos.length > 0)) && (
+                <div className="border-cyan/30 bg-void group-hover:border-cyan/60 relative mx-auto my-auto aspect-[16/9] w-full overflow-hidden rounded-sm border shadow-[0_0_20px_rgba(0,240,255,0.15)] transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(0,240,255,0.3)] sm:aspect-[21/9]">
                   <Image
                     src={event.coverImage || event.photos![0].url}
                     alt={event.name}

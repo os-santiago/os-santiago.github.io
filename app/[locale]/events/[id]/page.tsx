@@ -18,7 +18,7 @@ export function generateStaticParams() {
     events.map((event) => ({
       locale,
       id: event.id,
-    }))
+    })),
   );
 }
 
@@ -51,9 +51,9 @@ export default async function EventDetailPage({
   }
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-12 sm:py-16 text-center">
+    <main className="mx-auto max-w-5xl px-6 py-12 text-center sm:py-16">
       {/* Back to Events Navigation */}
-      <div className="flex justify-start mb-8">
+      <div className="mb-8 flex justify-start">
         <NeonButton
           href={`/${locale}/events`}
           size="sm"
@@ -64,9 +64,9 @@ export default async function EventDetailPage({
       </div>
 
       {/* Main Event Info Panel */}
-      <GlitchCard className="cyber-hud-box p-6 sm:p-10 mb-10 text-center flex flex-col items-center bg-void-surface/70 backdrop-blur-sm border-cyan/20">
-        <div className="flex items-center justify-center gap-2 mb-3 flex-wrap">
-          <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1 rounded-xs border border-cyan/40 text-cyan-bright bg-cyan/10 flex items-center gap-1.5">
+      <GlitchCard className="cyber-hud-box bg-void-surface/70 border-cyan/20 mb-10 flex flex-col items-center p-6 text-center backdrop-blur-sm sm:p-10">
+        <div className="mb-3 flex flex-wrap items-center justify-center gap-2">
+          <span className="border-cyan/40 text-cyan-bright bg-cyan/10 flex items-center gap-1.5 rounded-xs border px-3 py-1 font-mono text-[10px] tracking-widest uppercase">
             <IconCalendar size={13} className="text-cyan" />
             {new Date(event.date).toLocaleDateString(locale, {
               weekday: "long",
@@ -75,17 +75,20 @@ export default async function EventDetailPage({
               day: "numeric",
             })}
           </span>
-          <span className="font-mono text-[10px] tracking-widest uppercase px-3 py-1 rounded-xs border border-cyan/40 text-cyan-bright bg-cyan/10 flex items-center gap-1.5">
+          <span className="border-cyan/40 text-cyan-bright bg-cyan/10 flex items-center gap-1.5 rounded-xs border px-3 py-1 font-mono text-[10px] tracking-widest uppercase">
             <IconMapPin size={13} className="text-cyan" />
             {event.venue}, {event.city}, {event.country}
           </span>
         </div>
 
-        <GlitchText as="h1" className="text-cyan font-display text-3xl sm:text-4xl font-bold tracking-wide text-center block mb-4">
+        <GlitchText
+          as="h1"
+          className="text-cyan font-display mb-4 block text-center text-3xl font-bold tracking-wide sm:text-4xl"
+        >
           {locale === "es" ? event.name : event.nameEn}
         </GlitchText>
 
-        <p className="text-cyan-dim/90 max-w-3xl mx-auto text-sm sm:text-base leading-relaxed text-center">
+        <p className="text-cyan-dim/90 mx-auto max-w-3xl text-center text-sm leading-relaxed sm:text-base">
           {locale === "es" ? event.description : event.descriptionEn}
         </p>
       </GlitchCard>
@@ -93,13 +96,15 @@ export default async function EventDetailPage({
       {/* Photo Collage & Gallery */}
       {event.photos && event.photos.length > 0 && (
         <section className="w-full text-center">
-          <div className="flex flex-col items-center justify-center mb-6">
-            <div className="text-cyan flex items-center justify-center gap-2 font-mono text-xs tracking-widest uppercase mb-1">
+          <div className="mb-6 flex flex-col items-center justify-center">
+            <div className="text-cyan mb-1 flex items-center justify-center gap-2 font-mono text-xs tracking-widest uppercase">
               <IconSparkles size={14} className="text-cyan" />
               {msgs["events.gallery"]}
             </div>
             <h2 className="text-cyan font-display text-2xl font-bold tracking-wide">
-              {locale === "es" ? "Collage Fotográfico del Evento" : "Event Photo Collage"}
+              {locale === "es"
+                ? "Collage Fotográfico del Evento"
+                : "Event Photo Collage"}
             </h2>
           </div>
 

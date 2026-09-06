@@ -14,14 +14,21 @@ export default async function ProjectsPage({
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-16 text-center">
-      <GlitchText as="h1" className="text-cyan font-display text-4xl font-bold text-center block mx-auto">
+      <GlitchText
+        as="h1"
+        className="text-cyan font-display mx-auto block text-center text-4xl font-bold"
+      >
         {msgs["projects.title"]}
       </GlitchText>
-      <p className="text-cyan-dim mt-3 text-sm text-center max-w-2xl mx-auto">
+      <p className="text-cyan-dim mx-auto mt-3 max-w-2xl text-center text-sm">
         {msgs["projects.subtitle"]}
       </p>
 
-      <ProjectList projects={projects} locale={locale as Locale} messages={msgs} />
+      <ProjectList
+        projects={projects}
+        locale={locale as Locale}
+        messages={msgs}
+      />
     </main>
   );
 }

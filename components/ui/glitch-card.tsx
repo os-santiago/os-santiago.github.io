@@ -13,7 +13,13 @@ type GlitchCardProps = {
   external?: boolean;
 };
 
-export function GlitchCard({ children, className, innerClassName, href, external }: GlitchCardProps) {
+export function GlitchCard({
+  children,
+  className,
+  innerClassName,
+  href,
+  external,
+}: GlitchCardProps) {
   const [isGlitching, setIsGlitching] = useState(false);
 
   const handleEnter = () => setIsGlitching(true);
@@ -25,7 +31,10 @@ export function GlitchCard({ children, className, innerClassName, href, external
     className,
   );
 
-  const innerClass = cn("relative z-10 flex flex-1 h-full w-full", innerClassName ?? "flex-col");
+  const innerClass = cn(
+    "relative z-10 flex flex-1 h-full w-full",
+    innerClassName ?? "flex-col",
+  );
 
   if (href) {
     const isExternal = external ?? href.startsWith("http");

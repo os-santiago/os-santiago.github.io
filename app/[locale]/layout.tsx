@@ -49,9 +49,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className="bg-void text-cyan-dim min-h-screen antialiased">
-        <LayoutContent locale={locale as Locale}>
-          {children}
-        </LayoutContent>
+        <LayoutContent locale={locale as Locale}>{children}</LayoutContent>
       </body>
     </html>
   );

@@ -41,7 +41,14 @@ export function GlitchBreak({ className }: GlitchBreakProps) {
       canvas.height = height;
     }
 
-    const activeArtifacts: { text: string; x: number; y: number; alpha: number; maxLife: number; life: number }[] = [];
+    const activeArtifacts: {
+      text: string;
+      x: number;
+      y: number;
+      alpha: number;
+      maxLife: number;
+      life: number;
+    }[] = [];
 
     function draw() {
       if (!canvas || !ctx) return;
@@ -151,7 +158,10 @@ export function GlitchBreak({ className }: GlitchBreakProps) {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className={cn("pointer-events-none absolute top-0 left-0 w-full h-full", className)}
+      className={cn(
+        "pointer-events-none absolute top-0 left-0 h-full w-full",
+        className,
+      )}
     />
   );
 }
