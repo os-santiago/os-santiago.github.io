@@ -56,7 +56,7 @@ export function Display3D({ locale }: Display3DProps) {
   const staffMembers = [
     {
       userId: "axel-damage",
-      displayName: "NULL",
+      displayName: "Axel Moraga",
       github: "Axel-DaMage",
       avatarUrl: "https://avatars.githubusercontent.com/u/178504369?v=4",
       linkedin: "https://www.linkedin.com/in/axel-moraga/",
