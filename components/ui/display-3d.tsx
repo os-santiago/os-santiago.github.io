@@ -497,12 +497,11 @@ export function Display3D({ locale }: Display3DProps) {
               <span className="font-mono text-xs text-cyan font-bold tracking-widest">ECOSISTEMA PRINCIPAL</span>
             </div>
 
-            {/* Content area: 100% space filled with the 5 projects */}
+            {/* Content area: 100% space filled with the 5 clean cards without mini QRs */}
             <div className="my-auto flex-1 flex flex-col justify-center py-2">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 w-full">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 w-full">
                 {spotlightProjects.slice(0, 5).map((p, idx) => {
-                  const targetUrl = p.homepageUrl || p.repoUrl;
-                  const isLargeCard = idx === 0; // HomeDir takes 2 cols on tablet or prominent slot
+                  const isLargeCard = idx === 0; // HomeDir occupies 2 columns for a balanced 5-card grid
                   return (
                     <div
                       key={p.name}
@@ -510,12 +509,12 @@ export function Display3D({ locale }: Display3DProps) {
                         e.stopPropagation();
                         setSelectedProject(selectedProject?.name === p.name ? null : p);
                       }}
-                      className={`interactive-card cursor-pointer group p-3.5 rounded-xl border border-cyan/25 bg-[#081524] hover:border-cyan hover:bg-[#0c1e34] transition-all flex items-center justify-between gap-3 shadow-md ${
+                      className={`interactive-card cursor-pointer group p-3.5 rounded-xl border border-cyan/20 bg-[#081524] hover:border-cyan hover:bg-[#0c1e34] transition-all flex flex-col justify-between shadow-md ${
                         isLargeCard ? "sm:col-span-2 lg:col-span-2" : ""
                       }`}
                     >
-                      <div className="min-w-0 flex-1 text-left">
-                        <div className="flex items-center gap-2 mb-1">
+                      <div>
+                        <div className="flex items-center justify-between gap-2 mb-1.5">
                           <span className="font-display font-black text-cyan text-sm sm:text-base group-hover:text-cyan-bright transition-colors truncate">
                             {p.name}
                           </span>
@@ -526,15 +525,12 @@ export function Display3D({ locale }: Display3DProps) {
                         <p className="text-slate-300 text-xs leading-relaxed line-clamp-2 font-normal">
                           {p.description}
                         </p>
-                        <div className="mt-1.5 text-[10px] font-mono text-cyan-dim truncate">
-                          {p.authors?.[0]?.name || "OS Santiago"}
-                        </div>
                       </div>
 
-                      <div className="flex-shrink-0 flex flex-col items-center justify-center p-1.5 rounded-lg border border-cyan/30 bg-[#020509] group-hover:border-cyan transition-colors">
-                        <QRCodeSVG value={targetUrl} size={50} />
-                        <span className="text-[8px] font-mono text-cyan font-bold mt-1 tracking-tighter uppercase">
-                          QR
+                      <div className="mt-2 pt-1.5 border-t border-cyan/15 flex items-center justify-between text-[10px] font-mono text-cyan-dim">
+                        <span className="truncate">{p.authors?.[0]?.name || "OS Santiago"}</span>
+                        <span className="text-cyan font-bold group-hover:text-cyan-bright flex-shrink-0">
+                          VER QR →
                         </span>
                       </div>
                     </div>
