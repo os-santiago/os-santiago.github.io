@@ -153,6 +153,9 @@ export function Display3D({ locale }: Display3DProps) {
       "https://quickchart.io/qr?text=" +
         encodeURIComponent("https://homedir.opensourcesantiago.io") +
         "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg",
+      "https://quickchart.io/qr?text=" +
+        encodeURIComponent("https://opensourcesantiago.io") +
+        "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg",
       ...spotlightProjects.map(
         (p) =>
           "https://quickchart.io/qr?text=" +
@@ -239,8 +242,8 @@ export function Display3D({ locale }: Display3DProps) {
 
     const nextY = dragStartRef.current.rotY + deltaX * 0.42;
     const nextX = Math.max(
-      -60,
-      Math.min(60, dragStartRef.current.rotX - deltaY * 0.35),
+      -75,
+      Math.min(75, dragStartRef.current.rotX - deltaY * 0.38),
     );
 
     setManualRotY(nextY);
@@ -850,6 +853,56 @@ export function Display3D({ locale }: Display3DProps) {
               <span className="text-cyan font-bold">
                 NOS VEMOS EN EL PRÓXIMO ENCUENTRO
               </span>
+            </div>
+          </div>
+
+          {/* ================= FLOOR BASE (TOP-FACING): QR WEB OFICIAL (PRODUCCIÓN) ================= */}
+          <div
+            className="border-cyan/50 pointer-events-auto absolute flex flex-col items-center justify-center rounded-3xl border-2 bg-[#020710]/95 p-8 text-center shadow-[0_0_120px_rgba(0,240,255,0.35)]"
+            style={{
+              width: "600px",
+              height: "600px",
+              left: "50%",
+              top: "50%",
+              marginLeft: "-300px",
+              marginTop: "-300px",
+              transform: `rotateX(90deg) translateZ(-280px)`,
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden",
+            }}
+          >
+            <div className="border-cyan/40 bg-cyan/15 text-cyan mb-6 flex items-center gap-2.5 rounded-full border px-5 py-1.5 font-mono text-xs font-bold tracking-widest uppercase shadow-md">
+              <span className="bg-cyan h-2.5 w-2.5 animate-pulse rounded-full" />
+              <span>OPEN SOURCE SANTIAGO // WEB OFICIAL</span>
+            </div>
+
+            <div className="border-cyan/60 relative rounded-3xl border-2 bg-[#020509] p-5 shadow-[0_0_50px_rgba(0,240,255,0.2)]">
+              <QRCodeSVG value="https://opensourcesantiago.io" size={380} />
+            </div>
+          </div>
+
+          {/* ================= FLOOR BASE (BOTTOM-FACING): QR WEB OFICIAL (ESPEJO / LEGIBLE DESDE ABAJO) ================= */}
+          <div
+            className="border-cyan/50 pointer-events-auto absolute flex flex-col items-center justify-center rounded-3xl border-2 bg-[#020710]/95 p-8 text-center shadow-[0_0_120px_rgba(0,240,255,0.35)]"
+            style={{
+              width: "600px",
+              height: "600px",
+              left: "50%",
+              top: "50%",
+              marginLeft: "-300px",
+              marginTop: "-300px",
+              transform: `rotateX(-90deg) translateZ(280px) rotateZ(180deg)`,
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden",
+            }}
+          >
+            <div className="border-cyan/40 bg-cyan/15 text-cyan mb-6 flex items-center gap-2.5 rounded-full border px-5 py-1.5 font-mono text-xs font-bold tracking-widest uppercase shadow-md">
+              <span className="bg-cyan h-2.5 w-2.5 animate-pulse rounded-full" />
+              <span>OPEN SOURCE SANTIAGO // WEB OFICIAL</span>
+            </div>
+
+            <div className="border-cyan/60 relative rounded-3xl border-2 bg-[#020509] p-5 shadow-[0_0_50px_rgba(0,240,255,0.2)]">
+              <QRCodeSVG value="https://opensourcesantiago.io" size={380} />
             </div>
           </div>
         </div>
