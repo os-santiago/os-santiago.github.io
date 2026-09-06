@@ -46,7 +46,57 @@ export function Display3D({ locale }: Display3DProps) {
   const AUTOPLAY_INTERVAL_MS = 10000;
   const TICK_INTERVAL_MS = 100;
 
-  const organizerMembers = members.filter((m) => m.role === "admin");
+  // Staff list with exact linkedins & Sebithaz added
+  const staffMembers = [
+    {
+      userId: 'axel-damage',
+      displayName: 'NULL',
+      github: 'Axel-DaMage',
+      avatarUrl: 'https://avatars.githubusercontent.com/u/178504369?v=4',
+      linkedin: 'https://www.linkedin.com/in/axel-moraga/',
+      role: 'Staff & Lead',
+    },
+    {
+      userId: 'scanalesespinoza',
+      displayName: 'Sergio Canales',
+      github: 'scanalesespinoza',
+      avatarUrl: 'https://avatars.githubusercontent.com/u/11546953?v=4',
+      linkedin: 'https://www.linkedin.com/in/sergio-canales-espinoza/',
+      role: 'Staff & Mentor',
+    },
+    {
+      userId: 'caiodonascimento',
+      displayName: 'Caio Medeiros',
+      github: 'caiodonascimento',
+      avatarUrl: 'https://avatars.githubusercontent.com/u/16939674?v=4',
+      linkedin: 'https://www.linkedin.com/in/caiodona/',
+      role: 'Staff & DevOps',
+    },
+    {
+      userId: 'pcastelo',
+      displayName: 'Pablo Castelo',
+      github: 'pcastelo',
+      avatarUrl: 'https://avatars.githubusercontent.com/u/10425803?v=4',
+      linkedin: 'https://www.linkedin.com/in/pablocastelo/',
+      role: 'Staff & Cloud',
+    },
+    {
+      userId: 'vectorg99',
+      displayName: 'Diego Hernandez',
+      github: 'VECTORG99',
+      avatarUrl: 'https://avatars.githubusercontent.com/u/205457455?v=4',
+      linkedin: 'https://www.linkedin.com/in/vectorg99/',
+      role: 'Staff & Dev',
+    },
+    {
+      userId: 'sebithaz-dev',
+      displayName: 'Seb',
+      github: 'Sebithaz-dev',
+      avatarUrl: 'https://avatars.githubusercontent.com/u/172279538?v=4',
+      linkedin: 'https://www.linkedin.com/in/sebastian-escobar-37b7a8287/',
+      role: 'Staff & Security',
+    },
+  ];
   
   // Specific requested projects: Homedir, Artemisa, ADEV, Joidy, devopsdays
   const requestedProjectKeys = ["homedir", "artemisa", "adev", "joidy", "devopsdays"];
@@ -71,7 +121,8 @@ export function Display3D({ locale }: Display3DProps) {
     const urlsToPreload = [
       "/logo.png",
       "/events/happy-hour-november-2024/photo-06.webp",
-      ...organizerMembers.map((m) => m.avatarUrl),
+      ...staffMembers.map((m) => m.avatarUrl),
+      ...staffMembers.map((m) => "https://quickchart.io/qr?text=" + encodeURIComponent(m.linkedin) + "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg"),
       // All QR codes used in the kiosk
       "https://quickchart.io/qr?text=" + encodeURIComponent("https://discord.gg/3eawzc9ybc") + "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg",
       "https://quickchart.io/qr?text=" + encodeURIComponent("https://github.com/os-santiago") + "&size=435&ecLevel=Q&margin=1&dark=00f0ff&light=00000000&format=svg",
@@ -435,60 +486,59 @@ export function Display3D({ locale }: Display3DProps) {
                   Equipo de Organización
                 </span>
               </div>
-              <span className="font-mono text-xs text-cyan font-bold tracking-widest">STAFF & COMUNIDAD</span>
+              <span className="font-mono text-xs text-cyan font-bold tracking-widest">6 MIEMBROS STAFF</span>
             </div>
 
-            {/* Full-space responsive grid filling 100% of the slide */}
+            {/* Equitable 3x2 grid filling 100% of space, identical for all 6 members */}
             <div className="my-auto flex-1 flex flex-col justify-center py-2">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 w-full">
-                {organizerMembers.map((member, idx) => {
-                  const isHeroMember = idx === 0; // NULL / Axel takes 2 cols on tablet/desktop for balance
-                  return (
-                    <div
-                      key={member.userId}
-                      className={`p-3.5 rounded-xl border border-cyan/25 bg-[#081524] hover:border-cyan hover:bg-[#0c1e34] transition-all flex items-center gap-3.5 shadow-md ${
-                        isHeroMember ? "sm:col-span-2 lg:col-span-2" : ""
-                      }`}
-                    >
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5 w-full">
+                {staffMembers.map((member) => (
+                  <div
+                    key={member.userId}
+                    className="p-3 rounded-xl border border-cyan/20 bg-[#081524] hover:border-cyan/50 hover:bg-[#0c1e34] transition-all flex items-center justify-between gap-2.5 shadow-sm"
+                  >
+                    {/* Left info: Avatar & Data */}
+                    <div className="flex items-center gap-2.5 min-w-0 flex-1 text-left">
                       <div className="relative flex-shrink-0">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={member.avatarUrl}
                           alt={member.displayName}
-                          className="w-13 h-13 sm:w-14 sm:h-14 rounded-full border-2 border-cyan/40 object-cover"
+                          className="w-11 h-11 rounded-full border border-cyan/40 object-cover"
                         />
-                        <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-[#020509] border border-cyan flex items-center justify-center">
+                        <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-[#020509] border border-cyan flex items-center justify-center">
                           <span className="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse" />
-                        </div>
+                        </span>
                       </div>
 
-                      <div className="min-w-0 flex-1 text-left">
-                        <div className="flex items-center justify-between gap-2 mb-0.5">
-                          <span className="font-sans text-sm sm:text-base font-bold text-slate-100 truncate">
-                            {member.displayName}
-                          </span>
-                          <span className="font-mono text-[9px] text-cyan-dim uppercase tracking-wider font-bold px-1.5 py-0.2 rounded border border-cyan/20 flex-shrink-0">
-                            STAFF
-                          </span>
+                      <div className="min-w-0 flex-1 overflow-hidden">
+                        <div className="font-sans text-xs sm:text-sm font-bold text-slate-100 truncate">
+                          {member.displayName}
                         </div>
-                        <div className="font-mono text-xs text-cyan font-semibold truncate">
+                        <div className="font-mono text-[11px] text-cyan truncate font-semibold">
                           @{member.github}
                         </div>
-                        {member.bio && (
-                          <p className="text-slate-300 text-xs line-clamp-1 mt-1 font-normal">
-                            {member.bio}
-                          </p>
-                        )}
+                        <div className="font-mono text-[9px] text-cyan-dim uppercase tracking-wider font-bold mt-0.5">
+                          {member.role}
+                        </div>
                       </div>
                     </div>
-                  );
-                })}
+
+                    {/* Right info: LinkedIn QR */}
+                    <div className="flex-shrink-0 flex flex-col items-center justify-center p-1 rounded-lg border border-cyan/25 bg-[#020509]">
+                      <QRCodeSVG value={member.linkedin} size={42} />
+                      <span className="text-[8px] font-mono text-cyan-bright font-bold mt-0.5 tracking-tighter uppercase">
+                        IN
+                      </span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
             <div className="border-t border-cyan/20 pt-3 flex items-center justify-between font-mono text-xs text-cyan-dim font-medium flex-shrink-0">
-              <span>IMPULSADO POR VOLUNTARIOS Y LA COMUNIDAD</span>
-              <span className="text-cyan font-bold">@OS-SANTIAGO</span>
+              <span>EQUIPO HORIZONTAL // STAFF OPEN SOURCE SANTIAGO</span>
+              <span className="text-cyan font-bold">ESCANEA CADA LINKEDIN</span>
             </div>
           </div>
 
