@@ -104,13 +104,14 @@ export function Display3D({ locale }: Display3DProps) {
     },
   ];
 
-  // Specific requested projects: Homedir, Artemisa, ADEV, Joidy, devopsdays
+  // Specific requested projects: Homedir, Artemisa, ADEV, Joidy, devopsdays, DataGestor (6 projects for balanced 3x2 grid)
   const requestedProjectKeys = [
     "homedir",
     "artemisa",
     "adev",
     "joidy",
     "devopsdays",
+    "datagestor",
   ];
   const spotlightProjects = projects.filter((p) =>
     requestedProjectKeys.some((k) => p.name.toLowerCase().includes(k)),
@@ -542,8 +543,8 @@ export function Display3D({ locale }: Display3DProps) {
             </div>
 
             {/* Equitable 3x2 grid filling space, identical for all 6 members, click to view QR */}
-            <div className="my-auto">
-              <div className="mx-auto grid max-w-2xl grid-cols-2 gap-3.5 sm:grid-cols-3">
+            <div className="my-auto flex flex-1 flex-col justify-center py-3">
+              <div className="mx-auto grid w-full max-w-2xl grid-cols-2 gap-3.5 sm:grid-cols-3">
                 {staffMembers.map((member) => (
                   <div
                     key={member.userId}
@@ -555,14 +556,14 @@ export function Display3D({ locale }: Display3DProps) {
                           : member,
                       );
                     }}
-                    className="interactive-card group border-cyan/20 hover:border-cyan flex cursor-pointer items-center gap-3.5 rounded-xl border bg-[#081524] p-3.5 shadow-sm transition-all hover:bg-[#0c1e34]"
+                    className="interactive-card group border-cyan/20 hover:border-cyan flex cursor-pointer items-center gap-3.5 rounded-xl border bg-[#081524] p-4 shadow-sm transition-all hover:bg-[#0c1e34]"
                   >
                     <div className="relative flex-shrink-0">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={member.avatarUrl}
                         alt={member.displayName}
-                        className="border-cyan/40 h-12 w-12 rounded-full border object-cover"
+                        className="border-cyan/40 h-13 w-13 rounded-full border object-cover"
                       />
                       <span className="border-cyan absolute -right-0.5 -bottom-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full border bg-[#020509]">
                         <span className="bg-cyan h-1.5 w-1.5 animate-pulse rounded-full" />
@@ -581,7 +582,7 @@ export function Display3D({ locale }: Display3DProps) {
                       <div className="text-cyan truncate font-mono text-xs font-semibold">
                         @{member.github}
                       </div>
-                      <div className="text-cyan-dim mt-1 flex items-center justify-end font-mono text-[10px]">
+                      <div className="text-cyan-dim mt-1.5 flex items-center justify-end font-mono text-[10px]">
                         <span className="text-cyan group-hover:text-cyan-bright flex-shrink-0 font-bold">
                           QR LINKEDIN →
                         </span>
@@ -680,11 +681,10 @@ export function Display3D({ locale }: Display3DProps) {
               </span>
             </div>
 
-            {/* Content area: 100% space filled with the 5 clean cards without mini QRs */}
+            {/* Content area: 100% space filled with 6 equitable cards without mini QRs */}
             <div className="my-auto flex flex-1 flex-col justify-center py-2">
-              <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {spotlightProjects.slice(0, 5).map((p, idx) => {
-                  const isLargeCard = idx === 0; // HomeDir occupies 2 columns for a balanced 5-card grid
+              <div className="grid w-full grid-cols-2 gap-3.5 sm:grid-cols-3">
+                {spotlightProjects.slice(0, 6).map((p) => {
                   return (
                     <div
                       key={p.name}
@@ -694,9 +694,7 @@ export function Display3D({ locale }: Display3DProps) {
                           selectedProject?.name === p.name ? null : p,
                         );
                       }}
-                      className={`interactive-card group border-cyan/20 hover:border-cyan flex cursor-pointer flex-col justify-between rounded-xl border bg-[#081524] p-3.5 shadow-md transition-all hover:bg-[#0c1e34] ${
-                        isLargeCard ? "sm:col-span-2 lg:col-span-2" : ""
-                      }`}
+                      className="interactive-card group border-cyan/20 hover:border-cyan flex cursor-pointer flex-col justify-between rounded-xl border bg-[#081524] p-3.5 shadow-md transition-all hover:bg-[#0c1e34]"
                     >
                       <div>
                         <div className="mb-1.5 flex items-center justify-between gap-2">
@@ -727,7 +725,9 @@ export function Display3D({ locale }: Display3DProps) {
             </div>
 
             <div className="border-cyan/20 text-cyan-dim flex flex-shrink-0 items-center justify-between border-t pt-3 font-mono text-xs font-medium">
-              <span>HOMEDIR // ARTEMISA // ADEV // JOIDY // DEVOPSDAYS</span>
+              <span>
+                HOMEDIR // ARTEMISA // ADEV // JOIDY // DEVOPSDAYS // DATAGESTOR
+              </span>
               <span className="text-cyan font-bold">
                 TOCA CUALQUIER PROYECTO PARA QR GRANDE
               </span>
