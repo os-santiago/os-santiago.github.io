@@ -7,9 +7,7 @@ import {
   type Locale,
 } from "@/i18n/config";
 import { getMessages } from "@/i18n";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
-import { ScanlineOverlay } from "@/components/ui/scanline-overlay";
+import { LayoutContent } from "@/components/layout/layout-content";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -51,10 +49,9 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className="bg-void text-cyan-dim min-h-screen antialiased">
-        <ScanlineOverlay />
-        <Navbar locale={locale as Locale} />
-        <div className="pt-14">{children}</div>
-        <Footer locale={locale as Locale} />
+        <LayoutContent locale={locale as Locale}>
+          {children}
+        </LayoutContent>
       </body>
     </html>
   );

@@ -353,3 +353,41 @@
   border-bottom: 1px solid var(--color-cyan);
   border-right: 1px solid var(--color-cyan);
 }
+
+/* === 3D Display HD Hardware Acceleration & Text Sharpness === */
+.display-3d-stage {
+  perspective: 2000px;
+  transform-style: preserve-3d;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.display-3d-prism {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.display-3d-face {
+  transform-style: preserve-3d;
+  backface-visibility: visible;
+  -webkit-backface-visibility: visible;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-rendering: geometricPrecision;
+  transform: translateZ(0);
+}
+
+/* Prevent accidental text selection cyan flash on display kiosk */
+.display-3d-stage,
+.display-3d-prism,
+.display-3d-face,
+.display-3d-face * {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+.display-3d-stage ::selection,
+.display-3d-prism ::selection,
+.display-3d-face ::selection {
+  background: transparent !important;
+  color: inherit !important;
+}
