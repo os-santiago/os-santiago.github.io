@@ -66,8 +66,10 @@ export const events: Event[] = [
       {
         url: "/events/happy-hour-november-2024/photo-06.webp",
         alt: "Happy Hour November 2024 - Foto oficial de la comunidad Open Source Santiago",
-        caption: "Foto oficial de la comunidad Open Source Santiago en Happy Hour November 2024",
-        captionEn: "Official group photo of Open Source Santiago community at Happy Hour November 2024",
+        caption:
+          "Foto oficial de la comunidad Open Source Santiago en Happy Hour November 2024",
+        captionEn:
+          "Official group photo of Open Source Santiago community at Happy Hour November 2024",
       },
       {
         url: "/events/happy-hour-november-2024/photo-01.webp",

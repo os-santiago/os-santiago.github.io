@@ -56,12 +56,16 @@ export function CountdownTimer({ targetDate, labels }: CountdownProps) {
     };
   }, [target]);
 
-  const isLive = timeLeft.days === 0 && timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0;
+  const isLive =
+    timeLeft.days === 0 &&
+    timeLeft.hours === 0 &&
+    timeLeft.minutes === 0 &&
+    timeLeft.seconds === 0;
 
   if (isLive) {
     return (
-      <div className="flex items-center justify-center gap-2 px-6 py-3 border border-red-500/40 bg-red-950/20 text-red-500 rounded-sm font-mono text-xl font-bold tracking-widest animate-pulse shadow-[0_0_20px_-3px_rgba(239,68,68,0.4)]">
-        <span className="w-3.5 h-3.5 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
+      <div className="flex animate-pulse items-center justify-center gap-2 rounded-sm border border-red-500/40 bg-red-950/20 px-6 py-3 font-mono text-xl font-bold tracking-widest text-red-500 shadow-[0_0_20px_-3px_rgba(239,68,68,0.4)]">
+        <span className="h-3.5 w-3.5 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
         LIVE
       </div>
     );
@@ -75,13 +79,16 @@ export function CountdownTimer({ targetDate, labels }: CountdownProps) {
   ];
 
   return (
-    <div className="flex gap-4 sm:gap-6 justify-center flex-wrap">
+    <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
       {units.map((unit) => (
-        <div key={unit.label} className="text-center min-w-[70px] sm:min-w-[90px] px-3 py-4 border border-emerald-500/30 bg-emerald-950/20 rounded-sm shadow-[0_0_15px_-3px_rgba(16,185,129,0.3)]">
-          <div className="text-emerald-400 font-mono text-5xl font-bold tabular-nums sm:text-6xl tracking-tight drop-shadow-[0_0_10px_rgba(52,211,153,0.6)]">
+        <div
+          key={unit.label}
+          className="min-w-[70px] rounded-sm border border-emerald-500/30 bg-emerald-950/20 px-3 py-4 text-center shadow-[0_0_15px_-3px_rgba(16,185,129,0.3)] sm:min-w-[90px]"
+        >
+          <div className="font-mono text-5xl font-bold tracking-tight text-emerald-400 tabular-nums drop-shadow-[0_0_10px_rgba(52,211,153,0.6)] sm:text-6xl">
             {String(unit.value).padStart(2, "0")}
           </div>
-          <div className="text-emerald-500 font-mono text-[10px] sm:text-xs tracking-widest uppercase mt-2 font-semibold">
+          <div className="mt-2 font-mono text-[10px] font-semibold tracking-widest text-emerald-500 uppercase sm:text-xs">
             {unit.label}
           </div>
         </div>

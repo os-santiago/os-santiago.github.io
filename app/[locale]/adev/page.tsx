@@ -41,36 +41,39 @@ export default async function AdevPage({
   ];
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-6 sm:py-8 min-h-[calc(100vh-3.5rem)] flex flex-col justify-between text-center">
+    <main className="mx-auto flex min-h-[calc(100vh-3.5rem)] max-w-5xl flex-col justify-between px-6 py-6 text-center sm:py-8">
       {/* Header Section */}
       <div className="flex flex-col items-center">
-        <GlitchText as="h1" className="text-cyan font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-center block mx-auto">
+        <GlitchText
+          as="h1"
+          className="text-cyan font-display mx-auto block text-center text-3xl font-bold sm:text-4xl lg:text-5xl"
+        >
           {msgs["adev.title"]}
         </GlitchText>
-        <p className="text-cyan-bright font-mono text-xs sm:text-sm tracking-wide mt-2 text-center mx-auto max-w-2xl">
+        <p className="text-cyan-bright mx-auto mt-2 max-w-2xl text-center font-mono text-xs tracking-wide sm:text-sm">
           {msgs["adev.tagline"]}
         </p>
-        <p className="text-cyan-dim mt-3 text-xs sm:text-sm leading-relaxed text-center mx-auto max-w-3xl">
+        <p className="text-cyan-dim mx-auto mt-3 max-w-3xl text-center text-xs leading-relaxed sm:text-sm">
           {msgs["adev.definition"]}
         </p>
       </div>
 
       {/* 3 Core Pillars */}
       <div className="my-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+        <div className="grid grid-cols-1 gap-4 text-left md:grid-cols-3">
           {pillars.map((pillar) => (
             <GlitchCard
               key={pillar.id}
-              className="cyber-hud-box p-4 sm:p-5 rounded-sm bg-void-surface/70 backdrop-blur-sm border border-cyan/15 hover:border-cyan/40 hover:shadow-[0_0_25px_rgba(0,240,255,0.2)] transition-all duration-300 flex flex-col justify-between h-full"
+              className="cyber-hud-box bg-void-surface/70 border-cyan/15 hover:border-cyan/40 flex h-full flex-col justify-between rounded-sm border p-4 backdrop-blur-sm transition-all duration-300 hover:shadow-[0_0_25px_rgba(0,240,255,0.2)] sm:p-5"
             >
               <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="font-mono text-[11px] text-cyan-deep uppercase tracking-widest">
+                <div className="mb-2 flex items-center justify-between">
+                  <span className="text-cyan-deep font-mono text-[11px] tracking-widest uppercase">
                     PILLAR #{pillar.id}
                   </span>
                   {pillar.icon}
                 </div>
-                <h3 className="text-cyan font-display text-sm sm:text-base font-bold mb-1.5">
+                <h3 className="text-cyan font-display mb-1.5 text-sm font-bold sm:text-base">
                   {pillar.title}
                 </h3>
                 <p className="text-cyan-dim/85 text-xs leading-relaxed">
@@ -84,23 +87,23 @@ export default async function AdevPage({
 
       {/* Book & Latest Release Download Card */}
       <div className="w-full">
-        <GlitchCard className="cyber-hud-box p-5 sm:p-6 rounded-sm bg-void-surface/80 backdrop-blur-sm border border-cyan/30 text-center flex flex-col items-center shadow-[0_0_30px_rgba(0,240,255,0.12)]">
-          <div className="flex items-center justify-center gap-2 mb-1">
+        <GlitchCard className="cyber-hud-box bg-void-surface/80 border-cyan/30 flex flex-col items-center rounded-sm border p-5 text-center shadow-[0_0_30px_rgba(0,240,255,0.12)] backdrop-blur-sm sm:p-6">
+          <div className="mb-1 flex items-center justify-center gap-2">
             <IconBook size={20} className="text-cyan" />
-            <h2 className="text-cyan font-display text-xl sm:text-2xl font-bold text-center">
+            <h2 className="text-cyan font-display text-center text-xl font-bold sm:text-2xl">
               {msgs["adev.book.card.title"]}
             </h2>
           </div>
 
-          <p className="text-cyan-dim text-xs sm:text-sm max-w-xl mx-auto text-center leading-relaxed">
+          <p className="text-cyan-dim mx-auto max-w-xl text-center text-xs leading-relaxed sm:text-sm">
             {msgs["adev.book.card.desc"]}
           </p>
 
-          <p className="text-cyan-deep font-mono text-[11px] mt-1.5 tracking-wide">
+          <p className="text-cyan-deep mt-1.5 font-mono text-[11px] tracking-wide">
             {msgs["adev.book.card.formats"]}
           </p>
 
-          <div className="mt-4 flex flex-wrap gap-3.5 justify-center items-center">
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-3.5">
             <NeonButton
               href="https://github.com/scanalesespinoza/adev/releases/latest"
               external

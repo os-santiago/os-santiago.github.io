@@ -11,7 +11,8 @@ const es: Messages = {
   "nav.members": "Miembros",
 
   "home.title": "Open Source Santiago",
-  "home.tagline": "Comunidad, Código Abierto y Colaboración Real: Abiertos al Mundo",
+  "home.tagline":
+    "Comunidad, Código Abierto y Colaboración Real: Abiertos al Mundo",
   "home.mission":
     "Espacio comunitario de desarrolladores, ingenieros y creadores. Impulsamos proyectos reales de código abierto, compartimos conocimiento práctico y fomentamos la cultura DevOps y el desarrollo aumentado con rigor e inclusión.",
   "home.cta.discord": "Discord",
@@ -19,8 +20,10 @@ const es: Messages = {
   "home.cta.homedir": "HomeDir",
   "home.cta.explore": "Explorar HomeDir",
   "home.cta.adev": "Conocer ADEV",
-  "home.closing": "Bienvenid@ a la comunidad. Aquí el código abierto transforma proyectos y personas.",
-  "home.copyright": "© {year} Open Source Santiago. Comunidad sin fines de lucro abierta a todos.",
+  "home.closing":
+    "Bienvenid@ a la comunidad. Aquí el código abierto transforma proyectos y personas.",
+  "home.copyright":
+    "© {year} Open Source Santiago. Comunidad sin fines de lucro abierta a todos.",
 
   "home.event.title": "DevOpsDays Santiago 2026",
   "home.event.date": "8 y 9 de Septiembre, 2026",
@@ -59,7 +62,8 @@ const es: Messages = {
     "Trazabilidad ininterrumpida: cada cambio se vincula a un plan atómico, prompt y evidencia de testeo.",
 
   "home.projects.title": "Proyectos",
-  "home.projects.subtitle": "Software funcional, MVPs y librerías creadas por los miembros de nuestra comunidad",
+  "home.projects.subtitle":
+    "Software funcional, MVPs y librerías creadas por los miembros de nuestra comunidad",
   "home.projects.cta": "Ver todos los proyectos",
 
   "home.community.title": "Comunidad",
@@ -78,7 +82,8 @@ const es: Messages = {
   "about.join": "Únete ahora",
 
   "adev.title": "Augmented Development (A-Dev)",
-  "adev.tagline": "Marco operativo abierto para el desarrollo de software asistido por IA",
+  "adev.tagline":
+    "Marco operativo abierto para el desarrollo de software asistido por IA",
   "adev.definition":
     "A-Dev es un marco de trabajo neutral para orquestar la entrega de software asistida por IA y agentes. Transforma expectativas humanas en restricciones explícitas, capacidades acotadas, acciones auditables y aprendizaje respaldado por evidencia.",
   "adev.quote":
@@ -103,7 +108,8 @@ const es: Messages = {
   "adev.book.card.title": "GRATIS: Lee el Libro Completo",
   "adev.book.card.desc":
     "Descarga y lee la edición consolidada del libro ADEV en formato PDF o EPUB, disponible en español e inglés.",
-  "adev.book.card.formats": "Formatos disponibles: PDF & EPUB (ES / EN) • Open Source (CC BY-SA 4.0)",
+  "adev.book.card.formats":
+    "Formatos disponibles: PDF & EPUB (ES / EN) • Open Source (CC BY-SA 4.0)",
   "adev.cta.book": "Descargar / Leer Última Versión (Latest Release)",
   "adev.cta.repo": "Ver Repositorio en GitHub",
 
@@ -121,7 +127,8 @@ const es: Messages = {
   "projects.category.org": "Organización",
 
   "events.title": "Eventos & Meetups",
-  "events.subtitle": "Agenda comunitaria, encuentros presenciales y memoria visual de Open Source Santiago",
+  "events.subtitle":
+    "Agenda comunitaria, encuentros presenciales y memoria visual de Open Source Santiago",
   "events.upcoming": "Próximos Eventos",
   "events.past": "Eventos Anteriores",
   "events.pastEvents": "Eventos Realizados",
@@ -140,7 +147,8 @@ const es: Messages = {
   "events.seconds": "segundos",
 
   "members.title": "Miembros & Colaboradores",
-  "members.subtitle": "Personas que participan, crean y dan vida a la comunidad Open Source Santiago",
+  "members.subtitle":
+    "Personas que participan, crean y dan vida a la comunidad Open Source Santiago",
   "members.join.title": "¿Quieres sumarte y colaborar?",
   "members.join.desc":
     "Crea tu perfil en HomeDir, conecta tu cuenta de GitHub, participa en proyectos activos y comparte tus iniciativas con la comunidad.",
@@ -161,7 +169,8 @@ const en: Messages = {
   "nav.members": "Members",
 
   "home.title": "Open Source Santiago",
-  "home.tagline": "Community, Open Source & Real Collaboration: Open to the World",
+  "home.tagline":
+    "Community, Open Source & Real Collaboration: Open to the World",
   "home.mission":
     "An open community of developers, engineers, and creators. We build functional open-source software, share practical knowledge, and advance DevOps culture and augmented engineering with rigor and inclusivity.",
   "home.cta.discord": "Discord",
@@ -169,8 +178,10 @@ const en: Messages = {
   "home.cta.homedir": "HomeDir",
   "home.cta.explore": "Explore HomeDir",
   "home.cta.adev": "Explore ADEV",
-  "home.closing": "Welcome to the community. Here, open-source code transforms projects and people.",
-  "home.copyright": "© {year} Open Source Santiago. Non-profit community open to everyone.",
+  "home.closing":
+    "Welcome to the community. Here, open-source code transforms projects and people.",
+  "home.copyright":
+    "© {year} Open Source Santiago. Non-profit community open to everyone.",
 
   "home.event.title": "DevOpsDays Santiago 2026",
   "home.event.date": "September 8-9, 2026",
@@ -209,7 +220,8 @@ const en: Messages = {
     "Unbroken traceability: every change connects to an atomic plan, prompt, and test evidence.",
 
   "home.projects.title": "Projects",
-  "home.projects.subtitle": "Functional software, MVPs, and tools built by our community members",
+  "home.projects.subtitle":
+    "Functional software, MVPs, and tools built by our community members",
   "home.projects.cta": "View all projects",
 
   "home.community.title": "Community",
@@ -228,7 +240,8 @@ const en: Messages = {
   "about.join": "Join us now",
 
   "adev.title": "Augmented Development (A-Dev)",
-  "adev.tagline": "Open operating framework for model- and agent-assisted software delivery",
+  "adev.tagline":
+    "Open operating framework for model- and agent-assisted software delivery",
   "adev.definition":
     "A-Dev is a vendor-neutral operating framework for model- and agent-assisted software delivery. It turns human expectations into explicit constraints, bounded capabilities, reviewable actions, and evidence-backed learning.",
   "adev.quote":
@@ -253,7 +266,8 @@ const en: Messages = {
   "adev.book.card.title": "FREE: Read the Full Book",
   "adev.book.card.desc":
     "Download and read the consolidated edition of the ADEV book in PDF or EPUB format, available in both Spanish and English.",
-  "adev.book.card.formats": "Available formats: PDF & EPUB (ES / EN) • Open Source (CC BY-SA 4.0)",
+  "adev.book.card.formats":
+    "Available formats: PDF & EPUB (ES / EN) • Open Source (CC BY-SA 4.0)",
   "adev.cta.book": "Download / Read Latest Release",
   "adev.cta.repo": "View Repository on GitHub",
 
@@ -271,7 +285,8 @@ const en: Messages = {
   "projects.category.org": "Organization",
 
   "events.title": "Events & Meetups",
-  "events.subtitle": "Community agenda, in-person meetups, and photo memories from Open Source Santiago",
+  "events.subtitle":
+    "Community agenda, in-person meetups, and photo memories from Open Source Santiago",
   "events.upcoming": "Upcoming Events",
   "events.past": "Past Events",
   "events.pastEvents": "Past Events & Meetups",
@@ -290,7 +305,8 @@ const en: Messages = {
   "events.seconds": "seconds",
 
   "members.title": "Members & Contributors",
-  "members.subtitle": "People who build, collaborate, and bring the Open Source Santiago community to life",
+  "members.subtitle":
+    "People who build, collaborate, and bring the Open Source Santiago community to life",
   "members.join.title": "Want to join and collaborate?",
   "members.join.desc":
     "Create your profile on HomeDir, connect your GitHub account, join active projects, and share your ideas with the community.",

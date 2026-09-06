@@ -12,15 +12,18 @@ type EventDetailGalleryProps = {
   locale: Locale;
 };
 
-export function EventDetailGallery({ photos, locale }: EventDetailGalleryProps) {
+export function EventDetailGallery({
+  photos,
+  locale,
+}: EventDetailGalleryProps) {
   const [selectedPhoto, setSelectedPhoto] = useState<EventPhoto | null>(null);
 
   if (!photos || photos.length === 0) return null;
 
   return (
-    <div className="w-full mt-8">
+    <div className="mt-8 w-full">
       {/* Dynamic Cyberpunk Collage Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         {photos.map((photo, idx) => {
           const isPrimary = idx === 0;
           return (
@@ -28,13 +31,13 @@ export function EventDetailGallery({ photos, locale }: EventDetailGalleryProps) 
               key={idx}
               onClick={() => setSelectedPhoto(photo)}
               className={cn(
-                "group relative cursor-pointer overflow-hidden rounded-sm border bg-void/90 transition-all duration-300",
+                "group bg-void/90 relative cursor-pointer overflow-hidden rounded-sm border transition-all duration-300",
                 isPrimary
-                  ? "md:col-span-2 lg:col-span-2 border-cyan/40 shadow-[0_0_20px_rgba(0,240,255,0.15)] hover:border-cyan hover:shadow-[0_0_35px_rgba(0,240,255,0.35)]"
-                  : "border-cyan/20 hover:border-cyan/50 hover:shadow-[0_0_25px_rgba(0,240,255,0.25)]"
+                  ? "border-cyan/40 hover:border-cyan shadow-[0_0_20px_rgba(0,240,255,0.15)] hover:shadow-[0_0_35px_rgba(0,240,255,0.35)] md:col-span-2 lg:col-span-2"
+                  : "border-cyan/20 hover:border-cyan/50 hover:shadow-[0_0_25px_rgba(0,240,255,0.25)]",
               )}
             >
-              <div className="relative aspect-video w-full overflow-hidden bg-void">
+              <div className="bg-void relative aspect-video w-full overflow-hidden">
                 <Image
                   src={photo.url}
                   alt={photo.alt}
@@ -47,17 +50,17 @@ export function EventDetailGallery({ photos, locale }: EventDetailGalleryProps) 
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   priority={idx < 2}
                 />
-                
+
                 {/* Cyberpunk HUD frame badge */}
                 <div className="absolute top-2.5 left-2.5 z-10">
-                  <span className="font-mono text-[9px] tracking-widest uppercase px-2 py-0.5 rounded-xs bg-void/80 border border-cyan/40 text-cyan-bright backdrop-blur-xs">
+                  <span className="bg-void/80 border-cyan/40 text-cyan-bright rounded-xs border px-2 py-0.5 font-mono text-[9px] tracking-widest uppercase backdrop-blur-xs">
                     PHOTO #{String(idx + 1).padStart(2, "0")}
                   </span>
                 </div>
 
                 {/* Hover overlay with zoom icon */}
-                <div className="absolute inset-0 bg-void/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span className="p-3 rounded-full bg-void/80 border border-cyan text-cyan shadow-[0_0_20px_rgba(0,240,255,0.5)] transform scale-90 group-hover:scale-100 transition-transform duration-200">
+                <div className="bg-void/40 absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <span className="bg-void/80 border-cyan text-cyan scale-90 transform rounded-full border p-3 shadow-[0_0_20px_rgba(0,240,255,0.5)] transition-transform duration-200 group-hover:scale-100">
                     <IconMaximize size={20} />
                   </span>
                 </div>
@@ -65,11 +68,11 @@ export function EventDetailGallery({ photos, locale }: EventDetailGalleryProps) 
 
               {/* Photo Caption */}
               {(photo.caption || photo.captionEn) && (
-                <div className="border-t border-cyan/15 bg-void-surface/90 px-4 py-3 text-left flex items-center justify-between">
-                  <span className="font-mono text-[11px] sm:text-xs text-cyan-dim/90 tracking-wide">
+                <div className="border-cyan/15 bg-void-surface/90 flex items-center justify-between border-t px-4 py-3 text-left">
+                  <span className="text-cyan-dim/90 font-mono text-[11px] tracking-wide sm:text-xs">
                     {locale === "es" ? photo.caption : photo.captionEn}
                   </span>
-                  <span className="font-mono text-[10px] text-cyan-deep uppercase tracking-widest flex-shrink-0 ml-3">
+                  <span className="text-cyan-deep ml-3 flex-shrink-0 font-mono text-[10px] tracking-widest uppercase">
                     [ + Zoom ]
                   </span>
                 </div>
@@ -82,22 +85,22 @@ export function EventDetailGallery({ photos, locale }: EventDetailGalleryProps) 
       {/* Lightbox Modal */}
       {selectedPhoto && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-void/90 backdrop-blur-md p-4 sm:p-8"
+          className="bg-void/90 fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-md sm:p-8"
           onClick={() => setSelectedPhoto(null)}
         >
           <div
-            className="relative max-w-5xl w-full bg-void-surface border border-cyan/40 rounded-sm shadow-[0_0_45px_rgba(0,240,255,0.35)] overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+            className="bg-void-surface border-cyan/40 animate-in fade-in zoom-in-95 relative w-full max-w-5xl overflow-hidden rounded-sm border shadow-[0_0_45px_rgba(0,240,255,0.35)] duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setSelectedPhoto(null)}
               aria-label="Close photo preview"
-              className="neon-btn-3d absolute top-3 right-3 z-20 p-2 rounded-sm border border-cyan/50 text-cyan hover:border-cyan transition-all duration-300 flex items-center justify-center cursor-pointer"
+              className="neon-btn-3d border-cyan/50 text-cyan hover:border-cyan absolute top-3 right-3 z-20 flex cursor-pointer items-center justify-center rounded-sm border p-2 transition-all duration-300"
             >
               <IconX size={20} />
             </button>
 
-            <div className="relative aspect-video w-full max-h-[75vh]">
+            <div className="relative aspect-video max-h-[75vh] w-full">
               <Image
                 src={selectedPhoto.url}
                 alt={selectedPhoto.alt}
@@ -109,9 +112,11 @@ export function EventDetailGallery({ photos, locale }: EventDetailGalleryProps) 
             </div>
 
             {(selectedPhoto.caption || selectedPhoto.captionEn) && (
-              <div className="p-4 border-t border-cyan/20 bg-void text-center">
-                <p className="font-mono text-xs sm:text-sm text-cyan tracking-wide">
-                  {locale === "es" ? selectedPhoto.caption : selectedPhoto.captionEn}
+              <div className="border-cyan/20 bg-void border-t p-4 text-center">
+                <p className="text-cyan font-mono text-xs tracking-wide sm:text-sm">
+                  {locale === "es"
+                    ? selectedPhoto.caption
+                    : selectedPhoto.captionEn}
                 </p>
               </div>
             )}
