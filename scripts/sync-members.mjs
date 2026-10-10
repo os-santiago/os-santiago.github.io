@@ -40,10 +40,7 @@ try {
   );
 }
 const KNOWN_ROLES = Object.fromEntries([
-  ...(rolesConfig.admins || []).map((login) => [
-    login.toLowerCase(),
-    "admin",
-  ]),
+  ...(rolesConfig.admins || []).map((login) => [login.toLowerCase(), "admin"]),
   ...(rolesConfig.moderators || []).map((login) => [
     login.toLowerCase(),
     "moderator",
