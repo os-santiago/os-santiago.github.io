@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   },
   description:
     "Comunidad de código abierto iniciada en Chile, abierta al mundo. Tecnología como motor para el desarrollo personal, profesional y comunitario.",
-  metadataBase: new URL("https://os-santiago.github.io"),
+  metadataBase: new URL("https://opensourcesantiago.io"),
   alternates: {
     languages: {
       es: "/es",
