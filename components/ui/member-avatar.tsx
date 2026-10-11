@@ -9,7 +9,12 @@ interface MemberAvatarProps {
   className?: string;
 }
 
-export function MemberAvatar({ src, alt, github, className }: MemberAvatarProps) {
+export function MemberAvatar({
+  src,
+  alt,
+  github,
+  className,
+}: MemberAvatarProps) {
   const fallbackSrc = `https://github.com/${github}.png`;
 
   return (
