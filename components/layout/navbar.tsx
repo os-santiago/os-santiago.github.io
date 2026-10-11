@@ -51,6 +51,18 @@ export function Navbar({ locale }: NavbarProps) {
     { key: "nav.members", href: `/${locale}/members` },
   ];
 
+  const toggleMenu = () => {
+    setIsExpanded((prev) => {
+      hasCollapsed.current = !prev;
+      return !prev;
+    });
+  };
+
+  const closeMenu = () => {
+    setIsExpanded(false);
+    hasCollapsed.current = true;
+  };
+
   return (
     <header className="pointer-events-none fixed top-0 right-0 left-0 z-40 flex justify-center px-4 py-3 sm:py-4">
       <nav
@@ -83,6 +95,7 @@ export function Navbar({ locale }: NavbarProps) {
               <Link
                 key={link.key}
                 href={link.href as never}
+                onClick={closeMenu}
                 className={cn(
                   "group/link relative inline-flex flex-shrink-0 items-center py-1 font-mono text-[11px] tracking-widest whitespace-nowrap uppercase transition-colors duration-200 select-none sm:text-xs",
                   active
@@ -139,6 +152,7 @@ export function Navbar({ locale }: NavbarProps) {
               <Link
                 key={link.key}
                 href={link.href as never}
+                onClick={closeMenu}
                 className={cn(
                   "group/link relative inline-flex flex-shrink-0 items-center py-1 font-mono text-[11px] tracking-widest whitespace-nowrap uppercase transition-colors duration-200 select-none sm:text-xs",
                   active
@@ -163,6 +177,26 @@ export function Navbar({ locale }: NavbarProps) {
             <LanguageSwitcher current={locale} />
           </div>
         </div>
+
+        {/* Mobile hamburger menu button */}
+        <button
+          type="button"
+          className="sm:hidden pointer-events-auto absolute top-1/2 right-3 z-30 -translate-y-1/2 flex items-center justify-center p-2 text-cyan hover:text-cyan-bright transition-colors"
+          onClick={toggleMenu}
+          aria-expanded={isExpanded}
+          aria-controls="mobile-menu"
+          aria-label={isExpanded ? "Cerrar menú" : "Abrir menú"}
+        >
+          {isExpanded ? (
+            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
+        </button>
       </nav>
     </header>
   );
