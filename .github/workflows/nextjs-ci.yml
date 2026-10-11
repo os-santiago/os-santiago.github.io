@@ -16,6 +16,7 @@ on:
       - "next.config.ts"
       - "postcss.config.mjs"
       - "eslint.config.mjs"
+      - ".github/workflows/**"
       - ".prettierrc"
       - ".nvmrc"
   push:
@@ -33,6 +34,7 @@ on:
       - "next.config.ts"
       - "postcss.config.mjs"
       - "eslint.config.mjs"
+      - ".github/workflows/**"
       - ".prettierrc"
       - ".nvmrc"
 
