@@ -6,6 +6,7 @@ import { GlitchCard } from "@/components/ui/glitch-card";
 import { NeonButton } from "@/components/ui/neon-button";
 import { members } from "@/data/members";
 import { MemberAvatar } from "@/components/ui/member-avatar";
+import { cn } from "@/lib/utils";
 
 export default async function MembersPage({
   params,
