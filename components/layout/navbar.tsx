@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { type Locale } from "@/i18n/config";
@@ -15,6 +16,15 @@ type NavbarProps = {
 export function Navbar({ locale }: NavbarProps) {
   const msgs = getMessages(locale);
   const pathname = usePathname();
+  const [isExpanded, setIsExpanded] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsExpanded(false);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   function isActive(href: string): boolean {
     const normalized = pathname.replace(/\/$/, "");
@@ -41,21 +51,27 @@ export function Navbar({ locale }: NavbarProps) {
       <nav
         className={cn(
           "group/nav border-cyan/20 bg-void-surface/95 pointer-events-auto relative flex transform-gpu items-center justify-between rounded-full border shadow-[0_4px_24px_rgba(0,0,0,0.7)] backdrop-blur-md",
-          // Height and Max-Width are permanent on base to prevent full-screen flashing
           "h-12 max-w-4xl overflow-hidden px-3 sm:h-13",
-          // Fluid luxurious transition for width, padding, border and glow
           "transition-[width,padding,border-color,box-shadow] duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]",
-          // Collapsed circular emblem state
           "w-12 sm:w-13",
-          // Expanded hover pill state
-          "hover:border-cyan/40 hover:w-full hover:px-6 hover:shadow-[0_0_30px_-5px_var(--color-cyan-glow)] sm:hover:px-8",
+          isExpanded
+            ? "border-cyan/40 w-full px-6 shadow-[0_0_30px_-5px_var(--color-cyan-glow)] sm:px-8"
+            : "hover:border-cyan/40 hover:w-full hover:px-6 hover:shadow-[0_0_30px_-5px_var(--color-cyan-glow)] sm:hover:px-8",
         )}
       >
         {/* Subtle Matrix / Glitch character background */}
-        <GlitchBreak className="pointer-events-none rounded-full opacity-0 transition-opacity duration-700 group-hover/nav:opacity-35" />
+        <GlitchBreak className={cn(
+          "pointer-events-none rounded-full opacity-0 transition-opacity duration-700",
+          isExpanded ? "opacity-35" : "group-hover/nav:opacity-35",
+        )} />
 
         {/* Left Side Links: Anchored rigidly to center logo, zero horizontal translation */}
-        <div className="pointer-events-none absolute top-1/2 right-[calc(50%+22px)] z-10 flex -translate-y-1/2 items-center justify-end gap-2.5 opacity-0 blur-[2px] transition-[opacity,filter] duration-150 ease-out group-hover/nav:pointer-events-auto group-hover/nav:opacity-100 group-hover/nav:blur-none group-hover/nav:delay-150 group-hover/nav:duration-400 sm:right-[calc(50%+26px)] sm:gap-5">
+        <div className={cn(
+          "pointer-events-none absolute top-1/2 right-[calc(50%+22px)] z-10 flex -translate-y-1/2 items-center justify-end gap-2.5 opacity-0 blur-[2px] transition-[opacity,filter] duration-150 ease-out sm:right-[calc(50%+26px)] sm:gap-5",
+          isExpanded
+            ? "pointer-events-auto opacity-100 blur-none"
+            : "group-hover/nav:pointer-events-auto group-hover/nav:opacity-100 group-hover/nav:blur-none group-hover/nav:delay-150 group-hover/nav:duration-400",
+        )}>
           {leftLinks.map((link) => {
             const active = isActive(link.href);
             return (
@@ -91,7 +107,10 @@ export function Navbar({ locale }: NavbarProps) {
             className="relative flex items-center justify-center rounded-full p-1"
             aria-label="Home"
           >
-            <div className="border-cyan/20 group-hover/nav:border-cyan/50 relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border shadow-[0_0_10px_rgba(0,240,255,0.15)] transition-colors duration-500 sm:h-9 sm:w-9">
+            <div className={cn(
+              "border-cyan/20 relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border shadow-[0_0_10px_rgba(0,240,255,0.15)] transition-colors duration-500 sm:h-9 sm:w-9",
+              isExpanded ? "border-cyan/50" : "group-hover/nav:border-cyan/50",
+            )}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/logo.png"
@@ -103,7 +122,12 @@ export function Navbar({ locale }: NavbarProps) {
         </div>
 
         {/* Right Side Links & Language Switcher: Anchored rigidly to center logo, zero horizontal translation */}
-        <div className="pointer-events-none absolute top-1/2 left-[calc(50%+22px)] z-10 flex -translate-y-1/2 items-center justify-start gap-2.5 opacity-0 blur-[2px] transition-[opacity,filter] duration-150 ease-out group-hover/nav:pointer-events-auto group-hover/nav:opacity-100 group-hover/nav:blur-none group-hover/nav:delay-150 group-hover/nav:duration-400 sm:left-[calc(50%+26px)] sm:gap-5">
+        <div className={cn(
+          "pointer-events-none absolute top-1/2 left-[calc(50%+22px)] z-10 flex -translate-y-1/2 items-center justify-start gap-2.5 opacity-0 blur-[2px] transition-[opacity,filter] duration-150 ease-out sm:left-[calc(50%+26px)] sm:gap-5",
+          isExpanded
+            ? "pointer-events-auto opacity-100 blur-none"
+            : "group-hover/nav:pointer-events-auto group-hover/nav:opacity-100 group-hover/nav:blur-none group-hover/nav:delay-150 group-hover/nav:duration-400",
+        )}>
           {rightLinks.map((link) => {
             const active = isActive(link.href);
             return (
