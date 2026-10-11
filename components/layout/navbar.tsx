@@ -141,7 +141,7 @@ export function Navbar({ locale }: NavbarProps) {
 
         {/* Right Side Links & Language Switcher: Anchored rigidly to center logo, zero horizontal translation */}
         <div className={cn(
-          "pointer-events-none absolute top-1/2 left-[calc(50%+22px)] z-10 flex -translate-y-1/2 items-center justify-start gap-2.5 opacity-0 blur-[2px] transition-[opacity,filter] duration-150 ease-out sm:left-[calc(50%+26px)] sm:gap-5",
+          "pointer-events-none absolute top-1/2 left-[calc(50%+22px)] right-6 z-10 flex -translate-y-1/2 items-center justify-start gap-2.5 opacity-0 blur-[2px] transition-[opacity,filter] duration-150 ease-out sm:left-[calc(50%+26px)] sm:right-8 sm:gap-5",
           isExpanded
             ? "pointer-events-auto opacity-100 blur-none"
             : "group-hover/nav:pointer-events-auto group-hover/nav:opacity-100 group-hover/nav:blur-none group-hover/nav:delay-150 group-hover/nav:duration-400",
