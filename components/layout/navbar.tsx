@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { type Locale } from "@/i18n/config";
@@ -13,18 +13,52 @@ type NavbarProps = {
   locale: Locale;
 };
 
+function useScrollPosition() {
+  const [scrollY, setScrollY] = useState(0);
+  const [scrollDirection, setScrollDirection] = useState<"up" | "down">("up");
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
+
+  useEffect(() => {
+    const updateScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrollY(currentScrollY);
+      setScrollDirection(currentScrollY > lastScrollY.current ? "down" : "up");
+      lastScrollY.current = currentScrollY;
+      ticking.current = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking.current) {
+        ticking.current = true;
+        requestAnimationFrame(updateScroll);
+      }
+    };
+
+    setScrollY(window.scrollY);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return { scrollY, scrollDirection };
+}
+
 export function Navbar({ locale }: NavbarProps) {
   const msgs = getMessages(locale);
   const pathname = usePathname();
   const [isExpanded, setIsExpanded] = useState(true);
+  const hasCollapsed = useRef(false);
+  const { scrollY, scrollDirection } = useScrollPosition();
 
   useEffect(() => {
-    const handleScroll = () => {
+    if (scrollY > 0 && !hasCollapsed.current) {
+      hasCollapsed.current = true;
       setIsExpanded(false);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    } else if (scrollY === 0 && hasCollapsed.current) {
+      hasCollapsed.current = false;
+      setIsExpanded(true);
+    }
+  }, [scrollY, scrollDirection]);
 
   function isActive(href: string): boolean {
     const normalized = pathname.replace(/\/$/, "");
@@ -59,13 +93,11 @@ export function Navbar({ locale }: NavbarProps) {
             : "hover:border-cyan/40 hover:w-full hover:px-6 hover:shadow-[0_0_30px_-5px_var(--color-cyan-glow)] sm:hover:px-8",
         )}
       >
-        {/* Subtle Matrix / Glitch character background */}
         <GlitchBreak className={cn(
           "pointer-events-none rounded-full opacity-0 transition-opacity duration-700",
           isExpanded ? "opacity-35" : "group-hover/nav:opacity-35",
         )} />
 
-        {/* Left Side Links: Anchored rigidly to center logo, zero horizontal translation */}
         <div className={cn(
           "pointer-events-none absolute top-1/2 right-[calc(50%+22px)] z-10 flex -translate-y-1/2 items-center justify-end gap-2.5 opacity-0 blur-[2px] transition-[opacity,filter] duration-150 ease-out sm:right-[calc(50%+26px)] sm:gap-5",
           isExpanded
@@ -100,7 +132,6 @@ export function Navbar({ locale }: NavbarProps) {
           })}
         </div>
 
-        {/* Center: Absolute Fixed Logo: Always locked to the exact 50% vertical center axis */}
         <div className="pointer-events-auto absolute top-1/2 left-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center">
           <Link
             href={`/${locale}` as never}
@@ -111,7 +142,6 @@ export function Navbar({ locale }: NavbarProps) {
               "border-cyan/20 relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border shadow-[0_0_10px_rgba(0,240,255,0.15)] transition-colors duration-500 sm:h-9 sm:w-9",
               isExpanded ? "border-cyan/50" : "group-hover/nav:border-cyan/50",
             )}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/logo.png"
                 alt="OS Santiago"
@@ -121,7 +151,6 @@ export function Navbar({ locale }: NavbarProps) {
           </Link>
         </div>
 
-        {/* Right Side Links & Language Switcher: Anchored rigidly to center logo, zero horizontal translation */}
         <div className={cn(
           "pointer-events-none absolute top-1/2 left-[calc(50%+22px)] z-10 flex -translate-y-1/2 items-center justify-start gap-2.5 opacity-0 blur-[2px] transition-[opacity,filter] duration-150 ease-out sm:left-[calc(50%+26px)] sm:gap-5",
           isExpanded
