@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { type Locale } from "@/i18n/config";
@@ -8,40 +8,11 @@ import { getMessages } from "@/i18n";
 import { LanguageSwitcher } from "@/components/i18n/language-switcher";
 import { GlitchBreak } from "@/components/ui/glitch-break";
 import { cn } from "@/lib/utils";
+import { useScrollPosition } from "@/components/hooks/use-scroll-position";
 
 type NavbarProps = {
   locale: Locale;
 };
-
-function useScrollPosition() {
-  const [scrollY, setScrollY] = useState(0);
-  const [scrollDirection, setScrollDirection] = useState<"up" | "down">("up");
-  const lastScrollY = useRef(0);
-  const ticking = useRef(false);
-
-  useEffect(() => {
-    const updateScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrollY(currentScrollY);
-      setScrollDirection(currentScrollY > lastScrollY.current ? "down" : "up");
-      lastScrollY.current = currentScrollY;
-      ticking.current = false;
-    };
-
-    const onScroll = () => {
-      if (!ticking.current) {
-        ticking.current = true;
-        requestAnimationFrame(updateScroll);
-      }
-    };
-
-    setScrollY(window.scrollY);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  return { scrollY, scrollDirection };
-}
 
 export function Navbar({ locale }: NavbarProps) {
   const msgs = getMessages(locale);
@@ -90,14 +61,16 @@ export function Navbar({ locale }: NavbarProps) {
           "w-12 sm:w-13",
           isExpanded
             ? "border-cyan/40 w-full px-6 shadow-[0_0_30px_-5px_var(--color-cyan-glow)] sm:px-8"
-            : "hover:border-cyan/40 hover:w-full hover:px-6 hover:shadow-[0_0_30px_-5px_var(--color-cyan-glow)] sm:hover:px-8",
+            : "hover:border-cyan/40 hover:w-full hover:px-6 hover:shadow-[0_0_30px_-5px_var(--color-cyan-glow)] sm:hover:px-8"
         )}
       >
+        {/* Subtle Matrix / Glitch character background */}
         <GlitchBreak className={cn(
           "pointer-events-none rounded-full opacity-0 transition-opacity duration-700",
           isExpanded ? "opacity-35" : "group-hover/nav:opacity-35",
         )} />
 
+        {/* Left Side Links: Anchored rigidly to center logo, zero horizontal translation */}
         <div className={cn(
           "pointer-events-none absolute top-1/2 right-[calc(50%+22px)] z-10 flex -translate-y-1/2 items-center justify-end gap-2.5 opacity-0 blur-[2px] transition-[opacity,filter] duration-150 ease-out sm:right-[calc(50%+26px)] sm:gap-5",
           isExpanded
@@ -114,7 +87,7 @@ export function Navbar({ locale }: NavbarProps) {
                   "group/link relative inline-flex flex-shrink-0 items-center py-1 font-mono text-[11px] tracking-widest whitespace-nowrap uppercase transition-colors duration-200 select-none sm:text-xs",
                   active
                     ? "text-cyan font-bold"
-                    : "text-cyan-dim hover:text-cyan-bright",
+                    : "text-cyan-dim hover:text-cyan-bright"
                 )}
               >
                 <span className="text-cyan mr-0.5 font-mono opacity-0 transition-opacity select-none group-hover/link:opacity-100">
@@ -132,6 +105,7 @@ export function Navbar({ locale }: NavbarProps) {
           })}
         </div>
 
+        {/* Center: Absolute Fixed Logo: Always locked to the exact 50% vertical center axis */}
         <div className="pointer-events-auto absolute top-1/2 left-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center">
           <Link
             href={`/${locale}` as never}
@@ -140,8 +114,9 @@ export function Navbar({ locale }: NavbarProps) {
           >
             <div className={cn(
               "border-cyan/20 relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border shadow-[0_0_10px_rgba(0,240,255,0.15)] transition-colors duration-500 sm:h-9 sm:w-9",
-              isExpanded ? "border-cyan/50" : "group-hover/nav:border-cyan/50",
+              isExpanded ? "border-cyan/50" : "group-hover/nav:border-cyan/50"
             )}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/logo.png"
                 alt="OS Santiago"
@@ -151,6 +126,7 @@ export function Navbar({ locale }: NavbarProps) {
           </Link>
         </div>
 
+        {/* Right Side Links & Language Switcher: Anchored rigidly to center logo, zero horizontal translation */}
         <div className={cn(
           "pointer-events-none absolute top-1/2 left-[calc(50%+22px)] z-10 flex -translate-y-1/2 items-center justify-start gap-2.5 opacity-0 blur-[2px] transition-[opacity,filter] duration-150 ease-out sm:left-[calc(50%+26px)] sm:gap-5",
           isExpanded
@@ -167,7 +143,7 @@ export function Navbar({ locale }: NavbarProps) {
                   "group/link relative inline-flex flex-shrink-0 items-center py-1 font-mono text-[11px] tracking-widest whitespace-nowrap uppercase transition-colors duration-200 select-none sm:text-xs",
                   active
                     ? "text-cyan font-bold"
-                    : "text-cyan-dim hover:text-cyan-bright",
+                    : "text-cyan-dim hover:text-cyan-bright"
                 )}
               >
                 <span className="text-cyan mr-0.5 font-mono opacity-0 transition-opacity select-none group-hover/link:opacity-100">
