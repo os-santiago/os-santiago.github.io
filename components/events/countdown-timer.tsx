@@ -40,8 +40,13 @@ function calculateTimeLeft(target: number): TimeLeft {
  * A countdown timer component that displays the time remaining until a target date.
  * If the target date has passed, it shows a pulsing "LIVE" indicator badge.
  */
+function parseTargetDate(dateString: string): number {
+  const [year, month, day] = dateString.split("-").map(Number);
+  return Date.UTC(year, month - 1, day);
+}
+
 export function CountdownTimer({ targetDate, labels }: CountdownProps) {
-  const target = new Date(targetDate).getTime();
+  const target = parseTargetDate(targetDate);
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(() =>
     calculateTimeLeft(target),
   );
