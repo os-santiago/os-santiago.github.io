@@ -43,9 +43,10 @@ export default async function MembersPage({
                 width={56}
                 height={56}
                 crossOrigin="anonymous"
-                onError={(e) => {
-                  e.currentTarget.src = `https://github.com/${member.github}.png`;
-                  e.currentTarget.onError = null;
+                onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                  const img = e.currentTarget;
+                  img.src = `https://github.com/${member.github}.png`;
+                  img.onerror = null;
                 }}
                 className="border-cyan/30 group-hover:border-cyan h-14 w-14 rounded-full border-2 object-cover shadow-[0_0_12px_rgba(0,240,255,0.15)] transition-all"
               />
