@@ -146,4 +146,3 @@ export const members: Member[] = [
     joinedAt: "2024-06-06T08:20:04Z",
   },
 ];
-
