@@ -7,6 +7,7 @@ import { GlitchCard } from "@/components/ui/glitch-card";
 import { NeonButton } from "@/components/ui/neon-button";
 import { members } from "@/data/members";
 import { cn } from "@/lib/utils";
+import { MemberAvatar } from "@/components/ui/member-avatar";
 
 export async function generateMetadata({
   params,
@@ -57,12 +58,10 @@ export default async function MembersPage({
             {/* Left: Avatar Centered Vertically */}
             <div className="flex flex-shrink-0 items-center justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element -- external GitHub avatar CDN */}
-              <img
+              <MemberAvatar
                 src={member.avatarUrl}
+                fallbackSrc={`https://github.com/${member.github}.png`}
                 alt={member.displayName}
-                width={56}
-                height={56}
-                loading="lazy"
                 className="border-cyan/30 group-hover:border-cyan h-14 w-14 rounded-full border-2 object-cover shadow-[0_0_12px_rgba(0,240,255,0.15)] transition-all"
               />
             </div>
