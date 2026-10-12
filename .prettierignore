@@ -13,4 +13,3 @@ next-env.d.ts
 # Temporary: format issues in navbar hook
 components/layout/navbar.tsx
 components/hooks/use-scroll-position.ts
-app/[locale]/page.tsx

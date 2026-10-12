@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { IconCalendarEvent, IconWorld, IconUsers } from "@tabler/icons-react";
 import { getMessages } from "@/i18n";
 import { type Locale } from "@/i18n/config";
@@ -7,6 +8,25 @@ import { NeonButton } from "@/components/ui/neon-button";
 import { CountdownTimer } from "@/components/events/countdown-timer";
 import { EventGallery } from "@/components/events/event-gallery";
 import { events } from "@/data/events";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const msgs = getMessages(locale as Locale);
+  return {
+    title: msgs["events.title"],
+    description: msgs["events.subtitle"],
+    openGraph: {
+      title: msgs["events.title"],
+      description: msgs["events.subtitle"],
+      type: "website",
+      locale,
+    },
+  };
+}
 
 export default async function EventsPage({
   params,
