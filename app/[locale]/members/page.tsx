@@ -44,8 +44,10 @@ export default async function MembersPage({
                 height={56}
                 crossOrigin="anonymous"
                 onError={(e) => {
-                  e.currentTarget.src = `https://github.com/${member.github}.png`;
-                  e.currentTarget.onError = null;
+                  const img = e.currentTarget;
+                  if (img.dataset.fallbackApplied) return;
+                  img.dataset.fallbackApplied = "1";
+                  img.src = `https://github.com/${member.github}.png`;
                 }}
                 className="border-cyan/30 group-hover:border-cyan h-14 w-14 rounded-full border-2 object-cover shadow-[0_0_12px_rgba(0,240,255,0.15)] transition-all"
               />
