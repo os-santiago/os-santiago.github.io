@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   IconBrandDiscord,
   IconBrandGithub,
@@ -20,6 +21,25 @@ import { projects } from "@/data/projects";
 import { cn } from "@/lib/utils";
 import { getLanguageStyle } from "@/lib/project-utils";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const msgs = getMessages(locale as Locale);
+  return {
+    title: msgs["home.title"],
+    description: msgs["home.tagline"],
+    openGraph: {
+      title: msgs["home.title"],
+      description: msgs["home.tagline"],
+      type: "website",
+      locale,
+    },
+  };
+}
+
 export default async function HomePage({
   params,
 }: {
@@ -35,10 +55,10 @@ export default async function HomePage({
       <ReflectiveSurface className="depth-squares relative min-h-[calc(100vh-3.5rem)]">
         <DataRain className="opacity-10" density={0.12} />
 
-        <main className="relative z-10 flex min-h-[calc(100vh-3.5rem)] w-full flex-col items-center justify-center px-6">
+        <main className="relative z-10 flex min-h-[calc(100vh-3.5rem)] flex-col items-center justify-center px-6">
           <GlitchText
             as="h1"
-            className="text-cyan font-display w-full text-center text-5xl font-bold text-balance sm:text-7xl"
+            className="text-cyan font-display text-center text-5xl font-bold sm:text-7xl"
           >
             {msgs["home.title"]}
           </GlitchText>

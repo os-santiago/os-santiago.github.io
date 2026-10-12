@@ -1,8 +1,28 @@
+import type { Metadata } from "next";
 import { getMessages } from "@/i18n";
 import { type Locale } from "@/i18n/config";
 import { GlitchText } from "@/components/ui/glitch-text";
 import { projects } from "@/data/projects";
 import { ProjectList } from "@/components/projects/project-list";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const msgs = getMessages(locale as Locale);
+  return {
+    title: msgs["projects.title"],
+    description: msgs["projects.subtitle"],
+    openGraph: {
+      title: msgs["projects.title"],
+      description: msgs["projects.subtitle"],
+      type: "website",
+      locale,
+    },
+  };
+}
 
 export default async function ProjectsPage({
   params,

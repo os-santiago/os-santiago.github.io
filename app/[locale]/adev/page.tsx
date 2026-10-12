@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   IconBook,
   IconBrandGithub,
@@ -10,6 +11,25 @@ import { type Locale } from "@/i18n/config";
 import { GlitchText } from "@/components/ui/glitch-text";
 import { GlitchCard } from "@/components/ui/glitch-card";
 import { NeonButton } from "@/components/ui/neon-button";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const msgs = getMessages(locale as Locale);
+  return {
+    title: msgs["adev.title"],
+    description: msgs["adev.definition"],
+    openGraph: {
+      title: msgs["adev.title"],
+      description: msgs["adev.definition"],
+      type: "website",
+      locale,
+    },
+  };
+}
 
 export default async function AdevPage({
   params,

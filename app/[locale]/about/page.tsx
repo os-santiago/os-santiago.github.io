@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   IconBrandDiscord,
   IconArrowRight,
@@ -10,6 +11,25 @@ import { type Locale } from "@/i18n/config";
 import { GlitchText } from "@/components/ui/glitch-text";
 import { DataPanel } from "@/components/ui/data-panel";
 import { NeonButton } from "@/components/ui/neon-button";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const msgs = getMessages(locale as Locale);
+  return {
+    title: msgs["about.title"],
+    description: msgs["about.mission"],
+    openGraph: {
+      title: msgs["about.title"],
+      description: msgs["about.mission"],
+      type: "website",
+      locale,
+    },
+  };
+}
 
 export default async function AboutPage({
   params,
