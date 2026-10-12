@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import {
   locales,
   defaultLocale,
@@ -8,6 +9,16 @@ import {
 } from "@/i18n/config";
 import { getMessages } from "@/i18n";
 import { LayoutContent } from "@/components/layout/layout-content";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+});
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+});
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -47,7 +58,11 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html
+      lang={locale}
+      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <body className="bg-void text-cyan-dim min-h-screen antialiased">
         <LayoutContent locale={locale as Locale}>{children}</LayoutContent>
       </body>
