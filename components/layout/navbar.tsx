@@ -51,18 +51,6 @@ export function Navbar({ locale }: NavbarProps) {
     { key: "nav.members", href: `/${locale}/members` },
   ];
 
-  const toggleMenu = () => {
-    setIsExpanded((prev) => {
-      hasCollapsed.current = !prev;
-      return !prev;
-    });
-  };
-
-  const closeMenu = () => {
-    setIsExpanded(false);
-    hasCollapsed.current = true;
-  };
-
   return (
     <header className="pointer-events-none fixed top-0 right-0 left-0 z-40 flex justify-center px-4 py-3 sm:py-4">
       <nav
@@ -73,7 +61,7 @@ export function Navbar({ locale }: NavbarProps) {
           "w-12 sm:w-13",
           isExpanded
             ? "border-cyan/40 w-full px-6 shadow-[0_0_30px_-5px_var(--color-cyan-glow)] sm:px-8"
-            : "hover:border-cyan/40 hover:w-full hover:px-6 hover:shadow-[0_0_30px_-5px_var(--color-cyan-glow)] sm:hover:px-8"
+            : "hover:border-cyan/40 hover:w-full hover:px-6 hover:shadow-[0_0_30px_-5px_var(--color-cyan-glow)] sm:hover:px-8",
         )}
       >
         {/* Subtle Matrix / Glitch character background */}
@@ -95,12 +83,11 @@ export function Navbar({ locale }: NavbarProps) {
               <Link
                 key={link.key}
                 href={link.href as never}
-                onClick={closeMenu}
                 className={cn(
                   "group/link relative inline-flex flex-shrink-0 items-center py-1 font-mono text-[11px] tracking-widest whitespace-nowrap uppercase transition-colors duration-200 select-none sm:text-xs",
                   active
                     ? "text-cyan font-bold"
-                    : "text-cyan-dim hover:text-cyan-bright"
+                    : "text-cyan-dim hover:text-cyan-bright",
                 )}
               >
                 <span className="text-cyan mr-0.5 font-mono opacity-0 transition-opacity select-none group-hover/link:opacity-100">
@@ -127,7 +114,7 @@ export function Navbar({ locale }: NavbarProps) {
           >
             <div className={cn(
               "border-cyan/20 relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border shadow-[0_0_10px_rgba(0,240,255,0.15)] transition-colors duration-500 sm:h-9 sm:w-9",
-              isExpanded ? "border-cyan/50" : "group-hover/nav:border-cyan/50"
+              isExpanded ? "border-cyan/50" : "group-hover/nav:border-cyan/50",
             )}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -152,12 +139,11 @@ export function Navbar({ locale }: NavbarProps) {
               <Link
                 key={link.key}
                 href={link.href as never}
-                onClick={closeMenu}
                 className={cn(
                   "group/link relative inline-flex flex-shrink-0 items-center py-1 font-mono text-[11px] tracking-widest whitespace-nowrap uppercase transition-colors duration-200 select-none sm:text-xs",
                   active
                     ? "text-cyan font-bold"
-                    : "text-cyan-dim hover:text-cyan-bright"
+                    : "text-cyan-dim hover:text-cyan-bright",
                 )}
               >
                 <span className="text-cyan mr-0.5 font-mono opacity-0 transition-opacity select-none group-hover/link:opacity-100">
@@ -177,26 +163,6 @@ export function Navbar({ locale }: NavbarProps) {
             <LanguageSwitcher current={locale} />
           </div>
         </div>
-
-        {/* Mobile hamburger menu button */}
-        <button
-          type="button"
-          className="sm:hidden pointer-events-auto absolute top-1/2 right-3 z-30 -translate-y-1/2 flex items-center justify-center p-2 text-cyan hover:text-cyan-bright transition-colors"
-          onClick={toggleMenu}
-          aria-expanded={isExpanded}
-          aria-controls="mobile-menu"
-          aria-label={isExpanded ? "Cerrar menú" : "Abrir menú"}
-        >
-          {isExpanded ? (
-            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          ) : (
-            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          )}
-        </button>
       </nav>
     </header>
   );
