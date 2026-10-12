@@ -27,13 +27,25 @@ if (GITHUB_TOKEN) {
   headers.Authorization = `Bearer ${GITHUB_TOKEN}`;
 }
 
-const KNOWN_ROLES = {
-  scanalesespinoza: "admin",
-  "axel-damage": "admin",
-  d4mag3: "admin",
-  "noxtope-git": "moderator",
-  noxtope: "moderator",
-};
+// data/roles.json is the source of truth for privileged roles — the weekly
+// sync must fail closed (abort) rather than silently demote everyone when it
+// cannot be read.
+const ROLES_FILE = path.join(ROOT_DIR, "data", "roles.json");
+let rolesConfig;
+try {
+  rolesConfig = JSON.parse(fs.readFileSync(ROLES_FILE, "utf-8"));
+} catch (err) {
+  throw new Error(
+    `Cannot read ${ROLES_FILE} — aborting sync instead of demoting every member: ${err.message}`,
+  );
+}
+const KNOWN_ROLES = Object.fromEntries([
+  ...(rolesConfig.admins || []).map((login) => [login.toLowerCase(), "admin"]),
+  ...(rolesConfig.moderators || []).map((login) => [
+    login.toLowerCase(),
+    "moderator",
+  ]),
+]);
 
 async function fetchOrgMembers() {
   console.log(`Fetching members for org: ${ORG}...`);
