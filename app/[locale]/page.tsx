@@ -35,7 +35,7 @@ export default async function HomePage({
       <ReflectiveSurface className="depth-squares relative min-h-[calc(100vh-3.5rem)]">
         <DataRain className="opacity-10" density={0.12} />
 
-        <main className="relative z-10 flex min-h-[calc(100vh-3.5rem)] flex-col items-center justify-center px-6 w-full">
+        <main className="relative z-10 flex min-h-[calc(100vh-3.5rem)] w-full flex-col items-center justify-center px-6">
           <GlitchText
             as="h1"
             className="text-cyan font-display text-center text-5xl font-bold sm:text-7xl"
