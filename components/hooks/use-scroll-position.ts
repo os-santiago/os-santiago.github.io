@@ -3,12 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 
 export function useScrollPosition() {
-  const [scrollY, setScrollY] = useState(
-    () => (typeof window !== "undefined" ? window.scrollY : 0)
+  const [scrollY, setScrollY] = useState(() =>
+    typeof window !== "undefined" ? window.scrollY : 0,
   );
   const [scrollDirection, setScrollDirection] = useState<"up" | "down">("up");
   const lastScrollY = useRef(
-    typeof window !== "undefined" ? window.scrollY : 0
+    typeof window !== "undefined" ? window.scrollY : 0,
   );
   const ticking = useRef(false);
 
@@ -16,9 +16,7 @@ export function useScrollPosition() {
     const updateScroll = () => {
       const currentScrollY = window.scrollY;
       setScrollY(currentScrollY);
-      setScrollDirection(
-        currentScrollY > lastScrollY.current ? "down" : "up"
-      );
+      setScrollDirection(currentScrollY > lastScrollY.current ? "down" : "up");
       lastScrollY.current = currentScrollY;
       ticking.current = false;
     };

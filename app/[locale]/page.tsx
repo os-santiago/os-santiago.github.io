@@ -58,7 +58,7 @@ export default async function HomePage({
         <main className="relative z-10 flex min-h-[calc(100vh-3.5rem)] flex-col items-center justify-center px-6">
           <GlitchText
             as="h1"
-            className="text-cyan font-display text-center text-5xl font-bold sm:text-7xl"
+            className="text-cyan font-display w-full text-center text-5xl font-bold text-balance sm:text-7xl"
           >
             {msgs["home.title"]}
           </GlitchText>

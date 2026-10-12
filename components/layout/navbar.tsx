@@ -51,6 +51,18 @@ export function Navbar({ locale }: NavbarProps) {
     { key: "nav.members", href: `/${locale}/members` },
   ];
 
+  const toggleMenu = () => {
+    setIsExpanded((prev) => {
+      hasCollapsed.current = !prev;
+      return !prev;
+    });
+  };
+
+  const closeMenu = () => {
+    setIsExpanded(false);
+    hasCollapsed.current = true;
+  };
+
   return (
     <header className="pointer-events-none fixed top-0 right-0 left-0 z-40 flex justify-center px-4 py-3 sm:py-4">
       <nav
@@ -65,24 +77,29 @@ export function Navbar({ locale }: NavbarProps) {
         )}
       >
         {/* Subtle Matrix / Glitch character background */}
-        <GlitchBreak className={cn(
-          "pointer-events-none rounded-full opacity-0 transition-opacity duration-700",
-          isExpanded ? "opacity-35" : "group-hover/nav:opacity-35",
-        )} />
+        <GlitchBreak
+          className={cn(
+            "pointer-events-none rounded-full opacity-0 transition-opacity duration-700",
+            isExpanded ? "opacity-35" : "group-hover/nav:opacity-35",
+          )}
+        />
 
         {/* Left Side Links: Anchored rigidly to center logo, zero horizontal translation */}
-        <div className={cn(
-          "pointer-events-none absolute top-1/2 right-[calc(50%+22px)] z-10 flex -translate-y-1/2 items-center justify-end gap-2.5 opacity-0 blur-[2px] transition-[opacity,filter] duration-150 ease-out sm:right-[calc(50%+26px)] sm:gap-5",
-          isExpanded
-            ? "pointer-events-auto opacity-100 blur-none"
-            : "group-hover/nav:pointer-events-auto group-hover/nav:opacity-100 group-hover/nav:blur-none group-hover/nav:delay-150 group-hover/nav:duration-400",
-        )}>
+        <div
+          className={cn(
+            "pointer-events-none absolute top-1/2 right-[calc(50%+22px)] z-10 flex -translate-y-1/2 items-center justify-end gap-2.5 opacity-0 blur-[2px] transition-[opacity,filter] duration-150 ease-out sm:right-[calc(50%+26px)] sm:gap-5",
+            isExpanded
+              ? "pointer-events-auto opacity-100 blur-none"
+              : "group-hover/nav:pointer-events-auto group-hover/nav:opacity-100 group-hover/nav:blur-none group-hover/nav:delay-150 group-hover/nav:duration-400",
+          )}
+        >
           {leftLinks.map((link) => {
             const active = isActive(link.href);
             return (
               <Link
                 key={link.key}
                 href={link.href as never}
+                onClick={closeMenu}
                 className={cn(
                   "group/link relative inline-flex flex-shrink-0 items-center py-1 font-mono text-[11px] tracking-widest whitespace-nowrap uppercase transition-colors duration-200 select-none sm:text-xs",
                   active
@@ -112,10 +129,14 @@ export function Navbar({ locale }: NavbarProps) {
             className="relative flex items-center justify-center rounded-full p-1"
             aria-label="Home"
           >
-            <div className={cn(
-              "border-cyan/20 relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border shadow-[0_0_10px_rgba(0,240,255,0.15)] transition-colors duration-500 sm:h-9 sm:w-9",
-              isExpanded ? "border-cyan/50" : "group-hover/nav:border-cyan/50",
-            )}>
+            <div
+              className={cn(
+                "border-cyan/20 relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border shadow-[0_0_10px_rgba(0,240,255,0.15)] transition-colors duration-500 sm:h-9 sm:w-9",
+                isExpanded
+                  ? "border-cyan/50"
+                  : "group-hover/nav:border-cyan/50",
+              )}
+            >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/logo.png"
@@ -127,18 +148,22 @@ export function Navbar({ locale }: NavbarProps) {
         </div>
 
         {/* Right Side Links & Language Switcher: Anchored rigidly to center logo, zero horizontal translation */}
-        <div className={cn(
-          "pointer-events-none absolute top-1/2 left-[calc(50%+22px)] z-10 flex -translate-y-1/2 items-center justify-start gap-2.5 opacity-0 blur-[2px] transition-[opacity,filter] duration-150 ease-out sm:left-[calc(50%+26px)] sm:gap-5",
-          isExpanded
-            ? "pointer-events-auto opacity-100 blur-none"
-            : "group-hover/nav:pointer-events-auto group-hover/nav:opacity-100 group-hover/nav:blur-none group-hover/nav:delay-150 group-hover/nav:duration-400",
-        )}>
+        <div
+          id="mobile-menu"
+          className={cn(
+            "pointer-events-none absolute top-1/2 right-6 left-[calc(50%+22px)] z-10 flex -translate-y-1/2 items-center justify-start gap-2.5 opacity-0 blur-[2px] transition-[opacity,filter] duration-150 ease-out sm:right-8 sm:left-[calc(50%+26px)] sm:gap-5",
+            isExpanded
+              ? "pointer-events-auto opacity-100 blur-none"
+              : "group-hover/nav:pointer-events-auto group-hover/nav:opacity-100 group-hover/nav:blur-none group-hover/nav:delay-150 group-hover/nav:duration-400",
+          )}
+        >
           {rightLinks.map((link) => {
             const active = isActive(link.href);
             return (
               <Link
                 key={link.key}
                 href={link.href as never}
+                onClick={closeMenu}
                 className={cn(
                   "group/link relative inline-flex flex-shrink-0 items-center py-1 font-mono text-[11px] tracking-widest whitespace-nowrap uppercase transition-colors duration-200 select-none sm:text-xs",
                   active
@@ -163,6 +188,48 @@ export function Navbar({ locale }: NavbarProps) {
             <LanguageSwitcher current={locale} />
           </div>
         </div>
+
+        {/* Mobile hamburger menu button */}
+        <button
+          type="button"
+          className="text-cyan hover:text-cyan-bright pointer-events-auto absolute top-1/2 right-3 z-30 flex -translate-y-1/2 items-center justify-center p-2 transition-colors sm:hidden"
+          onClick={toggleMenu}
+          aria-expanded={isExpanded}
+          aria-controls="mobile-menu"
+          aria-label={isExpanded ? "Cerrar menú" : "Abrir menú"}
+        >
+          {isExpanded ? (
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          ) : (
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          )}
+        </button>
       </nav>
     </header>
   );
