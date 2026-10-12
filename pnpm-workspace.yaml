@@ -1,7 +1,13 @@
 allowBuilds:
-  unrs-resolver: set this to true or false
+  unrs-resolver: true
 onlyBuiltDependencies:
   - unrs-resolver
 
 # Allow build scripts for approved dependencies without interactive prompt
 # Required for CI with --frozen-lockfile
+
+overrides:
+  "js-yaml@<4.3.2": "^4.3.2"
+  "brace-expansion@<1.1.21": "^1.1.21"
+  "brace-expansion@>=4.0.0 <5.0.12": "^5.0.12"
+  "source-map-js@<1.2.2": "^1.2.2"
