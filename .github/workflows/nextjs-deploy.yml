@@ -18,7 +18,7 @@ on:
       - "eslint.config.mjs"
       - ".prettierrc"
       - "scripts/**"
-        - ".nvmrc"
+      - ".nvmrc"
   workflow_dispatch:
 
 permissions:
