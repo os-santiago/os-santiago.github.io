@@ -17,7 +17,8 @@ on:
       - "postcss.config.mjs"
       - "eslint.config.mjs"
       - ".prettierrc"
-      - ".nvmrc"
+      - "scripts/**"
+        - ".nvmrc"
   push:
     branches: [main]
     paths:
@@ -34,7 +35,8 @@ on:
       - "postcss.config.mjs"
       - "eslint.config.mjs"
       - ".prettierrc"
-      - ".nvmrc"
+      - "scripts/**"
+        - ".nvmrc"
 
 permissions:
   contents: read
