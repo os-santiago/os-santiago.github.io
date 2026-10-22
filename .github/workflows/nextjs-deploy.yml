@@ -17,6 +17,7 @@ on:
       - "postcss.config.mjs"
       - "eslint.config.mjs"
       - ".prettierrc"
+      - "scripts/**"
       - ".nvmrc"
   workflow_dispatch:
 

@@ -18,6 +18,7 @@ on:
       - "eslint.config.mjs"
       - ".github/workflows/**"
       - ".prettierrc"
+      - "scripts/**"
       - ".nvmrc"
   push:
     branches: [main]
@@ -36,6 +37,7 @@ on:
       - "eslint.config.mjs"
       - ".github/workflows/**"
       - ".prettierrc"
+      - "scripts/**"
       - ".nvmrc"
 
 permissions:

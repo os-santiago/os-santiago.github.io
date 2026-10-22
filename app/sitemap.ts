@@ -4,7 +4,7 @@ import { locales } from "@/i18n/config";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://os-santiago.github.io";
+  const baseUrl = "https://opensourcesantiago.io";
   const routes = ["", "/about", "/adev", "/projects", "/events", "/members"];
 
   const entries: MetadataRoute.Sitemap = [];

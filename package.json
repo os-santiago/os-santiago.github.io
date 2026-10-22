@@ -6,7 +6,7 @@
   "packageManager": "pnpm@11.23.0",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/generate-root-redirect.mjs",
     "start": "next start",
     "lint": "eslint app/ components/ i18n/ lib/ data/ next.config.ts",
     "format": "prettier --write .",

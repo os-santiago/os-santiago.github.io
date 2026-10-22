@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://os-santiago.github.io/sitemap.xml",
+    sitemap: "https://opensourcesantiago.io/sitemap.xml",
   };
 }
