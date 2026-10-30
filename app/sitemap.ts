@@ -1,11 +1,20 @@
 import type { MetadataRoute } from "next";
 import { defaultLocale, locales } from "@/i18n/config";
+import { events } from "@/data/events";
 import { SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/about", "/adev", "/projects", "/events", "/members"];
+  const routes = [
+    "",
+    "/about",
+    "/adev",
+    "/projects",
+    "/events",
+    "/members",
+    ...events.map((event) => `/events/${event.id}`),
+  ];
 
   const entries: MetadataRoute.Sitemap = [];
 
