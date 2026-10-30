@@ -67,7 +67,7 @@ export function Navbar({ locale }: NavbarProps) {
     <header className="pointer-events-none fixed top-0 right-0 left-0 z-40 flex justify-center px-4 py-3 sm:py-4">
       <nav
         className={cn(
-          "group/nav border-cyan/20 bg-void-surface/95 pointer-events-auto relative flex transform-gpu items-center justify-between rounded-full border shadow-[0_4px_24px_rgba(0,0,0,0.7)] backdrop-blur-md",
+          "group/nav border-cyan/30 bg-void-surface pointer-events-auto relative flex transform-gpu items-center justify-between rounded-full border shadow-[0_4px_24px_rgba(0,0,0,0.85)]",
           "h-12 max-w-4xl overflow-hidden px-3 sm:h-13",
           "transition-[width,padding,border-color,box-shadow] duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]",
           "w-12 sm:w-13",
