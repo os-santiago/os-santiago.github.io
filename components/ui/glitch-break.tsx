@@ -29,6 +29,9 @@ export function GlitchBreak({ className }: GlitchBreakProps) {
     let frame = 0;
     let width = 0;
     let height = 0;
+    let isVisible = true;
+    let lastTime = 0;
+    const frameInterval = 1000 / 20;
 
     function resize() {
       if (!canvas || !ctx) return;
@@ -50,8 +53,14 @@ export function GlitchBreak({ className }: GlitchBreakProps) {
       life: number;
     }[] = [];
 
-    function draw() {
-      if (!canvas || !ctx) return;
+    function draw(time: number) {
+      animationRef.current = 0;
+      if (!canvas || !ctx || !isVisible || document.hidden) return;
+      if (time - lastTime < frameInterval) {
+        animationRef.current = requestAnimationFrame(draw);
+        return;
+      }
+      lastTime = time;
       if (width === 0 || height === 0) {
         resize();
         animationRef.current = requestAnimationFrame(draw);
@@ -128,29 +137,63 @@ export function GlitchBreak({ className }: GlitchBreakProps) {
         ctx.fillRect(rand(0, canvas.width), rand(0, height), 1.5, 1.5);
       }
 
-      if (!prefersReduced) {
-        animationRef.current = requestAnimationFrame(draw);
-      }
+      animationRef.current = requestAnimationFrame(draw);
     }
+
+    function start() {
+      if (
+        prefersReduced ||
+        !isVisible ||
+        document.hidden ||
+        animationRef.current
+      ) {
+        return;
+      }
+      animationRef.current = requestAnimationFrame(draw);
+    }
+
+    function stop() {
+      cancelAnimationFrame(animationRef.current);
+      animationRef.current = 0;
+    }
+
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) start();
+        else stop();
+      },
+      { threshold: 0 },
+    );
+    visibilityObserver.observe(canvas);
+
+    const onVisibilityChange = () => {
+      if (document.hidden) stop();
+      else start();
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
 
     const resizeObserver = new ResizeObserver(() => resize());
     if (canvas.parentElement) {
       resizeObserver.observe(canvas.parentElement);
     }
 
-    setTimeout(resize, 50);
+    const resizeTimeout = window.setTimeout(resize, 50);
     resize();
 
     if (prefersReduced) {
       ctx.fillStyle = "rgba(4, 6, 10, 1)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     } else {
-      animationRef.current = requestAnimationFrame(draw);
+      start();
     }
 
     return () => {
+      stop();
+      window.clearTimeout(resizeTimeout);
       resizeObserver.disconnect();
-      cancelAnimationFrame(animationRef.current);
+      visibilityObserver.disconnect();
+      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, []);
 

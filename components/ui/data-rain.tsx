@@ -43,7 +43,9 @@ export function DataRain({
     ).matches;
 
     let drops: Drop[] = [];
+    let isVisible = true;
     let lastTime = 0;
+    const frameInterval = 1000 / 30;
 
     function resize() {
       if (!canvas || !ctx) return;
@@ -74,8 +76,13 @@ export function DataRain({
     }
 
     function draw(time: number) {
-      if (!canvas || !ctx) return;
-      const delta = time - lastTime;
+      animationRef.current = 0;
+      if (!canvas || !ctx || !isVisible || document.hidden) return;
+      if (time - lastTime < frameInterval) {
+        animationRef.current = requestAnimationFrame(draw);
+        return;
+      }
+      const delta = Math.min(time - lastTime, 50);
       lastTime = time;
 
       ctx.fillStyle = "rgba(4, 6, 10, 0.08)";
@@ -111,29 +118,63 @@ export function DataRain({
         }
       }
 
-      if (!prefersReduced) {
-        animationRef.current = requestAnimationFrame(draw);
-      }
+      animationRef.current = requestAnimationFrame(draw);
     }
+
+    function start() {
+      if (
+        prefersReduced ||
+        !isVisible ||
+        document.hidden ||
+        animationRef.current
+      ) {
+        return;
+      }
+      animationRef.current = requestAnimationFrame(draw);
+    }
+
+    function stop() {
+      cancelAnimationFrame(animationRef.current);
+      animationRef.current = 0;
+    }
+
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) start();
+        else stop();
+      },
+      { threshold: 0 },
+    );
+    visibilityObserver.observe(canvas);
+
+    const onVisibilityChange = () => {
+      if (document.hidden) stop();
+      else start();
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
 
     const resizeObserver = new ResizeObserver(() => resize());
     if (canvas.parentElement) {
       resizeObserver.observe(canvas.parentElement);
     }
 
-    setTimeout(resize, 50);
+    const resizeTimeout = window.setTimeout(resize, 50);
     resize();
 
     if (prefersReduced) {
       ctx.fillStyle = "rgba(4, 6, 10, 1)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     } else {
-      animationRef.current = requestAnimationFrame(draw);
+      start();
     }
 
     return () => {
+      stop();
+      window.clearTimeout(resizeTimeout);
       resizeObserver.disconnect();
-      cancelAnimationFrame(animationRef.current);
+      visibilityObserver.disconnect();
+      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, [density, speed]);
 
