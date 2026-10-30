@@ -32,6 +32,17 @@ export function Navbar({ locale }: NavbarProps) {
     }
   }, [scrollY, scrollDirection]);
 
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isMobileMenuOpen]);
+
   function isActive(href: string): boolean {
     const normalized = pathname.replace(/\/$/, "");
     const target = href.replace(/\/$/, "");
@@ -101,6 +112,7 @@ export function Navbar({ locale }: NavbarProps) {
                 key={link.key}
                 href={link.href as never}
                 onClick={closeMenu}
+                aria-current={active ? "page" : undefined}
                 className={cn(
                   "group/link relative inline-flex flex-shrink-0 items-center py-1 font-mono text-[11px] tracking-widest whitespace-nowrap uppercase transition-colors duration-200 select-none sm:text-xs",
                   active
@@ -128,7 +140,7 @@ export function Navbar({ locale }: NavbarProps) {
           <Link
             href={`/${locale}` as never}
             className="relative flex items-center justify-center rounded-full p-1"
-            aria-label="Home"
+            aria-label={msgs["nav.home"]}
           >
             <div
               className={cn(
@@ -164,6 +176,7 @@ export function Navbar({ locale }: NavbarProps) {
                 key={link.key}
                 href={link.href as never}
                 onClick={closeMenu}
+                aria-current={active ? "page" : undefined}
                 className={cn(
                   "group/link relative inline-flex flex-shrink-0 items-center py-1 font-mono text-[11px] tracking-widest whitespace-nowrap uppercase transition-colors duration-200 select-none sm:text-xs",
                   active
@@ -196,7 +209,9 @@ export function Navbar({ locale }: NavbarProps) {
           onClick={toggleMenu}
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-menu"
-          aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-label={
+            isMobileMenuOpen ? msgs["nav.closeMenu"] : msgs["nav.openMenu"]
+          }
         >
           {isMobileMenuOpen ? (
             <svg
@@ -245,6 +260,7 @@ export function Navbar({ locale }: NavbarProps) {
                   <Link
                     href={link.href as never}
                     onClick={closeMenu}
+                    aria-current={active ? "page" : undefined}
                     className={cn(
                       "flex items-center justify-between rounded-lg px-3 py-2.5 font-mono text-xs tracking-widest uppercase transition-colors",
                       active

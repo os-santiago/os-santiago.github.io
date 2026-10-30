@@ -9,6 +9,8 @@ const es: Messages = {
   "nav.projects": "Proyectos",
   "nav.events": "Eventos",
   "nav.members": "Miembros",
+  "nav.openMenu": "Abrir menú",
+  "nav.closeMenu": "Cerrar menú",
 
   "home.title": "Open Source Santiago",
   "home.tagline":
@@ -167,6 +169,8 @@ const en: Messages = {
   "nav.projects": "Projects",
   "nav.events": "Events",
   "nav.members": "Members",
+  "nav.openMenu": "Open menu",
+  "nav.closeMenu": "Close menu",
 
   "home.title": "Open Source Santiago",
   "home.tagline":
