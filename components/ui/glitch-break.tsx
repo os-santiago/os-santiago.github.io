@@ -1,11 +1,20 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { subscribe } from "@/lib/frame-scheduler";
 import { cn } from "@/lib/utils";
 
 type GlitchBreakProps = {
   className?: string;
 };
+
+const FPS = 20;
+const BASE_FRAME_MS = 1000 / 60;
+const GRID_INTERVAL_MS = 1000 / 7.5;
+const SPAWN_INTERVAL_MS = 1000 / 10;
+const ARTIFACT_LIFE_MIN_MS = 200;
+const ARTIFACT_LIFE_MAX_MS = (35 / 60) * 1000;
+const DITHER_DOTS_BASE = 3;
 
 function rand(min: number, max: number): number {
   return Math.random() * (max - min) + min;
@@ -13,7 +22,6 @@ function rand(min: number, max: number): number {
 
 export function GlitchBreak({ className }: GlitchBreakProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -26,23 +34,11 @@ export function GlitchBreak({ className }: GlitchBreakProps) {
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    let frame = 0;
     let width = 0;
     let height = 0;
-    let isVisible = true;
-    let lastTime = 0;
-    const frameInterval = 1000 / 20;
-
-    function resize() {
-      if (!canvas || !ctx) return;
-      const parent = canvas.parentElement;
-      if (!parent) return;
-      width = parent.offsetWidth;
-      height = parent.offsetHeight;
-      if (width === 0 || height === 0) return;
-      canvas.width = width;
-      canvas.height = height;
-    }
+    let gridElapsed = 0;
+    let spawnElapsed = 0;
+    let unsubscribe: (() => void) | null = null;
 
     const activeArtifacts: {
       text: string;
@@ -53,26 +49,38 @@ export function GlitchBreak({ className }: GlitchBreakProps) {
       life: number;
     }[] = [];
 
-    function draw(time: number) {
-      animationRef.current = 0;
-      if (!canvas || !ctx || !isVisible || document.hidden) return;
-      if (time - lastTime < frameInterval) {
-        animationRef.current = requestAnimationFrame(draw);
-        return;
-      }
-      lastTime = time;
+    function paintStatic() {
+      if (!canvas || !ctx) return;
+      ctx.fillStyle = "rgba(4, 6, 10, 1)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function resize() {
+      if (!canvas || !ctx) return;
+      const parent = canvas.parentElement;
+      if (!parent) return;
+      width = parent.offsetWidth;
+      height = parent.offsetHeight;
+      if (width === 0 || height === 0) return;
+      canvas.width = width;
+      canvas.height = height;
+      if (prefersReduced) paintStatic();
+    }
+
+    function draw(_time: number, delta: number) {
+      if (!canvas || !ctx) return;
       if (width === 0 || height === 0) {
         resize();
-        animationRef.current = requestAnimationFrame(draw);
         return;
       }
-      frame++;
 
       // Clear the canvas completely so background transparency is strictly preserved
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Corrupted scan/grid lines
-      if (frame % 8 === 0) {
+      gridElapsed += delta;
+      if (gridElapsed >= GRID_INTERVAL_MS) {
+        gridElapsed %= GRID_INTERVAL_MS;
         ctx.strokeStyle = "rgba(0, 240, 255, 0.05)";
         ctx.lineWidth = 1;
         const gridOffset = rand(-4, 4);
@@ -86,42 +94,46 @@ export function GlitchBreak({ className }: GlitchBreakProps) {
       }
 
       // Spawn artifact symbols periodically
-      if (frame % 6 === 0 && activeArtifacts.length < 10) {
-        const symbols = [
-          "01",
-          "##",
-          "??",
-          "!!",
-          "ER",
-          "404",
-          "FF",
-          "0x",
-          "{}",
-          "</>",
-          "null",
-          "err",
-          "sync",
-          "0x1A",
-          "SIG",
-          "ACK",
-          "EOF",
-        ];
-        const life = Math.floor(rand(12, 35));
-        activeArtifacts.push({
-          text: symbols[Math.floor(Math.random() * symbols.length)],
-          x: rand(10, Math.max(10, canvas.width - 30)),
-          y: rand(15, Math.max(15, height - 10)),
-          alpha: rand(0.15, 0.4),
-          maxLife: life,
-          life,
-        });
+      spawnElapsed += delta;
+      if (spawnElapsed >= SPAWN_INTERVAL_MS) {
+        spawnElapsed %= SPAWN_INTERVAL_MS;
+        if (activeArtifacts.length < 10) {
+          const symbols = [
+            "01",
+            "##",
+            "??",
+            "!!",
+            "ER",
+            "404",
+            "FF",
+            "0x",
+            "{}",
+            "</>",
+            "null",
+            "err",
+            "sync",
+            "0x1A",
+            "SIG",
+            "ACK",
+            "EOF",
+          ];
+          const life = rand(ARTIFACT_LIFE_MIN_MS, ARTIFACT_LIFE_MAX_MS);
+          activeArtifacts.push({
+            text: symbols[Math.floor(Math.random() * symbols.length)],
+            x: rand(10, Math.max(10, canvas.width - 30)),
+            y: rand(15, Math.max(15, height - 10)),
+            alpha: rand(0.15, 0.4),
+            maxLife: life,
+            life,
+          });
+        }
       }
 
       // Render and age active symbols
       ctx.font = "9px monospace";
       for (let i = activeArtifacts.length - 1; i >= 0; i--) {
         const art = activeArtifacts[i];
-        art.life--;
+        art.life -= delta;
         if (art.life <= 0) {
           activeArtifacts.splice(i, 1);
           continue;
@@ -133,45 +145,26 @@ export function GlitchBreak({ className }: GlitchBreakProps) {
 
       // Faint dithering dots
       ctx.fillStyle = "rgba(0, 240, 255, 0.04)";
-      for (let i = 0; i < 3; i++) {
+      const dotCount = Math.max(
+        1,
+        Math.round(DITHER_DOTS_BASE * (delta / BASE_FRAME_MS)),
+      );
+      for (let i = 0; i < dotCount; i++) {
         ctx.fillRect(rand(0, canvas.width), rand(0, height), 1.5, 1.5);
       }
-
-      animationRef.current = requestAnimationFrame(draw);
     }
 
-    function start() {
-      if (
-        prefersReduced ||
-        !isVisible ||
-        document.hidden ||
-        animationRef.current
-      ) {
+    function setActive(active: boolean) {
+      if (active && !prefersReduced) {
+        if (!unsubscribe) unsubscribe = subscribe(draw, { fps: FPS });
         return;
       }
-      animationRef.current = requestAnimationFrame(draw);
+
+      if (unsubscribe) {
+        unsubscribe();
+        unsubscribe = null;
+      }
     }
-
-    function stop() {
-      cancelAnimationFrame(animationRef.current);
-      animationRef.current = 0;
-    }
-
-    const visibilityObserver = new IntersectionObserver(
-      ([entry]) => {
-        isVisible = entry.isIntersecting;
-        if (isVisible) start();
-        else stop();
-      },
-      { threshold: 0 },
-    );
-    visibilityObserver.observe(canvas);
-
-    const onVisibilityChange = () => {
-      if (document.hidden) stop();
-      else start();
-    };
-    document.addEventListener("visibilitychange", onVisibilityChange);
 
     const resizeObserver = new ResizeObserver(() => resize());
     if (canvas.parentElement) {
@@ -181,19 +174,27 @@ export function GlitchBreak({ className }: GlitchBreakProps) {
     const resizeTimeout = window.setTimeout(resize, 50);
     resize();
 
-    if (prefersReduced) {
-      ctx.fillStyle = "rgba(4, 6, 10, 1)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    let visibilityObserver: IntersectionObserver | null = null;
+
+    if (!prefersReduced) {
+      if (typeof IntersectionObserver === "undefined") {
+        setActive(true);
+      } else {
+        visibilityObserver = new IntersectionObserver(
+          ([entry]) => setActive(entry.isIntersecting),
+          { threshold: 0 },
+        );
+        visibilityObserver.observe(canvas);
+      }
     } else {
-      start();
+      paintStatic();
     }
 
     return () => {
-      stop();
+      setActive(false);
       window.clearTimeout(resizeTimeout);
       resizeObserver.disconnect();
-      visibilityObserver.disconnect();
-      document.removeEventListener("visibilitychange", onVisibilityChange);
+      visibilityObserver?.disconnect();
     };
   }, []);
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { subscribe } from "@/lib/frame-scheduler";
 import { cn } from "@/lib/utils";
 
 type DataRainProps = {
@@ -18,6 +19,9 @@ type Drop = {
 };
 
 const CHARSET = "01<>/[]{}=+-*$#@!?abcdef0123456789";
+const BASE_FADE = 0.08;
+const BASE_FRAME_MS = 1000 / 60;
+const FPS = 30;
 
 function randomChar(): string {
   return CHARSET[Math.floor(Math.random() * CHARSET.length)];
@@ -29,7 +33,6 @@ export function DataRain({
   speed = 1,
 }: DataRainProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -43,9 +46,13 @@ export function DataRain({
     ).matches;
 
     let drops: Drop[] = [];
-    let isVisible = true;
-    let lastTime = 0;
-    const frameInterval = 1000 / 30;
+    let unsubscribe: (() => void) | null = null;
+
+    function paintStatic() {
+      if (!canvas || !ctx) return;
+      ctx.fillStyle = "rgba(4, 6, 10, 1)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
 
     function resize() {
       if (!canvas || !ctx) return;
@@ -54,6 +61,7 @@ export function DataRain({
       canvas.width = parent.offsetWidth;
       canvas.height = parent.offsetHeight;
       initDrops();
+      if (prefersReduced) paintStatic();
     }
 
     function initDrops() {
@@ -75,17 +83,11 @@ export function DataRain({
       }
     }
 
-    function draw(time: number) {
-      animationRef.current = 0;
-      if (!canvas || !ctx || !isVisible || document.hidden) return;
-      if (time - lastTime < frameInterval) {
-        animationRef.current = requestAnimationFrame(draw);
-        return;
-      }
-      const delta = Math.min(time - lastTime, 50);
-      lastTime = time;
+    function draw(_time: number, delta: number) {
+      if (!canvas || !ctx) return;
 
-      ctx.fillStyle = "rgba(4, 6, 10, 0.08)";
+      const fade = 1 - Math.pow(1 - BASE_FADE, delta / BASE_FRAME_MS);
+      ctx.fillStyle = `rgba(4, 6, 10, ${fade})`;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.font = "14px monospace";
@@ -117,42 +119,19 @@ export function DataRain({
           drop.x = Math.floor(Math.random() * (canvas.width / 20)) * 20;
         }
       }
-
-      animationRef.current = requestAnimationFrame(draw);
     }
 
-    function start() {
-      if (
-        prefersReduced ||
-        !isVisible ||
-        document.hidden ||
-        animationRef.current
-      ) {
+    function setActive(active: boolean) {
+      if (active && !prefersReduced) {
+        if (!unsubscribe) unsubscribe = subscribe(draw, { fps: FPS });
         return;
       }
-      animationRef.current = requestAnimationFrame(draw);
+
+      if (unsubscribe) {
+        unsubscribe();
+        unsubscribe = null;
+      }
     }
-
-    function stop() {
-      cancelAnimationFrame(animationRef.current);
-      animationRef.current = 0;
-    }
-
-    const visibilityObserver = new IntersectionObserver(
-      ([entry]) => {
-        isVisible = entry.isIntersecting;
-        if (isVisible) start();
-        else stop();
-      },
-      { threshold: 0 },
-    );
-    visibilityObserver.observe(canvas);
-
-    const onVisibilityChange = () => {
-      if (document.hidden) stop();
-      else start();
-    };
-    document.addEventListener("visibilitychange", onVisibilityChange);
 
     const resizeObserver = new ResizeObserver(() => resize());
     if (canvas.parentElement) {
@@ -162,19 +141,27 @@ export function DataRain({
     const resizeTimeout = window.setTimeout(resize, 50);
     resize();
 
-    if (prefersReduced) {
-      ctx.fillStyle = "rgba(4, 6, 10, 1)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    let visibilityObserver: IntersectionObserver | null = null;
+
+    if (!prefersReduced) {
+      if (typeof IntersectionObserver === "undefined") {
+        setActive(true);
+      } else {
+        visibilityObserver = new IntersectionObserver(
+          ([entry]) => setActive(entry.isIntersecting),
+          { threshold: 0 },
+        );
+        visibilityObserver.observe(canvas);
+      }
     } else {
-      start();
+      paintStatic();
     }
 
     return () => {
-      stop();
+      setActive(false);
       window.clearTimeout(resizeTimeout);
       resizeObserver.disconnect();
-      visibilityObserver.disconnect();
-      document.removeEventListener("visibilitychange", onVisibilityChange);
+      visibilityObserver?.disconnect();
     };
   }, [density, speed]);
 
