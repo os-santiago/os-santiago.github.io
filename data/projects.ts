@@ -254,4 +254,20 @@ export const projects: Project[] = [
     category: "community",
     icon: "testpipe",
   },
+
+  // 15. SentinelNode
+  {
+    name: "SentinelNode",
+    description:
+      "Panel autoalojado de auditoría de seguridad. Detecta secretos filtrados en carpetas locales y repos de GitHub Enterprise, y evalúa cabeceras HTTP de seguridad. Se instala con un solo Docker Compose.",
+    descriptionEn:
+      "Self-hosted security auditing dashboard. Detects leaked secrets in local folders and GitHub Enterprise repos, and audits HTTP security headers. Installs as a single Docker Compose app.",
+    language: "TypeScript",
+    repoUrl: "https://github.com/fcarvajalbrown/SentinelNode",
+    status: "active",
+    lastUpdated: "2026-05-21",
+    authors: [{ name: "Felipe Carvajal Brown", github: "fcarvajalbrown" }],
+    category: "community",
+    icon: "shield",
+  },
 ];
