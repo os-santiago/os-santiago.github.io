@@ -39,7 +39,7 @@ export default async function EventsPage({
   const featured = events.find((e) => e.featured);
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-16 text-center">
+    <div className="mx-auto max-w-5xl px-6 py-16 text-center">
       <GlitchText
         as="h1"
         className="text-cyan font-display mx-auto block text-center text-4xl font-bold"
@@ -52,13 +52,16 @@ export default async function EventsPage({
 
       {/* Featured Event */}
       {featured && (
-        <section className="mt-10">
+        <section aria-labelledby="featured-event-title" className="mt-10">
           <GlitchCard className="p-8">
             <div className="text-cyan flex items-center justify-center gap-2 text-center font-mono text-xs tracking-widest uppercase">
               <IconCalendarEvent size={14} className="text-cyan" />
               {msgs["events.upcoming"]}
             </div>
-            <h2 className="text-cyan font-display mt-2 text-center text-3xl font-bold">
+            <h2
+              id="featured-event-title"
+              className="text-cyan font-display mt-2 text-center text-3xl font-bold"
+            >
               {locale === "es" ? featured.name : featured.nameEn}
             </h2>
 
@@ -97,6 +100,7 @@ export default async function EventsPage({
                 <NeonButton
                   href={featured.websiteUrl}
                   external
+                  newTabLabel={msgs["a11y.opensInNewTab"]}
                   size="md"
                   icon={<IconWorld size={18} className="text-cyan" />}
                 >
@@ -107,6 +111,7 @@ export default async function EventsPage({
                 <NeonButton
                   href={featured.volunteersUrl}
                   external
+                  newTabLabel={msgs["a11y.opensInNewTab"]}
                   size="md"
                   icon={<IconUsers size={18} className="text-cyan" />}
                 >
@@ -120,6 +125,6 @@ export default async function EventsPage({
 
       {/* Past Events & Photo Collage Section */}
       <EventGallery events={events} locale={locale as Locale} messages={msgs} />
-    </main>
+    </div>
   );
 }

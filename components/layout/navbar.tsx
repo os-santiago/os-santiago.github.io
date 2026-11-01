@@ -17,6 +17,7 @@ type NavbarProps = {
 export function Navbar({ locale }: NavbarProps) {
   const msgs = getMessages(locale);
   const pathname = usePathname();
+  const isHome = pathname.replace(/\/$/, "") === `/${locale}`;
   const [isExpanded, setIsExpanded] = useState(true);
   const hasCollapsed = useRef(false);
   const { scrollY, scrollDirection } = useScrollPosition();
@@ -66,6 +67,8 @@ export function Navbar({ locale }: NavbarProps) {
   return (
     <header className="pointer-events-none fixed top-0 right-0 left-0 z-40 flex justify-center px-4 py-3 sm:py-4">
       <nav
+        id="main-navigation"
+        aria-label={msgs["a11y.mainNav"]}
         className={cn(
           "group/nav border-cyan/20 bg-void-surface/95 pointer-events-auto relative flex transform-gpu items-center justify-between rounded-full border shadow-[0_4px_24px_rgba(0,0,0,0.7)] backdrop-blur-md",
           "h-12 max-w-4xl overflow-hidden px-3 sm:h-13",
@@ -86,6 +89,7 @@ export function Navbar({ locale }: NavbarProps) {
 
         {/* Left Side Links: Anchored rigidly to center logo, zero horizontal translation */}
         <div
+          onFocus={() => setIsExpanded(true)}
           className={cn(
             "pointer-events-none absolute top-1/2 right-[calc(50%+22px)] z-10 flex -translate-y-1/2 items-center justify-end gap-2.5 opacity-0 blur-[2px] transition-[opacity,filter] duration-150 ease-out sm:right-[calc(50%+26px)] sm:gap-5",
             isExpanded
@@ -100,6 +104,7 @@ export function Navbar({ locale }: NavbarProps) {
                 key={link.key}
                 href={link.href as never}
                 onClick={closeMenu}
+                aria-current={active ? "page" : undefined}
                 className={cn(
                   "group/link relative inline-flex flex-shrink-0 items-center py-1 font-mono text-[11px] tracking-widest whitespace-nowrap uppercase transition-colors duration-200 select-none sm:text-xs",
                   active
@@ -107,14 +112,23 @@ export function Navbar({ locale }: NavbarProps) {
                     : "text-cyan-dim hover:text-cyan-bright",
                 )}
               >
-                <span className="text-cyan mr-0.5 font-mono opacity-0 transition-opacity select-none group-hover/link:opacity-100">
+                <span
+                  aria-hidden="true"
+                  className="text-cyan mr-0.5 font-mono opacity-0 transition-opacity select-none group-hover/link:opacity-100"
+                >
                   [
                 </span>
                 {active && (
-                  <span className="bg-cyan mr-1.5 inline-block h-1.5 w-1.5 flex-shrink-0 animate-pulse rounded-full shadow-[0_0_6px_var(--color-cyan)]" />
+                  <span
+                    aria-hidden="true"
+                    className="bg-cyan mr-1.5 inline-block h-1.5 w-1.5 flex-shrink-0 animate-pulse rounded-full shadow-[0_0_6px_var(--color-cyan)]"
+                  />
                 )}
                 <span>{msgs[link.key]}</span>
-                <span className="text-cyan ml-0.5 font-mono opacity-0 transition-opacity select-none group-hover/link:opacity-100">
+                <span
+                  aria-hidden="true"
+                  className="text-cyan ml-0.5 font-mono opacity-0 transition-opacity select-none group-hover/link:opacity-100"
+                >
                   ]
                 </span>
               </Link>
@@ -127,7 +141,8 @@ export function Navbar({ locale }: NavbarProps) {
           <Link
             href={`/${locale}` as never}
             className="relative flex items-center justify-center rounded-full p-1"
-            aria-label="Home"
+            aria-label={msgs["a11y.home"]}
+            aria-current={isHome ? "page" : undefined}
           >
             <div
               className={cn(
@@ -149,7 +164,7 @@ export function Navbar({ locale }: NavbarProps) {
 
         {/* Right Side Links & Language Switcher: Anchored rigidly to center logo, zero horizontal translation */}
         <div
-          id="mobile-menu"
+          onFocus={() => setIsExpanded(true)}
           className={cn(
             "pointer-events-none absolute top-1/2 right-6 left-[calc(50%+22px)] z-10 flex -translate-y-1/2 items-center justify-start gap-2.5 opacity-0 blur-[2px] transition-[opacity,filter] duration-150 ease-out sm:right-8 sm:left-[calc(50%+26px)] sm:gap-5",
             isExpanded
@@ -164,6 +179,7 @@ export function Navbar({ locale }: NavbarProps) {
                 key={link.key}
                 href={link.href as never}
                 onClick={closeMenu}
+                aria-current={active ? "page" : undefined}
                 className={cn(
                   "group/link relative inline-flex flex-shrink-0 items-center py-1 font-mono text-[11px] tracking-widest whitespace-nowrap uppercase transition-colors duration-200 select-none sm:text-xs",
                   active
@@ -171,14 +187,23 @@ export function Navbar({ locale }: NavbarProps) {
                     : "text-cyan-dim hover:text-cyan-bright",
                 )}
               >
-                <span className="text-cyan mr-0.5 font-mono opacity-0 transition-opacity select-none group-hover/link:opacity-100">
+                <span
+                  aria-hidden="true"
+                  className="text-cyan mr-0.5 font-mono opacity-0 transition-opacity select-none group-hover/link:opacity-100"
+                >
                   [
                 </span>
                 {active && (
-                  <span className="bg-cyan mr-1.5 inline-block h-1.5 w-1.5 flex-shrink-0 animate-pulse rounded-full shadow-[0_0_6px_var(--color-cyan)]" />
+                  <span
+                    aria-hidden="true"
+                    className="bg-cyan mr-1.5 inline-block h-1.5 w-1.5 flex-shrink-0 animate-pulse rounded-full shadow-[0_0_6px_var(--color-cyan)]"
+                  />
                 )}
                 <span>{msgs[link.key]}</span>
-                <span className="text-cyan ml-0.5 font-mono opacity-0 transition-opacity select-none group-hover/link:opacity-100">
+                <span
+                  aria-hidden="true"
+                  className="text-cyan ml-0.5 font-mono opacity-0 transition-opacity select-none group-hover/link:opacity-100"
+                >
                   ]
                 </span>
               </Link>
@@ -195,8 +220,10 @@ export function Navbar({ locale }: NavbarProps) {
           className="text-cyan hover:text-cyan-bright pointer-events-auto absolute top-1/2 right-3 z-30 flex -translate-y-1/2 items-center justify-center p-2 transition-colors sm:hidden"
           onClick={toggleMenu}
           aria-expanded={isExpanded}
-          aria-controls="mobile-menu"
-          aria-label={isExpanded ? "Cerrar menú" : "Abrir menú"}
+          aria-controls="main-navigation"
+          aria-label={
+            isExpanded ? msgs["a11y.closeMenu"] : msgs["a11y.openMenu"]
+          }
         >
           {isExpanded ? (
             <svg

@@ -55,7 +55,7 @@ export default async function HomePage({
       <ReflectiveSurface className="depth-squares relative min-h-[calc(100vh-3.5rem)]">
         <DataRain className="opacity-10" density={0.12} />
 
-        <main className="relative z-10 flex min-h-[calc(100vh-3.5rem)] flex-col items-center justify-center px-6">
+        <div className="relative z-10 flex min-h-[calc(100vh-3.5rem)] flex-col items-center justify-center px-6">
           <GlitchText
             as="h1"
             className="text-cyan font-display w-full text-center text-5xl font-bold text-balance sm:text-7xl"
@@ -75,6 +75,7 @@ export default async function HomePage({
             <NeonButton
               href="https://discord.gg/3eawzc9ybc"
               external
+              newTabLabel={msgs["a11y.opensInNewTab"]}
               size="md"
               icon={<IconBrandDiscord size={18} className="text-cyan" />}
             >
@@ -83,6 +84,7 @@ export default async function HomePage({
             <NeonButton
               href="https://github.com/os-santiago"
               external
+              newTabLabel={msgs["a11y.opensInNewTab"]}
               size="md"
               icon={<IconBrandGithub size={18} className="text-cyan" />}
             >
@@ -91,6 +93,7 @@ export default async function HomePage({
             <NeonButton
               href="https://homedir.opensourcesantiago.io"
               external
+              newTabLabel={msgs["a11y.opensInNewTab"]}
               size="md"
               icon={<IconHome size={18} className="text-cyan" />}
             >
@@ -101,11 +104,14 @@ export default async function HomePage({
           <p className="text-cyan-dim/60 mt-16 text-center font-mono text-xs tracking-widest uppercase">
             {msgs["home.closing"]}
           </p>
-        </main>
+        </div>
       </ReflectiveSurface>
 
       {/* Event Highlight */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section
+        aria-labelledby="home-event-title"
+        className="mx-auto max-w-7xl px-6 py-16"
+      >
         <GlitchCard className="p-8">
           <div className="flex flex-col items-center justify-center gap-6 text-center">
             <div>
@@ -113,7 +119,10 @@ export default async function HomePage({
                 <IconCalendarEvent size={14} className="text-cyan" />
                 {msgs["events.upcoming"]}
               </div>
-              <h2 className="text-cyan font-display mt-2 text-center text-3xl font-bold">
+              <h2
+                id="home-event-title"
+                className="text-cyan font-display mt-2 text-center text-3xl font-bold"
+              >
                 {msgs["home.event.title"]}
               </h2>
               <p className="text-cyan-dim mt-2 text-center text-sm">
@@ -135,6 +144,7 @@ export default async function HomePage({
               <NeonButton
                 href="https://devopsdayschile.cl"
                 external
+                newTabLabel={msgs["a11y.opensInNewTab"]}
                 size="sm"
                 icon={<IconArrowRight size={16} className="text-cyan" />}
               >
@@ -146,8 +156,14 @@ export default async function HomePage({
       </section>
 
       {/* Homedir Features */}
-      <section className="mx-auto max-w-7xl px-6 py-16 text-center">
-        <h2 className="text-cyan font-display text-center text-3xl font-bold">
+      <section
+        aria-labelledby="home-homedir-title"
+        className="mx-auto max-w-7xl px-6 py-16 text-center"
+      >
+        <h2
+          id="home-homedir-title"
+          className="text-cyan font-display text-center text-3xl font-bold"
+        >
           {msgs["home.homedir.title"]}
         </h2>
         <p className="text-cyan-dim mx-auto mt-3 max-w-3xl text-center">
@@ -181,6 +197,7 @@ export default async function HomePage({
           <NeonButton
             href="https://homedir.opensourcesantiago.io"
             external
+            newTabLabel={msgs["a11y.opensInNewTab"]}
             size="md"
             icon={<IconArrowRight size={18} className="text-cyan" />}
           >
@@ -190,8 +207,14 @@ export default async function HomePage({
       </section>
 
       {/* ADEV Preview */}
-      <section className="mx-auto max-w-7xl px-6 py-16 text-center">
-        <h2 className="text-cyan font-display text-center text-3xl font-bold">
+      <section
+        aria-labelledby="home-adev-title"
+        className="mx-auto max-w-7xl px-6 py-16 text-center"
+      >
+        <h2
+          id="home-adev-title"
+          className="text-cyan font-display text-center text-3xl font-bold"
+        >
           {msgs["home.adev.title"]}
         </h2>
         <p className="text-cyan-dim mx-auto mt-3 max-w-3xl text-center">
@@ -228,10 +251,16 @@ export default async function HomePage({
       </section>
 
       {/* Projects Preview */}
-      <section className="mx-auto max-w-7xl px-6 py-16 text-center">
+      <section
+        aria-labelledby="home-projects-title"
+        className="mx-auto max-w-7xl px-6 py-16 text-center"
+      >
         <div className="mb-8 flex flex-col items-center justify-center gap-4">
           <div>
-            <h2 className="text-cyan font-display text-center text-3xl font-bold">
+            <h2
+              id="home-projects-title"
+              className="text-cyan font-display text-center text-3xl font-bold"
+            >
               {msgs["home.projects.title"]}
             </h2>
             <p className="text-cyan-dim mt-2 text-center text-sm">
@@ -252,6 +281,7 @@ export default async function HomePage({
             <GlitchCard
               key={project.name}
               href={project.repoUrl}
+              newTabLabel={msgs["a11y.opensInNewTab"]}
               className="border-cyan/15 hover:border-cyan/40 flex h-full flex-col items-center p-5 text-center"
             >
               <div className="mb-1 w-full">
@@ -283,12 +313,22 @@ export default async function HomePage({
       </section>
 
       {/* Community */}
-      <section className="mx-auto max-w-7xl px-6 py-16 text-center">
-        <h2 className="text-cyan font-display text-center text-3xl font-bold">
+      <section
+        aria-labelledby="home-community-title"
+        className="mx-auto max-w-7xl px-6 py-16 text-center"
+      >
+        <h2
+          id="home-community-title"
+          className="text-cyan font-display text-center text-3xl font-bold"
+        >
           {msgs["home.community.title"]}
         </h2>
         <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <GlitchCard href="https://discord.gg/3eawzc9ybc" className="p-5">
+          <GlitchCard
+            href="https://discord.gg/3eawzc9ybc"
+            newTabLabel={msgs["a11y.opensInNewTab"]}
+            className="p-5"
+          >
             <div className="flex items-center justify-center gap-2">
               <IconBrandDiscord size={18} className="text-cyan" />
               <h3 className="text-cyan font-mono text-sm tracking-widest uppercase">
@@ -299,7 +339,11 @@ export default async function HomePage({
               {msgs["home.community.discord"]}
             </p>
           </GlitchCard>
-          <GlitchCard href="https://github.com/os-santiago" className="p-5">
+          <GlitchCard
+            href="https://github.com/os-santiago"
+            newTabLabel={msgs["a11y.opensInNewTab"]}
+            className="p-5"
+          >
             <div className="flex items-center justify-center gap-2">
               <IconBrandGithub size={18} className="text-cyan" />
               <h3 className="text-cyan font-mono text-sm tracking-widest uppercase">
@@ -312,6 +356,7 @@ export default async function HomePage({
           </GlitchCard>
           <GlitchCard
             href="https://homedir.opensourcesantiago.io"
+            newTabLabel={msgs["a11y.opensInNewTab"]}
             className="p-5"
           >
             <div className="flex items-center justify-center gap-2">

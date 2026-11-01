@@ -61,7 +61,7 @@ export default async function AdevPage({
   ];
 
   return (
-    <main className="mx-auto flex min-h-[calc(100vh-3.5rem)] max-w-5xl flex-col justify-between px-6 py-6 text-center sm:py-8">
+    <div className="mx-auto flex min-h-[calc(100vh-3.5rem)] max-w-5xl flex-col justify-between px-6 py-6 text-center sm:py-8">
       {/* Header Section */}
       <div className="flex flex-col items-center">
         <GlitchText
@@ -127,6 +127,7 @@ export default async function AdevPage({
             <NeonButton
               href="https://github.com/scanalesespinoza/adev/releases/latest"
               external
+              newTabLabel={msgs["a11y.opensInNewTab"]}
               size="md"
               icon={<IconBook size={18} className="text-cyan" />}
             >
@@ -136,6 +137,7 @@ export default async function AdevPage({
             <NeonButton
               href="https://github.com/scanalesespinoza/adev"
               external
+              newTabLabel={msgs["a11y.opensInNewTab"]}
               size="sm"
               icon={<IconBrandGithub size={16} className="text-cyan" />}
             >
@@ -144,6 +146,6 @@ export default async function AdevPage({
           </div>
         </GlitchCard>
       </div>
-    </main>
+    </div>
   );
 }

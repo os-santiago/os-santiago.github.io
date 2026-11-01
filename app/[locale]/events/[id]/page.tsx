@@ -51,7 +51,7 @@ export default async function EventDetailPage({
   }
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-12 text-center sm:py-16">
+    <div className="mx-auto max-w-5xl px-6 py-12 text-center sm:py-16">
       {/* Back to Events Navigation */}
       <div className="mb-8 flex justify-start">
         <NeonButton
@@ -95,13 +95,19 @@ export default async function EventDetailPage({
 
       {/* Photo Collage & Gallery */}
       {event.photos && event.photos.length > 0 && (
-        <section className="w-full text-center">
+        <section
+          aria-labelledby="event-gallery-title"
+          className="w-full text-center"
+        >
           <div className="mb-6 flex flex-col items-center justify-center">
             <div className="text-cyan mb-1 flex items-center justify-center gap-2 font-mono text-xs tracking-widest uppercase">
               <IconSparkles size={14} className="text-cyan" />
               {msgs["events.gallery"]}
             </div>
-            <h2 className="text-cyan font-display text-2xl font-bold tracking-wide">
+            <h2
+              id="event-gallery-title"
+              className="text-cyan font-display text-2xl font-bold tracking-wide"
+            >
               {locale === "es"
                 ? "Collage Fotográfico del Evento"
                 : "Event Photo Collage"}
@@ -111,6 +117,6 @@ export default async function EventDetailPage({
           <EventDetailGallery photos={event.photos} locale={locale as Locale} />
         </section>
       )}
-    </main>
+    </div>
   );
 }

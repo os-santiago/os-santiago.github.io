@@ -37,7 +37,7 @@ export default async function MembersPage({
   const msgs = getMessages(locale as Locale);
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-16 text-center">
+    <div className="mx-auto max-w-5xl px-6 py-16 text-center">
       <GlitchText
         as="h1"
         className="text-cyan font-display mx-auto block text-center text-4xl font-bold"
@@ -109,7 +109,7 @@ export default async function MembersPage({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="neon-btn-3d border-cyan/50 text-cyan hover:border-cyan inline-flex items-center justify-center rounded-sm border p-2 font-mono transition-all duration-300"
-                aria-label={`${member.displayName} GitHub`}
+                aria-label={`${member.displayName} GitHub (${msgs["a11y.opensInNewTab"]})`}
                 title={`GitHub @${member.github}`}
               >
                 <IconBrandGithub size={20} />
@@ -120,9 +120,12 @@ export default async function MembersPage({
       </div>
 
       {/* Join CTA */}
-      <section className="mt-14">
+      <section aria-labelledby="members-join-title" className="mt-14">
         <GlitchCard className="cyber-hud-box bg-void-surface/70 border-cyan/20 flex flex-col items-center rounded-sm border p-8 text-center backdrop-blur-sm sm:p-10">
-          <h2 className="text-cyan font-display text-center text-2xl font-bold">
+          <h2
+            id="members-join-title"
+            className="text-cyan font-display text-center text-2xl font-bold"
+          >
             {msgs["members.join.title"]}
           </h2>
           <p className="text-cyan-dim mx-auto mt-3 max-w-xl text-center text-sm leading-relaxed">
@@ -132,6 +135,7 @@ export default async function MembersPage({
             <NeonButton
               href="https://homedir.opensourcesantiago.io/comunidad"
               external
+              newTabLabel={msgs["a11y.opensInNewTab"]}
               size="md"
               icon={<IconArrowRight size={18} className="text-cyan" />}
             >
@@ -140,6 +144,6 @@ export default async function MembersPage({
           </div>
         </GlitchCard>
       </section>
-    </main>
+    </div>
   );
 }

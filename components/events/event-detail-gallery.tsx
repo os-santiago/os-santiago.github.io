@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { IconX, IconMaximize } from "@tabler/icons-react";
+import { getMessages } from "@/i18n";
 import { type EventPhoto } from "@/data/events";
 import { type Locale } from "@/i18n/config";
 import { cn } from "@/lib/utils";
@@ -16,7 +17,48 @@ export function EventDetailGallery({
   photos,
   locale,
 }: EventDetailGalleryProps) {
+  const msgs = getMessages(locale);
   const [selectedPhoto, setSelectedPhoto] = useState<EventPhoto | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!selectedPhoto) return;
+
+    previousFocusRef.current = document.activeElement as HTMLElement | null;
+    closeButtonRef.current?.focus();
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setSelectedPhoto(null);
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusable = dialogRef.current?.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      );
+      if (!focusable || focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      previousFocusRef.current?.focus();
+    };
+  }, [selectedPhoto]);
 
   if (!photos || photos.length === 0) return null;
 
@@ -27,11 +69,13 @@ export function EventDetailGallery({
         {photos.map((photo, idx) => {
           const isPrimary = idx === 0;
           return (
-            <div
+            <button
               key={idx}
+              type="button"
               onClick={() => setSelectedPhoto(photo)}
+              aria-haspopup="dialog"
               className={cn(
-                "group bg-void/90 relative cursor-pointer overflow-hidden rounded-sm border transition-all duration-300",
+                "group bg-void/90 relative block w-full cursor-pointer overflow-hidden rounded-sm border text-left transition-all duration-300",
                 isPrimary
                   ? "border-cyan/40 hover:border-cyan shadow-[0_0_20px_rgba(0,240,255,0.15)] hover:shadow-[0_0_35px_rgba(0,240,255,0.35)] md:col-span-2 lg:col-span-2"
                   : "border-cyan/20 hover:border-cyan/50 hover:shadow-[0_0_25px_rgba(0,240,255,0.25)]",
@@ -77,7 +121,7 @@ export function EventDetailGallery({
                   </span>
                 </div>
               )}
-            </div>
+            </button>
           );
         })}
       </div>
@@ -89,12 +133,18 @@ export function EventDetailGallery({
           onClick={() => setSelectedPhoto(null)}
         >
           <div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={selectedPhoto.alt}
             className="bg-void-surface border-cyan/40 animate-in fade-in zoom-in-95 relative w-full max-w-5xl overflow-hidden rounded-sm border shadow-[0_0_45px_rgba(0,240,255,0.35)] duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             <button
+              ref={closeButtonRef}
+              type="button"
               onClick={() => setSelectedPhoto(null)}
-              aria-label="Close photo preview"
+              aria-label={msgs["a11y.closePhotoPreview"]}
               className="neon-btn-3d border-cyan/50 text-cyan hover:border-cyan absolute top-3 right-3 z-20 flex cursor-pointer items-center justify-center rounded-sm border p-2 transition-all duration-300"
             >
               <IconX size={20} />

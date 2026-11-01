@@ -19,19 +19,23 @@ export function Footer({ locale }: FooterProps) {
       label: "Discord",
       href: "https://discord.gg/3eawzc9ybc",
       external: true,
-      icon: <IconBrandDiscord size={15} className="text-cyan" />,
+      icon: (
+        <IconBrandDiscord size={15} className="text-cyan" aria-hidden="true" />
+      ),
     },
     {
       label: "GitHub",
       href: "https://github.com/os-santiago",
       external: true,
-      icon: <IconBrandGithub size={15} className="text-cyan" />,
+      icon: (
+        <IconBrandGithub size={15} className="text-cyan" aria-hidden="true" />
+      ),
     },
     {
       label: "HomeDir",
       href: "https://homedir.opensourcesantiago.io",
       external: true,
-      icon: <IconHome size={15} className="text-cyan" />,
+      icon: <IconHome size={15} className="text-cyan" aria-hidden="true" />,
     },
   ];
 
@@ -72,14 +76,21 @@ export function Footer({ locale }: FooterProps) {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`${link.label} (${msgs["a11y.opensInNewTab"]})`}
                 className="group text-cyan-dim hover:text-cyan flex items-center gap-1.5 py-1 font-mono text-xs tracking-widest uppercase transition-all duration-300 hover:shadow-[0_0_10px_var(--color-cyan-glow)]"
               >
-                <span className="text-cyan font-mono opacity-0 transition-opacity group-hover:opacity-100">
+                <span
+                  aria-hidden="true"
+                  className="text-cyan font-mono opacity-0 transition-opacity group-hover:opacity-100"
+                >
                   [
                 </span>
                 {link.icon}
                 <span>{link.label}</span>
-                <span className="text-cyan font-mono opacity-0 transition-opacity group-hover:opacity-100">
+                <span
+                  aria-hidden="true"
+                  className="text-cyan font-mono opacity-0 transition-opacity group-hover:opacity-100"
+                >
                   ]
                 </span>
               </a>
