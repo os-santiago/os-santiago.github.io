@@ -11,6 +11,7 @@ type GlitchCardProps = {
   innerClassName?: string;
   href?: string;
   external?: boolean;
+  newTabLabel?: string;
 };
 
 export function GlitchCard({
@@ -19,6 +20,7 @@ export function GlitchCard({
   innerClassName,
   href,
   external,
+  newTabLabel,
 }: GlitchCardProps) {
   const [isGlitching, setIsGlitching] = useState(false);
 
@@ -53,7 +55,10 @@ export function GlitchCard({
           {isGlitching && (
             <div className="glitch-slice pointer-events-none absolute inset-0 z-20" />
           )}
-          <div className={innerClass}>{children}</div>
+          <div className={innerClass}>
+            {children}
+            {newTabLabel && <span className="sr-only"> ({newTabLabel})</span>}
+          </div>
         </a>
       );
     }

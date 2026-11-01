@@ -24,13 +24,19 @@ export function EventGallery({
   if (pastEvents.length === 0) return null;
 
   return (
-    <section className="mt-16 w-full text-center">
+    <section
+      aria-labelledby="past-events-title"
+      className="mt-16 w-full text-center"
+    >
       <div className="mb-8 flex flex-col items-center justify-center">
         <div className="text-cyan mb-1 flex items-center justify-center gap-2 font-mono text-xs tracking-widest uppercase">
           <IconSparkles size={14} className="text-cyan" />
           {msgs["events.gallery"]}
         </div>
-        <h2 className="text-cyan font-display text-2xl font-bold tracking-wide sm:text-3xl">
+        <h2
+          id="past-events-title"
+          className="text-cyan font-display text-2xl font-bold tracking-wide sm:text-3xl"
+        >
           {msgs["events.pastEvents"]}
         </h2>
       </div>

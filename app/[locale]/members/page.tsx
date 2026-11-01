@@ -37,7 +37,7 @@ export default async function MembersPage({
   const msgs = getMessages(locale as Locale);
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-16 text-center">
+    <div className="mx-auto max-w-5xl px-6 py-16 text-center">
       <GlitchText
         as="h1"
         className="text-cyan font-display mx-auto block text-center text-4xl font-bold"
@@ -120,9 +120,12 @@ export default async function MembersPage({
       </div>
 
       {/* Join CTA */}
-      <section className="mt-14">
+      <section aria-labelledby="members-join-title" className="mt-14">
         <GlitchCard className="cyber-hud-box bg-void-surface/70 border-cyan/20 flex flex-col items-center rounded-sm border p-8 text-center backdrop-blur-sm sm:p-10">
-          <h2 className="text-cyan font-display text-center text-2xl font-bold">
+          <h2
+            id="members-join-title"
+            className="text-cyan font-display text-center text-2xl font-bold"
+          >
             {msgs["members.join.title"]}
           </h2>
           <p className="text-cyan-dim mx-auto mt-3 max-w-xl text-center text-sm leading-relaxed">
@@ -140,6 +143,6 @@ export default async function MembersPage({
           </div>
         </GlitchCard>
       </section>
-    </main>
+    </div>
   );
 }

@@ -66,7 +66,7 @@ export default async function AboutPage({
   ];
 
   return (
-    <main className="mx-auto max-w-4xl px-6 py-16 text-center">
+    <div className="mx-auto max-w-4xl px-6 py-16 text-center">
       <GlitchText
         as="h1"
         className="text-cyan font-display mx-auto block text-center text-4xl font-bold"
@@ -124,6 +124,6 @@ export default async function AboutPage({
           {msgs["home.cta.adev"]}
         </NeonButton>
       </div>
-    </main>
+    </div>
   );
 }

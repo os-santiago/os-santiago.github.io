@@ -33,7 +33,7 @@ export default async function ProjectsPage({
   const msgs = getMessages(locale as Locale);
 
   return (
-    <main className="mx-auto max-w-7xl px-6 py-16 text-center">
+    <div className="mx-auto max-w-7xl px-6 py-16 text-center">
       <GlitchText
         as="h1"
         className="text-cyan font-display mx-auto block text-center text-4xl font-bold"
@@ -49,6 +49,6 @@ export default async function ProjectsPage({
         locale={locale as Locale}
         messages={msgs}
       />
-    </main>
+    </div>
   );
 }

@@ -10,6 +10,13 @@ const es: Messages = {
   "nav.events": "Eventos",
   "nav.members": "Miembros",
 
+  "a11y.mainNav": "Navegación principal",
+  "a11y.home": "Inicio",
+  "a11y.skipToContent": "Saltar al contenido",
+  "a11y.opensInNewTab": "se abre en una pestaña nueva",
+  "a11y.openMenu": "Abrir menú",
+  "a11y.closeMenu": "Cerrar menú",
+
   "home.title": "Open Source Santiago",
   "home.tagline":
     "Comunidad, Código Abierto y Colaboración Real: Abiertos al Mundo",
@@ -167,6 +174,13 @@ const en: Messages = {
   "nav.projects": "Projects",
   "nav.events": "Events",
   "nav.members": "Members",
+
+  "a11y.mainNav": "Main navigation",
+  "a11y.home": "Home",
+  "a11y.skipToContent": "Skip to content",
+  "a11y.opensInNewTab": "opens in a new tab",
+  "a11y.openMenu": "Open menu",
+  "a11y.closeMenu": "Close menu",
 
   "home.title": "Open Source Santiago",
   "home.tagline":
