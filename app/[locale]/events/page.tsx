@@ -100,6 +100,7 @@ export default async function EventsPage({
                 <NeonButton
                   href={featured.websiteUrl}
                   external
+                  newTabLabel={msgs["a11y.opensInNewTab"]}
                   size="md"
                   icon={<IconWorld size={18} className="text-cyan" />}
                 >
@@ -110,6 +111,7 @@ export default async function EventsPage({
                 <NeonButton
                   href={featured.volunteersUrl}
                   external
+                  newTabLabel={msgs["a11y.opensInNewTab"]}
                   size="md"
                   icon={<IconUsers size={18} className="text-cyan" />}
                 >

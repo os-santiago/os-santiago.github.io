@@ -8,6 +8,7 @@ type NeonButtonProps = {
   external?: boolean;
   className?: string;
   icon?: React.ReactNode;
+  newTabLabel?: string;
 };
 
 const sizeClasses = {
@@ -23,6 +24,7 @@ export function NeonButton({
   external = false,
   className,
   icon,
+  newTabLabel,
 }: NeonButtonProps) {
   const baseClass = cn(
     "neon-btn-3d inline-flex items-center justify-center gap-2 rounded-sm border border-cyan/50 font-mono uppercase tracking-widest text-cyan transition-all duration-300 hover:border-cyan",
@@ -34,6 +36,9 @@ export function NeonButton({
     <>
       {icon && <span className="flex-shrink-0">{icon}</span>}
       {children}
+      {external && newTabLabel && (
+        <span className="sr-only"> ({newTabLabel})</span>
+      )}
     </>
   );
 

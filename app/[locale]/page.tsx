@@ -75,6 +75,7 @@ export default async function HomePage({
             <NeonButton
               href="https://discord.gg/3eawzc9ybc"
               external
+              newTabLabel={msgs["a11y.opensInNewTab"]}
               size="md"
               icon={<IconBrandDiscord size={18} className="text-cyan" />}
             >
@@ -83,6 +84,7 @@ export default async function HomePage({
             <NeonButton
               href="https://github.com/os-santiago"
               external
+              newTabLabel={msgs["a11y.opensInNewTab"]}
               size="md"
               icon={<IconBrandGithub size={18} className="text-cyan" />}
             >
@@ -91,6 +93,7 @@ export default async function HomePage({
             <NeonButton
               href="https://homedir.opensourcesantiago.io"
               external
+              newTabLabel={msgs["a11y.opensInNewTab"]}
               size="md"
               icon={<IconHome size={18} className="text-cyan" />}
             >
@@ -141,6 +144,7 @@ export default async function HomePage({
               <NeonButton
                 href="https://devopsdayschile.cl"
                 external
+                newTabLabel={msgs["a11y.opensInNewTab"]}
                 size="sm"
                 icon={<IconArrowRight size={16} className="text-cyan" />}
               >
@@ -193,6 +197,7 @@ export default async function HomePage({
           <NeonButton
             href="https://homedir.opensourcesantiago.io"
             external
+            newTabLabel={msgs["a11y.opensInNewTab"]}
             size="md"
             icon={<IconArrowRight size={18} className="text-cyan" />}
           >

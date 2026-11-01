@@ -302,7 +302,7 @@ export function Display3D({ locale }: Display3DProps) {
   const totalRotY = -currentFace * angleStep + manualRotY;
 
   return (
-    <div
+    <main
       className="relative flex h-screen w-screen touch-none flex-col items-center justify-center overflow-hidden bg-[#020509] font-sans antialiased select-none [*]:select-none"
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
@@ -372,7 +372,14 @@ export function Display3D({ locale }: Display3DProps) {
       {/* Only essential button: Pause / Play toggle */}
       <div className="absolute top-6 right-8 z-40">
         <button
+          type="button"
           onClick={() => setIsAutoPlay((prev) => !prev)}
+          aria-pressed={!isAutoPlay}
+          aria-label={
+            isAutoPlay
+              ? "Pausar rotación automática"
+              : "Reanudar rotación automática"
+          }
           className={`flex cursor-pointer items-center gap-2.5 rounded-full border px-4 py-2 font-mono text-xs tracking-wider shadow-lg transition-colors duration-200 ${
             isAutoPlay
               ? "border-cyan/50 text-cyan hover:border-cyan bg-[#06111e]"
@@ -382,12 +389,16 @@ export function Display3D({ locale }: Display3DProps) {
         >
           {isAutoPlay ? (
             <>
-              <IconPlayerPause size={14} className="text-cyan" />
+              <IconPlayerPause
+                size={14}
+                className="text-cyan"
+                aria-hidden="true"
+              />
               <span className="font-bold">10s</span>
             </>
           ) : (
             <>
-              <IconPlayerPlay size={14} />
+              <IconPlayerPlay size={14} aria-hidden="true" />
               <span>PAUSADO</span>
             </>
           )}
@@ -622,6 +633,9 @@ export function Display3D({ locale }: Display3DProps) {
             {/* EXPANDED MODAL OVERLAY FOR MEMBER LINKEDIN QR */}
             {selectedMember && (
               <div
+                role="dialog"
+                aria-modal="true"
+                aria-label={`QR de LinkedIn de ${selectedMember.displayName}`}
                 className="animate-in fade-in absolute inset-0 z-50 flex flex-col items-center justify-center rounded-2xl bg-[#030812]/98 p-6 text-center duration-150"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -629,14 +643,16 @@ export function Display3D({ locale }: Display3DProps) {
                 }}
               >
                 <button
+                  type="button"
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedMember(null);
                   }}
                   className="border-cyan/40 bg-void text-cyan hover:bg-cyan/20 absolute top-4 right-4 cursor-pointer rounded-full border p-2 transition-all"
+                  aria-label={`Cerrar QR de ${selectedMember.displayName}`}
                   title="Cerrar QR"
                 >
-                  <IconX size={18} />
+                  <IconX size={18} aria-hidden="true" />
                 </button>
 
                 <div className="relative mb-2 h-16 w-16">
@@ -755,6 +771,9 @@ export function Display3D({ locale }: Display3DProps) {
             {/* EXPANDED MODAL OVERLAY */}
             {selectedProject && (
               <div
+                role="dialog"
+                aria-modal="true"
+                aria-label={`QR de ${selectedProject.name}`}
                 className="animate-in fade-in absolute inset-0 z-50 flex flex-col items-center justify-center rounded-2xl bg-[#030812]/98 p-6 text-center duration-150"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -762,14 +781,16 @@ export function Display3D({ locale }: Display3DProps) {
                 }}
               >
                 <button
+                  type="button"
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedProject(null);
                   }}
                   className="border-cyan/40 bg-void text-cyan hover:bg-cyan/20 absolute top-4 right-4 cursor-pointer rounded-full border p-2 transition-all"
+                  aria-label={`Cerrar QR de ${selectedProject.name}`}
                   title="Cerrar QR"
                 >
-                  <IconX size={18} />
+                  <IconX size={18} aria-hidden="true" />
                 </button>
 
                 <div className="text-cyan border-cyan/40 bg-cyan/10 mb-2 rounded border px-3 py-1 font-mono text-xs font-bold tracking-widest uppercase">
@@ -923,6 +944,6 @@ export function Display3D({ locale }: Display3DProps) {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

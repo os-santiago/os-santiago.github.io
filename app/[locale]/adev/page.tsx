@@ -127,6 +127,7 @@ export default async function AdevPage({
             <NeonButton
               href="https://github.com/scanalesespinoza/adev/releases/latest"
               external
+              newTabLabel={msgs["a11y.opensInNewTab"]}
               size="md"
               icon={<IconBook size={18} className="text-cyan" />}
             >
@@ -136,6 +137,7 @@ export default async function AdevPage({
             <NeonButton
               href="https://github.com/scanalesespinoza/adev"
               external
+              newTabLabel={msgs["a11y.opensInNewTab"]}
               size="sm"
               icon={<IconBrandGithub size={16} className="text-cyan" />}
             >

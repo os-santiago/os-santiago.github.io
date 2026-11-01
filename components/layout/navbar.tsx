@@ -67,6 +67,7 @@ export function Navbar({ locale }: NavbarProps) {
   return (
     <header className="pointer-events-none fixed top-0 right-0 left-0 z-40 flex justify-center px-4 py-3 sm:py-4">
       <nav
+        id="main-navigation"
         aria-label={msgs["a11y.mainNav"]}
         className={cn(
           "group/nav border-cyan/20 bg-void-surface/95 pointer-events-auto relative flex transform-gpu items-center justify-between rounded-full border shadow-[0_4px_24px_rgba(0,0,0,0.7)] backdrop-blur-md",
@@ -88,6 +89,7 @@ export function Navbar({ locale }: NavbarProps) {
 
         {/* Left Side Links: Anchored rigidly to center logo, zero horizontal translation */}
         <div
+          onFocus={() => setIsExpanded(true)}
           className={cn(
             "pointer-events-none absolute top-1/2 right-[calc(50%+22px)] z-10 flex -translate-y-1/2 items-center justify-end gap-2.5 opacity-0 blur-[2px] transition-[opacity,filter] duration-150 ease-out sm:right-[calc(50%+26px)] sm:gap-5",
             isExpanded
@@ -162,7 +164,7 @@ export function Navbar({ locale }: NavbarProps) {
 
         {/* Right Side Links & Language Switcher: Anchored rigidly to center logo, zero horizontal translation */}
         <div
-          id="mobile-menu"
+          onFocus={() => setIsExpanded(true)}
           className={cn(
             "pointer-events-none absolute top-1/2 right-6 left-[calc(50%+22px)] z-10 flex -translate-y-1/2 items-center justify-start gap-2.5 opacity-0 blur-[2px] transition-[opacity,filter] duration-150 ease-out sm:right-8 sm:left-[calc(50%+26px)] sm:gap-5",
             isExpanded
@@ -218,7 +220,7 @@ export function Navbar({ locale }: NavbarProps) {
           className="text-cyan hover:text-cyan-bright pointer-events-auto absolute top-1/2 right-3 z-30 flex -translate-y-1/2 items-center justify-center p-2 transition-colors sm:hidden"
           onClick={toggleMenu}
           aria-expanded={isExpanded}
-          aria-controls="mobile-menu"
+          aria-controls="main-navigation"
           aria-label={
             isExpanded ? msgs["a11y.closeMenu"] : msgs["a11y.openMenu"]
           }

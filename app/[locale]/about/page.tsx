@@ -94,6 +94,7 @@ export default async function AboutPage({
                 href={fact.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`${fact.value} (${msgs["a11y.opensInNewTab"]})`}
                 className="text-cyan font-display hover:text-cyan-bright mt-1 block text-center text-lg font-bold transition-colors"
               >
                 {fact.value} →
@@ -111,6 +112,7 @@ export default async function AboutPage({
         <NeonButton
           href="https://discord.gg/3eawzc9ybc"
           external
+          newTabLabel={msgs["a11y.opensInNewTab"]}
           size="md"
           icon={<IconBrandDiscord size={18} className="text-cyan" />}
         >

@@ -111,6 +111,7 @@ export function ProjectList({
                       href={`https://github.com/${author.github}`}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`@${author.github} (${msgs["a11y.opensInNewTab"]})`}
                       className="text-cyan-dim hover:text-cyan decoration-cyan/30 hover:decoration-cyan underline transition-colors"
                     >
                       @{author.github}
@@ -146,6 +147,7 @@ export function ProjectList({
                 <NeonButton
                   href={project.repoUrl}
                   external
+                  newTabLabel={msgs["a11y.opensInNewTab"]}
                   size="sm"
                   icon={<IconBrandGithub size={13} className="text-cyan" />}
                 >
@@ -155,6 +157,7 @@ export function ProjectList({
                   <NeonButton
                     href={project.homepageUrl}
                     external
+                    newTabLabel={msgs["a11y.opensInNewTab"]}
                     size="sm"
                     icon={<IconWorld size={13} className="text-cyan" />}
                   >

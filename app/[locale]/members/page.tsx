@@ -109,7 +109,7 @@ export default async function MembersPage({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="neon-btn-3d border-cyan/50 text-cyan hover:border-cyan inline-flex items-center justify-center rounded-sm border p-2 font-mono transition-all duration-300"
-                aria-label={`${member.displayName} GitHub`}
+                aria-label={`${member.displayName} GitHub (${msgs["a11y.opensInNewTab"]})`}
                 title={`GitHub @${member.github}`}
               >
                 <IconBrandGithub size={20} />
@@ -135,6 +135,7 @@ export default async function MembersPage({
             <NeonButton
               href="https://homedir.opensourcesantiago.io/comunidad"
               external
+              newTabLabel={msgs["a11y.opensInNewTab"]}
               size="md"
               icon={<IconArrowRight size={18} className="text-cyan" />}
             >

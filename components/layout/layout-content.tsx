@@ -32,7 +32,7 @@ export function LayoutContent({ locale, children }: LayoutContentProps) {
         {msgs["a11y.skipToContent"]}
       </a>
       <Navbar locale={locale} />
-      <main id="main-content" className="pt-14">
+      <main id="main-content" tabIndex={-1} className="pt-14">
         {children}
       </main>
       <Footer locale={locale} />

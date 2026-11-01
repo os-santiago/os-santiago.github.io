@@ -16,6 +16,7 @@ const es: Messages = {
   "a11y.opensInNewTab": "se abre en una pestaña nueva",
   "a11y.openMenu": "Abrir menú",
   "a11y.closeMenu": "Cerrar menú",
+  "a11y.closePhotoPreview": "Cerrar vista previa de la foto",
 
   "home.title": "Open Source Santiago",
   "home.tagline":
@@ -181,6 +182,7 @@ const en: Messages = {
   "a11y.opensInNewTab": "opens in a new tab",
   "a11y.openMenu": "Open menu",
   "a11y.closeMenu": "Close menu",
+  "a11y.closePhotoPreview": "Close photo preview",
 
   "home.title": "Open Source Santiago",
   "home.tagline":
